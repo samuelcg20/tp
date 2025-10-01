@@ -19,14 +19,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Team member/Developer
 
-### Jane Doe
+### Saajid Ahamed
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/saajid-ahamed.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/saajid-ahamed)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
+* Role: Team Member
 * Responsibilities: UI
 
 ### Samuel Christy George
