@@ -48,22 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: Ensure project deliverables are done on time and in the right format, Looks after code quality
 
 
-### Jean Doe
+### Mani Kumar Prateek
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/prateek2030s.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/Prateek2030s)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: Team Member/ Developer
+* Responsibilities: Logic
