@@ -44,8 +44,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/sbillsujithkumaar)] [[portfolio](team/johndoe.md)]
 
-* Role: Team Member, Deliverables and deadlines
-* Responsibilities: Ensure project deliverables are done on time and in the right format
+* Role: Team Member, Deliverables and deadlines, Code quality
+* Responsibilities: Ensure project deliverables are done on time and in the right format, Looks after code quality
+
 
 ### Jean Doe
 
