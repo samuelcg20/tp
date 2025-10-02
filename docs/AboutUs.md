@@ -38,6 +38,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Member/Developer
 * Responsibilities: Data
 
+### Stalin Muthukumar Bill Sujith Kumaar
+
+<img src="images/sbillsujithkumaar.png" width="200px">
+
+[[github](http://github.com/sbillsujithkumaar)] [[portfolio](team/johndoe.md)]
+
+* Role: Team Member, Deliverables and deadlines, Code quality
+* Responsibilities: Ensure project deliverables are done on time and in the right format, Looks after code quality
+
+
 ### Mani Kumar Prateek
 
 <img src="images/prateek2030s.png" width="200px">
@@ -47,13 +57,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Team Member/ Developer
 * Responsibilities: Logic
-
-### 
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
