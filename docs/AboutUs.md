@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Member/Developer
 * Responsibilities: Data
 
-### Jean Doe
+### John Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/prateek2030s.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/Prateek2030s)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Team Member/ Developer
+* Responsibilities: Logic
 
 ### James Doe
 
