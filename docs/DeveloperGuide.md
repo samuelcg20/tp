@@ -318,15 +318,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  The system should be able to handle at least 50 members and 20 events without noticeable sluggishness in performance for typical usage.
+3.  Core commands (add, delete, list) should return results within 1 second for datasets within these limits.
+4.  Error messages should be clear, specific, and actionable, guiding the user to correct invalid inputs.
+5.  Member and event records must be stored persistently so that no data is lost between application restarts.
+6.  The system must validate all input to prevent injection of unsupported or malicious characters.
+7.  The application should start up and be ready to accept commands within 5 seconds on a typical laptop.
+8.  All stored data should be in a human-readable text format (e.g., JSON/XML/CSV) so that it can be migrated easily to another system if needed.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Address Book**: A digital contact management system that stores details of CCA members (e.g., name, phone, email, role).
+* **Index**: A numerical identifier assigned to members or events in a displayed list, used for referencing in commands (e.g., delete member 2).
+* **Command**: A specific instruction entered by the user into the CLI to perform an action (e.g., add n/John Doe …, delete member 1).
+* **Persistence**: The ability of the system to save data (members and events) so that it remains available across multiple sessions.
+* **Error Message**: A feedback response from the system that informs the user about invalid or incorrect inputs (e.g., invalid phone number, missing parameters).
+* **Command Line Interface(CLI)**: A text-based user interface where users type in commands (e.g., add, delete, list) instead of using graphical menus.
+* **Member**: An individual registered in the CCA with details such as name, contact number, email, and role.
 
 --------------------------------------------------------------------------------------------------------------------
 
