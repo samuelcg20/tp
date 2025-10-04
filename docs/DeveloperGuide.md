@@ -260,37 +260,40 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: NUS CCA leaders 
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of member contacts
+* needs to track CCA members' attendance for event participation
+* classify members into their different roles 
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: keep track of members and events easily with simple one-line commands. Record 
+attendance for members and filter members by event attendance.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​    | I want to …​                                   | So that I can…​                                                                                                     |
+|----------|------------|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | CCA leader | add a new meember with their details           | so that I can keep a complete active member list                                                                    |
+| `* * *`  | CCA leader | delete a member                                | so that inactive members can be removed                                                                             |
+| `* * *`  | CCA leader | add an event with date/time                    | so that I can track attendance later                                                                                |
+| `* * *`  | CCA leader/secretary | I want to view the entire address book details | so that I can retrieve info from the the address book and also be sure that it always stays accurate and up to date |
+| `* * *`  | CCA leader | I want to delete an event                      | so that I can remove cancelled events                                                                               |
+| `*`      | CCA member | I want to view my own profile                  | so that I can confirm my details are correct                                                                        |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**1. Use case: Delete a person**
 
 **MSS**
 
@@ -313,7 +316,71 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**2. Use Case: Delete an Event**
+
+**MSS**
+
+1. User requests to list events.
+2. AddressBook displays a list of events with dates and times.
+3. User requests to delete a specific event.
+4. AddressBook deletes the event.
+5. AddressBook confirms deletion.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The event list is empty → Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+    * 3a2. Use case resumes at step 2.
+
+* 4a. User cancels deletion → Use case ends.
+
+**3. Use Case: Add an Event**
+
+**MSS**
+
+1. User requests to add an event.
+2. AddressBook prompts the user for event details (title, date, time, description).
+3. User provides the required details.
+4. AddressBook saves the event.
+5. AddressBook confirms the event was added successfully.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User cancels the operation → Use case ends.
+
+* 3a. User provides an invalid date/time.
+    * 3a1. AddressBook shows an error message.
+    * 3a2. Use case resumes at step 2.
+
+* 4a. An event with the same details already exists.
+    * 4a1. AddressBook asks whether to overwrite or cancel.
+
+**4. Use Case: View Event Details**
+
+**MSS**
+
+1. User requests to list events.
+2. AddressBook shows the list of events with basic details (titles and dates).
+3. User requests to view details of a specific event.
+4. AddressBook shows the full details (title, date, time, description, location, etc.).
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The event list is empty → Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. AddressBook shows an error message.
+    * 3a2. Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
