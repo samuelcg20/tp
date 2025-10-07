@@ -3,7 +3,7 @@
 ![Ui](docs/images/Ui.png)
 
 
-* This project is **based on the [AddressBook-Level3](https://se-education.org/addressbook-level3)** project created by the [SE-EDU initiative](https://se-education.org).  
+* This project is **based on the [AddressBook-Level3](https://se-education.org/addressbook-level3)** project created by the [SE-EDU initiative](https://se-education.org).
   It extends the original design into a **specialized CLI-based application** built for **NUS CCA leaders** to manage **member information** and **event information** efficiently.
 
 * **`ComClubConnect`** is developed as part of a **Software Engineering (SE) course project**, serving both as a **practical implementation** and a **learning tool**.<br>
@@ -17,5 +17,3 @@
     * The code base is **adapted to meet CCA-specific needs** such as **member roles**, **attendance records**, and **event listings**, while keeping complexity **manageable for student developers**.
     * It includes **comprehensive documentation**, **user stories**, and **meeting logs**, reflecting the **iterative and collaborative nature** of software engineering projects.
     * For the detailed documentation of this project, see **[ComClubConnect Website](https://ay2526s1-cs2103t-t09-2.github.io/tp/)**.
-
-
