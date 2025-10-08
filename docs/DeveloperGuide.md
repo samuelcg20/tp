@@ -260,18 +260,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**: NUS CCA leaders 
+**Target user profile**: NUS CCA leaders
 
 * has a need to manage a significant number of member contacts
 * needs to track CCA members' attendance for event participation
-* classify members into their different roles 
+* classify members into their different roles
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
 
-**Value proposition**: keep track of members and events easily with simple one-line commands. Record 
+**Value proposition**: keep track of members and events easily with simple one-line commands. Record
 attendance for members and filter members by event attendance.
 
 
