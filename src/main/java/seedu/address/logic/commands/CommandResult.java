@@ -16,16 +16,38 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
+    /** Events should be shown to the user. */
+    private final boolean showEvents;
+
+    /** Home page should be shown to the user. */
+    private final boolean showHome;
+
     /** The application should exit. */
     private final boolean exit;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showEvents, boolean showHome, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
+        this.showEvents = showEvents;
+        this.showHome = showHome;
         this.exit = exit;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields (legacy constructor for backward compatibility).
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showEvents, boolean exit) {
+        this(feedbackToUser, showHelp, showEvents, false, exit);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields (legacy constructor for backward compatibility).
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, showHelp, false, false, exit);
     }
 
     /**
@@ -42,6 +64,14 @@ public class CommandResult {
 
     public boolean isShowHelp() {
         return showHelp;
+    }
+
+    public boolean isShowEvents() {
+        return showEvents;
+    }
+
+    public boolean isShowHome() {
+        return showHome;
     }
 
     public boolean isExit() {
@@ -62,12 +92,14 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
+                && showEvents == otherCommandResult.showEvents
+                && showHome == otherCommandResult.showHome
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, showEvents, showHome, exit);
     }
 
     @Override
@@ -75,6 +107,8 @@ public class CommandResult {
         return new ToStringBuilder(this)
                 .add("feedbackToUser", feedbackToUser)
                 .add("showHelp", showHelp)
+                .add("showEvents", showEvents)
+                .add("showHome", showHome)
                 .add("exit", exit)
                 .toString();
     }
