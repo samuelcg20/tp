@@ -16,6 +16,6 @@ public class ListEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        return new CommandResult(MESSAGE_SUCCESS, false, true, false, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, false, false);
     }
 }

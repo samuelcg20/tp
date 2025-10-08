@@ -30,11 +30,11 @@ public class CommandResultTest {
 
         // different showHelp value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", true,
-                false, false, false)));
+                false, true, false)));
 
         // different showEvents value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false,
-                true, false, false)));
+                true, true, false)));
 
         // different showHome value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false,
@@ -57,11 +57,11 @@ public class CommandResultTest {
 
         // different showHelp value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true,
-                false, false, false).hashCode());
+                false, true, false).hashCode());
 
         // different showEvents value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
-                true, false, false).hashCode());
+                true, true, false).hashCode());
 
         // different showHome value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
