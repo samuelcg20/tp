@@ -1,4 +1,4 @@
-[![pages-build-deployment](https://github.com/AY2526S1-CS2103T-T09-2/tp/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/AY2526S1-CS2103T-T09-2/tp/actions/workflows/pages/pages-build-deployment)
+[![Java CI](https://github.com/AY2526S1-CS2103T-T09-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2526S1-CS2103T-T09-2/tp/actions/workflows/gradle.yml)
 
 ![Ui](docs/images/Ui.png)
 
