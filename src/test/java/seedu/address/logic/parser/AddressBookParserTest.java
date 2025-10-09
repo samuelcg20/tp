@@ -13,15 +13,15 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.member.AddCommand;
+import seedu.address.logic.commands.member.ClearCommand;
+import seedu.address.logic.commands.member.DeleteMemberCommand;
+import seedu.address.logic.commands.member.EditCommand;
+import seedu.address.logic.commands.member.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.member.ExitCommand;
+import seedu.address.logic.commands.member.FindCommand;
+import seedu.address.logic.commands.member.HelpCommand;
+import seedu.address.logic.commands.member.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -48,9 +48,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        DeleteMemberCommand command = (DeleteMemberCommand) parser.parseCommand(
+                DeleteMemberCommand.COMMAND_WORD + " member " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteMemberCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
