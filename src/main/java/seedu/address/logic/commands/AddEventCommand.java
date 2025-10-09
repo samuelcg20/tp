@@ -5,7 +5,7 @@ import seedu.address.model.Model;
 
 /**
  * Adds an event to the event book.
- */
+  */
 public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "addEvent";
@@ -25,7 +25,7 @@ public class AddEventCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-       return null;
+        return null;
     }
 }
 
