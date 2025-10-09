@@ -4,7 +4,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-
 /**
  * Deletes an event identified using it's displayed index from the event list.
  */
