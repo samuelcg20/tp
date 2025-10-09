@@ -14,19 +14,20 @@ public class DeleteCommandParser implements Parser<DeleteMemberCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * and returns a DeleteMemberCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteMemberCommand parse(String args) throws ParseException {
         // Split the current args input into at most 2 parts: [type, index]
         String[] argsParts = args.trim().split("\\s+");
 
-        if (argsParts.length !=2 ) {
+        if (argsParts.length != 2) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMemberCommand.MESSAGE_USAGE));
         }
 
-        String type = argsParts[0];          // Type indicates whether to delete member or event
+        // Type indicates whether to delete member or event
+        String type = argsParts[0];
         String indexToDelete = argsParts[1];
         boolean isInvalidType = !type.equalsIgnoreCase("member") && !type.equalsIgnoreCase("event");
 
