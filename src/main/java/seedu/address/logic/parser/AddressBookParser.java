@@ -12,7 +12,6 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.member.AddCommand;
 import seedu.address.logic.commands.member.ClearCommand;
 import seedu.address.logic.commands.member.EditCommand;
 import seedu.address.logic.commands.member.ExitCommand;
