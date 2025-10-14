@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.member.AddCommand;
 import seedu.address.logic.commands.member.ClearCommand;
-import seedu.address.logic.commands.member.Command;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.member.DeleteMemberCommand;
 import seedu.address.logic.commands.member.EditCommand;
 import seedu.address.logic.commands.member.ExitCommand;

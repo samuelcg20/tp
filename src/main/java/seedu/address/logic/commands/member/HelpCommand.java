@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.member;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
