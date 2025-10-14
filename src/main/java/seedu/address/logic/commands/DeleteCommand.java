@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import seedu.address.commons.core.index.Index;
 
+/**
+ * Represents delete command with hidden internal logic and the ability to be executed.
+ */
 public abstract class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";

@@ -49,6 +49,12 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
     }
 
+    /**
+     * Checks if it is member or event
+     * @param type Member or Event
+     * @param index Position to be removed
+     * @return DeleteMemberCommand or DeleteEventCommand
+     */
     public DeleteCommand matchType(String type, Index index) {
         if (type.equalsIgnoreCase("member")) {
             return new DeleteMemberCommand(index);
