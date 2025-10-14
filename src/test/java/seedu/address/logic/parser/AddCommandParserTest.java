@@ -66,6 +66,19 @@ public class AddCommandParserTest {
     }
 
     @Test
+    public void parse_memberPreamble_success() {
+        // "member" preamble is the new syntax that should behave just like the original add command.
+        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        assertParseSuccess(parser, "member" + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+
+        // Mixed-case "MeMbEr" should also be accepted to show the comparison is case-insensitive.
+        Person expectedPersonNoTags = new PersonBuilder(BOB).withTags().build();
+        assertParseSuccess(parser, "MeMbEr" + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB, new AddCommand(expectedPersonNoTags));
+    }
+
+    @Test
     public void parse_repeatedNonTagValue_failure() {
         String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND;
