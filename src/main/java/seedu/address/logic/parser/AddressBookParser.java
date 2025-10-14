@@ -10,14 +10,13 @@ import java.util.regex.Pattern;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.member.AddCommand;
 import seedu.address.logic.commands.member.ClearCommand;
 import seedu.address.logic.commands.member.EditCommand;
 import seedu.address.logic.commands.member.ExitCommand;
 import seedu.address.logic.commands.member.FindCommand;
 import seedu.address.logic.commands.member.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.member.ListMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

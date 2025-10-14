@@ -7,6 +7,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.model.Model;
 
+/**
+ * List members based on the command input
+ */
 public class ListMemberCommand extends ListCommand {
 
     public static final String MESSAGE_SUCCESS = "Listed all members";

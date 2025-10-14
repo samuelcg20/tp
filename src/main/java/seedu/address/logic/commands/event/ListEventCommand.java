@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+//import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -12,7 +12,7 @@ import seedu.address.model.Model;
  */
 public class ListEventCommand extends ListCommand {
 
-    public static final String MESSAGE_SUCCESS = "Showing events page.";
+    public static final String MESSAGE_SUCCESS = "Listed all events";
 
     @Override
     public CommandResult execute(Model model) {

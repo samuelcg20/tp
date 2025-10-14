@@ -9,8 +9,16 @@ import seedu.address.logic.commands.member.DeleteMemberCommand;
 import seedu.address.logic.commands.member.ListMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new ListCommand object
+ */
 public class ListCommandParser implements Parser<ListCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the ListCommand
+     * and returns a ListMemberCommand/ ListEventCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public ListCommand parse(String args) throws ParseException {
         // Split the current args input into at most 2 parts: [member/event, unnecessary information]
         String[] argsParts = args.trim().split("\\s+");
