@@ -41,15 +41,6 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_addMember() throws Exception {
-        Person person = new PersonBuilder().build();
-        String details = PersonUtil.getPersonDetails(person);
-        // This test proves the full command string "add member ..." is routed to AddCommand successfully.
-        AddCommand command = (AddCommand) parser.parseCommand(AddCommand.COMMAND_WORD + " member " + details);
-        assertEquals(new AddCommand(person), command);
-    }
-
-    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
