@@ -1,8 +1,8 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.event;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.member.Command;
-import seedu.address.logic.commands.member.CommandResult;
 import seedu.address.model.Model;
 
 /**
