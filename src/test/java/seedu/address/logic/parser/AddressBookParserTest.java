@@ -21,7 +21,7 @@ import seedu.address.logic.commands.member.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.member.ExitCommand;
 import seedu.address.logic.commands.member.FindCommand;
 import seedu.address.logic.commands.member.HelpCommand;
-import seedu.address.logic.commands.member.ListCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
