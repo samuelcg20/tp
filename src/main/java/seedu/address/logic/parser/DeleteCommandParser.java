@@ -49,7 +49,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     }
 
     /**
-     * Checks if it is member or event
+     * Checks if it is member or event command
      * @param type Member or Event
      * @param index Position to be removed
      * @return DeleteMemberCommand or DeleteEventCommand
