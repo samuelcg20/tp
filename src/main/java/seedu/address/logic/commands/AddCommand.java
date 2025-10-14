@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+/**
+ * Adds a member or event to the address book.
+ */
 public abstract class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
@@ -11,5 +14,4 @@ public abstract class AddCommand extends Command {
             + "[d/DATE] [s/STARTTIME] [f/ENDTIME] "
             + "Example: " + COMMAND_WORD
             + " member n/John Doe p/98765432";
-        
 }

@@ -12,7 +12,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.event.AddEventCommand;
 import seedu.address.logic.commands.member.AddMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -82,10 +81,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         // return new AddMemberCommand(person);
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddMemberCommand
+     * and returns an AddMemberCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public AddMemberCommand checkMember(String args) throws ParseException {
-                ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(" " + args,
-                        PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+        ArgumentMultimap argMultimap =
+            ArgumentTokenizer.tokenize(" " + args,
+                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
