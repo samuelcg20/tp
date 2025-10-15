@@ -20,7 +20,7 @@ public class CommandResult {
     private final boolean showEvents;
 
     /** Home page should be shown to the user. */
-    private final boolean showHome;
+    private final boolean showMembers;
 
     /** The application should exit. */
     private final boolean exit;
@@ -28,11 +28,11 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean showEvents, boolean showHome, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showEvents, boolean showMembers, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showEvents = showEvents;
-        this.showHome = showHome;
+        this.showMembers = showMembers;
         this.exit = exit;
     }
 
@@ -70,8 +70,8 @@ public class CommandResult {
         return showEvents;
     }
 
-    public boolean isShowHome() {
-        return showHome;
+    public boolean isShowMembers() {
+        return showMembers;
     }
 
     public boolean isExit() {
@@ -93,13 +93,13 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && showEvents == otherCommandResult.showEvents
-                && showHome == otherCommandResult.showHome
+                && showMembers == otherCommandResult.showMembers
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, showEvents, showHome, exit);
+        return Objects.hash(feedbackToUser, showHelp, showEvents, showMembers, exit);
     }
 
     @Override
@@ -108,7 +108,7 @@ public class CommandResult {
                 .add("feedbackToUser", feedbackToUser)
                 .add("showHelp", showHelp)
                 .add("showEvents", showEvents)
-                .add("showHome", showHome)
+                .add("showMembers", showMembers)
                 .add("exit", exit)
                 .toString();
     }
