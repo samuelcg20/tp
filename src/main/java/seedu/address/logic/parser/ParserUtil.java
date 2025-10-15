@@ -9,6 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Date;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.Venue;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -108,6 +111,51 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(trimmedDate);
+    }
+
+    /**
+     * Parses a {@code String eventName} into a {@code Event}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code event} is invalid.
+     */
+    public static EventName parseEventName(String eventName) throws ParseException {
+        requireNonNull(eventName);
+        String trimmedEventName = eventName.trim();
+        if (!EventName.isValidEventName(trimmedEventName)) {
+            throw new ParseException(EventName.MESSAGE_CONSTRAINTS);
+        }
+        return new EventName(trimmedEventName);
+    }
+
+    /**
+     * Parses a {@code String venue} into a {@code Venue}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code venue} is invalid.
+     */
+    public static Venue parseVenue(String venue) throws ParseException {
+        requireNonNull(venue);
+        String trimmedVenue = venue.trim();
+        if (!Venue.isValidVenue(trimmedVenue)) {
+            throw new ParseException(Venue.MESSAGE_CONSTRAINTS);
+        }
+        return new Venue(trimmedVenue);
     }
 
     /**
