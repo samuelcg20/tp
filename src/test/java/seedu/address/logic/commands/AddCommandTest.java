@@ -23,6 +23,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -157,6 +158,36 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEvent(Event event) {
+            return false;
+        }
+
+        @Override
+        public void deleteEvent(Event target) {
+
+        }
+
+        @Override
+        public void addEvent(Event event) {
+
+        }
+
+        @Override
+        public void setEvent(Event target, Event editedEvent) {
+
+        }
+
+        @Override
+        public ObservableList<Event> getFilteredEventList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredEventList(Predicate<Event> predicate) {
+
         }
     }
 
