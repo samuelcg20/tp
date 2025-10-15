@@ -5,9 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Event's name.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidEventName(String)}
  */
-public class Name {
+public class EventName {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -19,13 +19,13 @@ public class Name {
     /**
      * Creates a Name after validating constraints.
      */
-    public Name(String name) {
+    public EventName(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidEventName(name), MESSAGE_CONSTRAINTS);
         this.fullName = name;
     }
 
-    public static boolean isValidName(String test) {
+    public static boolean isValidEventName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -39,10 +39,10 @@ public class Name {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof Name)) {
+        if (!(other instanceof EventName)) {
             return false;
         }
-        Name otherName = (Name) other;
+        EventName otherName = (EventName) other;
         return fullName.equals(otherName.fullName);
     }
 
