@@ -44,7 +44,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Shared container to hold both event and member panels
     @FXML
-    private StackPane ListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -116,7 +116,7 @@ public class MainWindow extends UiPart<Stage> {
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
 
         // show member list by default
-        ListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -159,15 +159,15 @@ public class MainWindow extends UiPart<Stage> {
     // helper method to show events
     // switches out PersonListPanel with EventListPanel
     private void showEventList() {
-        ListPanelPlaceholder.getChildren().clear();
-        ListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
     }
 
     // helper method to show members
     // switches out EventListpanel with PersonListPanel
     private void showMemberList() {
-        ListPanelPlaceholder.getChildren().clear();
-        ListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
     /**
