@@ -25,7 +25,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         if (argsParts.length != 2) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMemberCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         // Type indicates whether to delete member or event
@@ -35,7 +35,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         if (isInvalidType) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_TYPE, DeleteMemberCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_TYPE, DeleteCommand.MESSAGE_USAGE));
         }
 
         try {
@@ -44,7 +44,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return matchType(type, index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMemberCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
     }
 
