@@ -11,7 +11,7 @@ public abstract class AddCommand extends Command {
             + "Parameters: TYPE (either 'member' or 'event') "
             + "[n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] "
             + "[t/TAG]... "
-            + "[n/EVENTNAME] [d/DATE] [v/VENUE] "
+            + "[n/EVENTNAME] [d/DATE] [l/VENUE] "
             + "Example: " + COMMAND_WORD
             + " member n/John Doe p/98765432";
 }
