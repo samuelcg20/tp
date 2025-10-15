@@ -12,21 +12,21 @@ import seedu.address.commons.util.ToStringBuilder;
  */
 public class Event {
 
-    private final Name name;
+    private final EventName name;
     private final Date date;
     private final Venue venue;
 
     /**
      * Creates an Event. All fields must be non-null and valid.
      */
-    public Event(Name name, Date date, Venue venue) {
+    public Event(EventName name, Date date, Venue venue) {
         requireAllNonNull(name, date, venue);
         this.name = name;
         this.date = date;
         this.venue = venue;
     }
 
-    public Name getName() {
+    public EventName getName() {
         return name;
     }
 

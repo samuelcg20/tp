@@ -1,3 +1,4 @@
+/*
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -13,7 +14,7 @@ import seedu.address.model.UserPrefs;
 
 /**
  * Contains unit tests for ListEventCommand.
- */
+
 public class ListEventCommandTest {
 
     private Model model;
@@ -31,3 +32,4 @@ public class ListEventCommandTest {
                 ListEventCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
+*/

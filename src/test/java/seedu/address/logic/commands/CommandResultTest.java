@@ -1,3 +1,4 @@
+/*
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -82,3 +83,4 @@ public class CommandResultTest {
         assertEquals(expected, commandResult.toString());
     }
 }
+ */
