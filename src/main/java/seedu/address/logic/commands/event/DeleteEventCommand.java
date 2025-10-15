@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.event;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -9,8 +11,6 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Deletes an event identified using it's displayed index from the event list.
