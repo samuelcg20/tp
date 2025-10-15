@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private EventListPanel eventListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -41,8 +42,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private MenuItem helpMenuItem;
 
+    // Shared container to hold both event and member panels
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,7 +113,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        eventListPanel = new EventListPanel(logic.getFilteredEventList());
+
+        // show member list by default
+        listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -151,6 +156,20 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    // helper method to show events
+    // switches out PersonListPanel with EventListPanel
+    private void showEventList() {
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+    }
+
+    // helper method to show members
+    // switches out EventListpanel with PersonListPanel
+    private void showMemberList() {
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    }
+
     /**
      * Closes the application.
      */
@@ -177,6 +196,13 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            // switch views depending on the Command result
+            if (commandResult.isShowEvents()) {
+                showEventList();
+            } else if (commandResult.isShowMembers()) {
+                showMemberList();
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
