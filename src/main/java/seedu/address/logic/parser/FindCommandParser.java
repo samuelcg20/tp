@@ -33,38 +33,84 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        // Type indicates whether to delete member or event
         String type = argsParts[0];
         String keywords = argsParts[1];
         boolean isInvalidType =
-                !type.equalsIgnoreCase("member") && !type.equalsIgnoreCase("event/l")
-                        && !type.equalsIgnoreCase("event/n");
+                !type.equalsIgnoreCase("member") && !type.equalsIgnoreCase("event");
 
         if (isInvalidType) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_TYPE, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = keywords.split("\\s+");
-        return matchType(type, nameKeywords);
-    }
-
-    /**
-     * Returns a FindMemberCommand object or FindEventCommand object based on its type
-     * @param type Either 'member' or 'event'
-     * @param nameKeywords An array of keywords to find
-     * @return Corresponding FindCommand subtype object
-     */
-    public FindCommand matchType(String type, String[] nameKeywords) {
         if (type.equalsIgnoreCase("member")) {
-            return new FindMemberCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        } else if (type.equalsIgnoreCase("event/n")) {
-            return new FindEventNameCommand(new EventNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        } else if (type.equalsIgnoreCase("event/l")) {
-            return new FindEventLocationCommand(new LocationContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        } else {
-            return null;
+            return checkMember(keywords);
+        } else { // event
+            return checkEvent(keywords);
         }
     }
 
+    /**
+     * needs to change implementation of this method (sujith)
+     */
+    private FindCommand checkMember(String remainingArgs) throws ParseException {
+        String[] keywords = remainingArgs.trim().split("\\s+");
+        if (keywords.length == 0) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+        return new FindMemberCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+    }
+
+    /**
+     * Parses and returns either FindEventNameCommand or FindEventLocationCommand.
+     * Expects a prefix n/ or l/.
+     */
+    private FindCommand checkEvent(String remainingArgs) throws ParseException {
+        remainingArgs = remainingArgs.trim();
+        if (remainingArgs.startsWith("n/")) {
+            return getFindEventNameCommand(remainingArgs);
+        } else if (remainingArgs.startsWith("l/")) {
+            return getFindEventLocationCommand(remainingArgs);
+        } else {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_TYPE, FindCommand.MESSAGE_USAGE));
+        }
+    }
+
+    /**
+     * Creates a {@code FindEventLocationCommand} by parsing keywords after the "l/" prefix.
+     *
+     * @param remainingArgs user input after "find event"
+     * @return command to find events by location
+     * @throws ParseException if no keywords are provided or format is invalid
+     */
+    private static FindEventLocationCommand getFindEventLocationCommand(String remainingArgs) throws ParseException {
+        String keywordsPart = remainingArgs.substring(2).trim(); // remove l/
+        if (keywordsPart.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+        String[] locationKeywords = keywordsPart.split("\\s+");
+        return new FindEventLocationCommand(
+                new LocationContainsKeywordsPredicate(Arrays.asList(locationKeywords)));
+    }
+
+    /**
+     * Creates a {@code FindEventNameCommand} by parsing keywords after the "n/" prefix.
+     *
+     * @param remainingArgs user input after "find event"
+     * @return command to find events by name
+     * @throws ParseException if no keywords are provided or format is invalid
+     */
+    private static FindEventNameCommand getFindEventNameCommand(String remainingArgs) throws ParseException {
+        String keywordsPart = remainingArgs.substring(2).trim(); // remove n/
+        if (keywordsPart.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+        String[] nameKeywords = keywordsPart.split("\\s+");
+        return new FindEventNameCommand(
+                new EventNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+    }
 }
