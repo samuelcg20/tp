@@ -6,8 +6,10 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_TYPE;
 import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.event.FindEventCommand;
 import seedu.address.logic.commands.member.FindMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -32,7 +34,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         // Type indicates whether to delete member or event
         String type = argsParts[0];
         String keywords = argsParts[1];
-        boolean isInvalidType = !type.equalsIgnoreCase("member") && !type.equalsIgnoreCase("event");
+        boolean isInvalidType =
+                !type.equalsIgnoreCase("member") && !type.equalsIgnoreCase("event");
 
         if (isInvalidType) {
             throw new ParseException(
@@ -53,7 +56,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (type.equalsIgnoreCase("member")) {
             return new FindMemberCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else if (type.equalsIgnoreCase("event")) {
-            return null;
+            return new FindEventCommand(new EventNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else {
             return null;
         }
