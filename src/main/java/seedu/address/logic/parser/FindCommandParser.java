@@ -4,6 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_TYPE;
 
 import java.util.Arrays;
+
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.member.FindMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -42,6 +43,12 @@ public class FindCommandParser implements Parser<FindCommand> {
         return matchType(type, nameKeywords);
     }
 
+    /**
+     * Returns a FindMemberCommand object or FindEventCommand object based on its type
+     * @param type Either 'member' or 'event'
+     * @param nameKeywords An array of keywords to find
+     * @return Corresponding FindCommand subtype object
+     */
     public FindCommand matchType(String type, String[] nameKeywords) {
         if (type.equalsIgnoreCase("member")) {
             return new FindMemberCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
