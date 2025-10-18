@@ -1,10 +1,16 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_TYPE;
 
 import java.util.Arrays;
 
-import seedu.address.logic.commands.member.FindCommand;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.event.DeleteEventCommand;
+import seedu.address.logic.commands.member.DeleteMemberCommand;
+import seedu.address.logic.commands.member.FindMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
@@ -19,15 +25,36 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        // Split the current args input into at most 2 parts: [type, index]
+        String[] argsParts = args.trim().split("\\s+", 2);
+
+        if (argsParts.length != 2) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        // Type indicates whether to delete member or event
+        String type = argsParts[0];
+        String keywords = argsParts[1];
+        boolean isInvalidType = !type.equalsIgnoreCase("member") && !type.equalsIgnoreCase("event");
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        if (isInvalidType) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_TYPE, FindCommand.MESSAGE_USAGE));
+        }
+
+        String[] nameKeywords = keywords.split("\\s+");
+        return matchType(type, nameKeywords);
+    }
+
+    public FindCommand matchType(String type, String[] nameKeywords) {
+        if (type.equalsIgnoreCase("member")) {
+            return new FindMemberCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        } else if (type.equalsIgnoreCase("event")) {
+            return null;
+        } else {
+            return null;
+        }
     }
 
 }
