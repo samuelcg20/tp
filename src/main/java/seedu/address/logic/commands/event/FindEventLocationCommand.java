@@ -1,23 +1,26 @@
 package seedu.address.logic.commands.event;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.member.FindMemberCommand;
 import seedu.address.model.Model;
-import seedu.address.model.event.EventNameContainsKeywordsPredicate;
+import seedu.address.model.event.LocationContainsKeywordsPredicate;
 
-import static java.util.Objects.requireNonNull;
+/**
+ * Finds and lists all events in address book whose location contains any of the argument keywords.
+ * Keyword matching is case-insensitive.
+ */
+public class FindEventLocationCommand extends FindCommand {
 
-public class FindEventCommand extends FindCommand {
-
-    private final EventNameContainsKeywordsPredicate predicate;
+    private final LocationContainsKeywordsPredicate predicate;
 
     /**
      * Creates a FindMemberCommand to find the specified {@code NameContainsKeywordsPredicate}
      */
-    public FindEventCommand(EventNameContainsKeywordsPredicate predicate) {
+    public FindEventLocationCommand(LocationContainsKeywordsPredicate predicate) {
         super();
         this.predicate = predicate;
     }
@@ -37,12 +40,12 @@ public class FindEventCommand extends FindCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindEventCommand)) {
+        if (!(other instanceof FindEventLocationCommand)) {
             return false;
         }
 
-        FindEventCommand otherFindEventCommand = (FindEventCommand) other;
-        return predicate.equals(otherFindEventCommand.predicate);
+        FindEventLocationCommand otherFindEventLocationCommand = (FindEventLocationCommand) other;
+        return predicate.equals(otherFindEventLocationCommand.predicate);
     }
 
     @Override

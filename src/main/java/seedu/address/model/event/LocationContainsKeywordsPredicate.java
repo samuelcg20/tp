@@ -7,19 +7,19 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Event}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Event}'s {@code Location} matches any of the keywords given.
  */
-public class EventNameContainsKeywordsPredicate implements Predicate<Event> {
+public class LocationContainsKeywordsPredicate implements Predicate<Event> {
     private final List<String> keywords;
 
-    public EventNameContainsKeywordsPredicate(List<String> keywords) {
+    public LocationContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Event event) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(event.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(event.getVenue().value, keyword));
     }
 
     @Override
@@ -29,13 +29,13 @@ public class EventNameContainsKeywordsPredicate implements Predicate<Event> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EventNameContainsKeywordsPredicate)) {
+        if (!(other instanceof LocationContainsKeywordsPredicate)) {
             return false;
         }
 
-        EventNameContainsKeywordsPredicate otherEventNameContainsKeywordsPredicate =
-                (EventNameContainsKeywordsPredicate) other;
-        return keywords.equals(otherEventNameContainsKeywordsPredicate.keywords);
+        LocationContainsKeywordsPredicate otherLocationContainsKeywordsPredicate =
+                (LocationContainsKeywordsPredicate) other;
+        return keywords.equals(otherLocationContainsKeywordsPredicate.keywords);
     }
 
     @Override

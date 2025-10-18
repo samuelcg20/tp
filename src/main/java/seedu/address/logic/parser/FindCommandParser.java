@@ -6,10 +6,12 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_TYPE;
 import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.event.FindEventCommand;
+import seedu.address.logic.commands.event.FindEventLocationCommand;
+import seedu.address.logic.commands.event.FindEventNameCommand;
 import seedu.address.logic.commands.member.FindMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.EventNameContainsKeywordsPredicate;
+import seedu.address.model.event.LocationContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -35,7 +37,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         String type = argsParts[0];
         String keywords = argsParts[1];
         boolean isInvalidType =
-                !type.equalsIgnoreCase("member") && !type.equalsIgnoreCase("event");
+                !type.equalsIgnoreCase("member") && !type.equalsIgnoreCase("event/l")
+                        && !type.equalsIgnoreCase("event/n");
 
         if (isInvalidType) {
             throw new ParseException(
@@ -55,8 +58,10 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand matchType(String type, String[] nameKeywords) {
         if (type.equalsIgnoreCase("member")) {
             return new FindMemberCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        } else if (type.equalsIgnoreCase("event")) {
-            return new FindEventCommand(new EventNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        } else if (type.equalsIgnoreCase("event/n")) {
+            return new FindEventNameCommand(new EventNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        } else if (type.equalsIgnoreCase("event/l")) {
+            return new FindEventLocationCommand(new LocationContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else {
             return null;
         }
