@@ -17,6 +17,9 @@ public class FindMemberCommand extends FindCommand {
 
     private final NameContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates a FindMemberCommand to find the specified {@code NameContainsKeywordsPredicate}
+     */
     public FindMemberCommand(NameContainsKeywordsPredicate predicate) {
         super();
         this.predicate = predicate;
