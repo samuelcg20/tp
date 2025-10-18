@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
  */
 public class Messages {
 
-    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command. Type 'help' to view list of commands.";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_TYPE =
             "Please state if this operation is for 'member' or 'event'. \n%1$s";
@@ -48,7 +48,7 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Address: ")
                 .append(person.getAddress())
-                .append("; Tags: ");
+                .append("; Role: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
     }

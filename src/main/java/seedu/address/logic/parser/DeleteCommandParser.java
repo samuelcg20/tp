@@ -40,7 +40,6 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         try {
             Index index = ParserUtil.parseIndex(indexToDelete);
-            //return new DeleteMemberCommand(index);
             return matchType(type, index);
         } catch (ParseException pe) {
             throw new ParseException(
