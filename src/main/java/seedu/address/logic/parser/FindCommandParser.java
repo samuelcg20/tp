@@ -44,16 +44,16 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (type.equalsIgnoreCase("member")) {
-            return checkMember(keywords);
+            return checkFindMemberType(keywords);
         } else { // event
-            return checkEvent(keywords);
+            return checkFindEventType(keywords);
         }
     }
 
     /**
      * needs to change implementation of this method (sujith)
      */
-    private FindCommand checkMember(String remainingArgs) throws ParseException {
+    private FindCommand checkFindMemberType(String remainingArgs) throws ParseException {
         String[] keywords = remainingArgs.trim().split("\\s+");
         if (keywords.length == 0) {
             throw new ParseException(
@@ -66,7 +66,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * Parses and returns either FindEventNameCommand or FindEventLocationCommand.
      * Expects a prefix n/ or l/.
      */
-    private FindCommand checkEvent(String remainingArgs) throws ParseException {
+    private FindCommand checkFindEventType(String remainingArgs) throws ParseException {
         remainingArgs = remainingArgs.trim();
         if (remainingArgs.startsWith("n/")) {
             return getFindEventNameCommand(remainingArgs);
