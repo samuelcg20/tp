@@ -17,7 +17,8 @@ public class FindMemberCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMemberCommand.MESSAGE_USAGE));
+        assertParseFailure(parser,
+                "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMemberCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -25,10 +26,10 @@ public class FindMemberCommandParserTest {
         // no leading and trailing whitespaces
         FindMemberCommand expectedFindMemberCommand =
                 new FindMemberCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindMemberCommand);
+        assertParseSuccess(parser, "member Alice Bob", expectedFindMemberCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindMemberCommand);
+        assertParseSuccess(parser, " member \n Alice \n \t Bob  \t", expectedFindMemberCommand);
     }
 
 }
