@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.AliasBook;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 
@@ -20,6 +22,7 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final AliasBook aliasBook;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -33,6 +36,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
+        this.aliasBook = new AliasBook();
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -133,7 +137,7 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== Event ================================================================================
+    //=========== Event methods ================================================================================
 
     @Override
     public boolean hasEvent(Event event) {
@@ -157,6 +161,18 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedEvent);
 
         addressBook.setEvent(target, editedEvent);
+    }
+
+    //=========== Alias methods ================================================================================
+
+    @Override
+    public void addAlias(Alias alias) {
+        aliasBook.addAlias(alias);
+    }
+
+    @Override
+    public boolean hasAlias(String aliasWord) {
+        return aliasBook.isAliasPresent(aliasWord);
     }
 
     //=========== Filtered Person List Accessors =============================================================

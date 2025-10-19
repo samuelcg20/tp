@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.alias.Alias;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 
@@ -110,6 +111,17 @@ public interface Model {
      * The event identity of {@code editedEvent} must not be the same as another existing event in the address book.
      */
     void setEvent(Event target, Event editedEvent);
+
+    /**
+     * Adds the given alias
+     * {@code alias} aliasWord must not already exist in the alias book
+     */
+    void addAlias(Alias alias);
+
+    /**
+     * Returns true if the alias word exists in the alias book.
+     */
+    boolean hasAlias(String aliasWord);
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();

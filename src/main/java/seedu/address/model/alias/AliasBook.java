@@ -23,6 +23,10 @@ public class AliasBook {
         aliasMap.clear();
     }
 
+    public Map<String, String> getAliasMap() {
+        return Map.copyOf(aliasMap);
+    }
+
     @Override
     public String toString() {
         return aliasMap.toString();
