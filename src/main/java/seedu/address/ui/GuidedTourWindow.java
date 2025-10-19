@@ -22,26 +22,26 @@ public class GuidedTourWindow extends UiPart<Stage> {
 
     private int currentStep = 0;
     private final String[] stepTitles = {"Menu Bar", "Command Box", "Result Display", "Member/Event List Display",
-            "StatusBar"
+        "StatusBar"
     };
 
     private final String[] stepDescriptions = {
-            "Menu Bar has File and Help tabs. File tab has the option to exit the application. "
-                    + "Help tab has the option to open the Help Window and serves as a GUI "
-                    + "alternative to the command box.",
+        "Menu Bar has File and Help tabs. File tab has the option to exit the application. "
+            + "Help tab has the option to open the Help Window and serves as a GUI "
+            + "alternative to the command box.",
 
-            "Command Box allows you to enter commands. "
-                    + "See our User Guide for more information on the commands.",
+        "Command Box allows you to enter commands. "
+            + "See our User Guide for more information on the commands.",
 
-            "See the results of your commands here. "
-                    + "Any success messages or error messages will appear in this area.",
+        "See the results of your commands here. "
+            + "Any success messages or error messages will appear in this area.",
 
-            "Detailed information of the selected member appears here, including phone number, "
-                    + "email, year of study, and role. "
-                    + "When the [list event] command is executed, detailed information of the selected event "
-                    + "appears here, including date, time, and venue.",
+        "Detailed information of the selected member appears here, including phone number, "
+            + "email, year of study, and role. "
+            + "When the [list event] command is executed, detailed information of the selected event "
+            + "appears here, including date, time, and venue.",
 
-            "A UI for the status bar that is displayed at the footer of the application."
+        "A UI for the status bar that is displayed at the footer of the application."
     };
 
 
