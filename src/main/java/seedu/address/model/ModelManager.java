@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -88,6 +90,18 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
+    }
+
+    @Override
+    public void resetMembers() {
+        List<Person> persons = new ArrayList<>();
+        this.addressBook.setPersons(persons);
+    }
+
+    @Override
+    public void resetEvents() {
+        List<Event> events = new ArrayList<>();
+        this.addressBook.setEvents(events);
     }
 
     //=========== Person methods ================================================================================
