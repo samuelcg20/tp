@@ -55,5 +55,4 @@ public class ClearCommandParser implements Parser<ClearCommand> {
         }
     }
 
-
 }
