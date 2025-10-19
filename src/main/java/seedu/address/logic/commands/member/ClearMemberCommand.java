@@ -6,8 +6,10 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
+/**
+ * Clear members based on the command input
+ */
 public class ClearMemberCommand extends ClearCommand {
-
     public static final String MESSAGE_SUCCESS = "Cleared all members";
 
     @Override

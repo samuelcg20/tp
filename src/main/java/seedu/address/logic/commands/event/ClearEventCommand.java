@@ -6,6 +6,9 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
+/**
+ * Clear events based on the command input
+ */
 public class ClearEventCommand extends ClearCommand {
     public static final String MESSAGE_SUCCESS = "Cleared all events";
 

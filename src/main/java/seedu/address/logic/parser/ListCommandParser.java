@@ -5,7 +5,6 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_TYPE;
 
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.event.ListEventCommand;
-import seedu.address.logic.commands.member.DeleteMemberCommand;
 import seedu.address.logic.commands.member.ListMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 

@@ -1,7 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * Clears the address book.
  */

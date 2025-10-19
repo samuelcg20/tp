@@ -4,16 +4,20 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_TYPE;
 
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.event.ClearEventCommand;
-import seedu.address.logic.commands.event.ListEventCommand;
 import seedu.address.logic.commands.member.ClearMemberCommand;
-import seedu.address.logic.commands.member.DeleteMemberCommand;
-import seedu.address.logic.commands.member.ListMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new ClearCommand object
+ */
 public class ClearCommandParser implements Parser<ClearCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the ClearCommand
+     * and returns a ClearMemberCommand/ ClearEventCommand object for execution.
+     * @throws ParseException if the user input does not conform to the expected format
+     */
     public ClearCommand parse(String args) throws ParseException {
         // Split the current args input into at most 2 parts: [member/event, unnecessary information]
         String[] argsParts = args.trim().split("\\s+");
@@ -39,7 +43,7 @@ public class ClearCommandParser implements Parser<ClearCommand> {
     /**
      * Checks if it is member or event command
      * @param type Member or Event
-     * @return ListMemberCommand or ListEventCommand
+     * @return ClearMemberCommand or ClearEventCommand
      */
     public ClearCommand matchType(String type) {
         if (type.equalsIgnoreCase("member")) {
