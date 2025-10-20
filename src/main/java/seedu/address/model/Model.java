@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.AliasBook;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 
@@ -122,6 +123,12 @@ public interface Model {
      * Returns true if the alias word exists in the alias book.
      */
     boolean hasAlias(String aliasWord);
+
+    /** Returns the actual command the alias represent */
+    String actualCommand(String commandText);
+
+    /** Returns the book containing aliases */
+    AliasBook getAliasBook();
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();

@@ -1,7 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.alias.Alias;
 
 public class AliasCommand extends Command {
 
@@ -19,7 +22,14 @@ public class AliasCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null;
+        requireNonNull(model);
+
+        if (model.hasAlias(aliasWord)) {
+            throw new CommandException("Alias already exists. Choose another name");
+        }
+
+        model.addAlias(new Alias(commandWord, aliasWord));
+        return new CommandResult("Alias created for " + commandWord);
     }
 
 }

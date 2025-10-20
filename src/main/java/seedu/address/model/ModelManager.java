@@ -175,6 +175,16 @@ public class ModelManager implements Model {
         return aliasBook.isAliasPresent(aliasWord);
     }
 
+    @Override
+    public AliasBook getAliasBook() {
+        return aliasBook;
+    }
+
+    @Override
+    public String actualCommand(String commandText) {
+        return aliasBook.getCommandWordForAlias(commandText);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
