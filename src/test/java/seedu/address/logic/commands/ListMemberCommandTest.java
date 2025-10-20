@@ -1,4 +1,3 @@
-
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,15 +9,15 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.event.ListEventCommand;
+import seedu.address.logic.commands.member.ListMemberCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
- * Contains unit tests for {@code ListEventCommand}.
+ * Contains unit tests for {@code ListMemberCommand}.
  */
-public class ListEventCommandTest {
+public class ListMemberCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -30,24 +29,23 @@ public class ListEventCommandTest {
     }
 
     @Test
-    public void execute_listEvent_success() {
-        ListEventCommand command = new ListEventCommand();
+    public void execute_listMember_success() {
+        ListMemberCommand command = new ListMemberCommand();
 
         CommandResult expectedCommandResult =
-                new CommandResult(ListEventCommand.MESSAGE_SUCCESS, false, true, false, false);
+                new CommandResult(ListMemberCommand.MESSAGE_SUCCESS, false, false, true, false);
 
         assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_commandResultFlagsCorrect() {
-        CommandResult result = new ListEventCommand().execute(model);
+        CommandResult result = new ListMemberCommand().execute(model);
 
-        assertEquals(ListEventCommand.MESSAGE_SUCCESS, result.getFeedbackToUser());
+        assertEquals(ListMemberCommand.MESSAGE_SUCCESS, result.getFeedbackToUser());
         assertFalse(result.isShowHelp());
-        assertTrue(result.isShowEvents());
+        assertFalse(result.isShowEvents());
+        assertTrue(result.isShowMembers());
         assertFalse(result.isExit());
-        assertFalse(result.isShowMembers());
     }
 }
-
