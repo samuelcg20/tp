@@ -48,7 +48,7 @@ public abstract class EditCommand extends Command {
         /**
          * Returns true if at least one field is edited.
          */
-        abstract public boolean isAnyFieldEdited();
+        public abstract boolean isAnyFieldEdited();
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
