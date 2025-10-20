@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.stage.Stage?>
+
+<fx:root resizable="false" title="Guided Tour" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/help_icon.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@GuidedTourWindow.css" />
+            </stylesheets>
+
+            <VBox spacing="10" alignment="TOP_CENTER">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+
+                <!-- Title -->
+                <Label text="NUS ComClubConnect" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+                <!-- Screenshot Container -->
+                <Pane fx:id="screenshotContainer">
+                    <ImageView fx:id="screenshotView" fitWidth="800" preserveRatio="true" />
+
+                    <!-- Highlight Boxes Overlay -->
+                    <Pane fx:id="overlayPane">
+                        <!-- Highlight Box 1 - Command Box -->
+                        <Rectangle fx:id="highlightBox1"
+                                   x="0" y="0" width="800" height="35"
+                                   fill="rgba(255,68,68,0.3)"
+                                   stroke="#ff4444"
+                                   strokeWidth="2"
+                                   visible="false" />
+
+                        <!-- Highlight Box 2 - Result Display -->
+                        <Rectangle fx:id="highlightBox2"
+                                   x="0" y="35" width="800" height="48"
+                                   fill="rgba(68,255,68,0.3)"
+                                   stroke="#44ff44"
+                                   strokeWidth="2"
+                                   visible="false" />
+
+                        <!-- Highlight Box 3 - Person List -->
+                        <Rectangle fx:id="highlightBox3"
+                                   x="0" y="83" width="800" height="110"
+                                   fill="rgba(68,68,255,0.3)"
+                                   stroke="#4444ff"
+                                   strokeWidth="2"
+                                   visible="false" />
+
+                        <!-- Highlight Box 4 - Person Details -->
+                        <Rectangle fx:id="highlightBox4"
+                                   x="0" y="193" width="800" height="400"
+                                   fill="rgba(255,68,255,0.3)"
+                                   stroke="#ff44ff"
+                                   strokeWidth="2"
+                                   visible="false" />
+
+                        <!-- Highlight Box 5 - Menu Bar -->
+                        <Rectangle fx:id="highlightBox5"
+                                   x="0" y="593" width="800" height="25"
+                                   fill="rgba(255,255,68,0.3)"
+                                   stroke="#ffff44"
+                                   strokeWidth="2"
+                                   visible="false" />
+                    </Pane>
+                </Pane>
+
+                <!-- Step Information -->
+                <VBox spacing="5" alignment="CENTER_LEFT" style="-fx-padding: 10px;">
+                    <Label fx:id="stepTitleLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                    <Label fx:id="stepDescriptionLabel" wrapText="true" maxWidth="800" />
+                </VBox>
+
+                <!-- Navigation Buttons -->
+                <HBox spacing="20" alignment="CENTER">
+                    <Button fx:id="backButton" text="Back" onAction="#handleBack" />
+                    <Button fx:id="nextButton" text="Next" onAction="#handleNext"
+                            style="-fx-font-weight: bold; -fx-padding: 5px 15px;" />
+                </HBox>
+
+                <!-- Progress Indicator -->
+                <Label fx:id="progressLabel" text="Step 1 of 5" />
+            </VBox>
+        </Scene>
+    </scene>
+</fx:root>
