@@ -152,25 +152,25 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
-        userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
+        userInput = "member " + targetIndex.getOneBased() + PHONE_DESC_AMY;
         descriptor = new EditMemberDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
         expectedCommand = new EditMemberCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
+        userInput = "member " + targetIndex.getOneBased() + EMAIL_DESC_AMY;
         descriptor = new EditMemberDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
         expectedCommand = new EditMemberCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
+        userInput = "member " + targetIndex.getOneBased() + ADDRESS_DESC_AMY;
         descriptor = new EditMemberDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
         expectedCommand = new EditMemberCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
+        userInput = "member " + targetIndex.getOneBased() + TAG_DESC_FRIEND;
         descriptor = new EditMemberDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
         expectedCommand = new EditMemberCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -188,11 +188,11 @@ public class EditCommandParserTest {
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
         // invalid followed by valid
-        userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + INVALID_PHONE_DESC;
+        userInput = "member " + targetIndex.getOneBased() + PHONE_DESC_BOB + INVALID_PHONE_DESC;
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
-        // mulltiple valid fields repeated
+        // multiple valid fields repeated
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
