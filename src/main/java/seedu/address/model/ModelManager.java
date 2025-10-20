@@ -176,6 +176,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasCommand(String commandWord) {
+        return aliasBook.isCommandPresent(commandWord);
+    }
+
+    @Override
+    public void removeExistingAlias(String commandWord) {
+        String key = aliasBook.getAliasForCommandWord(commandWord);
+        aliasBook.removeAlias(key);
+    }
+
+    @Override
     public AliasBook getAliasBook() {
         return aliasBook;
     }

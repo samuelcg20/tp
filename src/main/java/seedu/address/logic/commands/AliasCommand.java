@@ -28,6 +28,12 @@ public class AliasCommand extends Command {
             throw new CommandException("Alias already exists. Choose another name");
         }
 
+        if (model.hasCommand(commandWord)) {
+            model.removeExistingAlias(commandWord);
+            model.addAlias(new Alias(commandWord, aliasWord));
+            return new CommandResult("Note that this replaces your existing alias for " + commandWord);
+        }
+
         model.addAlias(new Alias(commandWord, aliasWord));
         return new CommandResult("Alias created for " + commandWord);
     }

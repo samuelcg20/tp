@@ -124,6 +124,14 @@ public interface Model {
      */
     boolean hasAlias(String aliasWord);
 
+    /**
+     * Return true if the command word already has an alias
+     */
+    boolean hasCommand(String commandWord);
+
+    /** Removes the alias for the particular command word */
+    void removeExistingAlias(String commandWord);
+
     /** Returns the actual command the alias represent */
     String actualCommand(String commandText);
 
