@@ -12,12 +12,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 
@@ -45,7 +40,7 @@ public abstract class EditCommand extends Command {
      * corresponding field value of the person.
      */
 
-    abstract public static class EditDescriptor {
+    public abstract static class EditDescriptor {
         private Set<Tag> tags;
 
         public EditDescriptor() {}

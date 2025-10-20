@@ -30,23 +30,27 @@ public class EditMemberCommand extends EditCommand {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditMemberDescriptor editMemberDescriptor;
 
-    // ======================================= EditPersonDescriptor class =======================================
-    public static class EditPersonDescriptor extends EditCommand.EditDescriptor{
+    // ======================================= EditMemberDescriptor class =======================================
+    /**
+     * A descriptor class that stores details to edit a {@code Person}.
+     * Each non-null field value replaces the corresponding field value of the target {@code Person}.
+     */
+    public static class EditMemberDescriptor extends EditCommand.EditDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditMemberDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditMemberDescriptor(EditMemberDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -120,11 +124,11 @@ public class EditMemberCommand extends EditCommand {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditMemberDescriptor)) {
                 return false;
             }
 
-            EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
+            EditMemberDescriptor otherEditPersonDescriptor = (EditMemberDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
@@ -149,13 +153,13 @@ public class EditMemberCommand extends EditCommand {
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditMemberCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditMemberCommand(Index index, EditMemberDescriptor editPersonDescriptor) {
         super();
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editMemberDescriptor = new EditMemberDescriptor(editPersonDescriptor);
     }
 
     @Override
@@ -168,7 +172,7 @@ public class EditMemberCommand extends EditCommand {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Person editedPerson = createEditedPerson(personToEdit, editMemberDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -183,7 +187,7 @@ public class EditMemberCommand extends EditCommand {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditMemberDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -208,14 +212,14 @@ public class EditMemberCommand extends EditCommand {
 
         EditMemberCommand otherEditCommand = (EditMemberCommand) other;
         return index.equals(otherEditCommand.index)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+                && editMemberDescriptor.equals(otherEditCommand.editMemberDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("editPersonDescriptor", editPersonDescriptor)
+                .add("editMemberDescriptor", editMemberDescriptor)
                 .toString();
     }
 
