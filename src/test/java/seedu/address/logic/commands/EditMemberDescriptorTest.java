@@ -21,7 +21,7 @@ public class EditMemberDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditMemberDescriptor descriptorWithSameValues = new EditMemberDescriptor( DESC_AMY);
+        EditMemberDescriptor descriptorWithSameValues = new EditMemberDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
