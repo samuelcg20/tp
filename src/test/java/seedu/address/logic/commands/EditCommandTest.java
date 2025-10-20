@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.member.ClearCommand;
+import seedu.address.logic.commands.member.ClearMemberCommand;
 import seedu.address.logic.commands.member.EditMemberCommand;
 import seedu.address.logic.commands.member.EditMemberCommand.EditMemberDescriptor;
 import seedu.address.model.AddressBook;
@@ -167,7 +167,7 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ClearMemberCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditMemberCommand(INDEX_SECOND_PERSON, DESC_AMY)));
