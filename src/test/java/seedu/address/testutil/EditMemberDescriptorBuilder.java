@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.member.EditMemberCommand.EditMemberDescriptor;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,7 +35,7 @@ public class EditMemberDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
+        descriptor.setYear(person.getYear());
         descriptor.setTags(person.getTags());
     }
 
@@ -64,10 +64,10 @@ public class EditMemberDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Year} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditMemberDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditMemberDescriptorBuilder withYear(String year) {
+        descriptor.setYear(new Year(year));
         return this;
     }
 
