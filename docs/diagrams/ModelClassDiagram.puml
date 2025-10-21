@@ -43,7 +43,7 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniquePersonList
 AddressBook *--> "1" UniqueEventList
 UniquePersonList --> "~* all" Person
-UniqueEventList --> "~* all" Event
+UniqueEventList --> "~* filtered" Event
 
 Person *--> Name
 Person *--> Phone
@@ -65,9 +65,7 @@ Year -[hidden]right-> Email
 Email -[hidden]right-> EventName
 EventName -[hidden]right-> Date
 Date -[hidden]right-> Venue
-ModelManager --> "~* filtered" Event
+
+ModelManager --> "~* all" Event
 ModelManager --> "~* filtered" Person
-
-
-
 @enduml
