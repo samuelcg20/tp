@@ -72,7 +72,7 @@ public class AliasBook {
                 .filter(entry -> entry.getValue().equals(commandWord))
                 .map(Map.Entry::getKey)
                 .findFirst()
-                .orElse(commandWord);
+                .orElse(null);
     }
 
     /**

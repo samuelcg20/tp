@@ -23,6 +23,8 @@ public class Alias {
      */
     public Alias(String commandWord, String aliasWord) {
         requireAllNonNull(commandWord, aliasWord);
+        assert !commandWord.isBlank() : "Command word should not be blank";
+        assert !aliasWord.isBlank() : "Alias word should not be blank";
         this.commandWord = commandWord;
         this.aliasWord = aliasWord;
     }

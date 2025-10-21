@@ -197,6 +197,7 @@ public class ModelManager implements Model {
     @Override
     public void removeExistingAlias(String commandWord) {
         String key = aliasBook.getAliasForCommandWord(commandWord);
+        assert key != null : "Key should not be null";
         aliasBook.removeAlias(key);
     }
 
