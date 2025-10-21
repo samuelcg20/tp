@@ -56,6 +56,12 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    /** Resets Persons in AddressBook */
+    void resetMembers();
+
+    /** Resets Events in AddressBook */
+    void resetEvents();
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */

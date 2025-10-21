@@ -14,7 +14,7 @@
 // import org.junit.jupiter.api.Test;
 
 // import seedu.address.logic.commands.member.AddCommand;
-// import seedu.address.logic.commands.member.ClearCommand;
+// import seedu.address.logic.commands.ClearCommand;
 // import seedu.address.logic.commands.member.DeleteMemberCommand;
 // import seedu.address.logic.commands.member.EditCommand;
 // import seedu.address.logic.commands.member.EditCommand.EditPersonDescriptor;

@@ -99,4 +99,14 @@ public class HelpWindow extends UiPart<Stage> {
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
     }
+
+    /**
+     * Opens the guided tour window.
+     */
+    @FXML
+    private void openGuidedTour() {
+        GuidedTourWindow guidedTourWindow = new GuidedTourWindow();
+        guidedTourWindow.show();
+        guidedTourWindow.focus();
+    }
 }
