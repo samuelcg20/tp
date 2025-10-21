@@ -32,6 +32,14 @@ public class AddressBookParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
+    /**
+     * Parses user input into a {@link Command}, resolving aliases using the given {@link AliasBook}.
+     *
+     * @param userInput User input string.
+     * @param aliasBook AliasBook used to resolve command word aliases.
+     * @return Parsed {@link Command} object.
+     * @throws ParseException If input format is invalid or cannot be parsed.
+     */
     public Command parseCommand(String userInput, AliasBook aliasBook) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
@@ -66,15 +74,15 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String actualCommandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
-        logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
+        logger.fine("Actual Command word: " + actualCommandWord + "; Arguments: " + arguments);
 
-        switch (commandWord) {
+        switch (actualCommandWord) {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);

@@ -18,6 +18,9 @@ import seedu.address.logic.commands.member.ExitCommand;
 import seedu.address.logic.commands.member.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new AliasCommandParser object
+ */
 public class AliasCommandParser implements Parser<AliasCommand> {
 
     public static final Set<String> SET_OF_COMMANDS = new HashSet<>(Arrays.asList(
@@ -32,6 +35,11 @@ public class AliasCommandParser implements Parser<AliasCommand> {
             AliasCommand.COMMAND_WORD
     ));
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the AliasCommand
+     * and returns an AliasCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     @Override
     public AliasCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();

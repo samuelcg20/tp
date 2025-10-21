@@ -6,20 +6,41 @@ import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
 
+/**
+ * Represents an alias mapping between a command word and its alias.
+ * Each {@code Alias} object stores one pair of command and alias words.
+ */
 public class Alias {
 
     private final String commandWord;
     private final String aliasWord;
 
+    /**
+     * Constructs an {@code Alias} with the specified command and alias words.
+     *
+     * @param commandWord Command word to be aliased.
+     * @param aliasWord Alias word corresponding to the command.
+     */
     public Alias(String commandWord, String aliasWord) {
         requireAllNonNull(commandWord, aliasWord);
         this.commandWord = commandWord;
         this.aliasWord = aliasWord;
     }
 
+    /**
+     * Returns the command word of this alias.
+     *
+     * @return Command word.
+     */
     public String getCommandWord() {
         return this.commandWord;
     }
+
+    /**
+     * Returns the alias word of this alias.
+     *
+     * @return Alias word.
+     */
 
     public String getAliasWord() {
         return this.aliasWord;

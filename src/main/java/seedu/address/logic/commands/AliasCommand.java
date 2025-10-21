@@ -7,15 +7,30 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.alias.Alias;
 
+/**
+ * Creates an alias for existing command words.
+ */
 public class AliasCommand extends Command {
 
     public static final String COMMAND_WORD = "alias";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " hi";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + " : Creates an alias for all command words\n"
+            + "Parameters: COMMAND_WORD, ALIAS_WORD (only 1 word)\n"
+            + "Example: " + COMMAND_WORD + " delete " + " rm";
+
+    public static final String MESSAGE_ADD_ALIAS_SUCCESS = "Added alias: %1$s";
+
 
     private final String aliasWord;
     private final String commandWord;
 
+    /**
+     * Creates an {@code AliasCommand} with the given alias and command words.
+     *
+     * @param aliasWord Alias word to assign.
+     * @param commandWord Command word the alias refers to.
+     */
     public AliasCommand(String aliasWord, String commandWord) {
         this.aliasWord = aliasWord;
         this.commandWord = commandWord;

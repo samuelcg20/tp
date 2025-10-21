@@ -8,6 +8,9 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.alias.AliasBook;
 
+/**
+ * Storage for alias book
+ */
 public interface AliasBookStorage {
 
     /**
@@ -30,14 +33,14 @@ public interface AliasBookStorage {
 
     /**
      * Saves the given {@link ReadOnlyAddressBook} to the storage.
-     * @param addressBook cannot be null.
+     * @param aliasBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
     void saveAliasBook(AliasBook aliasBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyAddressBook)
+     * @see #saveAliasBook(AliasBook)
      */
-    void saveAddressBook(AliasBook aliasBook, Path filePath) throws IOException;
+    void saveAliasBook(AliasBook aliasBook, Path filePath) throws IOException;
 
 }
