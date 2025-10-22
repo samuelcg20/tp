@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.AliasBook;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -40,10 +42,25 @@ public class SampleDataUtil {
         };
     }
 
+    public static Alias[] getSampleAliases() {
+        return new Alias[] {
+                new Alias("delete", "d"),
+                new Alias("add", "a"),
+                new Alias("list", "l")};
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        return sampleAb;
+    }
+
+    public static AliasBook getSampleAliasBook() {
+        AliasBook sampleAb = new AliasBook();
+        for (Alias sampleAlias : getSampleAliases()) {
+            sampleAb.addAlias(sampleAlias);
         }
         return sampleAb;
     }

@@ -11,7 +11,6 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.alias.AliasBook;
 
 public class JsonAliasBookStorage implements AliasBookStorage {
@@ -36,8 +35,8 @@ public class JsonAliasBookStorage implements AliasBookStorage {
     public Optional<AliasBook> aliasBook(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAliasBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableAliasBook> jsonAliasBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableAliasBook.class);
         if (!jsonAliasBook.isPresent()) {
             return Optional.empty();
         }
@@ -52,20 +51,20 @@ public class JsonAliasBookStorage implements AliasBookStorage {
 
     @Override
     public void saveAliasBook(AliasBook aliasBook) throws IOException {
-        saveAddressBook(aliasBook, filePath);
+        saveAliasBook(aliasBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
+     * Similar to {@link #saveAliasBook(AliasBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(AliasBook aliasBook, Path filePath) throws IOException {
+    public void saveAliasBook(AliasBook aliasBook, Path filePath) throws IOException {
         requireNonNull(aliasBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(AliasBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAliasBook(aliasBook), filePath);
     }
 
 }

@@ -1,13 +1,9 @@
 package seedu.address.storage;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.alias.Alias;
-import seedu.address.model.person.Person;
 
 /**
  * Jackson-friendly version of {@link Alias}.
