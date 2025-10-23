@@ -82,9 +82,30 @@ class JsonAdaptedPerson {
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        // 1) No internal whitespace
+        if (Phone.hasInternalWhitespace(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS_SPACES);
         }
+        // Internal invariant after validation
+        assert !Phone.hasInternalWhitespace(phone) : "Invariant: JSON phone must not contain internal whitespace here";
+        // 2) Only digits
+        if (!Phone.isDigitsOnly(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS_NUMBER);
+        }
+        // Internal invariant after validation
+        assert Phone.isDigitsOnly(phone) : "Invariant: JSON phone must be digits-only here";
+        // 3) Exactly 8 digits
+        if (!Phone.isValidLength(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS_LENGTH);
+        }
+        // Internal invariant after validation
+        assert Phone.isValidLength(phone) : "Invariant: JSON phone must be exactly 8 digits here";
+        // 4) Starts with 8 or 9
+        if (!Phone.isValidStart(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS_START);
+        }
+        // Internal invariant after validation
+        assert Phone.isValidStart(phone) : "Invariant: JSON phone must start with 8 or 9 here";
         final Phone modelPhone = new Phone(phone);
 
         if (email == null) {

@@ -63,9 +63,33 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+
+        // 1) No internal whitespace
+        if (Phone.hasInternalWhitespace(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS_SPACES);
         }
+        // Internal invariant after validation
+        assert !Phone.hasInternalWhitespace(trimmedPhone) : "Invariant: phone must not contain internal whitespace";
+        // 2) Only digits
+        if (!Phone.isDigitsOnly(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS_NUMBER);
+        }
+        // Internal invariant after validation
+        assert Phone.isDigitsOnly(trimmedPhone) : "Invariant: phone must be digits-only";
+
+        // 3) Exactly 8 digits
+        if (!Phone.isValidLength(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS_LENGTH);
+        }
+        // Internal invariant after validation
+        assert Phone.isValidLength(trimmedPhone) : "Invariant: phone must be exactly 8 digits";
+
+        // 4) Starts with 8 or 9
+        if (!Phone.isValidStart(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS_START);
+        }
+        // Internal invariant after validation
+        assert Phone.isValidStart(trimmedPhone) : "Invariant: phone must start with 8 or 9";
         return new Phone(trimmedPhone);
     }
 

@@ -35,8 +35,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String type = argsParts[0];
         String keywords = argsParts[1];
-        boolean isInvalidType =
-                !type.equalsIgnoreCase("member") && !type.equalsIgnoreCase("event");
+        boolean isInvalidType = !type.equalsIgnoreCase("member") && !type.equalsIgnoreCase("event");
 
         if (isInvalidType) {
             throw new ParseException(
