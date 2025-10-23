@@ -7,20 +7,16 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.YearContainsKeywordsPredicate;
 
-/**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
- */
-public class FindMemberCommand extends FindCommand {
+public class FindMemberYearCommand extends FindCommand {
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final YearContainsKeywordsPredicate predicate;
 
     /**
-     * Creates a FindMemberCommand to find the specified {@code NameContainsKeywordsPredicate}
+     * Creates a FindMemberYearCommand to find the specified {@code YearContainsKeywordsPredicate}
      */
-    public FindMemberCommand(NameContainsKeywordsPredicate predicate) {
+    public FindMemberYearCommand(YearContainsKeywordsPredicate predicate) {
         super();
         this.predicate = predicate;
     }
@@ -40,12 +36,12 @@ public class FindMemberCommand extends FindCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindMemberCommand)) {
+        if (!(other instanceof FindMemberNameCommand)) {
             return false;
         }
 
-        FindMemberCommand otherFindMemberCommand = (FindMemberCommand) other;
-        return predicate.equals(otherFindMemberCommand.predicate);
+        FindMemberYearCommand otherFindMemberYearCommand = (FindMemberYearCommand) other;
+        return predicate.equals(otherFindMemberYearCommand.predicate);
     }
 
     @Override

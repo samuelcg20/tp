@@ -12,7 +12,7 @@ public class Year {
     public static final String MESSAGE_CONSTRAINTS = "Year must be 1, 2, 3 or 4.";
     public static final String VALIDATION_REGEX = "[1-4]";
 
-    private final String value;
+    public final String value;
 
     /**
      * Constructs a {@code Year}.
@@ -30,14 +30,6 @@ public class Year {
      */
     public static boolean isValidYear(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns value
-     * @return Value
-     */
-    public String getValue() {
-        return value;
     }
 
     @Override
