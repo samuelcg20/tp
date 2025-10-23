@@ -8,11 +8,13 @@ import java.util.Arrays;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.event.FindEventLocationCommand;
 import seedu.address.logic.commands.event.FindEventNameCommand;
-import seedu.address.logic.commands.member.FindMemberCommand;
+import seedu.address.logic.commands.member.FindMemberNameCommand;
+import seedu.address.logic.commands.member.FindMemberYearCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 import seedu.address.model.event.LocationContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.YearContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -53,12 +55,36 @@ public class FindCommandParser implements Parser<FindCommand> {
      * needs to change implementation of this method (sujith)
      */
     private FindCommand checkFindMemberType(String remainingArgs) throws ParseException {
-        String[] keywords = remainingArgs.trim().split("\\s+");
-        if (keywords.length == 0) {
+        String args = remainingArgs.trim();
+        if (args.startsWith("n/")) {
+            return getFindMemberNameCommand(args);
+        } else if (args.startsWith("y/")) {
+            return getFindMemberYearCommand(args);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_TYPE, FindCommand.MESSAGE_USAGE));
+        }
+    }
+
+    private static FindMemberNameCommand getFindMemberNameCommand(String args) throws ParseException {
+        String keywordsPart = args.substring(2).trim(); // remove n/
+        if (keywordsPart.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        return new FindMemberCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String[] nameKeywords = keywordsPart.split("\\s+");
+        return new FindMemberNameCommand(
+                new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+    }
+
+    private static FindMemberYearCommand getFindMemberYearCommand(String args) throws ParseException {
+        String keywordsPart = args.substring(2).trim(); // remove n/
+        if (keywordsPart.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+        String[] nameKeywords = keywordsPart.split("\\s+");
+        return new FindMemberYearCommand(
+                new YearContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
     /**
@@ -72,8 +98,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else if (remainingArgs.startsWith("l/")) {
             return getFindEventLocationCommand(remainingArgs);
         } else {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_TYPE, FindCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_TYPE, FindCommand.MESSAGE_USAGE));
         }
     }
 

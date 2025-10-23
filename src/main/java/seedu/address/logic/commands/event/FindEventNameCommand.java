@@ -32,7 +32,11 @@ public class FindEventNameCommand extends FindCommand {
         requireNonNull(model);
         model.updateFilteredEventList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()));
+                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()),
+                false,
+                true,
+                false,
+                false);
     }
 
     @Override
