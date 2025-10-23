@@ -3,7 +3,7 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -13,9 +13,9 @@ import java.time.format.DateTimeParseException;
  */
 public class Date {
 
-    public static final String MESSAGE_CONSTRAINTS = "Dates should be in ISO format YYYY-MM-DD";
+    public static final String MESSAGE_CONSTRAINTS = "Dates should be in ISO format YYYY-MM-DDTHH:MM";
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     public final String value;
 
@@ -33,7 +33,7 @@ public class Date {
      */
     public static boolean isValidDate(String test) {
         try {
-            LocalDate.parse(test, FORMATTER);
+            LocalDateTime.parse(test, FORMATTER);
             return true;
         } catch (DateTimeParseException e) {
             return false;
