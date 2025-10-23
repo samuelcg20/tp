@@ -9,6 +9,10 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.YearContainsKeywordsPredicate;
 
+/**
+ * Finds and lists all persons in address book whose year contains any of the argument keywords.
+ * Keyword matching is case insensitive.
+ */
 public class FindMemberYearCommand extends FindCommand {
 
     private final YearContainsKeywordsPredicate predicate;
