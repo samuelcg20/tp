@@ -12,10 +12,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.Venue;
-import seedu.address.model.person.Address;
+// import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -62,25 +63,64 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+
+        // 1) No internal whitespace
+        if (Phone.hasInternalWhitespace(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS_SPACES);
         }
+        // Internal invariant after validation
+        assert !Phone.hasInternalWhitespace(trimmedPhone) : "Invariant: phone must not contain internal whitespace";
+        // 2) Only digits
+        if (!Phone.isDigitsOnly(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS_NUMBER);
+        }
+        // Internal invariant after validation
+        assert Phone.isDigitsOnly(trimmedPhone) : "Invariant: phone must be digits-only";
+
+        // 3) Exactly 8 digits
+        if (!Phone.isValidLength(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS_LENGTH);
+        }
+        // Internal invariant after validation
+        assert Phone.isValidLength(trimmedPhone) : "Invariant: phone must be exactly 8 digits";
+
+        // 4) Starts with 8 or 9
+        if (!Phone.isValidStart(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS_START);
+        }
+        // Internal invariant after validation
+        assert Phone.isValidStart(trimmedPhone) : "Invariant: phone must start with 8 or 9";
         return new Phone(trimmedPhone);
     }
 
+    // /**
+    //  * Parses a {@code String address} into an {@code Address}.
+    //  * Leading and trailing whitespaces will be trimmed.
+    //  *
+    //  * @throws ParseException if the given {@code address} is invalid.
+    //  */
+    // public static Address parseAddress(String address) throws ParseException {
+    //     requireNonNull(address);
+    //     String trimmedAddress = address.trim();
+    //     if (!Address.isValidAddress(trimmedAddress)) {
+    //         throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    //     }
+    //     return new Address(trimmedAddress);
+    // }
+
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String year} into a {@code Year}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code year} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Year parseYear(String year) throws ParseException {
+        requireNonNull(year);
+        String trimmedYear = year.trim();
+        if (!Year.isValidYear(trimmedYear)) {
+            throw new ParseException(Year.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Year(trimmedYear);
     }
 
     /**
