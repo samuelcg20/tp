@@ -18,11 +18,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,7 +46,7 @@ public class EditMemberCommand extends EditCommand {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
+        private Year year;
         private Set<Tag> tags;
 
         public EditMemberDescriptor() {}
@@ -59,7 +59,7 @@ public class EditMemberCommand extends EditCommand {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setYear(toCopy.year);
             setTags(toCopy.tags);
         }
 
@@ -68,7 +68,7 @@ public class EditMemberCommand extends EditCommand {
          */
         @Override
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, year, tags);
         }
 
         public void setName(Name name) {
@@ -95,12 +95,12 @@ public class EditMemberCommand extends EditCommand {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setYear(Year year) {
+            this.year = year;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Year> getYear() {
+            return Optional.ofNullable(year);
         }
 
         /**
@@ -137,7 +137,7 @@ public class EditMemberCommand extends EditCommand {
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(year, otherEditPersonDescriptor.year)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -147,7 +147,7 @@ public class EditMemberCommand extends EditCommand {
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
-                    .add("address", address)
+                    .add("year", year)
                     .add("tags", tags)
                     .toString();
         }
@@ -198,10 +198,10 @@ public class EditMemberCommand extends EditCommand {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Year updatedYear = editPersonDescriptor.getYear().orElse(personToEdit.getYear());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedYear, updatedTags);
     }
 
     @Override

@@ -2,13 +2,13 @@
   "persons": [ {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tags": [ "friends" ]
+    "email": "alice@u.nus.edu",
+    "year": "1",
+    "tags": [ "President" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street"
+    "email": "pauline@u.nus.edu",
+    "year": "2"
   } ]
 }
