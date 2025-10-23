@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.alias.Alias;
 import seedu.address.model.alias.AliasBook;
@@ -47,9 +48,6 @@ class JsonSerializableAliasBook {
         AliasBook aliasBook = new AliasBook();
         for (JsonAdaptedAlias jsonAdaptedAlias : aliases) {
             Alias alias = jsonAdaptedAlias.toModelType();
-//            if (addressBook.hasPerson(person)) {
-//                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-//            }
             aliasBook.addAlias(alias);
         }
         return aliasBook;
