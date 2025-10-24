@@ -46,4 +46,3 @@ ComClubConnect is a **desktop app for managing members and events**, optimized f
    * `clear event` — Deletes all events.
    * `alias delete rm` — Creates `rm` as an alias for `delete`.
    * `exit` — Exits the app.
-   
