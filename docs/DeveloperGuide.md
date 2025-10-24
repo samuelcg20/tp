@@ -145,6 +145,21 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+The address book JSON structure contains two top-level arrays: `persons` and `events`. Each `person` is serialized via `JsonAdaptedPerson`, and each `event` via `JsonAdaptedEvent`.
+
+Example (abridged):
+
+```
+{
+  "persons": [
+    { "name": "Alex Yeoh", "phone": "87438807", "email": "alexyeoh@u.nus.edu", "year": "1", "tags": [] }
+  ],
+  "events": [
+    { "name": "Welcome Tea", "date": "2025-12-30T18:00", "venue": "COM1-01" }
+  ]
+}
+```
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.

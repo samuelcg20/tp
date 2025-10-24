@@ -274,6 +274,7 @@ Data is saved to disk automatically after any command that changes data. There i
 
 
 Data is saved automatically as a JSON file at `[JAR file location]/data/addressbook.json`. Advanced users may edit this file directly.
+The JSON file contains two top-level arrays: `persons` and `events`.
 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
