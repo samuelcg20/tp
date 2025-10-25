@@ -52,6 +52,20 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+    /**
+     * Convenience factory to indicate the members list should be shown.
+     */
+    public static CommandResult showMembers(String feedbackToUser) {
+        return new CommandResult(feedbackToUser, false, false, true, false);
+    }
+
+    /**
+     * Convenience factory to indicate the events list should be shown.
+     */
+    public static CommandResult showEvents(String feedbackToUser) {
+        return new CommandResult(feedbackToUser, false, true, false, false);
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
