@@ -40,13 +40,6 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields (legacy constructor for backward compatibility).
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean showEvents, boolean exit) {
-        this(feedbackToUser, showHelp, showEvents, false, exit);
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified fields (legacy constructor for backward compatibility).
-     */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this(feedbackToUser, showHelp, false, false, exit);
     }
