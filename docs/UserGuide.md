@@ -115,6 +115,7 @@ Format (member): `add member n/NAME p/PHONE e/EMAIL y/YEAR r/ROLE…`
 - `EMAIL` must be a valid NUS email ending with `@u.nus.edu`.
 - `YEAR` must be one of `1`, `2`, `3`, or `4`.
 - At least one `r/ROLE` must be provided; you can specify multiple roles.
+- Duplicate check: member names are matched case-insensitively. For example, `John Doe` and `john doe` are considered duplicates.
 
 
 Examples:
@@ -163,6 +164,7 @@ Format (member): `edit member INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/YEAR] [r/ROL
 - At least one optional field must be provided.
 - Providing one or more `r/ROLE` values replaces all existing roles.
 - To clear all roles, use `r/` with no value.
+- When editing, changing a member’s name to one that matches another member’s name case-insensitively is not allowed.
 
 
 Examples:
