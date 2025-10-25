@@ -110,7 +110,6 @@ Adds a member or an event.
 
 Format (member): `add member n/NAME p/PHONE e/EMAIL y/YEAR r/ROLE…`
 
-
 - `PHONE` must be 8 digits and start with `8` or `9`.
 - `EMAIL` must be a valid NUS email ending with `@u.nus.edu`.
 - `YEAR` must be one of `1`, `2`, `3`, or `4`.

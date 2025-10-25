@@ -95,7 +95,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         remainingArgs = remainingArgs.trim();
         if (remainingArgs.startsWith("n/")) {
             return getFindEventNameCommand(remainingArgs);
-        } else if (remainingArgs.startsWith("l/")) {
+        } else if (remainingArgs.startsWith("v/")) {
             return getFindEventLocationCommand(remainingArgs);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_TYPE, FindCommand.MESSAGE_USAGE));

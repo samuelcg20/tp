@@ -22,7 +22,7 @@ public abstract class FindCommand extends Command {
             + "Example to find members by role: " + COMMAND_WORD + " member r/project director\n"
             + "Parameters for finding events by name: find event n/[KEYWORDS...]\n"
             + "Example to find events by name: " + COMMAND_WORD + " event n/ideate\n"
-            + "Parameters for finding event by location: find event l/[KEYWORDS...]\n"
-            + "Example to find events by location: " + COMMAND_WORD + " event l/Queenstown\n";
+            + "Parameters for finding event by location: find event v/[KEYWORDS...]\n"
+            + "Example to find events by location: " + COMMAND_WORD + " event v/Queenstown\n";
 
 }
