@@ -74,16 +74,16 @@ How to use this guide:
 ### Step 1: Ensure you have Java 17 installed on your computer.<br>
 > #### Checking your Java version:
 > - Open a command terminal
-    >   - **Windows users**: Press Windows + R, type cmd, and press Enter
->   -  **Mac users**: Open Terminal from Spotlight (press ⌘ + Space, type Terminal)
->   -  **Linux users**: Open Terminal from your applications menu
+>  - **Windows users**: Press Windows + R, type cmd, and press Enter
+>  -  **Mac users**: Open Terminal from Spotlight (press ⌘ + Space, type Terminal)
+>  -  **Linux users**: Open Terminal from your applications menu
 > - Type `java -version` and press Enter
 > - If Java is installed, you'll see the version number (e.g., `java version "17.0.1"`)
 > - The first number should be 17
 >
 > #### If Java is not installed or the version is below 17:
 > - Download and install Java 17 by following the guide:
-    >   - [for Windows users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
+>   - [for Windows users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
 >   - [for Mac users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
 >   - [for Linux users](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
 > - After installation, restart your terminal and repeat the above steps to verify the version again
@@ -104,7 +104,7 @@ How to use this guide:
 
 ### Step 4: Run the application
 > - Copy the pathname of the ComCLubConnect home folder
-    >   - **Windows users**: Right click on the folder and select "Copy as path"
+>   - **Windows users**: Right click on the folder and select "Copy as path"
 >   -  **Mac users**: Right click on the folder and select "Copy as pathname"
 >   -  **Linux users**: Right click on the folder and select "Copy path"
 > - Open a command terminal as mentioned in step 2
@@ -565,19 +565,105 @@ Problem: “Could not save data due to insufficient permissions …”
 
 ## Command Summary
 
-| Action | Format Examples                                                                                                                                                                     |
-|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add** | **Member:** `add member n/Alex Tan p/91234567 e/alextan@u.nus.edu y/2 r/Logistics`<br><hr style="margin:4px 0;">**Event:** `add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02` |
-| **edit** | **Member:** `edit member 2 e/alextan@u.nus.edu p/98765432`<br><hr style="margin:4px 0;">**Event:** `edit event 1 d/2025-10-05T19:00 l/COM3-01-12`                                   |
-| **delete** | **Member:** `delete member 3`<br><hr style="margin:4px 0;">**Event:** `delete event 1`                                                                                              |
-| **list** | **Member:** `list member`<br><hr style="margin:4px 0;">**Event:** `list event`                                                                                                      |
-| **find** | **Member:** `find member n/Alex`, `find member y/1`<br><hr style="margin:4px 0;">**Event:** `find event n/Welcome`, `find event l/COM1`                                             |
-| **clear** | **Member:** `clear member`<br><hr style="margin:4px 0;">**Event:** `clear event`                                                                                                    |
-| **alias** | `alias delete rm`, `alias list ls`                                                                                                                                       |
-| **help** | `help`                                                                                                                                                                              |
-| **exit** | `exit`                                                                                                                                                                              |
+<div class="table-container" style="overflow-x: auto;">
+<table class="command-summary">
+<thead>
+<tr>
+<th style="width: 20%;">Action</th>
+<th style="width: 80%;">Format Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>add</strong></td>
+<td>
+<strong>Member:</strong> <code>add member n/Alex Tan p/91234567 e/alextan@u.nus.edu y/2 r/Logistics</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02</code>
+</td>
+</tr>
+<tr>
+<td><strong>edit</strong></td>
+<td>
+<strong>Member:</strong> <code>edit member 2 e/alextan@u.nus.edu p/98765432</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>edit event 1 d/2025-10-05T19:00 l/COM3-01-12</code>
+</td>
+</tr>
+<tr>
+<td><strong>delete</strong></td>
+<td>
+<strong>Member:</strong> <code>delete member 3</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>delete event 1</code>
+</td>
+</tr>
+<tr>
+<td><strong>list</strong></td>
+<td>
+<strong>Member:</strong> <code>list member</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>list event</code>
+</td>
+</tr>
+<tr>
+<td><strong>find</strong></td>
+<td>
+<strong>Member:</strong> <code>find member n/Alex</code>, <code>find member y/1</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>find event n/Welcome</code>, <code>find event l/COM1</code>
+</td>
+</tr>
+<tr>
+<td><strong>clear</strong></td>
+<td>
+<strong>Member:</strong> <code>clear member</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>clear event</code>
+</td>
+</tr>
+<tr>
+<td><strong>alias</strong></td>
+<td><code>alias delete rm</code>, <code>alias list ls</code></td>
+</tr>
+<tr>
+<td><strong>help</strong></td>
+<td><code>help</code></td>
+</tr>
+<tr>
+<td><strong>exit</strong></td>
+<td><code>exit</code></td>
+</tr>
+</tbody>
+</table>
+</div>
 
-
+<style>
+.table-container {
+  margin: 20px 0;
+}
+.command-summary {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+.command-summary th, .command-summary td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.command-summary th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+.command-summary code {
+  background-color: #f5f5f5;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+</style>
 
 
 [Back to top](#comclubconnect-user-guide)
