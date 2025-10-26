@@ -72,11 +72,15 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and alias book,
+     * {@code userPrefs}. <br>
+     * The data from the sample address book and alias book will be used instead if {@code storage}'s address book
+     * and alias book is not found,
+     * or an empty address book and alias book will be used instead if errors occur when reading {@code storage}'s
+     * address book and alias book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        // Load AddressBook
         logger.info("Using data file : " + storage.getAddressBookFilePath());
 
         Optional<ReadOnlyAddressBook> addressBookOptional;
@@ -94,29 +98,28 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return continueModelManager(initialData, storage, userPrefs);
-    }
-
-    private Model continueModelManager(ReadOnlyAddressBook initData, Storage storage, ReadOnlyUserPrefs userPrefs) {
+        // Load AliasBook
         logger.info("Using data file : " + storage.getAliasBookFilePath());
 
         Optional<AliasBook> aliasBookOptional;
-        AliasBook initialData;
+        AliasBook initData;
         try {
             aliasBookOptional = storage.aliasBook();
             if (!aliasBookOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getAliasBookFilePath()
                         + " populated with a sample AliasBook.");
             }
-            initialData = aliasBookOptional.orElseGet(SampleDataUtil::getSampleAliasBook);
+            initData = aliasBookOptional.orElseGet(SampleDataUtil::getSampleAliasBook);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAliasBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty AliasBook.");
-            initialData = new AliasBook();
+            initData = new AliasBook();
         }
 
-        return new ModelManager(initData, initialData, userPrefs);
+
+        return new ModelManager(initialData, initData, userPrefs);
     }
+
 
     private void initLogging(Config config) {
         LogsCenter.init(config);
