@@ -38,7 +38,7 @@ public class AddMemberCommand extends AddCommand {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return CommandResult.showMembers(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
     @Override
