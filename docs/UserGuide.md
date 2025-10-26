@@ -71,34 +71,52 @@ How to use this guide:
 ## Quick Start
 
 
-1. Ensure you have Java 17 or above installed on your computer.<br>
-> Checking your Java version:
+### Step 1: Ensure you have Java 17 installed on your computer.<br>
+> #### Checking your Java version:
 > - Open a command terminal
+    >   - **Windows users**: Press Windows + R, type cmd, and press Enter
+>   -  **Mac users**: Open Terminal from Spotlight (press ⌘ + Space, type Terminal)
+>   -  **Linux users**: Open Terminal from your applications menu
 > - Type `java -version` and press Enter
 > - If Java is installed, you'll see the version number (e.g., `java version "17.0.1"`)
 > - The first number should be 17
 >
-> If Java is not installed or the version is below 17:
+> #### If Java is not installed or the version is below 17:
 > - Download and install Java 17 by following the guide:
     >   - [for Windows users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
 >   - [for Mac users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
 >   - [for Linux users](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
-> - After installation, restart your terminal and verify the version again
+> - After installation, restart your terminal and repeat the above steps to verify the version again
 
 
-2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T09-3/tp/releases).
+### Step 2: Download ComClubConnect
+> Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T09-2/tp/releases).
 
 
-3. Copy the `.jar` file to the folder you want to use as the home folder for your ComClubConnect.
+### Step 3: Place the file in a folder
+> Your app comes in a single file that ends with .jar (for example, addressbook.jar).
+> You’ll need to decide where you want to keep this file — this will be your ComClubConnect home folder.
+>   - Find your downloaded `.jar` file (for example, in your Downloads folder).
+>   - Right-click the file and choose Copy.
+>   - Go to your preferred folder where you want to keep the file
+>   - Right-click an empty space and select Paste.
 
 
-4. Open a command terminal, `cd` into the folder you put the `.jar` file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+### Step 4: Run the application
+> - Copy the pathname of the ComCLubConnect home folder
+    >   - **Windows users**: Right click on the folder and select "Copy as path"
+>   -  **Mac users**: Right click on the folder and select "Copy as pathname"
+>   -  **Linux users**: Right click on the folder and select "Copy path"
+> - Open a command terminal as mentioned in step 2
+> - Type `cd <copied filepath>` command to enter the folder
+> - Type `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note that the app contains some sample data and the layout is explained in coloured boxes.<br>
    ![Ui](images/Ui.png)
 
+--------------------------------------------------------------------------------------------------------------------
 
-### Quick CLI Tutorial
-- Click the command input box (bottom of the UI), type a command exactly as shown (prefixes like `n/`, `p/`, `e/`, `y/`, `r/`, `d/`, `l/` are required), then press Enter.
+## Quick CLI Tutorial
+- Click the command input box (top of the UI), type a command exactly as shown (prefixes like `n/`, `p/`, `e/`, `y/`, `r/`, `d/`, `v/` are required), then press Enter.
 - Typical response types:
 - Success message with brief summary (e.g., “New event added: …”).
 - List output after `list` or `find` showing matching member/event entries.
@@ -116,7 +134,7 @@ How to use this guide:
    Some example commands you can try:
 
 
-- `help` : Shows the help window that explains the command usage.
+- `help` : Shows the help window that provides a link to the User Guide, as well as an optional guided tour of the CLI interface.
 - `list member` : Lists all members.
 - `list event` : Lists all events.
 - `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President` : Adds a member named John Doe.
@@ -146,18 +164,22 @@ How to use this guide:
 - Some commands require a `TYPE` immediately after the command word: `member` or `event` (e.g., `add member`, `list event`).
 - Words in `UPPER_CASE` are parameters you supply. For example, in `add member n/NAME`, `NAME` can be `John Doe`.
 - Items in square brackets are optional. Items marked with `…` can repeat, including zero times.
-- Parameters can be in any order for a command.
+- Parameters must follow the order for a command.
 - Extraneous parameters for commands that do not take parameters (such as `help` and `exit`) are ignored.
-- If you are using a PDF version, commands that wrap across lines may lose spaces when copied — retype if needed.
 
-Prefix reference used in commands:
+**Prefix reference used in commands involving members**
 - `n/` name
 - `p/` phone (8 digits, starts with 8 or 9)
 - `e/` email (must end with `@u.nus.edu`)
 - `y/` year of study (`1`–`4`)
 - `r/` role(s) — alphanumeric, can appear multiple times
+
+**Prefix reference used in commands involving events**
+- `n/` event name
 - `d/` date-time in ISO format `YYYY-MM-DDTHH:MM`
-- `l/` location
+- `v/` location
+
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If you are using a PDF version, commands that wrap across lines may lose spaces when copied — retype if needed.</div>
 </div>
 
 
