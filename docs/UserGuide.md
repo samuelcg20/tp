@@ -118,10 +118,11 @@ How to use this guide:
 ## Quick CLI Tutorial
 
 - Click the command input box (top of the UI), type a command exactly as shown (prefixes like `n/`, `p/`, `e/`, `y/`, `r/`, `d/`, `v/` are required), then press **Enter**.
-- Typical response types:
-    - **Success message** with brief summary (e.g., “New event added: …”).
-    - **List output** after `list` or `find`, showing matching member or event entries.
-    - **Error message** beginning with “Invalid command format!” or a validation message — read it carefully and retry.
+
+  - Typical response types:
+      - **Success message** with brief summary (e.g., “New event added: …”).
+      - **List output** after `list` or `find`, showing matching member or event entries.
+      - **Error message** beginning with “Invalid command format!” or a validation message — read it carefully and retry.
 
 - Example sequence:
     1. `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President`
@@ -130,20 +131,20 @@ How to use this guide:
         - Expected output: member list including “John Doe”.
     3. `find event n/Welcome`
         - Expected output: a filtered event list containing events with “Welcome” in the name.
+ 
+- Some example commands you can try:
 
-5. Type your command in the command box and press **Enter** to execute it.  
-   Some example commands you can try:
+  * `help` : Shows the help window that provides a link to the User Guide, as well as an optional guided tour.
+  * `list member` : Lists all members.
+  * `list event` : Lists all events.
+  * `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President` : Adds a member named John Doe.
+  * `add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02` : Adds an event.
+  * `delete member 3` : Deletes the 3rd member shown in the current list.
+  * `clear event` : Deletes all events.
+  * `exit` : Exits the app.
+  
 
-    * `help` : Shows the help window that provides a link to the User Guide, as well as an optional guided tour.
-    * `list member` : Lists all members.
-    * `list event` : Lists all events.
-    * `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President` : Adds a member named John Doe.
-    * `add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02` : Adds an event.
-    * `delete member 3` : Deletes the 3rd member shown in the current list.
-    * `clear event` : Deletes all events.
-    * `exit` : Exits the app.
-
-
+- For more details on the commands, see [Features](#features).
 
 
 [Back to top](#comclubconnect-user-guide)
