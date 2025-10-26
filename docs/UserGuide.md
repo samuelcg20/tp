@@ -78,7 +78,7 @@ title: ComClubConnect User Guide
 </div>
 
 
-<div style="margin-right: 80px;" markdown="1">
+<div markdown="1">
 
 ComClubConnect is a desktop application designed for **NUS CCA leaders** to **manage members and events** efficiently.  
 It is optimised for use via a **Command Line Interface (CLI)** while retaining an **intuitive Graphical User Interface (GUI)**.
