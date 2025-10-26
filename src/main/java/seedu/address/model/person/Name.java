@@ -38,6 +38,16 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns a canonical form of the name for identity comparison.
+     */
+    public String canonicalForIdentity() {
+        // Trim leading and trailing spaces
+        String trimmed = fullName.trim();
+        // Collapse multiple internal spaces to a single space
+        String collapsed = trimmed.replaceAll(" +", " ");
+        return collapsed.toLowerCase();
+    }
 
     @Override
     public String toString() {
@@ -56,12 +66,11 @@ public class Name {
         }
 
         Name otherName = (Name) other;
-        return fullName.equals(otherName.fullName);
+        return fullName.equalsIgnoreCase(otherName.fullName);
     }
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return fullName.toLowerCase().hashCode();
     }
-
 }

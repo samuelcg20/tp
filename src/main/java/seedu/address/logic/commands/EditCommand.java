@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -23,18 +25,29 @@ import seedu.address.model.tag.Tag;
 public abstract class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the member/event identified "
-            + "by the index number used in the displayed member/event list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of a member or an event "
+            + "identified by the index number in the displayed list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters for editing members:\n"
+            + "  " + COMMAND_WORD + " member MEMBER_INDEX "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_YEAR + "YEAR(1-4)] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Examples:\n"
+            + "  " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@u.nus.edu";
+            + PREFIX_EMAIL + "johndoe@u.nus.edu\n"
+            + "Parameters for editing events:\n"
+            + "  " + COMMAND_WORD + " event EVENT_INDEX "
+            + "[" + PREFIX_NAME + "EVENT NAME] "
+            + "[" + PREFIX_DATE + "DATE] "
+            + "[" + PREFIX_LOCATION + "LOCATION]\n"
+            + "Examples:\n"
+            + "  " + COMMAND_WORD + " event 2 "
+            + PREFIX_NAME + "CS Lecture "
+            + PREFIX_LOCATION + "COM1-0203";
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
