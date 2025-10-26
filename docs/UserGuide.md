@@ -308,14 +308,11 @@ Examples:
 
 Finds members or events matching the given criteria. Matching is case-insensitive and by whole words.
 
-**<u>Format</u>**:
-
 **Member**:
 
 Finds members by **either** member's name **or** member's year of study but **not both**.
-- `find member n/KEYWORDS…` — Find by member name.
-- `find member y/KEYWORDS…` — Find by year of study.
 
+Format: `find member n/KEYWORDS…` (Find by member name)  **or** `find member y/KEYWORDS…` (Find by member year of study)
 
 Examples:
 - `find member n/Alex David`
@@ -326,9 +323,11 @@ Examples:
 
 Finds members by **either** event's name **or** event's venue but **not both**.
 
+Format: `find event n/KEYWORDS…` (Find by event name) **or** `find event v/KEYWORDS…` (Find by event venue)
+
 Examples:
-- `find event n/KEYWORDS…` — Find by event name.
-- `find event v/KEYWORDS…` — Find by event venue.
+- `find event n/Graduation`
+- `find event v/COM1`
 
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Combine multiple keywords to broaden the match, e.g., <code>find event n/Welcome Games</code>.</div>
