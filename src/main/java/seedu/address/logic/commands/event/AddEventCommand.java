@@ -38,7 +38,7 @@ public class AddEventCommand extends AddCommand {
         }
 
         model.addEvent(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return CommandResult.showEvents(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
     @Override
