@@ -385,14 +385,14 @@ Examples:
 ### Aliasing Commands — `alias`
 
 
-Creates a custom alias for a command word. Aliases apply for the current app session.
+Create a custom alias for any command word for your greater convenience.
 
 
 Format: `alias COMMAND_WORD ALIAS`
 
 
 - Supported `COMMAND_WORD`s: `add`, `edit`, `delete`, `clear`, `find`, `list`, `help`, `exit`, `alias`.
-- `ALIAS` must be a single word and not a built-in command word.
+- `ALIAS` must be a single word, not a built-in command word and not an existing `ALIAS`.
 
 
 Examples:
@@ -400,8 +400,8 @@ Examples:
 - `alias list ls`
 
 
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Choose aliases that mirror your team’s habits, e.g., <code>rm</code> for <code>delete</code>.</div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> Aliases are not saved between app runs.</div>
+<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Choose aliases that mirror your team’s habits and keep it short for easier recall, e.g., <code>rm</code> for <code>delete</code>.</div>
+
 
 
 
