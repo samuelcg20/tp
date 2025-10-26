@@ -4,55 +4,80 @@ title: User Guide
 ---
 
 <style>
-.quick-links {
-  position: fixed;
-  top: 120px;
-  right: 20px;
-  width: 240px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  font-size: 0.95rem;
-  z-index: 1000;
-}
-.quick-links ul {
-  list-style-type: none;
-  padding-left: 0;
-  margin: 0;
-}
-.quick-links li {
-  margin-bottom: 0.4rem;
-}
-.quick-links a {
-  text-decoration: none;
-  color: #0366d6;
-}
-.quick-links a:hover {
-  text-decoration: underline;
-}
-@media (max-width: 900px) {
-  .quick-links {
-    display: none;
-  }
-}
+    .quick-links {
+    position: fixed;
+    top: 120px;
+    right: 20px;
+    width: 240px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-size: 0.95rem;
+    z-index: 1000;
+    }
+    .quick-links ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    }
+    .quick-links li {
+    margin-bottom: 0.4rem;
+    }
+    .quick-links a {
+    text-decoration: none;
+    color: #0366d6;
+    }
+    .quick-links a:hover {
+    text-decoration: underline;
+    }
+    @media (max-width: 900px) {
+    .quick-links {
+      display: none;
+    }
+    }
+    
+    .table-container {
+    margin: 20px 0;
+    }
+    .command-summary {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    }
+    .command-summary th, .command-summary td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+    }
+    .command-summary th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    }
+    .command-summary code {
+    background-color: #f5f5f5;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
+    }
 </style>
 
 <div class="quick-links">
-  <strong>Quick Links</strong>
-  <ul>
-    <li><a href="#quick-start">Quick Start</a></li>
-    <li><a href="#about-this-guide">About This Guide</a></li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#command-summary">Command Summary</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#troubleshooting">Troubleshooting</a></li>
-  </ul>
+    <strong>Quick Links</strong>
+    <ul>
+        <li><a href="#quick-start">Quick Start</a></li>
+        <li><a href="#about-this-guide">About This Guide</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#command-summary">Command Summary</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+    </ul>
 </div>
 
 
-<div style="margin-right: 280px;">
+<div style="margin-right: 280px;" markdown="1">
 
 # ComClubConnect User Guide
 
@@ -102,9 +127,9 @@ How to use this guide:
 ### Step 1: Ensure you have Java 17 installed on your computer.<br>
 #### Checking your Java version:
 - Open a command terminal
-  - **Windows users**: Press Windows + R, type cmd, and press Enter
-  - **Mac users**: Open Terminal from Spotlight (press ⌘ + Space, type Terminal)
-  - **Linux users**: Open Terminal from your applications menu
+    - **Windows users**: Press Windows + R, type cmd, and press Enter
+    - **Mac users**: Open Terminal from Spotlight (press ⌘ + Space, type Terminal)
+    - **Linux users**: Open Terminal from your applications menu
 - Type `java -version` and press Enter
 - If Java is installed, you'll see the version number (e.g., `java version "17.0.1"`)
 - The first number should be 17
@@ -596,104 +621,77 @@ Problem: “Could not save data due to insufficient permissions …”
 ## Command Summary
 
 <div class="table-container" style="overflow-x: auto;">
-<table class="command-summary">
-<thead>
-<tr>
-<th style="width: 20%;">Action</th>
-<th style="width: 80%;">Format Examples</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>add</strong></td>
-<td>
-<strong>Member:</strong> <code>add member n/Alex Tan p/91234567 e/alextan@u.nus.edu y/2 r/Logistics</code>
-<hr style="margin: 8px 0;">
-<strong>Event:</strong> <code>add event n/Welcome Tea d/2025-09-01T18:00 v/COM1-01-02</code>
-</td>
-</tr>
-<tr>
-<td><strong>edit</strong></td>
-<td>
-<strong>Member:</strong> <code>edit member 2 e/alextan@u.nus.edu p/98765432</code>
-<hr style="margin: 8px 0;">
-<strong>Event:</strong> <code>edit event 1 d/2025-10-05T19:00 v/COM3-01-12</code>
-</td>
-</tr>
-<tr>
-<td><strong>delete</strong></td>
-<td>
-<strong>Member:</strong> <code>delete member 3</code>
-<hr style="margin: 8px 0;">
-<strong>Event:</strong> <code>delete event 1</code>
-</td>
-</tr>
-<tr>
-<td><strong>list</strong></td>
-<td>
-<strong>Member:</strong> <code>list member</code>
-<hr style="margin: 8px 0;">
-<strong>Event:</strong> <code>list event</code>
-</td>
-</tr>
-<tr>
-<td><strong>find</strong></td>
-<td>
-<strong>Member:</strong> <code>find member n/Alex</code>, <code>find member y/1</code>
-<hr style="margin: 8px 0;">
-<strong>Event:</strong> <code>find event n/Welcome</code>, <code>find event v/COM1</code>
-</td>
-</tr>
-<tr>
-<td><strong>clear</strong></td>
-<td>
-<strong>Member:</strong> <code>clear member</code>
-<hr style="margin: 8px 0;">
-<strong>Event:</strong> <code>clear event</code>
-</td>
-</tr>
-<tr>
-<td><strong>alias</strong></td>
-<td><code>alias delete rm</code>, <code>alias list ls</code></td>
-</tr>
-<tr>
-<td><strong>help</strong></td>
-<td><code>help</code></td>
-</tr>
-<tr>
-<td><strong>exit</strong></td>
-<td><code>exit</code></td>
-</tr>
-</tbody>
-</table>
+    <table class="command-summary">
+    <thead>
+    <tr>
+    <th style="width: 20%;">Action</th>
+    <th style="width: 80%;">Format Examples</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td><strong>add</strong></td>
+    <td>
+    <strong>Member:</strong> <code>add member n/Alex Tan p/91234567 e/alextan@u.nus.edu y/2 r/Logistics</code>
+    <hr style="margin: 8px 0;">
+    <strong>Event:</strong> <code>add event n/Welcome Tea d/2025-09-01T18:00 v/COM1-01-02</code>
+    </td>
+    </tr>
+    <tr>
+    <td><strong>edit</strong></td>
+    <td>
+    <strong>Member:</strong> <code>edit member 2 e/alextan@u.nus.edu p/98765432</code>
+    <hr style="margin: 8px 0;">
+    <strong>Event:</strong> <code>edit event 1 d/2025-10-05T19:00 v/COM3-01-12</code>
+    </td>
+    </tr>
+    <tr>
+    <td><strong>delete</strong></td>
+    <td>
+    <strong>Member:</strong> <code>delete member 3</code>
+    <hr style="margin: 8px 0;">
+    <strong>Event:</strong> <code>delete event 1</code>
+    </td>
+    </tr>
+    <tr>
+    <td><strong>list</strong></td>
+    <td>
+    <strong>Member:</strong> <code>list member</code>
+    <hr style="margin: 8px 0;">
+    <strong>Event:</strong> <code>list event</code>
+    </td>
+    </tr>
+    <tr>
+    <td><strong>find</strong></td>
+    <td>
+    <strong>Member:</strong> <code>find member n/Alex</code>, <code>find member y/1</code>
+    <hr style="margin: 8px 0;">
+    <strong>Event:</strong> <code>find event n/Welcome</code>, <code>find event v/COM1</code>
+    </td>
+    </tr>
+    <tr>
+    <td><strong>clear</strong></td>
+    <td>
+    <strong>Member:</strong> <code>clear member</code>
+    <hr style="margin: 8px 0;">
+    <strong>Event:</strong> <code>clear event</code>
+    </td>
+    </tr>
+    <tr>
+    <td><strong>alias</strong></td>
+    <td><code>alias delete rm</code>, <code>alias list ls</code></td>
+    </tr>
+    <tr>
+    <td><strong>help</strong></td>
+    <td><code>help</code></td>
+    </tr>
+    <tr>
+    <td><strong>exit</strong></td>
+    <td><code>exit</code></td>
+    </tr>
+    </tbody>
+    </table>
 </div>
-
-<style>
-.table-container {
-  margin: 20px 0;
-}
-.command-summary {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9em;
-}
-.command-summary th, .command-summary td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: left;
-  vertical-align: top;
-}
-.command-summary th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-}
-.command-summary code {
-  background-color: #f5f5f5;
-  padding: 2px 4px;
-  border-radius: 3px;
-  font-family: monospace;
-}
-</style>
 
 
 [Back to top](#comclubconnect-user-guide)
