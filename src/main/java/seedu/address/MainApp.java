@@ -120,7 +120,6 @@ public class MainApp extends Application {
         return new ModelManager(initialData, initData, userPrefs);
     }
 
-
     private void initLogging(Config config) {
         LogsCenter.init(config);
     }
