@@ -125,6 +125,7 @@ How to use this guide:
       - **Error message** beginning with “Invalid command format!” or a validation message — read it carefully and retry.
 
 - Example sequence:
+
     1. `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President`
         - Expected output: “New person added: John Doe …”
     2. `list member`
@@ -143,6 +144,7 @@ How to use this guide:
   * `clear event` : Deletes all events.
   * `exit` : Exits the app.
   
+
 
 - For more details on the commands, see [Features](#features).
 
