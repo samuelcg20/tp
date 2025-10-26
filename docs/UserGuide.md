@@ -9,8 +9,6 @@ title: ComClubConnect User Guide
     top: 120px;
     right: 20px;
     width: 240px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
     padding: 1rem;
     font-size: 0.95rem;
     z-index: 1000;
@@ -68,7 +66,19 @@ title: ComClubConnect User Guide
         <li><a href="#about-this-guide">About This Guide</a></li>
         <li><a href="#quick-start">Quick Start</a></li>
         <li><a href="#quick-cli-tutorial">Quick CLI Tutorial</a></li>
-        <li><a href="#features">Features</a></li>
+        <li>
+            <a href="#features">Features</a>
+            <ul>
+                <li><a href="#viewing-help--help">Viewing Help</a></li>
+                <li><a href="#guided-tour--guidedtour">Guided Tour</a></li>
+                <li><a href="#adding-entries--add">Adding Entries</a></li>
+                <li><a href="#listing-entries--list">Listing Entries</a></li>
+                <li><a href="#editing-entries--edit">Editing Entries</a></li>
+                <li><a href="#finding-entries--find">Finding Entries</a></li>
+                <li><a href="#deleting-entries--delete">Deleting Entries</a></li>
+                 <li><a href="#deleting-entries--delete">Deleting Entries</a></li>
+            </ul>
+        </li>
         <li><a href="#saving-your-data">Saving Your Data</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#troubleshooting">Troubleshooting</a></li>
@@ -78,7 +88,9 @@ title: ComClubConnect User Guide
 </div>
 
 
-<div style="margin-right: 80px;" markdown="1">
+
+<div markdown="1">
+<a id="top"></a>
 
 ComClubConnect is a desktop application designed for **NUS CCA leaders** to **manage members and events** efficiently.  
 It is optimised for use via a **Command Line Interface (CLI)** while retaining an **intuitive Graphical User Interface (GUI)**.
@@ -114,7 +126,7 @@ How to use this guide:
 - Features: Detailed explanations of each command, including syntax, usage steps, examples, and helpful notes.
 - Troubleshooting & FAQ: Find solutions to common issues and answers to frequently asked questions.
 
-[Back to top](#comclubconnect-user-guide)
+[Back to top](#top)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -202,7 +214,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 - For more details on the commands, see [Features](#features).
 
 
-[Back to top](#comclubconnect-user-guide)
+[Back to top](#top)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -466,6 +478,8 @@ Exits the program.
 
 Format: `exit`
 
+[Back to top](#top)
+
 --------------------------------------------------------------------------------------------------------------------
 
 
@@ -474,6 +488,7 @@ Format: `exit`
 
 Data is saved to disk automatically after any command that changes data. No manual save is needed.
 
+[Back to top](#top)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -489,7 +504,7 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 
 
-[Back to top](#comclubconnect-user-guide)
+[Back to top](#top)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -549,7 +564,7 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 
 
-[Back to top](#comclubconnect-user-guide)
+[Back to top](#top)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -592,7 +607,7 @@ Problem: “Could not save data due to insufficient permissions …”
 
 
 
-[Back to top](#comclubconnect-user-guide)
+[Back to top](#top)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -609,7 +624,7 @@ Problem: “Could not save data due to insufficient permissions …”
 
 
 
-[Back to top](#comclubconnect-user-guide)
+[Back to top](#top)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -692,6 +707,6 @@ Problem: “Could not save data due to insufficient permissions …”
 </div>
 
 
-[Back to top](#comclubconnect-user-guide)
+[Back to top](#top)
 
 </div>
