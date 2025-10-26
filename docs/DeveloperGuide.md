@@ -310,100 +310,274 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ComClubConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**1. Use case: Delete a person**
+**UC1: List members**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list members.
+2.  ComClubConnect displays the member list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+- 1a. The members list is empty.
+    - 1a1. ComClubConnect displays an empty list. 
+    - Use case ends.
+- 1b. The input is invalid.
+    - 1b1. ComClubConnect informs user on invalid input.
+    - Use case ends.
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-**2. Use Case: Delete an Event**
+**UC2: List events**
 
 **MSS**
 
-1. User requests to list events.
-2. AddressBook displays a list of events with dates and times.
-3. User requests to delete a specific event.
-4. AddressBook deletes the event.
-5. AddressBook confirms deletion.
+1.  User requests to list events.
+2.  ComClubConnect displays the events list.
 
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
-* 2a. The event list is empty → Use case ends.
+- 1a. The events list is empty.
+    - 1a1. ComClubConnect displays an empty list.
+    - Use case ends.
+- 1b. The input is invalid.
+    - 1b1. ComClubConnect informs user on invalid input.
+    - Use case ends.
 
-* 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+**UC3: Add a Member**
 
-    * 3a2. Use case resumes at step 2.
+**MSS**
 
-* 4a. User cancels deletion → Use case ends.
+1. User requests to add a member.
+2. ComCLubConnect adds the new member to the list.
+3. ComClubConnect confirms that the member has been added successfully.
 
-**3. Use Case: Add an Event**
+    Use case ends.
+
+**Extensions**
+
+- 1a. ComClubConnect detects duplicate member.
+    - 1a1. ComClubConnect informs user on duplicate member being present.
+    - Use case resumes at step 2.
+- 1b. ComClubConnect detects invalid input.
+    - 1b1. ComClubConnect informs user on invalid input.
+    - Use case resumes at step 2.
+
+**UC4: Add an event**
 
 **MSS**
 
 1. User requests to add an event.
-2. AddressBook prompts the user for event details (title, date, time, description).
-3. User provides the required details.
-4. AddressBook saves the event.
-5. AddressBook confirms the event was added successfully.
+2. ComCLubConnect adds the new event to the list.
+3. ComClubConnect confirms that the event has been added successfully.
 
-Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. User cancels the operation → Use case ends.
+- 1a. ComClubConnect detects duplicate event.
+    - 1a1. ComClubConnect informs user on duplicate event being present.
+    - Use case resumes at step 2.
+- 1b. ComClubConnect detects invalid input.
+    - 1b1. ComClubConnect informs user on invalid input.
+    - Use case resumes at step 2.
 
-* 3a. User provides an invalid date/time.
-    * 3a1. AddressBook shows an error message.
-    * 3a2. Use case resumes at step 2.
-
-* 4a. An event with the same details already exists.
-    * 4a1. AddressBook asks whether to overwrite or cancel.
-
-**4. Use Case: View Event Details**
+**UC5: Delete a member**
 
 **MSS**
 
-1. User requests to list events.
-2. AddressBook shows the list of events with basic details (titles and dates).
-3. User requests to view details of a specific event.
-4. AddressBook shows the full details (title, date, time, description, location, etc.).
+1. User performs UC1: list members.
+2. User requests to delete a member in the displayed list by index.
+3. ComCLubConnect deletes the specified member.
+4. ComClubConnect confirms that the member has been deleted.
 
-Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The event list is empty → Use case ends.
+- 1a. The displayed list is empty.
+    - Use case ends.
+- 2a. ComClubConnect detects index is invalid.
+    - 1b1. ComClubConnect informs user on invalid index.
+    - Use case resumes at step 2.
 
-* 3a. The given index is invalid.
-    * 3a1. AddressBook shows an error message.
-    * 3a2. Use case resumes at step 2.
+**UC6: Delete an event**
+
+**MSS**
+
+1. User performs UC2: list events.
+2. User requests to delete an event in the displayed list by index.
+3. ComCLubConnect deletes the specified event.
+4. ComClubConnect confirms that the event has been deleted.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The displayed list is empty.
+    - Use case ends.
+- 2a. ComClubConnect detects index is invalid.
+    - 1b1. ComClubConnect informs user on invalid index.
+    - Use case resumes at step 2.
+
+**UC7: Edit a member**
+
+**MSS**
+
+1. User performs UC1: list members.
+2. User requests to edit a member in the displayed list.
+3. ComCLubConnect edits the specified member.
+4. ComClubConnect confirms that the member has been edited.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The displayed list is empty.
+    - Use case ends.
+- 2a. ComClubConnect detects input is invalid.
+    - 1b1. ComClubConnect informs user on invalid index.
+    - Use case resumes at step 2.
+
+**UC8: Edit an event**
+
+**MSS**
+
+1. User performs UC2: list events.
+2. User requests to edit an event in the displayed list.
+3. ComCLubConnect edits the specified event.
+4. ComClubConnect confirms that the event has been edited.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The displayed list is empty.
+    - Use case ends.
+- 2a. ComClubConnect detects input is invalid.
+    - 1b1. ComClubConnect informs user on invalid index.
+    - Use case resumes at step 2.
+
+**UC9: Find members**
+
+**MSS**
+
+1. User performs UC1: list members.
+2. User requests to find members in the displayed list.
+3. ComCLubConnect checks input and displays filtered list containing members that meet the filter requirements.
+4. ComClubConnect confirms that the members have been found.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. ComClubConnect detects input is invalid.
+    - 2a1. ComClubConnect informs user on invalid input.
+    - Use case resumes at step 2.
+
+**UC10: Find events**
+
+**MSS**
+
+1. User performs UC1: list events.
+2. User requests to find events in the displayed list.
+3. ComCLubConnect checks input and displays filtered list containing events that meet the filter requirement.
+4. ComClubConnect confirms that the events have been found.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. ComClubConnect detects input is invalid.
+    - 2a1. ComClubConnect informs user on invalid input.
+    - Use case resumes at step 2.
+
+**UC11: Clear all members**
+
+**MSS**
+
+1. User requests to clear all members.
+2. ComCLubConnect clears all members from the list.
+3. ComClubConnect confirms that all members have been cleared.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. ComClubConnect detects command is invalid.
+    - 2a1. ComClubConnect informs user on invalid command.
+    - Use case resumes at step 1.
+
+**UC12: Clear all events**
+
+**MSS**
+
+1. User requests to clear all events.
+2. ComCLubConnect clears all events from the list.
+3. ComClubConnect confirms that all events have been cleared.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. ComClubConnect detects command is invalid.
+    - 2a1. ComClubConnect informs user on invalid command.
+    - Use case resumes at step 1.
+
+**UC13: Exit ComClubConnect**
+
+**MSS**
+
+1. User requests to exit ComClubConnect.
+2. ComCLubConnect acknowledges and closes the window.
+   Use case ends.
+
+**Extensions**
+
+- 1a. ComClubConnect detects command is invalid.
+    - 1a1. ComClubConnect informs user on invalid command.
+    - Use case resumes at step 1.
+
+**UC14: View help information**
+
+**MSS**
+
+1. User requests to view help information.
+2. ComCLubConnect opens the help window.
+3. User acknowledges and closes the help window.
+   Use case ends.
+
+**Extensions**
+
+- 2a. User requests for guided tour from the help window.
+    - 2a1. ComClubConnect starts the guided tour.
+    - 2a2. User navigates through the guided tour.
+    - 2a3. ComClubConnect closes the guided tour
+    - Use case resumes at step 3.
+
+**UC15: Create a command alias**
+
+**MSS**
+
+1. User requests to create a new alias for an existing command.
+2. ComCLubConnect saves the alias mapping.
+3. ComClubConnect confirms that the alias was created successfully.
+   Use case ends.
+
+**Extensions**
+
+- 1a. ComClubConnect detects alias command already exists.
+    - 1a1. ComClubConnect informs user on the already existing alias command.
+    - Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+1.  Should work on any _mainstream OS_ as long as it has Java `17` installed.
 2.  The system should be able to handle at least 50 members and 20 events without noticeable sluggishness in performance for typical usage.
 3.  Core commands (add, delete, list) should return results within 1 second for datasets within these limits.
 4.  Error messages should be clear, specific, and actionable, guiding the user to correct invalid inputs.
@@ -416,6 +590,7 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Graphical User Interface (GUI)**: A visual interface that allows users to interact with the application through elements like buttons, menus, and windows instead of typing commands.
 * **Address Book**: A digital contact management system that stores details of CCA members (e.g., name, phone, email, role).
 * **Index**: A numerical identifier assigned to members or events in a displayed list, used for referencing in commands (e.g., delete member 2).
 * **Command**: A specific instruction entered by the user into the CLI to perform an action (e.g., add n/John Doe …, delete member 1).
@@ -439,18 +614,18 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1a. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1b. Double-click the jar file 
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   2a. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2b. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+3. 
 
 ### Deleting a person
 

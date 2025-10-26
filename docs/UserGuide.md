@@ -72,46 +72,45 @@ How to use this guide:
 
 
 ### Step 1: Ensure you have Java 17 installed on your computer.<br>
-> #### Checking your Java version:
-> - Open a command terminal
->  - **Windows users**: Press Windows + R, type cmd, and press Enter
->  -  **Mac users**: Open Terminal from Spotlight (press ⌘ + Space, type Terminal)
->  -  **Linux users**: Open Terminal from your applications menu
-> - Type `java -version` and press Enter
-> - If Java is installed, you'll see the version number (e.g., `java version "17.0.1"`)
-> - The first number should be 17
->
-> #### If Java is not installed or the version is below 17:
-> - Download and install Java 17 by following the guide:
->   - [for Windows users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
->   - [for Mac users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
->   - [for Linux users](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
-> - After installation, restart your terminal and repeat the above steps to verify the version again
+#### Checking your Java version:
+- Open a command terminal
+  - **Windows users**: Press Windows + R, type cmd, and press Enter
+  - **Mac users**: Open Terminal from Spotlight (press ⌘ + Space, type Terminal)
+  - **Linux users**: Open Terminal from your applications menu
+- Type `java -version` and press Enter
+- If Java is installed, you'll see the version number (e.g., `java version "17.0.1"`)
+- The first number should be 17
+
+ #### If Java is not installed or the version is below 17:
+ - Download and install Java 17 by following the guide:
+   - [for Windows users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
+   - [for Mac users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
+   - [for Linux users](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
+ - After installation, restart your terminal and repeat the above steps to verify the version again
 
 
 ### Step 2: Download ComClubConnect
-> Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T09-2/tp/releases).
+ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T09-2/tp/releases).
 
 
 ### Step 3: Place the file in a folder
-> Your app comes in a single file that ends with .jar (for example, addressbook.jar).
-> You’ll need to decide where you want to keep this file — this will be your ComClubConnect home folder.
->   - Find your downloaded `.jar` file (for example, in your Downloads folder).
->   - Right-click the file and choose Copy.
->   - Go to your preferred folder where you want to keep the file
->   - Right-click an empty space and select Paste.
+- Your app comes in a single file that ends with .jar (for example, addressbook.jar). You’ll need to decide where you want to keep this file — this will be your ComClubConnect home folder.
+   - Find your downloaded `.jar` file (for example, in your Downloads folder).
+   - Right-click the file and choose Copy.
+   - Go to your preferred folder where you want to keep the file
+   - Right-click an empty space and select Paste.
 
 
 ### Step 4: Run the application
-> - Copy the pathname of the ComCLubConnect home folder
->   - **Windows users**: Right click on the folder and select "Copy as path"
->   -  **Mac users**: Right click on the folder and select "Copy as pathname"
->   -  **Linux users**: Right click on the folder and select "Copy path"
-> - Open a command terminal as mentioned in step 2
-> - Type `cd <copied filepath>` command to enter the folder
-> - Type `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note that the app contains some sample data and the layout is explained in coloured boxes.<br>
-   ![Ui](images/Ui.png)
+- Copy the pathname of the ComCLubConnect home folder
+   - **Windows users**: Right click on the folder and select "Copy as path"
+   - **Mac users**: Right click on the folder and select "Copy as pathname"
+   - **Linux users**: Right click on the folder and select "Copy path"
+- Open a command terminal as mentioned in step 2
+- Type `cd <copied filepath>` command to enter the folder
+- Type `java -jar addressbook.jar` command to run the application.<br>
+- A GUI similar to the below should appear in a few seconds. Note that the app contains some sample data and the layout is explained in coloured boxes.<br>
+  ![Ui](images/Ui.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
