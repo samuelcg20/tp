@@ -626,7 +626,39 @@ testers are expected to do more *exploratory* testing.
    2b. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Deleting a members/event
+[//]: # (### Adding a member/event)
+
+[//]: # ()
+[//]: # (1. Adding a member/event)
+
+[//]: # ()
+[//]: # (   1a. Prerequisites: None)
+
+[//]: # (   )
+[//]: # (   1b. Test case 1: `add member n/Jean Doe p/98765432 e/jean@u.nus.edu y/2 r/President`<br>)
+
+[//]: # ( )
+[//]: # (   Expected: Jean Doe is added into member's list. Details of the added member will be )
+### Adding a member/event
+
+1. Adding a new member/event
+
+   1a. Prerequisites: None.
+
+   1b. Test case 1: `add member n/Jean Doe p/98765432 e/jean@u.nus.edu y/2 r/President`<br>
+   Expected: Jean Doe is added into the member's list. Details of the added member shown in the status message.
+
+   1c. Test case 2: `add event n/Orientation d/2025-08-01T18:00 v/NUS`<br>
+   Expected: Event Orientation is added into the event's list. Details of the added event shown in the status message.
+
+   1d. Invalid test case: `add member n/ p/`<br>
+   Expected: Error message displayed indicating missing required fields.
+
+   1e. Other incorrect add commands to try: `add`, `add n/`, `...` <br>
+   Expected: Similar to previous.
+2. _{ more test cases …​ }_
+
+### Deleting a member/event
 
 1. Deleting a member/event while all members/events are being shown
 
@@ -637,13 +669,26 @@ testers are expected to do more *exploratory* testing.
 
    1c. Test case 2: `delete event 1`<br>
        Expected: First event is deleted from the list. Details of the deleted event shown in the status message.
+
    1d. Test case 3: `delete member 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1e. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+2. _{ more test cases …​ }_
 
-1. _{ more test cases …​ }_
+### Listing members/events
+
+1. Viewing all members/events
+
+   1a. Test case 1: `list members`<br>
+   Expected: All members are displayed in the list.
+
+   1b. Test case 2: `list events`<br>
+   Expected: All events are displayed in the list.
+
+   1c. Other incorrect list commands to try: `list`, `list x`<br>
+   Expected: Error details shown in the status message. Status bar remains the same.
 
 ### Saving data
 
