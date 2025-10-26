@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Locale;
-
 /**
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
@@ -40,6 +38,16 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns a canonical form of the name for identity comparison.
+     */
+    public String canonicalForIdentity() {
+        // Trim leading and trailing spaces
+        String trimmed = fullName.trim();
+        // Collapse multiple internal spaces to a single space
+        String collapsed = trimmed.replaceAll(" +", " ");
+        return collapsed.toLowerCase();
+    }
 
     @Override
     public String toString() {
@@ -63,7 +71,6 @@ public class Name {
 
     @Override
     public int hashCode() {
-        return fullName.toLowerCase(Locale.ROOT).hashCode();
+        return fullName.toLowerCase().hashCode();
     }
-
 }
