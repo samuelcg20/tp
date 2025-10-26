@@ -71,34 +71,52 @@ How to use this guide:
 ## Quick Start
 
 
-1. Ensure you have Java 17 or above installed on your computer.<br>
-> Checking your Java version:
+### Step 1: Ensure you have Java 17 installed on your computer.<br>
+> #### Checking your Java version:
 > - Open a command terminal
+    >   - **Windows users**: Press Windows + R, type cmd, and press Enter
+>   -  **Mac users**: Open Terminal from Spotlight (press ⌘ + Space, type Terminal)
+>   -  **Linux users**: Open Terminal from your applications menu
 > - Type `java -version` and press Enter
 > - If Java is installed, you'll see the version number (e.g., `java version "17.0.1"`)
 > - The first number should be 17
 >
-> If Java is not installed or the version is below 17:
+> #### If Java is not installed or the version is below 17:
 > - Download and install Java 17 by following the guide:
     >   - [for Windows users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
 >   - [for Mac users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
 >   - [for Linux users](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
-> - After installation, restart your terminal and verify the version again
+> - After installation, restart your terminal and repeat the above steps to verify the version again
 
 
-2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T09-3/tp/releases).
+### Step 2: Download ComClubConnect
+> Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T09-2/tp/releases).
 
 
-3. Copy the `.jar` file to the folder you want to use as the home folder for your ComClubConnect.
+### Step 3: Place the file in a folder
+> Your app comes in a single file that ends with .jar (for example, addressbook.jar).
+> You’ll need to decide where you want to keep this file — this will be your ComClubConnect home folder.
+>   - Find your downloaded `.jar` file (for example, in your Downloads folder).
+>   - Right-click the file and choose Copy.
+>   - Go to your preferred folder where you want to keep the file
+>   - Right-click an empty space and select Paste.
 
 
-4. Open a command terminal, `cd` into the folder you put the `.jar` file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+### Step 4: Run the application
+> - Copy the pathname of the ComCLubConnect home folder
+    >   - **Windows users**: Right click on the folder and select "Copy as path"
+>   -  **Mac users**: Right click on the folder and select "Copy as pathname"
+>   -  **Linux users**: Right click on the folder and select "Copy path"
+> - Open a command terminal as mentioned in step 2
+> - Type `cd <copied filepath>` command to enter the folder
+> - Type `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note that the app contains some sample data and the layout is explained in coloured boxes.<br>
    ![Ui](images/Ui.png)
 
+--------------------------------------------------------------------------------------------------------------------
 
-### Quick CLI Tutorial
-- Click the command input box (bottom of the UI), type a command exactly as shown (prefixes like `n/`, `p/`, `e/`, `y/`, `r/`, `d/`, `l/` are required), then press Enter.
+## Quick CLI Tutorial
+- Click the command input box (top of the UI), type a command exactly as shown (prefixes like `n/`, `p/`, `e/`, `y/`, `r/`, `d/`, `v/` are required), then press Enter.
 - Typical response types:
 - Success message with brief summary (e.g., “New event added: …”).
 - List output after `list` or `find` showing matching member/event entries.
@@ -116,7 +134,7 @@ How to use this guide:
    Some example commands you can try:
 
 
-- `help` : Shows the help window that explains the command usage.
+- `help` : Shows the help window that provides a link to the User Guide, as well as an optional guided tour of the CLI interface.
 - `list member` : Lists all members.
 - `list event` : Lists all events.
 - `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President` : Adds a member named John Doe.
@@ -146,38 +164,47 @@ How to use this guide:
 - Some commands require a `TYPE` immediately after the command word: `member` or `event` (e.g., `add member`, `list event`).
 - Words in `UPPER_CASE` are parameters you supply. For example, in `add member n/NAME`, `NAME` can be `John Doe`.
 - Items in square brackets are optional. Items marked with `…` can repeat, including zero times.
-- Parameters can be in any order for a command.
+- Parameters must follow the order for a command.
 - Extraneous parameters for commands that do not take parameters (such as `help` and `exit`) are ignored.
-- If you are using a PDF version, commands that wrap across lines may lose spaces when copied — retype if needed.
 
-Prefix reference used in commands:
+**Prefix reference used in commands involving members**
 - `n/` name
 - `p/` phone (8 digits, starts with 8 or 9)
 - `e/` email (must end with `@u.nus.edu`)
 - `y/` year of study (`1`–`4`)
 - `r/` role(s) — alphanumeric, can appear multiple times
-- `d/` date-time in ISO format `YYYY-MM-DDTHH:MM`
-- `l/` location
-</div>
 
+**Prefix reference used in commands involving events**
+- `n/` event name
+- `d/` date-time in ISO format `YYYY-MM-DDTHH:MM`
+- `v/` location
+
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If you are using a PDF version, commands that wrap across lines may lose spaces when copied — retype if needed.</div>
+</div>
 
 
 
 ### Viewing Help — `help`
 
-
 Opens the Help window.
-
 
 Format: `help`
 
-
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Press <code>F1</code> or use the Help menu to open the Help window quickly.</div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If the Help window is minimized, running <code>help</code> again will not open a new window. Restore the minimized window instead.</div>
-
-
 ![help message](images/helpMessage.png)
 
+#### Guided Tour — `guidedtour`
+
+Opens the Guided Tour window, which provides an overview of the key components of the Address Book interface.
+
+Format: `guidedtour`
+
+![Guided Tour Overview](images/annotatedGuidedTour.png)
+
+The Guided Tour walks you through major areas of the application — such as the **Menu Bar**, **Command Box**, **Result Display**, **Member/Event List Display**, and **Status Bar** — with color-coded highlights and brief explanations to help you get familiar with the interface.
+
+
+<div markdown="span" class="alert alert-success">✅ <strong>Tip: </strong> <code>F1</code> or use the Help menu to open the Help window quickly.</div>
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If the Help window is minimized, running <code>help</code> again will not open a new window. Restore the minimized window instead.</div>
 
 
 
@@ -386,22 +413,19 @@ Exits the program.
 
 Format: `exit`
 
-
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Data saves automatically — you don’t need to save before exiting.</div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If you see a file permission error while exiting, move the <code>.jar</code> to a folder you can write to and run again.</div>
+--------------------------------------------------------------------------------------------------------------------
 
 
-
-
-### Saving Your Data
+## Saving Your Data
 
 
 Data is saved to disk automatically after any command that changes data. No manual save is needed.
 
 
+--------------------------------------------------------------------------------------------------------------------
 
 
-### Editing the Data File (Advanced)
+## Editing the Data File (Advanced)
 
 
 Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
@@ -421,3 +445,139 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 
 ## FAQ
+
+- Can I import my existing member list from Excel/Google Sheets?
+ - Not directly. You can copy key details and add members using `add member ...`. Power users can transform CSV to match `addressbook.json`, but be careful with format.
+
+
+- Do aliases persist across restarts?
+ - No. Aliases last for the current session only.
+
+
+- Why does my email keep getting rejected?
+ - Emails must end with `@u.nus.edu` and have a valid local-part (alphanumeric plus `+ _ . -`, not starting/ending with a special character).
+
+
+- What phone numbers are allowed?
+ - Exactly 8 digits, starting with `8` or `9`, and no spaces.
+
+
+- How do I record multiple roles for a member?
+ - Repeat the `r/` prefix, e.g., `r/President r/TechLead`. Roles are alphanumeric and cannot contain spaces.
+
+
+- Can I search by role or by event date range?
+ - Role-based search and date-range filters are not supported currently. You can search members by name or year, and events by name or location.
+
+
+- I entered `2025-09-01 18:00` but got an invalid date. Why?
+ - Use ISO format with `T` between date and time: `2025-09-01T18:00`.
+
+
+- I deleted the wrong person/event. Can I undo?
+ - Undo is not available. Consider exporting a backup (`data/addressbook.json`) periodically.
+
+
+- How do I move my data to another computer?
+ - Copy your `addressbook.json` from the `data` folder next to your `.jar` into the same location on the new machine before running the app there.
+
+
+- The app says it can’t save due to permissions. What should I do?
+ - Move the `.jar` file to a folder you have write access to (e.g., your home folder or desktop) and run it again.
+
+
+- Can multiple EXCO members use the same data file?
+ - Yes. Share the `addressbook.json` file via a cloud drive, but ensure only one person runs the app and edits the file at a time to avoid conflicts.
+
+
+- Will names be treated as duplicates if capitalization differs?
+ - Yes. Member name matching is case-insensitive for uniqueness (e.g., `John Doe` and `john doe` are considered the same).
+
+
+
+
+[Back to top](#comclubconnect-user-guide)
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+
+
+## Troubleshooting
+
+
+Problem: “Invalid command format!”
+- Reason: Missing required parts or extra unexpected text.
+- Solution: Compare with the command’s “Format” in this guide; remove extras and include all required prefixes.
+
+
+Problem: “Phone number must be exactly 8 digits and start with 8 or 9.”
+- Reason: The number contains spaces, wrong length, or starts with other digits.
+- Solution: Enter an 8-digit number starting with 8 or 9, with no spaces.
+
+
+Problem: “Emails should be of the format local-part@u.nus.edu …”
+- Reason: Email is not an NUS email or local-part is invalid.
+- Solution: Use a valid NUS email like `alexlee@u.nus.edu`.
+
+
+Problem: “Dates should be in ISO format YYYY-MM-DDTHH:MM”
+- Reason: Missing the `T` separator or wrong format.
+- Solution: Enter `YYYY-MM-DDTHH:MM` (e.g., `2025-10-05T19:00`).
+
+
+Problem: “Unknown command”
+- Reason: Typos or using a command that does not exist.
+- Solution: Run `help` to see supported commands. Consider creating an alias for frequently used commands.
+
+
+Problem: “Could not save data due to insufficient permissions …”
+- Reason: The current folder is read-only.
+- Solution: Move the `.jar` to a writable folder and run it again.
+
+
+
+
+[Back to top](#comclubconnect-user-guide)
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+
+
+## Known Issues
+
+
+1. When using multiple screens, if you move the application to a secondary screen, and later switch to only the primary screen, the GUI may open off-screen. Remedy: delete `preferences.json` in the app folder and start again.
+2. If you minimize the Help window and run `help` again, the original Help window remains minimized and no new Help window appears. Remedy: restore the minimized Help window.
+
+
+
+
+[Back to top](#comclubconnect-user-guide)
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+
+## Command Summary
+
+| Action | Format Examples                                                                                                                                                                     |
+|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **add** | **Member:** `add member n/Alex Tan p/91234567 e/alextan@u.nus.edu y/2 r/Logistics`<br><hr style="margin:4px 0;">**Event:** `add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02` |
+| **edit** | **Member:** `edit member 2 e/alextan@u.nus.edu p/98765432`<br><hr style="margin:4px 0;">**Event:** `edit event 1 d/2025-10-05T19:00 l/COM3-01-12`                                   |
+| **delete** | **Member:** `delete member 3`<br><hr style="margin:4px 0;">**Event:** `delete event 1`                                                                                              |
+| **list** | **Member:** `list member`<br><hr style="margin:4px 0;">**Event:** `list event`                                                                                                      |
+| **find** | **Member:** `find member n/Alex`, `find member y/1`<br><hr style="margin:4px 0;">**Event:** `find event n/Welcome`, `find event l/COM1`                                             |
+| **clear** | **Member:** `clear member`<br><hr style="margin:4px 0;">**Event:** `clear event`                                                                                                    |
+| **alias** | `alias delete rm`, `alias list ls`                                                                                                                                       |
+| **help** | `help`                                                                                                                                                                              |
+| **exit** | `exit`                                                                                                                                                                              |
+
+
+
+
+[Back to top](#comclubconnect-user-guide)
