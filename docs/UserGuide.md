@@ -308,29 +308,30 @@ Examples:
 
 Finds members or events matching the given criteria. Matching is case-insensitive and by whole words.
 
+**Member**:
 
-Format (members):
-- `find member n/KEYWORDS…` — Find by member name.
-- `find member y/KEYWORDS…` — Find by year of study.
+Finds members by **either** member's name **or** member's year of study but **not both**.
 
+Format: `find member n/KEYWORDS…` (Find by member name)  **or** `find member y/KEYWORDS…` (Find by member year of study)
 
 Examples:
 - `find member n/Alex David`
 - `find member y/1 2`
 
 
-Format (events):
-- `find event n/KEYWORDS…` — Find by event name.
-- `find event l/KEYWORDS…` — Find by event location.
+**Events**:
 
+Finds members by **either** event's name **or** event's venue but **not both**.
+
+Format: `find event n/KEYWORDS…` (Find by event name) **or** `find event v/KEYWORDS…` (Find by event venue)
 
 Examples:
-- `find event n/Welcome`
-- `find event l/UTown COM1`
+- `find event n/Graduation`
+- `find event v/COM1`
 
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Combine multiple keywords to broaden the match, e.g., <code>find event n/Welcome Games</code>.</div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> Searching by roles is not supported; use member name or year instead.</div>
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The list that will be used will be filtered list. You can <code>edit</code> or <code>delete</code> by using index from the <strong>filtered list</strong>. To <code>edit</code> or <code>delete</code> other entries, <code>list TYPE</code>before proceeding.</div>
 
 
 
@@ -384,14 +385,14 @@ Examples:
 ### Aliasing Commands — `alias`
 
 
-Creates a custom alias for a command word. Aliases apply for the current app session.
+Create a custom alias for any command word for your greater convenience.
 
 
 Format: `alias COMMAND_WORD ALIAS`
 
 
 - Supported `COMMAND_WORD`s: `add`, `edit`, `delete`, `clear`, `find`, `list`, `help`, `exit`, `alias`.
-- `ALIAS` must be a single word and not a built-in command word.
+- `ALIAS` must be a single word, not a built-in command word and not an existing `ALIAS`.
 
 
 Examples:
@@ -399,8 +400,8 @@ Examples:
 - `alias list ls`
 
 
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Choose aliases that mirror your team’s habits, e.g., <code>rm</code> for <code>delete</code>.</div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> Aliases are not saved between app runs.</div>
+<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Choose aliases that mirror your team’s habits and keep it short for easier recall, e.g., <code>rm</code> for <code>delete</code>.</div>
+
 
 
 
