@@ -413,22 +413,19 @@ Exits the program.
 
 Format: `exit`
 
-
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Data saves automatically — you don’t need to save before exiting.</div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If you see a file permission error while exiting, move the <code>.jar</code> to a folder you can write to and run again.</div>
+--------------------------------------------------------------------------------------------------------------------
 
 
-
-
-### Saving Your Data
+## Saving Your Data
 
 
 Data is saved to disk automatically after any command that changes data. No manual save is needed.
 
 
+--------------------------------------------------------------------------------------------------------------------
 
 
-### Editing the Data File (Advanced)
+## Editing the Data File (Advanced)
 
 
 Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
