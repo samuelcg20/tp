@@ -3,35 +3,68 @@ layout: page
 title: User Guide
 ---
 
+<style>
+.quick-links {
+  position: fixed;
+  top: 120px;
+  right: 20px;
+  width: 240px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 0.95rem;
+  z-index: 1000;
+}
+.quick-links ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+.quick-links li {
+  margin-bottom: 0.4rem;
+}
+.quick-links a {
+  text-decoration: none;
+  color: #0366d6;
+}
+.quick-links a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 900px) {
+  .quick-links {
+    display: none;
+  }
+}
+</style>
+
+<div class="quick-links">
+  <strong>Quick Links</strong>
+  <ul>
+    <li><a href="#quick-start">Quick Start</a></li>
+    <li><a href="#about-this-guide">About This Guide</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#command-summary">Command Summary</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#troubleshooting">Troubleshooting</a></li>
+  </ul>
+</div>
 
 
+<div style="margin-right: 280px;">
 
 # ComClubConnect User Guide
 
+ComClubConnect is a desktop application designed for **NUS CCA leaders** to **manage members and events** efficiently.  
+It is optimised for use via a **Command Line Interface (CLI)** while retaining an **intuitive Graphical User Interface (GUI)**.
 
-ComClubConnect is a desktop app for <b>NUS CCA leaders</b> to <b>manage members and events</b>, optimised for use via a Command Line Interface (CLI) while still having an intuitive Graphical User Interface (GUI). If you are a fast typer, ComClubConnect helps you track members, plan events, and communicate changes faster than traditional spreadsheets or GUI-only apps.
+If you are a fast typer, ComClubConnect enables you to track members, plan events, and communicate updates more efficiently than traditional spreadsheet tools or GUI-only applications.
 
+---
 
-
-
-* Table of Contents
-  {:toc}
-
-
-
-
-<div style="float:right; width: 280px; margin: 0 0 1rem 1.25rem;" markdown="1">
-<strong>Quick Links</strong>
-
-
-- [Quick Start](#quick-start)
-- [About This Guide](#about-this-guide)
-- [Features](#features)
-- [Command Summary](#command-summary)
-- [FAQ](#faq)
-- [Troubleshooting](#troubleshooting)
-</div>
-
+## Table of Contents
+{:toc}
 
 
 
@@ -47,21 +80,17 @@ This guide is written for NUS CCA leaders who need to maintain member records, p
 
 
 Assumed prior knowledge:
-- Comfortable using a command terminal on Windows / macOS / Linux.
-- Basic familiarity with copying/pasting commands and editing plain text.
-- Understands CCA context (roles, member lists, event details like date/time and venue).
+- Be comfortable using a command-line interface on Windows, macOS, or Linux.
+- Know how to copy and paste commands, and edit plain text files.
+- Be familiar with CCA operations, including roles, member lists, and event details such as dates, times, and venues.
 
 
 How to use this guide:
-- Quick start: run the app and try a few example commands.
-- Features: step-by-step usage, command syntax, examples, expected output, tips and cautions.
-- Troubleshooting and FAQ: common problems, reasons, and solutions.
-
+- Quick Start: Learn how to launch the app and try basic example commands.
+- Features: Detailed explanations of each command, including syntax, usage steps, examples, and helpful notes.
+- Troubleshooting & FAQ: Find solutions to common issues and answers to frequently asked questions.
 
 [Back to top](#comclubconnect-user-guide)
-
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -669,3 +698,5 @@ Problem: “Could not save data due to insufficient permissions …”
 
 
 [Back to top](#comclubconnect-user-guide)
+
+</div>
