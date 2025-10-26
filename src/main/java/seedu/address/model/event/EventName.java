@@ -48,6 +48,6 @@ public class EventName {
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return fullName.toLowerCase().hashCode();
     }
 }

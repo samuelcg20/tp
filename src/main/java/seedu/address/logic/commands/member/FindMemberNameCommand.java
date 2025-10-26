@@ -13,14 +13,14 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindMemberCommand extends FindCommand {
+public class FindMemberNameCommand extends FindCommand {
 
     private final NameContainsKeywordsPredicate predicate;
 
     /**
      * Creates a FindMemberCommand to find the specified {@code NameContainsKeywordsPredicate}
      */
-    public FindMemberCommand(NameContainsKeywordsPredicate predicate) {
+    public FindMemberNameCommand(NameContainsKeywordsPredicate predicate) {
         super();
         this.predicate = predicate;
     }
@@ -30,7 +30,11 @@ public class FindMemberCommand extends FindCommand {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
+                false,
+                false,
+                true,
+                false);
     }
 
     @Override
@@ -40,12 +44,12 @@ public class FindMemberCommand extends FindCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindMemberCommand)) {
+        if (!(other instanceof FindMemberNameCommand)) {
             return false;
         }
 
-        FindMemberCommand otherFindMemberCommand = (FindMemberCommand) other;
-        return predicate.equals(otherFindMemberCommand.predicate);
+        FindMemberNameCommand otherFindMemberNameCommand = (FindMemberNameCommand) other;
+        return predicate.equals(otherFindMemberNameCommand.predicate);
     }
 
     @Override

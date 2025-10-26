@@ -40,13 +40,6 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields (legacy constructor for backward compatibility).
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean showEvents, boolean exit) {
-        this(feedbackToUser, showHelp, showEvents, false, exit);
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified fields (legacy constructor for backward compatibility).
-     */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this(feedbackToUser, showHelp, false, false, exit);
     }
@@ -57,6 +50,20 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false);
+    }
+
+    /**
+     * Convenience factory to indicate the members list should be shown.
+     */
+    public static CommandResult showMembers(String feedbackToUser) {
+        return new CommandResult(feedbackToUser, false, false, true, false);
+    }
+
+    /**
+     * Convenience factory to indicate the events list should be shown.
+     */
+    public static CommandResult showEvents(String feedbackToUser) {
+        return new CommandResult(feedbackToUser, false, true, false, false);
     }
 
     public String getFeedbackToUser() {
