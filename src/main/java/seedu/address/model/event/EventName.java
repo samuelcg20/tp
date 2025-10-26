@@ -3,8 +3,6 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Locale;
-
 /**
  * Represents an Event's name.
  * Guarantees: immutable; is valid as declared in {@link #isValidEventName(String)}
@@ -50,6 +48,6 @@ public class EventName {
 
     @Override
     public int hashCode() {
-        return fullName.toLowerCase(Locale.ROOT).hashCode();
+        return fullName.toLowerCase().hashCode();
     }
 }
