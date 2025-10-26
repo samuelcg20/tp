@@ -124,6 +124,7 @@ How to use this guide:
       - **List output** after `list` or `find`, showing matching member or event entries.
       - **Error message** beginning with “Invalid command format!” or a validation message — read it carefully and retry.
 
+
 - Example sequence:
 
     1. `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President`
@@ -133,6 +134,7 @@ How to use this guide:
     3. `find event n/Welcome`
         - Expected output: a filtered event list containing events with “Welcome” in the name.
  
+
 - Some example commands you can try:
 
   * `help` : Shows the help window that provides a link to the User Guide, as well as an optional guided tour.
@@ -143,9 +145,9 @@ How to use this guide:
   * `delete member 3` : Deletes the 3rd member shown in the current list.
   * `clear event` : Deletes all events.
   * `exit` : Exits the app.
-  
 
 
+    
 - For more details on the commands, see [Features](#features).
 
 
