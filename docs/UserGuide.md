@@ -70,7 +70,6 @@ How to use this guide:
 
 ## Quick Start
 
-
 ### Step 1: Ensure you have Java 17 installed on your computer.<br>
 #### Checking your Java version:
 - Open a command terminal
@@ -81,7 +80,7 @@ How to use this guide:
 - If Java is installed, you'll see the version number (e.g., `java version "17.0.1"`)
 - The first number should be 17
 
- #### If Java is not installed or the version is below 17:
+#### If Java is not installed or the version is below 17:
  - Download and install Java 17 by following the guide:
    - [for Windows users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
    - [for Mac users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
