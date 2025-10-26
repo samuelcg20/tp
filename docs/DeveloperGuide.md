@@ -403,7 +403,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 1a. The displayed list is empty.
     - Use case ends.
 - 2a. ComClubConnect detects index is invalid.
-    - 1b1. ComClubConnect informs user on invalid index.
+    - 2a1. ComClubConnect informs user on invalid index.
     - Use case resumes at step 2.
 
 **UC6: Delete an event**
@@ -422,7 +422,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 1a. The displayed list is empty.
     - Use case ends.
 - 2a. ComClubConnect detects index is invalid.
-    - 1b1. ComClubConnect informs user on invalid index.
+    - 2a1. ComClubConnect informs user on invalid index.
     - Use case resumes at step 2.
 
 **UC7: Edit a member**
@@ -441,7 +441,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 1a. The displayed list is empty.
     - Use case ends.
 - 2a. ComClubConnect detects input is invalid.
-    - 1b1. ComClubConnect informs user on invalid index.
+    - 2a1. ComClubConnect informs user on invalid index.
     - Use case resumes at step 2.
 
 **UC8: Edit an event**
@@ -460,7 +460,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 1a. The displayed list is empty.
     - Use case ends.
 - 2a. ComClubConnect detects input is invalid.
-    - 1b1. ComClubConnect informs user on invalid index.
+    - 2a1. ComClubConnect informs user on invalid index.
     - Use case resumes at step 2.
 
 **UC9: Find members**
@@ -625,21 +625,22 @@ testers are expected to do more *exploratory* testing.
 
    2b. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-3. 
 
-### Deleting a person
+### Deleting a members/event
 
-1. Deleting a person while all persons are being shown
+1. Deleting a member/event while all members/events are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1a. Prerequisites: List all members/events using the `list members`/`list events` command. Multiple members/events in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1b. Test case 1: `delete member 1`<br>
+       Expected: First member is deleted from the list. Details of the deleted member shown in the status message.
 
-   1. Test case: `delete 0`<br>
+   1c. Test case 2: `delete event 1`<br>
+       Expected: First event is deleted from the list. Details of the deleted event shown in the status message.
+   1d. Test case 3: `delete member 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1e. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
