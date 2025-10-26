@@ -2,6 +2,11 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Arrays;
 
@@ -52,33 +57,71 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     /**
-     * needs to change implementation of this method (sujith)
+     * Parses and returns either FindEventNameCommand or FindEventLocationCommand.
+     * Expects a prefix n/ or y/.
      */
     private FindCommand checkFindMemberType(String remainingArgs) throws ParseException {
         String args = remainingArgs.trim();
-        if (args.startsWith("n/")) {
+        if (args.startsWith(PREFIX_NAME.getPrefix())) {
             return getFindMemberNameCommand(args);
-        } else if (args.startsWith("y/")) {
+        } else if (args.startsWith(PREFIX_YEAR.getPrefix())) {
             return getFindMemberYearCommand(args);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_TYPE, FindCommand.MESSAGE_USAGE));
         }
     }
 
+    /**
+     * Creates a {@code FindMemberNameCommand} by parsing keywords after the "n/" prefix.
+     *
+     * @param args user input after "find member"
+     * @return command to find members by name
+     * @throws ParseException if no keywords are provided or format is invalid
+     */
     private static FindMemberNameCommand getFindMemberNameCommand(String args) throws ParseException {
         String keywordsPart = args.substring(2).trim(); // remove n/
         if (keywordsPart.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
+
+        String blank = " ";
+        boolean keywordsPartContainsOtherPrefixes = keywordsPart.contains(blank + PREFIX_YEAR.getPrefix())
+                || keywordsPart.contains(blank + PREFIX_EMAIL.getPrefix())
+                || keywordsPart.contains(blank + PREFIX_PHONE.getPrefix())
+                || keywordsPart.contains(blank + PREFIX_TAG.getPrefix());
+
+        if (keywordsPartContainsOtherPrefixes) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
         String[] nameKeywords = keywordsPart.split("\\s+");
         return new FindMemberNameCommand(
                 new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
+    /**
+     * Creates a {@code FindMemberYearCommand} by parsing keywords after the "y/" prefix.
+     *
+     * @param args user input after "find member"
+     * @return command to find members by year of study
+     * @throws ParseException if no keywords are provided or format is invalid
+     */
     private static FindMemberYearCommand getFindMemberYearCommand(String args) throws ParseException {
         String keywordsPart = args.substring(2).trim(); // remove n/
         if (keywordsPart.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        String blank = " ";
+        boolean keywordsPartContainsOtherPrefixes = keywordsPart.contains(blank + PREFIX_NAME.getPrefix())
+                || keywordsPart.contains(blank + PREFIX_EMAIL.getPrefix())
+                || keywordsPart.contains(blank + PREFIX_PHONE.getPrefix())
+                || keywordsPart.contains(blank + PREFIX_TAG.getPrefix());
+
+        if (keywordsPartContainsOtherPrefixes) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
