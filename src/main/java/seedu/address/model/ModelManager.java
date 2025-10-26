@@ -118,7 +118,32 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        // Clean up attendance records before deleting the person
+        cleanupPersonAttendance(target);
         addressBook.removePerson(target);
+    }
+
+    /**
+     * Cleans up attendance records when a person is deleted.
+     * Removes the person's name from all event attendance lists.
+     */
+    private void cleanupPersonAttendance(Person person) {
+        String personName = person.getName().fullName;
+        // Get all events and remove this person from their attendance lists
+        List<Event> allEvents = addressBook.getEventList();
+        for (Event event : allEvents) {
+            String attendanceList = event.getAttendanceList();
+            if (!attendanceList.isEmpty()) {
+                String[] attendees = attendanceList.split(", ");
+                for (String attendee : attendees) {
+                    if (attendee.equals(personName)) {
+                        Event updatedEvent = event.removeFromAttendanceList(personName);
+                        addressBook.setEvent(event, updatedEvent);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -131,7 +156,34 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
+        // If the person's name changed, update attendance records
+        if (!target.getName().equals(editedPerson.getName())) {
+            updatePersonNameInAttendance(target.getName().fullName, editedPerson.getName().fullName);
+        }
+
         addressBook.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Updates person name in all event attendance lists when a person's name is edited.
+     */
+    private void updatePersonNameInAttendance(String oldName, String newName) {
+        List<Event> allEvents = addressBook.getEventList();
+        for (Event event : allEvents) {
+            String attendanceList = event.getAttendanceList();
+            if (!attendanceList.isEmpty()) {
+                String[] attendees = attendanceList.split(", ");
+                for (String attendee : attendees) {
+                    if (attendee.equals(oldName)) {
+                        // Remove old name and add new name
+                        Event eventWithoutOldName = event.removeFromAttendanceList(oldName);
+                        Event eventWithNewName = eventWithoutOldName.addToAttendanceList(newName);
+                        addressBook.setEvent(event, eventWithNewName);
+                        break; // Move to next event
+                    }
+                }
+            }
+        }
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -161,7 +213,36 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteEvent(Event target) {
+        // Clean up attendance records before deleting the event
+        cleanupEventAttendance(target);
         addressBook.removeEvent(target);
+    }
+
+    /**
+     * Cleans up attendance records when an event is deleted.
+     * Decreases attendance count for all members who were marked for this event.
+     */
+    private void cleanupEventAttendance(Event event) {
+        String attendanceList = event.getAttendanceList();
+        if (attendanceList.isEmpty()) {
+            return;
+        }
+        String[] memberNames = attendanceList.split(", ");
+        // Get all persons and decrease their attendance count
+        List<Person> allPersons = addressBook.getPersonList();
+        for (Person person : allPersons) {
+            String personName = person.getName().fullName;
+            // Check if this person was marked for attendance at this event
+            for (String memberName : memberNames) {
+                if (memberName.equals(personName)) {
+                    // Decrease attendance count (ensure it doesn't go below 0)
+                    int newAttendanceCount = Math.max(0, person.getAttendanceCount() - 1);
+                    Person updatedPerson = person.withAttendanceCount(newAttendanceCount);
+                    addressBook.setPerson(person, updatedPerson);
+                    break;
+                }
+            }
+        }
     }
 
     @Override
