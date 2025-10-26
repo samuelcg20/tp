@@ -174,9 +174,9 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Alias feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -626,19 +626,7 @@ testers are expected to do more *exploratory* testing.
    2b. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-[//]: # (### Adding a member/event)
 
-[//]: # ()
-[//]: # (1. Adding a member/event)
-
-[//]: # ()
-[//]: # (   1a. Prerequisites: None)
-
-[//]: # (   )
-[//]: # (   1b. Test case 1: `add member n/Jean Doe p/98765432 e/jean@u.nus.edu y/2 r/President`<br>)
-
-[//]: # ( )
-[//]: # (   Expected: Jean Doe is added into member's list. Details of the added member will be )
 ### Adding a member/event
 
 1. Adding a new member/event
