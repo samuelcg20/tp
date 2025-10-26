@@ -16,6 +16,6 @@ public class ClearEventCommand extends ClearCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.resetEvents();
-        return new CommandResult(MESSAGE_SUCCESS);
+        return CommandResult.showEvents(MESSAGE_SUCCESS);
     }
 }

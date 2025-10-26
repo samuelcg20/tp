@@ -100,61 +100,83 @@ How to use this guide:
 ## Quick Start
 
 
-1. Ensure you have Java 17 or above installed on your computer.<br>
-> Checking your Java version:
-> - Open a command terminal
-> - Type `java -version` and press Enter
-> - If Java is installed, you'll see the version number (e.g., `java version "17.0.1"`)
-> - The first number should be 17
->
-> If Java is not installed or the version is below 17:
-> - Download and install Java 17 by following the guide:
-    >   - [for Windows users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
->   - [for Mac users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
->   - [for Linux users](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
-> - After installation, restart your terminal and verify the version again
+### Step 1: Ensure you have Java 17 installed on your computer.<br>
+#### Checking your Java version:
+- Open a command terminal
+  - **Windows users**: Press Windows + R, type cmd, and press Enter
+  - **Mac users**: Open Terminal from Spotlight (press ⌘ + Space, type Terminal)
+  - **Linux users**: Open Terminal from your applications menu
+- Type `java -version` and press Enter
+- If Java is installed, you'll see the version number (e.g., `java version "17.0.1"`)
+- The first number should be 17
+
+ #### If Java is not installed or the version is below 17:
+ - Download and install Java 17 by following the guide:
+   - [for Windows users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
+   - [for Mac users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
+   - [for Linux users](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
+ - After installation, restart your terminal and repeat the above steps to verify the version again
 
 
-2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T09-3/tp/releases).
+### Step 2: Download ComClubConnect
+ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T09-2/tp/releases).
 
 
-3. Copy the `.jar` file to the folder you want to use as the home folder for your ComClubConnect.
+### Step 3: Place the file in a folder
+- Your app comes in a single file that ends with .jar (for example, addressbook.jar). You’ll need to decide where you want to keep this file — this will be your ComClubConnect home folder.
+   - Find your downloaded `.jar` file (for example, in your Downloads folder).
+   - Right-click the file and choose Copy.
+   - Go to your preferred folder where you want to keep the file
+   - Right-click an empty space and select Paste.
 
 
-4. Open a command terminal, `cd` into the folder you put the `.jar` file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note that the app contains some sample data and the layout is explained in coloured boxes.<br>
-   ![Ui](images/Ui.png)
+### Step 4: Run the application
+- Copy the pathname of the ComCLubConnect home folder
+   - **Windows users**: Right click on the folder and select "Copy as path"
+   - **Mac users**: Right click on the folder and select "Copy as pathname"
+   - **Linux users**: Right click on the folder and select "Copy path"
+- Open a command terminal as mentioned in step 2
+- Type `cd <copied filepath>` command to enter the folder
+- Type `java -jar addressbook.jar` command to run the application.<br>
+- A GUI similar to the below should appear in a few seconds. Note that the app contains some sample data and the layout is explained in coloured boxes.<br>
+  ![Ui](images/Ui.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Quick CLI Tutorial
+
+- Click the command input box (top of the UI), type a command exactly as shown (prefixes like `n/`, `p/`, `e/`, `y/`, `r/`, `d/`, `v/` are required), then press **Enter**.
+
+  - Typical response types:
+      - **Success message** with brief summary (e.g., “New event added: …”).
+      - **List output** after `list` or `find`, showing matching member or event entries.
+      - **Error message** beginning with “Invalid command format!” or a validation message — read it carefully and retry.
 
 
-### Quick CLI Tutorial
-- Click the command input box (bottom of the UI), type a command exactly as shown (prefixes like `n/`, `p/`, `e/`, `y/`, `r/`, `d/`, `l/` are required), then press Enter.
-- Typical response types:
-- Success message with brief summary (e.g., “New event added: …”).
-- List output after `list` or `find` showing matching member/event entries.
-- Error message beginning with “Invalid command format!” or a validation message — read it carefully and retry.
 - Example sequence:
-1. `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President`
-    - Expected output: “New person added: John Doe …”
-2. `list member`
-    - Expected output: member list including “John Doe”.
-3. `find event n/Welcome`
-    - Expected output: a filtered event list containing events with “Welcome” in the name.
+
+    1. `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President`
+        - Expected output: “New person added: John Doe …”
+    2. `list member`
+        - Expected output: member list including “John Doe”.
+    3. `find event n/Welcome`
+        - Expected output: a filtered event list containing events with “Welcome” in the name.
+ 
+
+- Some example commands you can try:
+
+  * `help` : Shows the help window that provides a link to the User Guide, as well as an optional guided tour.
+  * `list member` : Lists all members.
+  * `list event` : Lists all events.
+  * `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President` : Adds a member named John Doe.
+  * `add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02` : Adds an event.
+  * `delete member 3` : Deletes the 3rd member shown in the current list.
+  * `clear event` : Deletes all events.
+  * `exit` : Exits the app.
 
 
-5. Type your command in the command box and press Enter to execute it.
-   Some example commands you can try:
-
-
-- `help` : Shows the help window that explains the command usage.
-- `list member` : Lists all members.
-- `list event` : Lists all events.
-- `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President` : Adds a member named John Doe.
-- `add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02` : Adds an event.
-- `delete member 3` : Deletes the 3rd member shown in the current list.
-- `clear event` : Deletes all events.
-- `exit` : Exits the app.
-
-
+    
+- For more details on the commands, see [Features](#features).
 
 
 [Back to top](#comclubconnect-user-guide)
@@ -175,40 +197,46 @@ How to use this guide:
 - Some commands require a `TYPE` immediately after the command word: `member` or `event` (e.g., `add member`, `list event`).
 - Words in `UPPER_CASE` are parameters you supply. For example, in `add member n/NAME`, `NAME` can be `John Doe`.
 - Items in square brackets are optional. Items marked with `…` can repeat, including zero times.
-- Parameters can be in any order for a command.
+- Parameters must follow the order for a command.
 - Extraneous parameters for commands that do not take parameters (such as `help` and `exit`) are ignored.
-- If you are using a PDF version, commands that wrap across lines may lose spaces when copied — retype if needed.
 
-Prefix reference used in commands:
+**Prefix reference used in commands involving members**
 - `n/` name
 - `p/` phone (8 digits, starts with 8 or 9)
 - `e/` email (must end with `@u.nus.edu`)
 - `y/` year of study (`1`–`4`)
 - `r/` role(s) — alphanumeric, can appear multiple times
-- `d/` date-time in ISO format `YYYY-MM-DDTHH:MM`
-- `l/` location
-</div>
 
+**Prefix reference used in commands involving events**
+- `n/` event name
+- `d/` date-time in ISO format `YYYY-MM-DDTHH:MM`
+- `v/` location
+
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If you are using a PDF version, commands that wrap across lines may lose spaces when copied — retype if needed.</div>
+</div>
 
 
 
 ### Viewing Help — `help`
 
-
 Opens the Help window.
-
 
 Format: `help`
 
+![help message](images/helpMessage.png)
 
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Press <code>F1</code> or use the Help menu to open the Help window quickly.</div>
+<div markdown="span" class="alert alert-success">✅ <strong>Tip: </strong> <code>F1</code> or use the Help menu to open the Help window quickly.</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If the Help window is minimized, running <code>help</code> again will not open a new window. Restore the minimized window instead.</div>
 
 
-![help message](images/helpMessage.png)
 
+### Guided Tour — `guidedtour`
 
+The green button from the Help window opens the Guided Tour, which showcases the key features of the Address Book interface.
 
+![Guided Tour Overview](images/annotatedGuidedTour.png)
+
+The Guided Tour walks you through major areas of the application — such as the **Menu Bar**, **Command Box**, **Result Display**, **Member/Event List Display**, and **Status Bar** — with color-coded highlights and brief explanations to help you get familiar with the interface.
 
 ### Adding Entries — `add`
 
@@ -310,29 +338,30 @@ Examples:
 
 Finds members or events matching the given criteria. Matching is case-insensitive and by whole words.
 
+**Member**:
 
-Format (members):
-- `find member n/KEYWORDS…` — Find by member name.
-- `find member y/KEYWORDS…` — Find by year of study.
+Finds members by **either** member's name **or** member's year of study but **not both**.
 
+Format: `find member n/KEYWORDS…` (Find by member name)  **or** `find member y/KEYWORDS…` (Find by member year of study)
 
 Examples:
 - `find member n/Alex David`
 - `find member y/1 2`
 
 
-Format (events):
-- `find event n/KEYWORDS…` — Find by event name.
-- `find event l/KEYWORDS…` — Find by event location.
+**Events**:
 
+Finds members by **either** event's name **or** event's venue but **not both**.
+
+Format: `find event n/KEYWORDS…` (Find by event name) **or** `find event v/KEYWORDS…` (Find by event venue)
 
 Examples:
-- `find event n/Welcome`
-- `find event l/UTown COM1`
+- `find event n/Graduation`
+- `find event v/COM1`
 
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Combine multiple keywords to broaden the match, e.g., <code>find event n/Welcome Games</code>.</div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> Searching by roles is not supported; use member name or year instead.</div>
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The list that will be used will be filtered list. You can <code>edit</code> or <code>delete</code> by using index from the <strong>filtered list</strong>. To <code>edit</code> or <code>delete</code> other entries, <code>list TYPE</code>before proceeding.</div>
 
 
 
@@ -386,14 +415,14 @@ Examples:
 ### Aliasing Commands — `alias`
 
 
-Creates a custom alias for a command word. Aliases apply for the current app session.
+Create a custom alias for any command word for your greater convenience.
 
 
 Format: `alias COMMAND_WORD ALIAS`
 
 
 - Supported `COMMAND_WORD`s: `add`, `edit`, `delete`, `clear`, `find`, `list`, `help`, `exit`, `alias`.
-- `ALIAS` must be a single word and not a built-in command word.
+- `ALIAS` must be a single word, not a built-in command word and not an existing `ALIAS`.
 
 
 Examples:
@@ -401,8 +430,8 @@ Examples:
 - `alias list ls`
 
 
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Choose aliases that mirror your team’s habits, e.g., <code>rm</code> for <code>delete</code>.</div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> Aliases are not saved between app runs.</div>
+<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Choose aliases that mirror your team’s habits and keep it short for easier recall, e.g., <code>rm</code> for <code>delete</code>.</div>
+
 
 
 
@@ -415,22 +444,19 @@ Exits the program.
 
 Format: `exit`
 
-
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Data saves automatically — you don’t need to save before exiting.</div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If you see a file permission error while exiting, move the <code>.jar</code> to a folder you can write to and run again.</div>
+--------------------------------------------------------------------------------------------------------------------
 
 
-
-
-### Saving Your Data
+## Saving Your Data
 
 
 Data is saved to disk automatically after any command that changes data. No manual save is needed.
 
 
+--------------------------------------------------------------------------------------------------------------------
 
 
-### Editing the Data File (Advanced)
+## Editing the Data File (Advanced)
 
 
 Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
@@ -568,21 +594,107 @@ Problem: “Could not save data due to insufficient permissions …”
 
 
 
-
 ## Command Summary
 
+<div class="table-container" style="overflow-x: auto;">
+<table class="command-summary">
+<thead>
+<tr>
+<th style="width: 20%;">Action</th>
+<th style="width: 80%;">Format Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>add</strong></td>
+<td>
+<strong>Member:</strong> <code>add member n/Alex Tan p/91234567 e/alextan@u.nus.edu y/2 r/Logistics</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>add event n/Welcome Tea d/2025-09-01T18:00 v/COM1-01-02</code>
+</td>
+</tr>
+<tr>
+<td><strong>edit</strong></td>
+<td>
+<strong>Member:</strong> <code>edit member 2 e/alextan@u.nus.edu p/98765432</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>edit event 1 d/2025-10-05T19:00 v/COM3-01-12</code>
+</td>
+</tr>
+<tr>
+<td><strong>delete</strong></td>
+<td>
+<strong>Member:</strong> <code>delete member 3</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>delete event 1</code>
+</td>
+</tr>
+<tr>
+<td><strong>list</strong></td>
+<td>
+<strong>Member:</strong> <code>list member</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>list event</code>
+</td>
+</tr>
+<tr>
+<td><strong>find</strong></td>
+<td>
+<strong>Member:</strong> <code>find member n/Alex</code>, <code>find member y/1</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>find event n/Welcome</code>, <code>find event v/COM1</code>
+</td>
+</tr>
+<tr>
+<td><strong>clear</strong></td>
+<td>
+<strong>Member:</strong> <code>clear member</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>clear event</code>
+</td>
+</tr>
+<tr>
+<td><strong>alias</strong></td>
+<td><code>alias delete rm</code>, <code>alias list ls</code></td>
+</tr>
+<tr>
+<td><strong>help</strong></td>
+<td><code>help</code></td>
+</tr>
+<tr>
+<td><strong>exit</strong></td>
+<td><code>exit</code></td>
+</tr>
+</tbody>
+</table>
+</div>
 
-Action | Member Example | Event Example
--------|-----------------|--------------
-add | `add member n/Alex Tan p/91234567 e/alextan@u.nus.edu y/2 r/Logistics` | `add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02`
-edit | `edit member 2 e/alextan@u.nus.edu p/98765432` | `edit event 1 d/2025-10-05T19:00 l/COM3-01-12`
-delete | `delete member 3` | `delete event 1`
-list | `list member` | `list event`
-find | `find member n/Alex` or `find member y/1` | `find event n/Welcome` or `find event l/COM1`
-clear | `clear member` | `clear event`
-alias | `alias delete rm` | `alias list ls`
-help | `help` | `help`
-exit | `exit` | `exit`
+<style>
+.table-container {
+  margin: 20px 0;
+}
+.command-summary {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+.command-summary th, .command-summary td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.command-summary th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+.command-summary code {
+  background-color: #f5f5f5;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+</style>
 
 
 [Back to top](#comclubconnect-user-guide)
