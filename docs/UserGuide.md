@@ -546,19 +546,105 @@ Problem: “Could not save data due to insufficient permissions …”
 
 ## Command Summary
 
-| Action | Format Examples                                                                                                                                                                     |
-|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add** | **Member:** `add member n/Alex Tan p/91234567 e/alextan@u.nus.edu y/2 r/Logistics`<br><hr style="margin:4px 0;">**Event:** `add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02` |
-| **edit** | **Member:** `edit member 2 e/alextan@u.nus.edu p/98765432`<br><hr style="margin:4px 0;">**Event:** `edit event 1 d/2025-10-05T19:00 l/COM3-01-12`                                   |
-| **delete** | **Member:** `delete member 3`<br><hr style="margin:4px 0;">**Event:** `delete event 1`                                                                                              |
-| **list** | **Member:** `list member`<br><hr style="margin:4px 0;">**Event:** `list event`                                                                                                      |
-| **find** | **Member:** `find member n/Alex`, `find member y/1`<br><hr style="margin:4px 0;">**Event:** `find event n/Welcome`, `find event l/COM1`                                             |
-| **clear** | **Member:** `clear member`<br><hr style="margin:4px 0;">**Event:** `clear event`                                                                                                    |
-| **alias** | `alias delete rm`, `alias list ls`                                                                                                                                       |
-| **help** | `help`                                                                                                                                                                              |
-| **exit** | `exit`                                                                                                                                                                              |
+<div class="table-container" style="overflow-x: auto;">
+<table class="command-summary">
+<thead>
+<tr>
+<th style="width: 20%;">Action</th>
+<th style="width: 80%;">Format Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>add</strong></td>
+<td>
+<strong>Member:</strong> <code>add member n/Alex Tan p/91234567 e/alextan@u.nus.edu y/2 r/Logistics</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02</code>
+</td>
+</tr>
+<tr>
+<td><strong>edit</strong></td>
+<td>
+<strong>Member:</strong> <code>edit member 2 e/alextan@u.nus.edu p/98765432</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>edit event 1 d/2025-10-05T19:00 l/COM3-01-12</code>
+</td>
+</tr>
+<tr>
+<td><strong>delete</strong></td>
+<td>
+<strong>Member:</strong> <code>delete member 3</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>delete event 1</code>
+</td>
+</tr>
+<tr>
+<td><strong>list</strong></td>
+<td>
+<strong>Member:</strong> <code>list member</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>list event</code>
+</td>
+</tr>
+<tr>
+<td><strong>find</strong></td>
+<td>
+<strong>Member:</strong> <code>find member n/Alex</code>, <code>find member y/1</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>find event n/Welcome</code>, <code>find event l/COM1</code>
+</td>
+</tr>
+<tr>
+<td><strong>clear</strong></td>
+<td>
+<strong>Member:</strong> <code>clear member</code>
+<hr style="margin: 8px 0;">
+<strong>Event:</strong> <code>clear event</code>
+</td>
+</tr>
+<tr>
+<td><strong>alias</strong></td>
+<td><code>alias delete rm</code>, <code>alias list ls</code></td>
+</tr>
+<tr>
+<td><strong>help</strong></td>
+<td><code>help</code></td>
+</tr>
+<tr>
+<td><strong>exit</strong></td>
+<td><code>exit</code></td>
+</tr>
+</tbody>
+</table>
+</div>
 
-
+<style>
+.table-container {
+  margin: 20px 0;
+}
+.command-summary {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+.command-summary th, .command-summary td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.command-summary th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+.command-summary code {
+  background-color: #f5f5f5;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+</style>
 
 
 [Back to top](#comclubconnect-user-guide)
