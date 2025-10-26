@@ -192,19 +192,18 @@ Format: `help`
 
 ![help message](images/helpMessage.png)
 
-### Guided Tour — `guidedtour`
-
-The button opens the Guided Tour window, which showcases the key features of the Address Book interface.
-
-![Guided Tour Overview](images/annotatedGuidedTour.png)
-
-The Guided Tour walks you through major areas of the application — such as the **Menu Bar**, **Command Box**, **Result Display**, **Member/Event List Display**, and **Status Bar** — with color-coded highlights and brief explanations to help you get familiar with the interface.
-
-
 <div markdown="span" class="alert alert-success">✅ <strong>Tip: </strong> <code>F1</code> or use the Help menu to open the Help window quickly.</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If the Help window is minimized, running <code>help</code> again will not open a new window. Restore the minimized window instead.</div>
 
 
+
+### Guided Tour — `guidedtour`
+
+The green button from the Help window opens the Guided Tour, which showcases the key features of the Address Book interface.
+
+![Guided Tour Overview](images/annotatedGuidedTour.png)
+
+The Guided Tour walks you through major areas of the application — such as the **Menu Bar**, **Command Box**, **Result Display**, **Member/Event List Display**, and **Status Bar** — with color-coded highlights and brief explanations to help you get familiar with the interface.
 
 ### Adding Entries — `add`
 
