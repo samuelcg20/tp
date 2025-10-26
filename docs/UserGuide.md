@@ -192,7 +192,7 @@ Format: `help`
 
 ![help message](images/helpMessage.png)
 
-#### Guided Tour — `guidedtour`
+### Guided Tour — `guidedtour`
 
 Opens the Guided Tour window, which provides an overview of the key components of the Address Book interface.
 
@@ -579,7 +579,7 @@ Problem: “Could not save data due to insufficient permissions …”
 <td>
 <strong>Member:</strong> <code>add member n/Alex Tan p/91234567 e/alextan@u.nus.edu y/2 r/Logistics</code>
 <hr style="margin: 8px 0;">
-<strong>Event:</strong> <code>add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02</code>
+<strong>Event:</strong> <code>add event n/Welcome Tea d/2025-09-01T18:00 v/COM1-01-02</code>
 </td>
 </tr>
 <tr>
@@ -587,7 +587,7 @@ Problem: “Could not save data due to insufficient permissions …”
 <td>
 <strong>Member:</strong> <code>edit member 2 e/alextan@u.nus.edu p/98765432</code>
 <hr style="margin: 8px 0;">
-<strong>Event:</strong> <code>edit event 1 d/2025-10-05T19:00 l/COM3-01-12</code>
+<strong>Event:</strong> <code>edit event 1 d/2025-10-05T19:00 v/COM3-01-12</code>
 </td>
 </tr>
 <tr>
@@ -611,7 +611,7 @@ Problem: “Could not save data due to insufficient permissions …”
 <td>
 <strong>Member:</strong> <code>find member n/Alex</code>, <code>find member y/1</code>
 <hr style="margin: 8px 0;">
-<strong>Event:</strong> <code>find event n/Welcome</code>, <code>find event l/COM1</code>
+<strong>Event:</strong> <code>find event n/Welcome</code>, <code>find event v/COM1</code>
 </td>
 </tr>
 <tr>
