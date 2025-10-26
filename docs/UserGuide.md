@@ -74,16 +74,16 @@ How to use this guide:
 ### Step 1: Ensure you have Java 17 installed on your computer.<br>
 > #### Checking your Java version:
 > - Open a command terminal
-    >   - **Windows users**: Press Windows + R, type cmd, and press Enter
->   -  **Mac users**: Open Terminal from Spotlight (press ⌘ + Space, type Terminal)
->   -  **Linux users**: Open Terminal from your applications menu
+>  - **Windows users**: Press Windows + R, type cmd, and press Enter
+>  -  **Mac users**: Open Terminal from Spotlight (press ⌘ + Space, type Terminal)
+>  -  **Linux users**: Open Terminal from your applications menu
 > - Type `java -version` and press Enter
 > - If Java is installed, you'll see the version number (e.g., `java version "17.0.1"`)
 > - The first number should be 17
 >
 > #### If Java is not installed or the version is below 17:
 > - Download and install Java 17 by following the guide:
-    >   - [for Windows users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
+>   - [for Windows users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
 >   - [for Mac users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
 >   - [for Linux users](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
 > - After installation, restart your terminal and repeat the above steps to verify the version again
@@ -104,7 +104,7 @@ How to use this guide:
 
 ### Step 4: Run the application
 > - Copy the pathname of the ComCLubConnect home folder
-    >   - **Windows users**: Right click on the folder and select "Copy as path"
+>   - **Windows users**: Right click on the folder and select "Copy as path"
 >   -  **Mac users**: Right click on the folder and select "Copy as pathname"
 >   -  **Linux users**: Right click on the folder and select "Copy path"
 > - Open a command terminal as mentioned in step 2
