@@ -21,9 +21,12 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.alias.AliasBook;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.AliasBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonAliasBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -58,7 +61,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        AliasBookStorage aliasBookStorage = new JsonAliasBookStorage(userPrefs.getAliasBookFilePath());
+        storage = new StorageManager(addressBookStorage, aliasBookStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -68,11 +72,15 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and alias book,
+     * {@code userPrefs}. <br>
+     * The data from the sample address book and alias book will be used instead if {@code storage}'s address book
+     * and alias book is not found,
+     * or an empty address book and alias book will be used instead if errors occur when reading {@code storage}'s
+     * address book and alias book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        // Load AddressBook
         logger.info("Using data file : " + storage.getAddressBookFilePath());
 
         Optional<ReadOnlyAddressBook> addressBookOptional;
@@ -90,7 +98,26 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        // Load AliasBook
+        logger.info("Using data file : " + storage.getAliasBookFilePath());
+
+        Optional<AliasBook> aliasBookOptional;
+        AliasBook initData;
+        try {
+            aliasBookOptional = storage.aliasBook();
+            if (!aliasBookOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getAliasBookFilePath()
+                        + " populated with a sample AliasBook.");
+            }
+            initData = aliasBookOptional.orElseGet(SampleDataUtil::getSampleAliasBook);
+        } catch (DataLoadingException e) {
+            logger.warning("Data file at " + storage.getAliasBookFilePath() + " could not be loaded."
+                    + " Will be starting with an empty AliasBook.");
+            initData = new AliasBook();
+        }
+
+
+        return new ModelManager(initialData, initData, userPrefs);
     }
 
     private void initLogging(Config config) {
