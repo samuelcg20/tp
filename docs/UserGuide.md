@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide
+title: ComClubConnect User Guide
 ---
 
 <style>
@@ -12,8 +12,6 @@ title: User Guide
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     font-size: 0.95rem;
     z-index: 1000;
     }
@@ -67,19 +65,20 @@ title: User Guide
 <div class="quick-links">
     <strong>Quick Links</strong>
     <ul>
-        <li><a href="#quick-start">Quick Start</a></li>
         <li><a href="#about-this-guide">About This Guide</a></li>
+        <li><a href="#quick-start">Quick Start</a></li>
+        <li><a href="#quick-cli-tutorial">Quick CLI Tutorial</a></li>
         <li><a href="#features">Features</a></li>
-        <li><a href="#command-summary">Command Summary</a></li>
+        <li><a href="#saving-your-data">Saving Your Data</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#troubleshooting">Troubleshooting</a></li>
+        <li><a href="#known-issues">Known Issues</a></li>
+        <li><a href="#command-summary">Command Summary</a></li>
     </ul>
 </div>
 
 
-<div style="margin-right: 280px;" markdown="1">
-
-# ComClubConnect User Guide
+<div style="margin-right: 80px;" markdown="1">
 
 ComClubConnect is a desktop application designed for **NUS CCA leaders** to **manage members and events** efficiently.  
 It is optimised for use via a **Command Line Interface (CLI)** while retaining an **intuitive Graphical User Interface (GUI)**.
@@ -135,30 +134,30 @@ How to use this guide:
 - The first number should be 17
 
 #### If Java is not installed or the version is below 17:
- - Download and install Java 17 by following the guide:
-   - [for Windows users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
-   - [for Mac users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
-   - [for Linux users](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
- - After installation, restart your terminal and repeat the above steps to verify the version again
+- Download and install Java 17 by following the guide:
+    - [for Windows users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
+    - [for Mac users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
+    - [for Linux users](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
+- After installation, restart your terminal and repeat the above steps to verify the version again
 
 
 ### Step 2: Download ComClubConnect
- Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T09-2/tp/releases).
+Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T09-2/tp/releases).
 
 
 ### Step 3: Place the file in a folder
 - Your app comes in a single file that ends with .jar (for example, addressbook.jar). You’ll need to decide where you want to keep this file — this will be your ComClubConnect home folder.
-   - Find your downloaded `.jar` file (for example, in your Downloads folder).
-   - Right-click the file and choose Copy.
-   - Go to your preferred folder where you want to keep the file
-   - Right-click an empty space and select Paste.
+    - Find your downloaded `.jar` file (for example, in your Downloads folder).
+    - Right-click the file and choose Copy.
+    - Go to your preferred folder where you want to keep the file
+    - Right-click an empty space and select Paste.
 
 
 ### Step 4: Run the application
 - Copy the pathname of the ComCLubConnect home folder
-   - **Windows users**: Right click on the folder and select "Copy as path"
-   - **Mac users**: Right click on the folder and select "Copy as pathname"
-   - **Linux users**: Right click on the folder and select "Copy path"
+    - **Windows users**: Right click on the folder and select "Copy as path"
+    - **Mac users**: Right click on the folder and select "Copy as pathname"
+    - **Linux users**: Right click on the folder and select "Copy path"
 - Open a command terminal as mentioned in step 2
 - Type `cd <copied filepath>` command to enter the folder
 - Type `java -jar addressbook.jar` command to run the application.<br>
@@ -171,10 +170,10 @@ How to use this guide:
 
 - Click the command input box (top of the UI), type a command exactly as shown (prefixes like `n/`, `p/`, `e/`, `y/`, `r/`, `d/`, `v/` are required), then press **Enter**.
 
-  - Typical response types:
-      - **Success message** with brief summary (e.g., “New event added: …”).
-      - **List output** after `list` or `find`, showing matching member or event entries.
-      - **Error message** beginning with “Invalid command format!” or a validation message — read it carefully and retry.
+    - Typical response types:
+        - **Success message** with brief summary (e.g., “New event added: …”).
+        - **List output** after `list` or `find`, showing matching member or event entries.
+        - **Error message** beginning with “Invalid command format!” or a validation message — read it carefully and retry.
 
 
 - Example sequence:
@@ -185,21 +184,21 @@ How to use this guide:
         - Expected output: member list including “John Doe”.
     3. `find event n/Welcome`
         - Expected output: a filtered event list containing events with “Welcome” in the name.
- 
+
 
 - Some example commands you can try:
 
-  * `help` : Shows the help window that provides a link to the User Guide, as well as an optional guided tour.
-  * `list member` : Lists all members.
-  * `list event` : Lists all events.
-  * `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President` : Adds a member named John Doe.
-  * `add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02` : Adds an event.
-  * `delete member 3` : Deletes the 3rd member shown in the current list.
-  * `clear event` : Deletes all events.
-  * `exit` : Exits the app.
+    * `help` : Shows the help window that provides a link to the User Guide, as well as an optional guided tour.
+    * `list member` : Lists all members.
+    * `list event` : Lists all events.
+    * `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President` : Adds a member named John Doe.
+    * `add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02` : Adds an event.
+    * `delete member 3` : Deletes the 3rd member shown in the current list.
+    * `clear event` : Deletes all events.
+    * `exit` : Exits the app.
 
 
-    
+
 - For more details on the commands, see [Features](#features).
 
 
@@ -502,51 +501,51 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 ## FAQ
 
 - Can I import my existing member list from Excel/Google Sheets?
- - Not directly. You can copy key details and add members using `add member ...`. Power users can transform CSV to match `addressbook.json`, but be careful with format.
+- Not directly. You can copy key details and add members using `add member ...`. Power users can transform CSV to match `addressbook.json`, but be careful with format.
 
 
 - Do aliases persist across restarts?
- - No. Aliases last for the current session only.
+- No. Aliases last for the current session only.
 
 
 - Why does my email keep getting rejected?
- - Emails must end with `@u.nus.edu` and have a valid local-part (alphanumeric plus `+ _ . -`, not starting/ending with a special character).
+- Emails must end with `@u.nus.edu` and have a valid local-part (alphanumeric plus `+ _ . -`, not starting/ending with a special character).
 
 
 - What phone numbers are allowed?
- - Exactly 8 digits, starting with `8` or `9`, and no spaces.
+- Exactly 8 digits, starting with `8` or `9`, and no spaces.
 
 
 - How do I record multiple roles for a member?
- - Repeat the `r/` prefix, e.g., `r/President r/TechLead`. Roles are alphanumeric and cannot contain spaces.
+- Repeat the `r/` prefix, e.g., `r/President r/TechLead`. Roles are alphanumeric and cannot contain spaces.
 
 
 - Can I search by role or by event date range?
- - Role-based search and date-range filters are not supported currently. You can search members by name or year, and events by name or location.
+- Role-based search and date-range filters are not supported currently. You can search members by name or year, and events by name or location.
 
 
 - I entered `2025-09-01 18:00` but got an invalid date. Why?
- - Use ISO format with `T` between date and time: `2025-09-01T18:00`.
+- Use ISO format with `T` between date and time: `2025-09-01T18:00`.
 
 
 - I deleted the wrong person/event. Can I undo?
- - Undo is not available. Consider exporting a backup (`data/addressbook.json`) periodically.
+- Undo is not available. Consider exporting a backup (`data/addressbook.json`) periodically.
 
 
 - How do I move my data to another computer?
- - Copy your `addressbook.json` from the `data` folder next to your `.jar` into the same location on the new machine before running the app there.
+- Copy your `addressbook.json` from the `data` folder next to your `.jar` into the same location on the new machine before running the app there.
 
 
 - The app says it can’t save due to permissions. What should I do?
- - Move the `.jar` file to a folder you have write access to (e.g., your home folder or desktop) and run it again.
+- Move the `.jar` file to a folder you have write access to (e.g., your home folder or desktop) and run it again.
 
 
 - Can multiple EXCO members use the same data file?
- - Yes. Share the `addressbook.json` file via a cloud drive, but ensure only one person runs the app and edits the file at a time to avoid conflicts.
+- Yes. Share the `addressbook.json` file via a cloud drive, but ensure only one person runs the app and edits the file at a time to avoid conflicts.
 
 
 - Will names be treated as duplicates if capitalization differs?
- - Yes. Member name matching is case-insensitive for uniqueness (e.g., `John Doe` and `john doe` are considered the same).
+- Yes. Member name matching is case-insensitive for uniqueness (e.g., `John Doe` and `john doe` are considered the same).
 
 
 
