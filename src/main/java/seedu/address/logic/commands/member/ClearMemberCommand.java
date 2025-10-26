@@ -16,6 +16,6 @@ public class ClearMemberCommand extends ClearCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.resetMembers();
-        return new CommandResult(MESSAGE_SUCCESS);
+        return CommandResult.showMembers(MESSAGE_SUCCESS);
     }
 }
