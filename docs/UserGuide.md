@@ -194,9 +194,7 @@ Format: `help`
 
 ### Guided Tour — `guidedtour`
 
-Opens the Guided Tour window, which provides an overview of the key components of the Address Book interface.
-
-Format: `guidedtour`
+The button opens the Guided Tour window, which showcases the key features of the Address Book interface.
 
 ![Guided Tour Overview](images/annotatedGuidedTour.png)
 
