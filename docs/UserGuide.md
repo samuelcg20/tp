@@ -363,18 +363,18 @@ Finds members or events matching the given criteria. Matching is case-insensitiv
 
 **Member**:
 
-Finds members by **either** member's name **or** member's year of study but **not both**.
+Find your members by **either** member's name **or** member's year of study but **not both**.
 
 Format: `find member n/KEYWORDS…` (Find by member name)  **or** `find member y/KEYWORDS…` (Find by member year of study)
 
 Examples:
-- `find member n/Alex David`
-- `find member y/1 2`
+- `find member n/Alex`
+- `find member y/1`
 
 
 **Events**:
 
-Finds members by **either** event's name **or** event's venue but **not both**.
+Find your events by **either** event's name **or** event's venue but **not both**.
 
 Format: `find event n/KEYWORDS…` (Find by event name) **or** `find event v/KEYWORDS…` (Find by event venue)
 
@@ -383,7 +383,7 @@ Examples:
 - `find event v/COM1`
 
 
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Combine multiple keywords to broaden the match, e.g., <code>find event n/Welcome Games</code>.</div>
+<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Enter multiple keywords to widen your search results, e.g., <code>find member n/Alex David</code> will show all members whose names contain either “Alex” or “David”. </div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The list that will be used will be filtered list. You can <code>edit</code> or <code>delete</code> by using index from the <strong>filtered list</strong>. To <code>edit</code> or <code>delete</code> other entries, <code>list TYPE</code>before proceeding.</div>
 
 
@@ -429,7 +429,6 @@ Examples:
 - `clear event`
 
 
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Export a backup (copy the <code>data/addressbook.json</code> file) before bulk-clearing.</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> This action deletes all entries of the chosen type. It cannot be undone.</div>
 
 
