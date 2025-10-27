@@ -509,7 +509,7 @@ Examples:
 - `unalias delete`
 - `unalias all`
 
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> To replace an existing <code>alias</code> for a <code>COMMAND_WORD</code>, simply <code>alias NEW_ALIAS_WORD COMMAND_WORD</code> instead of doing <code>unalias COMMAND_WORD</code> followed by <code>alias NEW_ALIAS_WORD COMMAND_WORD</code>.</div>
+<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> To replace an existing alias for a command word, simply <code>alias NEW_ALIAS_WORD COMMAND_WORD</code> instead of <code>unalias COMMAND_WORD</code> followed by <code>alias NEW_ALIAS_WORD COMMAND_WORD</code>.</div>
 
 ### Exiting — `exit`
 
