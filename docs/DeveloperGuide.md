@@ -298,14 +298,17 @@ attendance for members and filter members by event attendance.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​    | I want to …​                                   | So that I can…​                                                                                                     |
-|----------|------------|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
-| `* * *`  | CCA leader | add a new meember with their details           | so that I can keep a complete active member list                                                                    |
-| `* * *`  | CCA leader | delete a member                                | so that inactive members can be removed                                                                             |
-| `* * *`  | CCA leader | add an event with date/time                    | so that I can track attendance later                                                                                |
-| `* * *`  | CCA leader/secretary | I want to view the entire address book details | so that I can retrieve info from the the address book and also be sure that it always stays accurate and up to date |
-| `* * *`  | CCA leader | I want to delete an event                      | so that I can remove cancelled events                                                                               |
-| `*`      | CCA member | I want to view my own profile                  | so that I can confirm my details are correct                                                                        |
+| Priority | As a …​              | I want to …​                                   | So that I can…​                                                                                                     |
+|--------|----------------------|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| `* * *` | CCA leader           | add a new meember with their details           | keep a complete active member list                                                                                  |
+| `* * *` | CCA leader           | delete a member                                | remove inactive members                                                                                             |
+| `* * *` | CCA leader           | add an event with date/time                    | track attendance later                                                                                |
+| `* * *` | CCA leader/secretary | view the entire address book details | retrieve info from the the address book and also be sure that it always stays accurate and up to date |
+| `* * *` | CCA leader           | delete an event                      | remove cancelled events                                                                               |
+| `* *`  | CCA leader           | create aliases for commands                 | type faster by using shorter, personalised command names                                                                       |
+| `* *`  | CCA leader           | view a guided tour                 | learn the main interface features easily without referring back to the guide                                                                       |
+| `* *`  | CCA leader           | search for members or events by keywords                | find specific entries quickly without scrolling through long lists                                                                       |
+| `*`    | CCA leader           | undo or redo my last action                 | reverse mistakes such as deleting the wrong entry                                                                      |
 
 
 ### Use cases
