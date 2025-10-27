@@ -312,7 +312,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ComClubConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**UC1: List members**
+**<a id="use-case-list-members"></a>UC1: List members**
 
 **MSS**
 
@@ -330,7 +330,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 1b1. ComClubConnect informs user on invalid input.
     - Use case ends.
 
-**UC2: List events**
+**<a id="use-case-list-events"></a>UC2: List events**
 
 **MSS**
 
@@ -391,7 +391,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User performs UC1: list members.
+1. User performs [<u>UC1: list members</u>](#use-case-list-members).
 2. User requests to delete a member in the displayed list by index.
 3. ComCLubConnect deletes the specified member.
 4. ComClubConnect confirms that the member has been deleted.
@@ -410,7 +410,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User performs UC2: list events.
+1. User performs [<u>UC2: list events</u>](#use-case-list-events).
 2. User requests to delete an event in the displayed list by index.
 3. ComCLubConnect deletes the specified event.
 4. ComClubConnect confirms that the event has been deleted.
@@ -429,7 +429,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User performs UC1: list members.
+1. User performs [<u>UC1: list members</u>](#use-case-list-members).
 2. User requests to edit a member in the displayed list.
 3. ComCLubConnect edits the specified member.
 4. ComClubConnect confirms that the member has been edited.
@@ -448,7 +448,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User performs UC2: list events.
+1. User performs [<u>UC2: list events</u>](#use-case-list-events).
 2. User requests to edit an event in the displayed list.
 3. ComCLubConnect edits the specified event.
 4. ComClubConnect confirms that the event has been edited.
@@ -467,7 +467,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User performs UC1: list members.
+1. User performs [<u>UC1: list members</u>](#use-case-list-members).
 2. User requests to find members in the displayed list.
 3. ComCLubConnect checks input and displays filtered list containing members that meet the filter requirements.
 4. ComClubConnect confirms that the members have been found.
@@ -484,7 +484,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User performs UC1: list events.
+1. User performs [<u>UC2: list events</u>](#use-case-list-events).
 2. User requests to find events in the displayed list.
 3. ComCLubConnect checks input and displays filtered list containing events that meet the filter requirement.
 4. ComClubConnect confirms that the events have been found.
@@ -574,6 +574,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 1a. ComClubConnect detects alias command already exists.
     - 1a1. ComClubConnect informs user on the already existing alias command.
     - Use case resumes at step 1.
+
+**UC16: Mark a member's attendance for an event**
+
+**MSS**
+
+1. User performs [<u>UC1: list members</u>](#use-case-list-members).
+2. User performs [<u>UC2: list events</u>](#use-case-list-events).
+3. User requests to mark a particular member's attendance for a particular event.
+4. ComClubConnect marks the attendance of the member as requested by user.
+5. ComClubConnect confirms that the member's attendance for the event was marked.
+   Use case ends.
+
+**Extensions**
+
+- 3a. ComClubConnect detects input is invalid.
+    - 1a1. ComClubConnect informs user on the invalid input.
+    - Use case resumes at step 3.
+
+**UC17: Unmark a member's attendance for an event**
+
+**MSS**
+
+1. User performs [<u>UC1: list members</u>](#use-case-list-members).
+2. User performs [<u>UC2: list events</u>](#use-case-list-events).
+3. User requests to unmark a particular member's attendance for a particular event.
+4. ComClubConnect unmarks the attendance of the member as requested by user.
+5. ComClubConnect confirms that the member's attendance for the event was unmarked.
+   Use case ends.
+
+**Extensions**
+
+- 3a. ComClubConnect detects input is invalid.
+    - 1a1. ComClubConnect informs user on the invalid input.
+    - Use case resumes at step 3.
 
 ### Non-Functional Requirements
 
