@@ -733,7 +733,11 @@ Problem: “Could not save data due to insufficient permissions …”
     </tr>
     <tr>
     <td><strong>alias</strong></td>
-    <td><code>alias delete rm</code>, <code>alias list ls</code></td>
+    <td><code>alias delete rm</code>, <code>alias list ls</code>, <code>alias</code></td>
+    </tr>
+    <tr>
+    <td><strong>unalias</strong></td>
+    <td><code>unalias delete</code>, <code>unalias all</code></td>
     </tr>
     <tr>
     <td><strong>help</strong></td>
