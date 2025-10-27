@@ -14,6 +14,9 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.UnaliasCommand;
+import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.commands.alias.AliasCreateCommand;
 import seedu.address.logic.commands.alias.AliasListCommand;
 import seedu.address.logic.commands.member.ExitCommand;
@@ -34,7 +37,10 @@ public class AliasCommandParser implements Parser<AliasCommand> {
             ListCommand.COMMAND_WORD,
             ExitCommand.COMMAND_WORD,
             HelpCommand.COMMAND_WORD,
-            AliasCommand.COMMAND_WORD
+            AliasCommand.COMMAND_WORD,
+            UnaliasCommand.COMMAND_WORD,
+            MarkCommand.COMMAND_WORD,
+            UnmarkCommand.COMMAND_WORD
     ));
 
     /**
