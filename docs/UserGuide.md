@@ -75,7 +75,7 @@ title: ComClubConnect User Guide
             <a href="#features">Features</a>
             <ul>
                 <li><a href="#viewing-help--help">Viewing Help</a></li>
-                <li><a href="#guided-tour--guidedtour">Guided Tour</a></li>
+                <li><a href="#guided-tour">Guided Tour</a></li>
                 <li><a href="#adding-entries--add">Adding Entries</a></li>
                 <li><a href="#listing-entries--list">Listing Entries</a></li>
                 <li><a href="#editing-entries--edit">Editing Entries</a></li>
@@ -112,7 +112,7 @@ If you are a fast typer, ComClubConnect enables you to track members, plan event
 - [Quick CLI Tutorial](#quick-cli-tutorial)
 - [Features](#features)
     - [Viewing Help — `help`](#viewing-help--help)
-    - [Guided Tour — `guidedtour`](#guided-tour--guidedtour)
+    - [Guided Tour — `guidedtour`](#guided-tour)
     - [Adding Entries — `add`](#adding-entries--add)
     - [Listing Entries — `list`](#listing-entries--list)
     - [Editing Entries — `edit`](#editing-entries--edit)
