@@ -138,7 +138,7 @@ public class Event {
         }
 
         return otherEvent != null
-                && otherEvent.getName().equals(getName())
+                && otherEvent.getName().canonicalForIdentity().equals(getName().canonicalForIdentity())
                 && otherEvent.getDate().equals(getDate());
     }
 

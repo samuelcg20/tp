@@ -1,6 +1,7 @@
 package seedu.address.model.alias;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -50,6 +51,15 @@ public class AliasBook {
     }
 
     /**
+     * Returns true if {@code AliasBook} is empty.
+     *
+     * @return True if AliasBook is empty, false otherwise.
+     */
+    public boolean isEmpty() {
+        return aliasMap.isEmpty();
+    }
+
+    /**
      * Returns the command word mapped to the given alias word.
      *
      * @param aliasWord Alias word to resolve.
@@ -80,6 +90,17 @@ public class AliasBook {
      */
     public void clear() { // Method for future use
         aliasMap.clear();
+    }
+
+    /**
+     * Converts the Alias Book into a list of aliases
+     * @return List of type Alias
+     */
+    public List<Alias> getAliasList() {
+        return aliasMap.entrySet()
+                .stream()
+                .map(entry -> new Alias(entry.getValue(), entry.getKey()))
+                .toList();
     }
 
     /**
