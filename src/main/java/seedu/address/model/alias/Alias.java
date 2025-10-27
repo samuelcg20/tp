@@ -71,9 +71,6 @@ public class Alias {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("command word", commandWord)
-                .add("alias word", aliasWord)
-                .toString();
+        return aliasWord + " -> " + commandWord;
     }
 }
