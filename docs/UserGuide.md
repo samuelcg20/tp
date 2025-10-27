@@ -265,7 +265,7 @@ Format: `help`
 
 
 
-### Guided Tour — `guidedtour`
+#### Guided Tour
 
 The green button from the Help window opens the Guided Tour, which showcases the key features of the Address Book interface.
 
