@@ -2,6 +2,10 @@ package seedu.address.model.event;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -11,6 +15,8 @@ import seedu.address.commons.util.ToStringBuilder;
  * Guarantees: details are present and not null; field values are validated; immutable.
  */
 public class Event {
+
+    public static final String ATTENDANCE_DELIMITER = ", ";
 
     private final EventName name;
     private final Date date;
@@ -52,6 +58,28 @@ public class Event {
     }
 
     /**
+     * Returns the attendees as an immutable list. Returns an empty list if there are no attendees.
+     */
+    public List<String> getAttendees() {
+        if (attendanceList.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return Arrays.asList(attendanceList.split(ATTENDANCE_DELIMITER));
+    }
+
+    /**
+     * Returns true if the given name is present in the attendance list.
+     */
+    public boolean hasAttendee(String name) {
+        for (String attendee : getAttendees()) {
+            if (attendee.equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns a new Event with updated attendance list.
      */
     public Event withAttendanceList(String newAttendanceList) {
@@ -65,7 +93,7 @@ public class Event {
         if (attendanceList.isEmpty()) {
             return withAttendanceList(memberName);
         } else {
-            return withAttendanceList(attendanceList + ", " + memberName);
+            return withAttendanceList(attendanceList + ATTENDANCE_DELIMITER + memberName);
         }
     }
 
@@ -77,19 +105,28 @@ public class Event {
             return this;
         }
 
-        String[] members = attendanceList.split(", ");
-        StringBuilder newList = new StringBuilder();
-
-        for (String member : members) {
+        List<String> filtered = new ArrayList<>();
+        for (String member : getAttendees()) {
             if (!member.equals(memberName)) {
-                if (newList.length() > 0) {
-                    newList.append(", ");
-                }
-                newList.append(member);
+                filtered.add(member);
             }
         }
 
-        return withAttendanceList(newList.toString());
+        return withAttendanceList(String.join(ATTENDANCE_DELIMITER, filtered));
+    }
+
+    /**
+     * Replaces an attendee name with a new name in the attendance list.
+     */
+    public Event replaceAttendeeName(String oldName, String newName) {
+        if (attendanceList.isEmpty() || !hasAttendee(oldName)) {
+            return this;
+        }
+        List<String> updated = new ArrayList<>();
+        for (String attendee : getAttendees()) {
+            updated.add(attendee.equals(oldName) ? newName : attendee);
+        }
+        return withAttendanceList(String.join(ATTENDANCE_DELIMITER, updated));
     }
 
     /**

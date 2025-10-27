@@ -132,17 +132,11 @@ public class ModelManager implements Model {
         // Get all events and remove this person from their attendance lists
         List<Event> allEvents = addressBook.getEventList();
         for (Event event : allEvents) {
-            String attendanceList = event.getAttendanceList();
-            if (!attendanceList.isEmpty()) {
-                String[] attendees = attendanceList.split(", ");
-                for (String attendee : attendees) {
-                    if (attendee.equals(personName)) {
-                        Event updatedEvent = event.removeFromAttendanceList(personName);
-                        addressBook.setEvent(event, updatedEvent);
-                        break;
-                    }
-                }
+            if (!event.hasAttendee(personName)) {
+                continue;
             }
+            Event updatedEvent = event.removeFromAttendanceList(personName);
+            addressBook.setEvent(event, updatedEvent);
         }
     }
 
@@ -170,19 +164,11 @@ public class ModelManager implements Model {
     private void updatePersonNameInAttendance(String oldName, String newName) {
         List<Event> allEvents = addressBook.getEventList();
         for (Event event : allEvents) {
-            String attendanceList = event.getAttendanceList();
-            if (!attendanceList.isEmpty()) {
-                String[] attendees = attendanceList.split(", ");
-                for (String attendee : attendees) {
-                    if (attendee.equals(oldName)) {
-                        // Remove old name and add new name
-                        Event eventWithoutOldName = event.removeFromAttendanceList(oldName);
-                        Event eventWithNewName = eventWithoutOldName.addToAttendanceList(newName);
-                        addressBook.setEvent(event, eventWithNewName);
-                        break; // Move to next event
-                    }
-                }
+            if (!event.hasAttendee(oldName)) {
+                continue;
             }
+            Event updated = event.replaceAttendeeName(oldName, newName);
+            addressBook.setEvent(event, updated);
         }
     }
 
@@ -227,21 +213,18 @@ public class ModelManager implements Model {
         if (attendanceList.isEmpty()) {
             return;
         }
-        String[] memberNames = attendanceList.split(", ");
+        List<String> memberNames = event.getAttendees();
         // Get all persons and decrease their attendance count
         List<Person> allPersons = addressBook.getPersonList();
         for (Person person : allPersons) {
             String personName = person.getName().fullName;
             // Check if this person was marked for attendance at this event
-            for (String memberName : memberNames) {
-                if (memberName.equals(personName)) {
-                    // Decrease attendance count (ensure it doesn't go below 0)
-                    int newAttendanceCount = Math.max(0, person.getAttendanceCount() - 1);
-                    Person updatedPerson = person.withAttendanceCount(newAttendanceCount);
-                    addressBook.setPerson(person, updatedPerson);
-                    break;
-                }
+            if (!memberNames.contains(personName)) {
+                continue;
             }
+            int newAttendanceCount = Math.max(0, person.getAttendanceCount() - 1);
+            Person updatedPerson = person.withAttendanceCount(newAttendanceCount);
+            addressBook.setPerson(person, updatedPerson);
         }
     }
 

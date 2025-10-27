@@ -26,6 +26,8 @@ public class UnmarkCommand extends Command {
     public static final String MESSAGE_INVALID_EVENT_INDEX = "Event index is invalid";
     public static final String MESSAGE_NO_ATTENDANCE_TO_UNMARK = "Member is not marked at this event";
 
+    private static final int MIN_VALID_INDEX = 1;
+
     private final int memberIndex;
     private final int eventIndex;
 
@@ -45,12 +47,12 @@ public class UnmarkCommand extends Command {
         List<Event> lastShownEventList = model.getFilteredEventList();
 
         // Validate member index
-        if (memberIndex < 1 || memberIndex > lastShownPersonList.size()) {
+        if (memberIndex < MIN_VALID_INDEX || memberIndex > lastShownPersonList.size()) {
             throw new CommandException(MESSAGE_INVALID_MEMBER_INDEX);
         }
 
         // Validate event index
-        if (eventIndex < 1 || eventIndex > lastShownEventList.size()) {
+        if (eventIndex < MIN_VALID_INDEX || eventIndex > lastShownEventList.size()) {
             throw new CommandException(MESSAGE_INVALID_EVENT_INDEX);
         }
 
@@ -59,18 +61,7 @@ public class UnmarkCommand extends Command {
         Event eventToUnmark = lastShownEventList.get(eventIndex - 1);
 
         // Check if member is actually marked for attendance
-        String attendanceList = eventToUnmark.getAttendanceList();
-        boolean found = false;
-        if (!attendanceList.isEmpty()) {
-            String[] attendees = attendanceList.split(", ");
-            for (String attendee : attendees) {
-                if (attendee.equals(memberToUnmark.getName().fullName)) {
-                    found = true;
-                    break;
-                }
-            }
-        }
-        if (!found) {
+        if (!eventToUnmark.hasAttendee(memberToUnmark.getName().fullName)) {
             throw new CommandException(MESSAGE_NO_ATTENDANCE_TO_UNMARK);
         }
 

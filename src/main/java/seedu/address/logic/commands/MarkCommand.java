@@ -26,6 +26,8 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_INVALID_EVENT_INDEX = "Event index is invalid";
     public static final String MESSAGE_DUPLICATE_ATTENDANCE = "Member is already marked for attendance at this event";
 
+    private static final int MIN_VALID_INDEX = 1;
+
     private final int memberIndex;
     private final int eventIndex;
 
@@ -45,12 +47,12 @@ public class MarkCommand extends Command {
         List<Event> lastShownEventList = model.getFilteredEventList();
 
         // Validate member index
-        if (memberIndex < 1 || memberIndex > lastShownPersonList.size()) {
+        if (memberIndex < MIN_VALID_INDEX || memberIndex > lastShownPersonList.size()) {
             throw new CommandException(MESSAGE_INVALID_MEMBER_INDEX);
         }
 
         // Validate event index
-        if (eventIndex < 1 || eventIndex > lastShownEventList.size()) {
+        if (eventIndex < MIN_VALID_INDEX || eventIndex > lastShownEventList.size()) {
             throw new CommandException(MESSAGE_INVALID_EVENT_INDEX);
         }
 
@@ -58,15 +60,9 @@ public class MarkCommand extends Command {
         Person memberToMark = lastShownPersonList.get(memberIndex - 1);
         Event eventToMark = lastShownEventList.get(eventIndex - 1);
 
-        // Check for duplicate attendance
-        String attendanceList = eventToMark.getAttendanceList();
-        if (!attendanceList.isEmpty()) {
-            String[] attendees = attendanceList.split(", ");
-            for (String attendee : attendees) {
-                if (attendee.equals(memberToMark.getName().fullName)) {
-                    throw new CommandException(MESSAGE_DUPLICATE_ATTENDANCE);
-                }
-            }
+        // Guard against duplicate attendance
+        if (eventToMark.hasAttendee(memberToMark.getName().fullName)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ATTENDANCE);
         }
 
         // Mark attendance

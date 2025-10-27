@@ -30,29 +30,12 @@ public class MarkCommandParser implements Parser<MarkCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_MEMBER, PREFIX_EVENT);
 
-        int memberIndex = parseIndex(argMultimap.getValue(PREFIX_MEMBER).get(), "member");
-        int eventIndex = parseIndex(argMultimap.getValue(PREFIX_EVENT).get(), "event");
+        int memberIndex = IndexParserHelper.parsePositiveIndex(
+                argMultimap.getValue(PREFIX_MEMBER).get(), "member");
+        int eventIndex = IndexParserHelper.parsePositiveIndex(
+                argMultimap.getValue(PREFIX_EVENT).get(), "event");
 
         return new MarkCommand(memberIndex, eventIndex);
-    }
-
-    /**
-     * Parses a single index string into an integer.
-     * @param indexString The index string
-     * @param type Type of index (for error messages)
-     * @return Parsed integer
-     * @throws ParseException if the index is invalid
-     */
-    private int parseIndex(String indexString, String type) throws ParseException {
-        try {
-            int index = Integer.parseInt(indexString.trim());
-            if (index <= 0) {
-                throw new ParseException(String.format("Invalid %s index: %d. Index must be positive.", type, index));
-            }
-            return index;
-        } catch (NumberFormatException e) {
-            throw new ParseException(String.format("Invalid %s index: %s. Index must be a number.", type, indexString));
-        }
     }
 
     /**
