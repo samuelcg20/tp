@@ -7,8 +7,8 @@ title: ComClubConnect User Guide
     .quick-links {
     position: fixed;
     top: 120px;
-    right: 20px;
-    width: 240px;
+    right: 0px;
+    width: 150px;
     padding: 1rem;
     font-size: 0.95rem;
     z-index: 1000;
