@@ -207,6 +207,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public List<Alias> getAliasList() {
+        return getAliasBook().getAliasList();
+    }
+
+    @Override
     public String actualCommand(String commandText) {
         return aliasBook.getCommandWordForAlias(commandText);
     }

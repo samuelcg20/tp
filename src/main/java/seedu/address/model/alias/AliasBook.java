@@ -105,12 +105,6 @@ public class AliasBook {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Here is your alias list:\n");
-        for (Alias alias : getAliasList()) {
-            sb.append(alias).append("\n");
-        }
-
-        String aliasBookDisplay = sb.toString().trim();
-        return aliasBookDisplay;
+        return aliasMap.toString();
     }
 }

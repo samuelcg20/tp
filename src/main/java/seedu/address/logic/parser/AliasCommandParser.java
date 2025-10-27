@@ -14,6 +14,8 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.alias.AliasCreateCommand;
+import seedu.address.logic.commands.alias.AliasListCommand;
 import seedu.address.logic.commands.member.ExitCommand;
 import seedu.address.logic.commands.member.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -43,6 +45,11 @@ public class AliasCommandParser implements Parser<AliasCommand> {
     @Override
     public AliasCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
+
+        if (trimmedArgs.isEmpty()) {
+            return new AliasListCommand();
+        }
+
         String[] trimmedArgsParts = trimmedArgs.split("\\s+");
 
         if (trimmedArgsParts.length != 2) {
@@ -60,7 +67,7 @@ public class AliasCommandParser implements Parser<AliasCommand> {
             throw new ParseException(String.format("Alias cannot be a command word!", AliasCommand.MESSAGE_USAGE));
         }
 
-        return new AliasCommand(aliasWord, commandWord);
+        return new AliasCreateCommand(aliasWord, commandWord);
     }
 
 }

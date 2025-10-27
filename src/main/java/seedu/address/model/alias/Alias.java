@@ -4,8 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.commons.util.ToStringBuilder;
-
 /**
  * Represents an alias mapping between a command word and its alias.
  * Each {@code Alias} object stores one pair of command and alias words.
