@@ -98,12 +98,24 @@ public class ModelManager implements Model {
 
     @Override
     public void resetMembers() {
+        // Clean up attendance in all events for every existing person before clearing
+        List<Person> existingPersons = new ArrayList<>(this.addressBook.getPersonList());
+        for (Person person : existingPersons) {
+            cleanupPersonAttendance(person);
+        }
+
         List<Person> persons = new ArrayList<>();
         this.addressBook.setPersons(persons);
     }
 
     @Override
     public void resetEvents() {
+        // Clean up attendance counts in all persons for every existing event before clearing
+        List<Event> existingEvents = new ArrayList<>(this.addressBook.getEventList());
+        for (Event event : existingEvents) {
+            cleanupEventAttendance(event);
+        }
+
         List<Event> events = new ArrayList<>();
         this.addressBook.setEvents(events);
     }
