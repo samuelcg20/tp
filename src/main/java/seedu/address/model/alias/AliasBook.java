@@ -51,6 +51,15 @@ public class AliasBook {
     }
 
     /**
+     * Returns true if {@code AliasBook} is empty.
+     *
+     * @return True if AliasBook is empty, false otherwise.
+     */
+    public boolean isEmpty() {
+        return aliasMap.isEmpty();
+    }
+
+    /**
      * Returns the command word mapped to the given alias word.
      *
      * @param aliasWord Alias word to resolve.

@@ -136,6 +136,9 @@ public interface Model {
      */
     boolean hasCommand(String commandWord);
 
+    /** Return true if the AliasBook is empty */
+    boolean isAliasBookEmpty();
+
     /** Removes the alias for the particular command word */
     void removeExistingAlias(String commandWord);
 
@@ -147,6 +150,9 @@ public interface Model {
 
     /** Returns a list form of the alias book */
     List<Alias> getAliasList();
+
+    /** Clears all the existing stored aliases */
+    void clearAllAliases();
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();

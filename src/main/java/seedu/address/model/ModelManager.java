@@ -212,6 +212,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearAllAliases() {
+        getAliasBook().clear();
+    }
+
+    @Override
+    public boolean isAliasBookEmpty() {
+        return aliasBook.isEmpty();
+    }
+
+    @Override
     public String actualCommand(String commandText) {
         return aliasBook.getCommandWordForAlias(commandText);
     }

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +19,9 @@ import seedu.address.logic.commands.member.ExitCommand;
 import seedu.address.logic.commands.member.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new UnaliasCommandParser object
+ */
 public class UnaliasCommandParser implements Parser<UnaliasCommand> {
 
     public static final Set<String> SET_OF_COMMANDS = new HashSet<>(Arrays.asList(
