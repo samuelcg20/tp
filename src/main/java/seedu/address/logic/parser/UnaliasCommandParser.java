@@ -14,16 +14,15 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.alias.AliasCreateCommand;
-import seedu.address.logic.commands.alias.AliasListCommand;
+import seedu.address.logic.commands.UnaliasCommand;
 import seedu.address.logic.commands.member.ExitCommand;
 import seedu.address.logic.commands.member.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new AliasCommandParser object
+ * Parses input arguments and creates a new UnaliasCommandParser object
  */
-public class AliasCommandParser implements Parser<AliasCommand> {
+public class UnaliasCommandParser implements Parser<UnaliasCommand> {
 
     public static final Set<String> SET_OF_COMMANDS = new HashSet<>(Arrays.asList(
             AddCommand.COMMAND_WORD,
@@ -34,40 +33,25 @@ public class AliasCommandParser implements Parser<AliasCommand> {
             ListCommand.COMMAND_WORD,
             ExitCommand.COMMAND_WORD,
             HelpCommand.COMMAND_WORD,
-            AliasCommand.COMMAND_WORD
+            AliasCommand.COMMAND_WORD,
+            "all"
     ));
 
-    /**
-     * Parses the given {@code String} of arguments in the context of the AliasCommand
-     * and returns an AliasCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
-     */
     @Override
-    public AliasCommand parse(String args) throws ParseException {
+    public UnaliasCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-
-        if (trimmedArgs.isEmpty()) {
-            return new AliasListCommand();
-        }
-
         String[] trimmedArgsParts = trimmedArgs.split("\\s+");
 
-        if (trimmedArgsParts.length != 2) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
+        if (trimmedArgsParts.length != 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnaliasCommand.MESSAGE_USAGE));
         }
 
-        String commandWord = trimmedArgsParts[0];
-        String aliasWord = trimmedArgsParts[1];
+        String commandWordToRemove = trimmedArgsParts[0].trim();
 
-        if (!SET_OF_COMMANDS.contains(commandWord)) {
+        if (!SET_OF_COMMANDS.contains(commandWordToRemove)) {
             throw new ParseException(String.format(MESSAGE_UNKNOWN_COMMAND, AliasCommand.MESSAGE_USAGE));
         }
 
-        if (SET_OF_COMMANDS.contains(aliasWord)) {
-            throw new ParseException(String.format("Alias cannot be a command word!", AliasCommand.MESSAGE_USAGE));
-        }
-
-        return new AliasCreateCommand(aliasWord, commandWord);
+        return new UnaliasCommand(commandWordToRemove);
     }
-
 }

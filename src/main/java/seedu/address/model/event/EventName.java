@@ -25,6 +25,17 @@ public class EventName {
         this.fullName = name;
     }
 
+    /**
+     * Returns a lowercase, space-normalized version of {@code fullName} for identity comparison.
+     */
+    public String canonicalForIdentity() {
+        // Trim leading and trailing spaces
+        String trimmed = fullName.trim();
+        // Collapse multiple internal spaces to a single space
+        String collapsed = trimmed.replaceAll(" +", " ");
+        return collapsed.toLowerCase();
+    }
+
     public static boolean isValidEventName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
