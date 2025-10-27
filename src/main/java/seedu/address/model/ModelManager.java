@@ -209,8 +209,7 @@ public class ModelManager implements Model {
      * Decreases attendance count for all members who were marked for this event.
      */
     private void cleanupEventAttendance(Event event) {
-        String attendanceList = event.getAttendanceList();
-        if (attendanceList.isEmpty()) {
+        if (event.getAttendees().isEmpty()) {
             return;
         }
         List<String> memberNames = event.getAttendees();

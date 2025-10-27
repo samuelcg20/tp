@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
 
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -30,10 +31,8 @@ public class MarkCommandParser implements Parser<MarkCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_MEMBER, PREFIX_EVENT);
 
-        int memberIndex = IndexParserHelper.parsePositiveIndex(
-                argMultimap.getValue(PREFIX_MEMBER).get(), "member");
-        int eventIndex = IndexParserHelper.parsePositiveIndex(
-                argMultimap.getValue(PREFIX_EVENT).get(), "event");
+        Index memberIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MEMBER).get());
+        Index eventIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_EVENT).get());
 
         return new MarkCommand(memberIndex, eventIndex);
     }

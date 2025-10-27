@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -26,15 +27,13 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_INVALID_EVENT_INDEX = "Event index is invalid";
     public static final String MESSAGE_DUPLICATE_ATTENDANCE = "Member is already marked for attendance at this event";
 
-    private static final int MIN_VALID_INDEX = 1;
-
-    private final int memberIndex;
-    private final int eventIndex;
+    private final Index memberIndex;
+    private final Index eventIndex;
 
     /**
      * Creates a MarkCommand to mark a member's attendance at a specified event.
      */
-    public MarkCommand(int memberIndex, int eventIndex) {
+    public MarkCommand(Index memberIndex, Index eventIndex) {
         this.memberIndex = memberIndex;
         this.eventIndex = eventIndex;
     }
@@ -46,19 +45,22 @@ public class MarkCommand extends Command {
         List<Person> lastShownPersonList = model.getFilteredPersonList();
         List<Event> lastShownEventList = model.getFilteredEventList();
 
-        // Validate member index
-        if (memberIndex < MIN_VALID_INDEX || memberIndex > lastShownPersonList.size()) {
+        int memberZeroBased = memberIndex.getZeroBased();
+        int eventZeroBased = eventIndex.getZeroBased();
+
+        // Validate member index within shown list
+        if (memberZeroBased < 0 || memberZeroBased >= lastShownPersonList.size()) {
             throw new CommandException(MESSAGE_INVALID_MEMBER_INDEX);
         }
 
-        // Validate event index
-        if (eventIndex < MIN_VALID_INDEX || eventIndex > lastShownEventList.size()) {
+        // Validate event index within shown list
+        if (eventZeroBased < 0 || eventZeroBased >= lastShownEventList.size()) {
             throw new CommandException(MESSAGE_INVALID_EVENT_INDEX);
         }
 
         // Get the actual Person and Event objects
-        Person memberToMark = lastShownPersonList.get(memberIndex - 1);
-        Event eventToMark = lastShownEventList.get(eventIndex - 1);
+        Person memberToMark = lastShownPersonList.get(memberZeroBased);
+        Event eventToMark = lastShownEventList.get(eventZeroBased);
 
         // Guard against duplicate attendance
         if (eventToMark.hasAttendee(memberToMark.getName().fullName)) {
@@ -89,8 +91,8 @@ public class MarkCommand extends Command {
         }
 
         MarkCommand otherMarkCommand = (MarkCommand) other;
-        return memberIndex == otherMarkCommand.memberIndex
-                && eventIndex == otherMarkCommand.eventIndex;
+        return memberIndex.equals(otherMarkCommand.memberIndex)
+                && eventIndex.equals(otherMarkCommand.eventIndex);
     }
 
     @Override
