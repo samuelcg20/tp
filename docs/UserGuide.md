@@ -7,8 +7,8 @@ title: ComClubConnect User Guide
     .quick-links {
     position: fixed;
     top: 120px;
-    right: 20px;
-    width: 240px;
+    right: 0px;
+    width: 150px;
     padding: 1rem;
     font-size: 0.95rem;
     z-index: 1000;
@@ -75,7 +75,7 @@ title: ComClubConnect User Guide
             <a href="#features">Features</a>
             <ul>
                 <li><a href="#viewing-help--help">Viewing Help</a></li>
-                <li><a href="#guided-tour--guidedtour">Guided Tour</a></li>
+                <li><a href="#guided-tour">Guided Tour</a></li>
                 <li><a href="#adding-entries--add">Adding Entries</a></li>
                 <li><a href="#listing-entries--list">Listing Entries</a></li>
                 <li><a href="#editing-entries--edit">Editing Entries</a></li>
@@ -114,7 +114,7 @@ If you are a fast typer, ComClubConnect enables you to track members, plan event
 - [Quick CLI Tutorial](#quick-cli-tutorial)
 - [Features](#features)
     - [Viewing Help — `help`](#viewing-help--help)
-    - [Guided Tour — `guidedtour`](#guided-tour--guidedtour)
+    - [Guided Tour — `guidedtour`](#guided-tour)
     - [Adding Entries — `add`](#adding-entries--add)
     - [Listing Entries — `list`](#listing-entries--list)
     - [Editing Entries — `edit`](#editing-entries--edit)
@@ -505,13 +505,15 @@ Create a custom alias for any command word for your greater convenience.
 Format: `alias COMMAND_WORD ALIAS`
 
 
-- Supported `COMMAND_WORD`s: `add`, `edit`, `delete`, `clear`, `find`, `list`, `help`, `exit`, `alias`.
+- Supported `COMMAND_WORD`s: `add`, `edit`, `delete`, `clear`, `find`, `list`, `help`, `exit`, `alias`, `unalias`, `mark`, `unmark`.
 - `ALIAS` must be a single word, not a built-in command word and not an existing `ALIAS`.
+- To view your stored aliases, enter `alias` with **no keywords**.
 
 
 Examples:
 - `alias delete rm` — After this, `rm member 1` works like `delete member 1`.
 - `alias list ls`
+- `alias` - Your stored aliases will be displayed.
 
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Choose aliases that mirror your team’s habits and keep it short for easier recall, e.g., <code>rm</code> for <code>delete</code>.</div>
@@ -559,6 +561,23 @@ Examples:
 
 
 
+
+### Unaliasing Commands — `unalias`
+
+Remove an existing alias for a command word
+
+Format: `unalias COMMAND_WORD`
+
+- Supported `COMMAND_WORD`s: `add`, `edit`, `delete`, `clear`, `find`, `list`, `help`, `exit`, `alias`, `unalias`, `mark`, `unmark`.
+- Enter only **one** `COMMAND_WORD`. 
+- To remove **all** aliases, enter `all` as the `COMMAND_WORD`.
+
+Examples:
+
+- `unalias delete`
+- `unalias all`
+
+<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> To replace an existing alias for a command word, simply <code>alias NEW_ALIAS_WORD COMMAND_WORD</code> instead of <code>unalias COMMAND_WORD</code> followed by <code>alias NEW_ALIAS_WORD COMMAND_WORD</code>.</div>
 
 ### Exiting — `exit`
 
@@ -814,7 +833,11 @@ Problem: “Could not save data due to insufficient permissions …”
     </tr>
     <tr>
     <td><strong>alias</strong></td>
-    <td><code>alias delete rm</code>, <code>alias list ls</code></td>
+    <td><code>alias delete rm</code>, <code>alias list ls</code>, <code>alias</code></td>
+    </tr>
+    <tr>
+    <td><strong>unalias</strong></td>
+    <td><code>unalias delete</code>, <code>unalias all</code></td>
     </tr>
     <tr>
     <td><strong>mark</strong></td>
