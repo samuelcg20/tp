@@ -4,8 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.commons.util.ToStringBuilder;
-
 /**
  * Represents an alias mapping between a command word and its alias.
  * Each {@code Alias} object stores one pair of command and alias words.
@@ -71,9 +69,6 @@ public class Alias {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("command word", commandWord)
-                .add("alias word", aliasWord)
-                .toString();
+        return aliasWord + " -> " + commandWord;
     }
 }
