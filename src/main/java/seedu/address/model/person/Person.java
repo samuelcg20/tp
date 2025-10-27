@@ -24,17 +24,26 @@ public class Person {
     // Data fields
     private final Year year;
     private final Set<Tag> tags = new HashSet<>();
+    private final int attendanceCount;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Year year, Set<Tag> tags) {
+        this(name, phone, email, year, tags, 0);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Year year, Set<Tag> tags, int attendanceCount) {
         requireAllNonNull(name, phone, email, year, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.year = year;
         this.tags.addAll(tags);
+        this.attendanceCount = attendanceCount;
     }
 
     public Name getName() {
@@ -53,12 +62,23 @@ public class Person {
         return year;
     }
 
+    public int getAttendanceCount() {
+        return attendanceCount;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns a new Person with updated attendance count.
+     */
+    public Person withAttendanceCount(int newAttendanceCount) {
+        return new Person(name, phone, email, year, tags, newAttendanceCount);
     }
 
     /**
@@ -94,13 +114,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && year.equals(otherPerson.year)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && attendanceCount == otherPerson.attendanceCount;
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, year, tags);
+        return Objects.hash(name, phone, email, year, tags, attendanceCount);
     }
 
     @Override
@@ -111,6 +132,7 @@ public class Person {
                 .add("email", email)
                 .add("year", year)
                 .add("tags", tags)
+                .add("attendanceCount", attendanceCount)
                 .toString();
     }
 

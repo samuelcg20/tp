@@ -30,6 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String year;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final Integer attendanceCount;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -37,7 +38,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("year") String year,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("attendanceCount") Integer attendanceCount) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -45,6 +46,7 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.attendanceCount = attendanceCount;
     }
 
     /**
@@ -58,6 +60,7 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        attendanceCount = source.getAttendanceCount();
     }
 
     /**
@@ -125,7 +128,10 @@ class JsonAdaptedPerson {
         final Year modelYear = new Year(year);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelYear, modelTags);
+
+        int modelAttendanceCount = (attendanceCount != null) ? attendanceCount : 0;
+
+        return new Person(modelName, modelPhone, modelEmail, modelYear, modelTags, modelAttendanceCount);
     }
 
 }

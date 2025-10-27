@@ -25,6 +25,8 @@ public class EventCard extends UiPart<Region> {
     private Label date;
     @FXML
     private Label venue;
+    @FXML
+    private Label attendance;
 
     /**
      * Creates an {@code EventCard} with the given {@code Event} and index to display.
@@ -36,5 +38,6 @@ public class EventCard extends UiPart<Region> {
         name.setText(event.getName().fullName);
         date.setText(event.getDate().value);
         venue.setText(event.getVenue().value);
+        attendance.setText("Attendees: " + (event.getAttendanceList().isEmpty() ? "None" : event.getAttendanceList()));
     }
 }
