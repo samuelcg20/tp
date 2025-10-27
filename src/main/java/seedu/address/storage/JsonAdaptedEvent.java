@@ -19,6 +19,7 @@ class JsonAdaptedEvent {
     private final String name;
     private final String date;
     private final String venue;
+    private final String attendanceList;
 
     /**
      * Constructs a {@code JsonAdaptedEvent} with the given event details.
@@ -26,10 +27,12 @@ class JsonAdaptedEvent {
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("name") String name,
                             @JsonProperty("date") String date,
-                            @JsonProperty("venue") String venue) {
+                            @JsonProperty("venue") String venue,
+                            @JsonProperty("attendanceList") String attendanceList) {
         this.name = name;
         this.date = date;
         this.venue = venue;
+        this.attendanceList = attendanceList;
     }
 
     /**
@@ -39,6 +42,7 @@ class JsonAdaptedEvent {
         this.name = source.getName().fullName;
         this.date = source.getDate().value;
         this.venue = source.getVenue().value;
+        this.attendanceList = source.getAttendanceList();
     }
 
     /**
@@ -74,7 +78,9 @@ class JsonAdaptedEvent {
         }
         final Venue modelVenue = new Venue(venue);
 
-        return new Event(modelName, modelDate, modelVenue);
+        String modelAttendanceList = (attendanceList != null) ? attendanceList : "";
+
+        return new Event(modelName, modelDate, modelVenue, modelAttendanceList);
     }
 }
 
