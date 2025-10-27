@@ -298,21 +298,24 @@ attendance for members and filter members by event attendance.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​    | I want to …​                                   | So that I can…​                                                                                                     |
-|----------|------------|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
-| `* * *`  | CCA leader | add a new meember with their details           | so that I can keep a complete active member list                                                                    |
-| `* * *`  | CCA leader | delete a member                                | so that inactive members can be removed                                                                             |
-| `* * *`  | CCA leader | add an event with date/time                    | so that I can track attendance later                                                                                |
-| `* * *`  | CCA leader/secretary | I want to view the entire address book details | so that I can retrieve info from the the address book and also be sure that it always stays accurate and up to date |
-| `* * *`  | CCA leader | I want to delete an event                      | so that I can remove cancelled events                                                                               |
-| `*`      | CCA member | I want to view my own profile                  | so that I can confirm my details are correct                                                                        |
+| Priority | As a …​              | I want to …​                                   | So that I can…​                                                                                                     |
+|--------|----------------------|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| `* * *` | CCA leader           | add a new meember with their details           | keep a complete active member list                                                                                  |
+| `* * *` | CCA leader           | delete a member                                | remove inactive members                                                                                             |
+| `* * *` | CCA leader           | add an event with date/time                    | track attendance later                                                                                |
+| `* * *` | CCA leader/secretary | view the entire address book details | retrieve info from the the address book and also be sure that it always stays accurate and up to date |
+| `* * *` | CCA leader           | delete an event                      | remove cancelled events                                                                               |
+| `* *`  | CCA leader           | create aliases for commands                 | type faster by using shorter, personalised command names                                                                       |
+| `* *`  | CCA leader           | view a guided tour                 | learn the main interface features easily without referring back to the guide                                                                       |
+| `* *`  | CCA leader           | search for members or events by keywords                | find specific entries quickly without scrolling through long lists                                                                       |
+| `*`    | CCA leader           | undo or redo my last action                 | reverse mistakes such as deleting the wrong entry                                                                      |
 
 
 ### Use cases
 
 (For all use cases below, the **System** is the `ComClubConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**UC1: List members**
+**<a id="use-case-list-members"></a>UC1: List members**
 
 **MSS**
 
@@ -330,7 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 1b1. ComClubConnect informs user on invalid input.
     - Use case ends.
 
-**UC2: List events**
+**<a id="use-case-list-events"></a>UC2: List events**
 
 **MSS**
 
@@ -391,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User performs UC1: list members.
+1. User performs [<u>UC1: list members</u>](#use-case-list-members).
 2. User requests to delete a member in the displayed list by index.
 3. ComCLubConnect deletes the specified member.
 4. ComClubConnect confirms that the member has been deleted.
@@ -410,7 +413,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User performs UC2: list events.
+1. User performs [<u>UC2: list events</u>](#use-case-list-events).
 2. User requests to delete an event in the displayed list by index.
 3. ComCLubConnect deletes the specified event.
 4. ComClubConnect confirms that the event has been deleted.
@@ -429,7 +432,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User performs UC1: list members.
+1. User performs [<u>UC1: list members</u>](#use-case-list-members).
 2. User requests to edit a member in the displayed list.
 3. ComCLubConnect edits the specified member.
 4. ComClubConnect confirms that the member has been edited.
@@ -448,7 +451,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User performs UC2: list events.
+1. User performs [<u>UC2: list events</u>](#use-case-list-events).
 2. User requests to edit an event in the displayed list.
 3. ComCLubConnect edits the specified event.
 4. ComClubConnect confirms that the event has been edited.
@@ -467,7 +470,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User performs UC1: list members.
+1. User performs [<u>UC1: list members</u>](#use-case-list-members).
 2. User requests to find members in the displayed list.
 3. ComCLubConnect checks input and displays filtered list containing members that meet the filter requirements.
 4. ComClubConnect confirms that the members have been found.
@@ -484,7 +487,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User performs UC1: list events.
+1. User performs [<u>UC2: list events</u>](#use-case-list-events).
 2. User requests to find events in the displayed list.
 3. ComCLubConnect checks input and displays filtered list containing events that meet the filter requirement.
 4. ComClubConnect confirms that the events have been found.
@@ -575,6 +578,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 1a1. ComClubConnect informs user on the already existing alias command.
     - Use case resumes at step 1.
 
+**UC16: Mark a member's attendance for an event**
+
+**MSS**
+
+1. User performs [<u>UC1: list members</u>](#use-case-list-members).
+2. User performs [<u>UC2: list events</u>](#use-case-list-events).
+3. User requests to mark a particular member's attendance for a particular event.
+4. ComClubConnect marks the attendance of the member as requested by user.
+5. ComClubConnect confirms that the member's attendance for the event was marked.
+   Use case ends.
+
+**Extensions**
+
+- 3a. ComClubConnect detects input is invalid.
+    - 1a1. ComClubConnect informs user on the invalid input.
+    - Use case resumes at step 3.
+
+**UC17: Unmark a member's attendance for an event**
+
+**MSS**
+
+1. User performs [<u>UC1: list members</u>](#use-case-list-members).
+2. User performs [<u>UC2: list events</u>](#use-case-list-events).
+3. User requests to unmark a particular member's attendance for a particular event.
+4. ComClubConnect unmarks the attendance of the member as requested by user.
+5. ComClubConnect confirms that the member's attendance for the event was unmarked.
+   Use case ends.
+
+**Extensions**
+
+- 3a. ComClubConnect detects input is invalid.
+    - 1a1. ComClubConnect informs user on the invalid input.
+    - Use case resumes at step 3.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` installed.
@@ -626,7 +663,39 @@ testers are expected to do more *exploratory* testing.
    2b. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Deleting a members/event
+[//]: # (### Adding a member/event)
+
+[//]: # ()
+[//]: # (1. Adding a member/event)
+
+[//]: # ()
+[//]: # (   1a. Prerequisites: None)
+
+[//]: # (   )
+[//]: # (   1b. Test case 1: `add member n/Jean Doe p/98765432 e/jean@u.nus.edu y/2 r/President`<br>)
+
+[//]: # ( )
+[//]: # (   Expected: Jean Doe is added into member's list. Details of the added member will be )
+### Adding a member/event
+
+1. Adding a new member/event
+
+   1a. Prerequisites: None.
+
+   1b. Test case 1: `add member n/Jean Doe p/98765432 e/jean@u.nus.edu y/2 r/President`<br>
+   Expected: Jean Doe is added into the member's list. Details of the added member shown in the status message.
+
+   1c. Test case 2: `add event n/Orientation d/2025-08-01T18:00 v/NUS`<br>
+   Expected: Event Orientation is added into the event's list. Details of the added event shown in the status message.
+
+   1d. Invalid test case: `add member n/ p/`<br>
+   Expected: Error message displayed indicating missing required fields.
+
+   1e. Other incorrect add commands to try: `add`, `add n/`, `...` <br>
+   Expected: Similar to previous.
+2. _{ more test cases …​ }_
+
+### Deleting a member/event
 
 1. Deleting a member/event while all members/events are being shown
 
@@ -637,13 +706,26 @@ testers are expected to do more *exploratory* testing.
 
    1c. Test case 2: `delete event 1`<br>
        Expected: First event is deleted from the list. Details of the deleted event shown in the status message.
+
    1d. Test case 3: `delete member 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1e. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+2. _{ more test cases …​ }_
 
-1. _{ more test cases …​ }_
+### Listing members/events
+
+1. Viewing all members/events
+
+   1a. Test case 1: `list members`<br>
+   Expected: All members are displayed in the list.
+
+   1b. Test case 2: `list events`<br>
+   Expected: All events are displayed in the list.
+
+   1c. Other incorrect list commands to try: `list`, `list x`<br>
+   Expected: Error details shown in the status message. Status bar remains the same.
 
 ### Saving data
 

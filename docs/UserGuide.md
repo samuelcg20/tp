@@ -9,8 +9,6 @@ title: ComClubConnect User Guide
     top: 120px;
     right: 20px;
     width: 240px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
     padding: 1rem;
     font-size: 0.95rem;
     z-index: 1000;
@@ -19,6 +17,11 @@ title: ComClubConnect User Guide
     list-style-type: none;
     padding-left: 0;
     margin: 0;
+    }
+    .quick-links ul ul {
+    margin-left: 1rem;
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
     }
     .quick-links li {
     margin-bottom: 0.4rem;
@@ -68,8 +71,22 @@ title: ComClubConnect User Guide
         <li><a href="#about-this-guide">About This Guide</a></li>
         <li><a href="#quick-start">Quick Start</a></li>
         <li><a href="#quick-cli-tutorial">Quick CLI Tutorial</a></li>
-        <li><a href="#features">Features</a></li>
+        <li>
+            <a href="#features">Features</a>
+            <ul>
+                <li><a href="#viewing-help--help">Viewing Help</a></li>
+                <li><a href="#guided-tour">Guided Tour</a></li>
+                <li><a href="#adding-entries--add">Adding Entries</a></li>
+                <li><a href="#listing-entries--list">Listing Entries</a></li>
+                <li><a href="#editing-entries--edit">Editing Entries</a></li>
+                <li><a href="#finding-entries--find">Finding Entries</a></li>
+                <li><a href="#deleting-entries--delete">Deleting Entries</a></li>
+                <li><a href="#clearing-entries--clear">Clearing Entries</a></li>
+                <li><a href="#exiting--exit">Exiting</a></li>
+            </ul>
+        </li>
         <li><a href="#saving-your-data">Saving Your Data</a></li>
+        <li><a href="#editing-the-data-file-advanced">Editing the Data File</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#troubleshooting">Troubleshooting</a></li>
         <li><a href="#known-issues">Known Issues</a></li>
@@ -78,7 +95,9 @@ title: ComClubConnect User Guide
 </div>
 
 
-<div style="margin-right: 80px;" markdown="1">
+
+<div markdown="1">
+<a id="top"></a>
 
 ComClubConnect is a desktop application designed for **NUS CCA leaders** to **manage members and events** efficiently.  
 It is optimised for use via a **Command Line Interface (CLI)** while retaining an **intuitive Graphical User Interface (GUI)**.
@@ -88,7 +107,25 @@ If you are a fast typer, ComClubConnect enables you to track members, plan event
 ---
 
 ## Table of Contents
-{:toc}
+- [About This Guide](#about-this-guide)
+- [Quick Start](#quick-start)
+- [Quick CLI Tutorial](#quick-cli-tutorial)
+- [Features](#features)
+    - [Viewing Help — `help`](#viewing-help--help)
+    - [Guided Tour — `guidedtour`](#guided-tour)
+    - [Adding Entries — `add`](#adding-entries--add)
+    - [Listing Entries — `list`](#listing-entries--list)
+    - [Editing Entries — `edit`](#editing-entries--edit)
+    - [Finding Entries — `find`](#finding-entries--find)
+    - [Deleting Entries — `delete`](#deleting-entries--delete)
+    - [Clearing Entries — `clear`](#clearing-entries--clear)
+    - [Exiting — `exit`](#exiting--exit)
+- [Saving Your Data](#saving-your-data)
+- [Editing the Data File (Advanced)](#editing-the-data-file-advanced)
+- [FAQ](#faq)
+- [Troubleshooting](#troubleshooting)
+- [Known Issues](#known-issues)
+- [Command Summary](#command-summary)
 
 
 
@@ -114,7 +151,7 @@ How to use this guide:
 - Features: Detailed explanations of each command, including syntax, usage steps, examples, and helpful notes.
 - Troubleshooting & FAQ: Find solutions to common issues and answers to frequently asked questions.
 
-[Back to top](#comclubconnect-user-guide)
+[Back to top](#top)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -202,7 +239,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 - For more details on the commands, see [Features](#features).
 
 
-[Back to top](#comclubconnect-user-guide)
+[Back to top](#top)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -253,7 +290,7 @@ Format: `help`
 
 
 
-### Guided Tour — `guidedtour`
+#### Guided Tour
 
 The green button from the Help window opens the Guided Tour, which showcases the key features of the Address Book interface.
 
@@ -466,6 +503,8 @@ Exits the program.
 
 Format: `exit`
 
+[Back to top](#top)
+
 --------------------------------------------------------------------------------------------------------------------
 
 
@@ -474,6 +513,7 @@ Format: `exit`
 
 Data is saved to disk automatically after any command that changes data. No manual save is needed.
 
+[Back to top](#top)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -489,7 +529,7 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 
 
-[Back to top](#comclubconnect-user-guide)
+[Back to top](#top)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -549,7 +589,7 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 
 
-[Back to top](#comclubconnect-user-guide)
+[Back to top](#top)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -592,7 +632,7 @@ Problem: “Could not save data due to insufficient permissions …”
 
 
 
-[Back to top](#comclubconnect-user-guide)
+[Back to top](#top)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -609,7 +649,7 @@ Problem: “Could not save data due to insufficient permissions …”
 
 
 
-[Back to top](#comclubconnect-user-guide)
+[Back to top](#top)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -692,6 +732,6 @@ Problem: “Could not save data due to insufficient permissions …”
 </div>
 
 
-[Back to top](#comclubconnect-user-guide)
+[Back to top](#top)
 
 </div>
