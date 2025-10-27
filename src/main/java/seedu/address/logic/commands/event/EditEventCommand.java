@@ -160,8 +160,9 @@ public class EditEventCommand extends EditCommand {
         EventName updatedEventName = editEventDescriptor.getEventName().orElse(eventToEdit.getName());
         Date updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
         Venue updatedVenue = editEventDescriptor.getVenue().orElse(eventToEdit.getVenue());
+        String attendanceList = eventToEdit.getAttendanceList(); // Preserve attendance list
 
-        return new Event(updatedEventName, updatedDate, updatedVenue);
+        return new Event(updatedEventName, updatedDate, updatedVenue, attendanceList);
     }
 
     @Override
