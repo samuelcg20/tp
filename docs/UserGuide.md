@@ -480,20 +480,36 @@ Create a custom alias for any command word for your greater convenience.
 Format: `alias COMMAND_WORD ALIAS`
 
 
-- Supported `COMMAND_WORD`s: `add`, `edit`, `delete`, `clear`, `find`, `list`, `help`, `exit`, `alias`.
+- Supported `COMMAND_WORD`s: `add`, `edit`, `delete`, `clear`, `find`, `list`, `help`, `exit`, `alias`, `unalias`, `mark`, `unmark`.
 - `ALIAS` must be a single word, not a built-in command word and not an existing `ALIAS`.
+- To view your stored aliases, enter `alias` with **no keywords**.
 
 
 Examples:
 - `alias delete rm` — After this, `rm member 1` works like `delete member 1`.
 - `alias list ls`
+- `alias` - Your stored aliases will be displayed.
 
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Choose aliases that mirror your team’s habits and keep it short for easier recall, e.g., <code>rm</code> for <code>delete</code>.</div>
 
 
+### Unaliasing Commands — `unalias`
 
+Remove an existing alias for a command word
 
+Format: `unalias COMMAND_WORD`
+
+- Supported `COMMAND_WORD`s: `add`, `edit`, `delete`, `clear`, `find`, `list`, `help`, `exit`, `alias`, `unalias`, `mark`, `unmark`.
+- Enter only **one** `COMMAND_WORD`. 
+- To remove **all** aliases, enter `all` as the `COMMAND_WORD`.
+
+Examples:
+
+- `unalias delete`
+- `unalias all`
+
+<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> To replace an existing <code>alias</code> for a <code>COMMAND_WORD</code>, simply <code>alias NEW_ALIAS_WORD COMMAND_WORD</code> instead of doing <code>unalias COMMAND_WORD</code> followed by <code>alias NEW_ALIAS_WORD COMMAND_WORD</code>.</div>
 
 ### Exiting — `exit`
 
