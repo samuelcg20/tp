@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -18,6 +20,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.member.EditMemberCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditMemberDescriptorBuilder;
@@ -70,6 +74,23 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
+    public static final String VALID_EVENT_NAME_WELCOME_TEA = "Welcome Tea";
+    public static final String VALID_EVENT_NAME_WORKSHOP = "CS Workshop";
+    public static final String VALID_EVENT_DATE_WELCOME_TEA = "2025-09-01T18:00";
+    public static final String VALID_EVENT_DATE_WORKSHOP = "2025-12-30T14:30";
+    public static final String VALID_EVENT_VENUE_WELCOME_TEA = "COM1-01-02";
+    public static final String VALID_EVENT_VENUE_WORKSHOP = "NUS COM2";
+
+    public static final String NAME_DESC_WELCOME_TEA = " " + PREFIX_NAME + VALID_EVENT_NAME_WELCOME_TEA;
+    public static final String NAME_DESC_WORKSHOP = " " + PREFIX_NAME + VALID_EVENT_NAME_WORKSHOP;
+    public static final String DATE_DESC_WELCOME_TEA = " " + PREFIX_DATE + VALID_EVENT_DATE_WELCOME_TEA;
+    public static final String DATE_DESC_WORKSHOP = " " + PREFIX_DATE + VALID_EVENT_DATE_WORKSHOP;
+    public static final String VENUE_DESC_WELCOME_TEA = " " + PREFIX_LOCATION + VALID_EVENT_VENUE_WELCOME_TEA;
+    public static final String VENUE_DESC_WORKSHOP = " " + PREFIX_LOCATION + VALID_EVENT_VENUE_WORKSHOP;
+
+    public static final String INVALID_EVENT_NAME_DESC = " " + PREFIX_NAME + "CS@Workshop"; // '@' not allowed
+    public static final String INVALID_EVENT_DATE_DESC = " " + PREFIX_DATE + "2025/09/01 18:00"; // not ISO format
+    public static final String INVALID_EVENT_VENUE_DESC = " " + PREFIX_LOCATION + "A".repeat(80); // exceeds 75 chars
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
@@ -124,6 +145,19 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered event list to show only the event at the given {@code targetIndex}.
+     */
+    public static void showEventAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEventList().size());
+
+        Event event = model.getFilteredEventList().get(targetIndex.getZeroBased());
+        final String[] splitName = event.getName().fullName.split("\\s+");
+        model.updateFilteredEventList(new EventNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredEventList().size());
     }
 
 }
