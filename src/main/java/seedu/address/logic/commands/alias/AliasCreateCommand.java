@@ -14,36 +14,40 @@ import seedu.address.model.alias.Alias;
  */
 public class AliasCreateCommand extends AliasCommand {
 
-    private final String aliasWord;
-    private final String commandWord;
+ //   private final String aliasWord;
+ //   private final String commandWord;
+    private final Alias alias;
 
-    /**
-     * Creates an {@code AliasCommand} with the given alias and command words.
-     *
-     * @param aliasWord Alias word to assign.
-     * @param commandWord Command word the alias refers to.
-     */
-    public AliasCreateCommand(String aliasWord, String commandWord) {
-        this.aliasWord = aliasWord;
-        this.commandWord = commandWord;
+//    /**
+//     * Creates an {@code AliasCommand} with the given alias and command words.
+//     *
+//     * @param aliasWord Alias word to assign.
+//     * @param commandWord Command word the alias refers to.
+//     */
+//    public AliasCreateCommand(String aliasWord, String commandWord) {
+//        this.aliasWord = aliasWord;
+//        this.commandWord = commandWord;
+//    }
+
+    public AliasCreateCommand(Alias alias) {
+        this.alias = alias;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasAlias(aliasWord)) {
+        if (model.hasAlias(alias)) {
             throw new CommandException("Alias already exists. Choose another name");
         }
 
-        if (model.hasCommand(commandWord)) {
-            model.removeExistingAlias(commandWord);
-            model.addAlias(new Alias(commandWord, aliasWord));
-            return new CommandResult("Note that this replaces your existing alias for " + commandWord);
+        if (model.hasCommand(alias)) {
+            model.replaceAlias(alias);
+            return new CommandResult("Note that this replaces your existing alias for " + alias.getCommandWord());
         }
 
-        model.addAlias(new Alias(commandWord, aliasWord));
-        return new CommandResult("Alias created for " + commandWord);
+        model.addAlias(alias);
+        return new CommandResult("Alias created for " + alias.getCommandWord());
     }
 
     @Override
@@ -58,16 +62,13 @@ public class AliasCreateCommand extends AliasCommand {
         }
 
         AliasCreateCommand otherAliasCreateCommand = (AliasCreateCommand) other;
-        return this.aliasWord.equals(otherAliasCreateCommand.aliasWord)
-                &&
-                this.commandWord.equals(otherAliasCreateCommand.commandWord);
+        return this.alias.equals(alias);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("aliasWord", aliasWord)
-                .add("commandWord", commandWord)
+                .add("alias", alias)
                 .toString();
     }
 }

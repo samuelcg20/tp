@@ -20,27 +20,12 @@ import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.commands.member.ExitCommand;
 import seedu.address.logic.commands.member.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.alias.Alias;
 
 /**
  * Parses input arguments and creates a new UnaliasCommandParser object
  */
 public class UnaliasCommandParser implements Parser<UnaliasCommand> {
-
-    public static final Set<String> SET_OF_COMMANDS = new HashSet<>(Arrays.asList(
-            AddCommand.COMMAND_WORD,
-            EditCommand.COMMAND_WORD,
-            DeleteCommand.COMMAND_WORD,
-            ClearCommand.COMMAND_WORD,
-            FindCommand.COMMAND_WORD,
-            ListCommand.COMMAND_WORD,
-            ExitCommand.COMMAND_WORD,
-            HelpCommand.COMMAND_WORD,
-            AliasCommand.COMMAND_WORD,
-            UnaliasCommand.COMMAND_WORD,
-            MarkCommand.COMMAND_WORD,
-            UnmarkCommand.COMMAND_WORD,
-            "all"
-    ));
 
     @Override
     public UnaliasCommand parse(String args) throws ParseException {
@@ -52,8 +37,10 @@ public class UnaliasCommandParser implements Parser<UnaliasCommand> {
         }
 
         String commandWordToRemove = trimmedArgsParts[0].trim();
+        boolean isValidCommandWord = !Alias.SET_OF_COMMANDS.contains(commandWordToRemove)
+                && !commandWordToRemove.equalsIgnoreCase("all");
 
-        if (!SET_OF_COMMANDS.contains(commandWordToRemove)) {
+        if (isValidCommandWord) {
             throw new ParseException(String.format(MESSAGE_UNKNOWN_COMMAND, AliasCommand.MESSAGE_USAGE));
         }
 

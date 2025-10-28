@@ -22,6 +22,7 @@ import seedu.address.logic.commands.alias.AliasListCommand;
 import seedu.address.logic.commands.member.ExitCommand;
 import seedu.address.logic.commands.member.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.alias.Alias;
 
 /**
  * Parses input arguments and creates a new AliasCommandParser object
@@ -64,16 +65,10 @@ public class AliasCommandParser implements Parser<AliasCommand> {
 
         String commandWord = trimmedArgsParts[0];
         String aliasWord = trimmedArgsParts[1];
+        Alias alias = ParserUtil.parseAlias(commandWord, aliasWord);
+        return new AliasCreateCommand(alias);
 
-        if (!SET_OF_COMMANDS.contains(commandWord)) {
-            throw new ParseException(String.format(MESSAGE_UNKNOWN_COMMAND, AliasCommand.MESSAGE_USAGE));
-        }
-
-        if (SET_OF_COMMANDS.contains(aliasWord)) {
-            throw new ParseException(String.format("Alias cannot be a command word!", AliasCommand.MESSAGE_USAGE));
-        }
-
-        return new AliasCreateCommand(aliasWord, commandWord);
+       // return new AliasCreateCommand(aliasWord, commandWord);
     }
 
 }

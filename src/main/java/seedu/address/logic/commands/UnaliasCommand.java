@@ -55,7 +55,7 @@ public class UnaliasCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NOT_FOUND, commandWordToRemove));
         }
 
-        model.removeExistingAlias(commandWordToRemove);
+        model.removeAlias(commandWordToRemove);
         return new CommandResult(String.format(MESSAGE_SUCCESS, commandWordToRemove));
     }
 
