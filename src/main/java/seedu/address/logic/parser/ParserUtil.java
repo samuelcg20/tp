@@ -47,11 +47,11 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
+        String normalizedName = Name.normalizeWhitespace(name);
+        if (!Name.isValidName(normalizedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Name(normalizedName);
     }
 
     /**
@@ -176,11 +176,11 @@ public class ParserUtil {
      */
     public static EventName parseEventName(String eventName) throws ParseException {
         requireNonNull(eventName);
-        String trimmedEventName = eventName.trim();
-        if (!EventName.isValidEventName(trimmedEventName)) {
+        String normalizedEventName = EventName.normalizeWhitespace(eventName);
+        if (!EventName.isValidEventName(normalizedEventName)) {
             throw new ParseException(EventName.MESSAGE_CONSTRAINTS);
         }
-        return new EventName(trimmedEventName);
+        return new EventName(normalizedEventName);
     }
 
     /**
