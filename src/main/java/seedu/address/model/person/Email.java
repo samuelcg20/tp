@@ -13,8 +13,8 @@ public class Email {
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@u.nus.edu "
             + "and adhere to the following constraints:\n"
             + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
-            + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special "
-            + "characters.\n"
+            + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part should also not start or end with "
+            + "any special characters.\n"
             + "2. The domain must be exactly '@u.nus.edu'.";
     // alphanumeric and special characters
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
