@@ -82,6 +82,8 @@ title: ComClubConnect User Guide
                 <li><a href="#finding-entries--find">Finding Entries</a></li>
                 <li><a href="#deleting-entries--delete">Deleting Entries</a></li>
                 <li><a href="#clearing-entries--clear">Clearing Entries</a></li>
+                <li><a href="#marking-attendance--mark">Marking Attendance</a></li>
+                <li><a href="#unmarking-attendance--unmark">Unmarking Attendance</a></li>
                 <li><a href="#exiting--exit">Exiting</a></li>
             </ul>
         </li>
@@ -119,6 +121,8 @@ If you are a fast typer, ComClubConnect enables you to track members, plan event
     - [Finding Entries — `find`](#finding-entries--find)
     - [Deleting Entries — `delete`](#deleting-entries--delete)
     - [Clearing Entries — `clear`](#clearing-entries--clear)
+    - [Marking Attendance — `mark`](#marking-attendance--mark)
+    - [Unmarking Attendance — `unmark`](#unmarking-attendance--unmark)
     - [Exiting — `exit`](#exiting--exit)
 - [Saving Your Data](#saving-your-data)
 - [Editing the Data File (Advanced)](#editing-the-data-file-advanced)
@@ -229,7 +233,9 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
     * `list member` : Lists all members.
     * `list event` : Lists all events.
     * `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President` : Adds a member named John Doe.
-    * `add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02` : Adds an event.
+    * `add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02` : Adds an event named Welcome Tea.
+    * `mark m/1 e/1` : Marks attendance for member 1 (John Doe) for event 1 (Welcome Tea).
+    * `unmark m/1 e/2` : Removes attendance for member 1 (John Doe) for event 1 (Welcome Tea).
     * `delete member 3` : Deletes the 3rd member shown in the current list.
     * `clear event` : Deletes all events.
     * `exit` : Exits the app.
@@ -259,6 +265,9 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 - Items in square brackets are optional. Items marked with `…` can repeat, including zero times.
 - Parameters must follow the order for a command.
 - Extraneous parameters for commands that do not take parameters (such as `help` and `exit`) are ignored.
+- Command words and prefixes are case-sensitive
+- Leading and trailing spaces around the entire command, `TYPE` and each parameter value are ignored
+- Internal spaces are kept as typed unless a field forbids spaces (e.g. phone numbers must not contain internal spaces)
 
 **Prefix reference used in commands involving members**
 - `n/` name
@@ -298,97 +307,113 @@ The green button from the Help window opens the Guided Tour, which showcases the
 
 The Guided Tour walks you through major areas of the application — such as the **Menu Bar**, **Command Box**, **Result Display**, **Member/Event List Display**, and **Status Bar** — with color-coded highlights and brief explanations to help you get familiar with the interface.
 
+
+
+
 ### Adding Entries — `add`
 
 
 Adds a member or an event.
 
 
-Format (member): `add member n/NAME p/PHONE e/EMAIL y/YEAR r/ROLE…`
+**Members:**
 
+Format: `add member n/NAME p/PHONE e/EMAIL y/YEAR r/ROLE [r/ROLE]…`
 
-- `PHONE` must be 8 digits and start with `8` or `9`.
-- `EMAIL` must be a valid NUS email ending with `@u.nus.edu`.
-- `YEAR` must be one of `1`, `2`, `3`, or `4`.
-- At least one `r/ROLE` must be provided; you can specify multiple roles.
-- Duplicate check: member names are matched case-insensitively. Two members with the same name are considered duplicates.
+| Field            | Constraints                                                                                                                                                                                                                                                                            |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **NAME (`n/`)**  | - Alphanumeric and spaces only <br> - Extra internal spaces (i.e. more than one) will be allowed for input but removed when stored                                                                                                                                                     |
+| **PHONE (`p/`)** | - Must not be blank <br> - Digits only <br> - Exactly 8 digits <br> - Must start with 8 or 9 <br> - must not contain spaces between the digits                                                                                                                                         |
+| **EMAIL (`e/`)** | - Must not be blank <br> - Must be of the format `local-part@u.nus.edu` <br> - `local-part` should only contain alphanumeric characters and these special characters `+_.-`. It should also not start or end with any special character <br> - The domain must be exactly '@u.nus.edu' |
+| **YEAR (`y/`)**  | - Must not be blank <br> - Only be `1`, `2`, `3`, or `4`                                                                                                                                                                                                                               |
+| **ROLE (`r/`)**  | - At least one role is required i.e. must not be blank <br> - Each role is a single alphanumeric word with no internal spaces <br> - To add additonal roles, use `r/` prefix again before the additional role                                                                          |
 
+<div style="border: 2px solid #ccc; padding: 10px; border-radius: 6px;">
+  <a id="duplicate-members"></a>
+  <b>Attempts to duplicate members are not allowed </b>
+  <ul style="margin: 8px 0 0 20px;">
+    <li>Two members with the <u>same name</u> are considered duplicates.</li>
+    <li>Name matching is case-insensitive and ignores extra internal spaces (e.g. `John  DoE` equals `john doe`).</li>
+  </ul>
+</div>
 
 Examples:
 - `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President`
 - `add member n/Jane Tan p/91234567 e/janetan@u.nus.edu y/3 r/Treasurer r/Logistics`
 
+**Events:**
 
-Format (event): `add event n/NAME d/DATE_TIME l/LOCATION`
+- Format: `add event n/NAME d/DATE_TIME v/VENUE`
 
-- `DATE_TIME` must be ISO local date-time: `YYYY-MM-DDTHH:MM` (e.g., `2025-09-01T18:00`).
+| Field                | Constraints                                                                                                   |
+| -------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **NAME (`n/`)**      | - Alphanumeric and spaces only <br> - Extra internal spaces will be allowed for input but removed when stored |
+| **DATE_TIME (`d/`)** | - Should be in ISO format (no seconds) `YYYY-MM-DDThh:mm`                                                     |
+| **VENUE (`v/`)**     |                                                                                                               |
 
+<div style="border: 2px solid #ccc; padding: 10px; border-radius: 6px;">
+  <a id="duplicate-events"></a>
+  <b>Attempts to duplicate events are not allowed </b>
+  <ul style="margin: 8px 0 0 20px;">
+    <li>Two events with the <u>same name</u> and <u>same date</u> are considered duplicates.</li>
+    <li>Name matching is case-insensitive and ignores extra internal spaces (e.g. `John  DoE` equals `john doe`).</li>
+  </ul>
+</div>
 
 Examples:
-- `add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02`
-- `add event n/CS Workshop d/2025-12-30T14:30 l/NUS COM2`
+- `add event n/Welcome Tea d/2025-09-01T18:00 v/COM1-01-02`
+- `add event n/CS Workshop d/2025-12-30T14:30 v/NUS COM2`
 
-
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Use multiple <code>r/</code> prefixes to add several roles at once, e.g., <code>r/President r/TechLead</code>.</div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> Dates must include the <code>T</code> separator (e.g., <code>2025-09-01T18:00</code>). Emails must end with <code>@u.nus.edu</code>.</div>
-
-
-
+<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Since roles are a single alphanumeric word and cannot contain spaces, consider using CamelCase (e.g. <code>r/TechLead</code>).</div>
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> All required prefixes must appear exactly once: <code>n/</code>, <code>p/</code>, <code>e/</code>, <code>y/</code> (member) and <code>n/</code>, <code>d/</code>, <code>v/</code> (event). Only <code>r/</code> may repeat, and at least one <code>r/</code> is required.</div>
 
 ### Listing Entries — `list`
 
-
-Shows members or events and switches the main list view accordingly.
-
+Displays the entire current list of members or events.
+Both lists show entries in the order they were added (i.e. newest at the bottom).
 
 Format: `list TYPE`
 
-
 - `TYPE` is either `member` or `event`.
-
 
 Examples:
 - `list member`
 - `list event`
 
-
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> After a successful <code>add</code> or <code>edit</code>, run <code>list</code> to refresh the view you care about.</div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> Extra words after <code>list TYPE</code> are not allowed (e.g., <code>list member now</code> is invalid).</div>
-
-
-
+<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Running this command resets any previous filters and shows the full list again.</div>
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> Extra inputs after <code>list TYPE</code> are not allowed (e.g., <code>list member now</code> is invalid).</div>
 
 ### Editing Entries — `edit`
 
-
 Edits an existing member or event.
 
+**Members:**
 
-Format (member): `edit member INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/YEAR] [r/ROLE]…`
+Format: `edit member INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/YEAR] [r/ROLE]…`
 
-
-- Edits the member at `INDEX` (1-based) in the displayed members list.
-- At least one optional field must be provided.
+- Edits the member at `INDEX` (1-based) in the currently displayed members list.
+- At least one optional field must be provided and each field is used maximally once.
 - Providing one or more `r/ROLE` values replaces all existing roles.
-- To clear all roles, use `r/` with no value.
-- Changing a member’s name to one that matches an existing member (case-insensitive) is not allowed.
-
+- Editing a member’s `NAME` to one that would create a duplicate is not allowed. See what constitutes as attempting to duplicate in members [here](#duplicate-members).
 
 Examples:
+- `edit member 2 n/Betsy Crower`
 - `edit member 1 p/91234567 e/johndoe@u.nus.edu`
-- `edit member 2 n/Betsy Crower r/` (clears all roles)
 
+**Events:**
 
-Format (event): `edit event INDEX [n/NAME] [d/DATE_TIME] [l/LOCATION]`
+Format: `edit event INDEX [n/NAME] [d/DATE_TIME] [v/VENUE]`
 
+- Edits the event at `INDEX` (1-based) in the currently displayed events list.
+- At least one optional field must be provided and each field is used maximally once.
+- Editing a event’s `NAME` and/or `DATE_TIME` to one that would create a duplicate is not allowed. See what constitutes as attempting to duplicate in events [here](#duplicate-events).
 
 Examples:
-- `edit event 1 n/Welcome and Games Night`
-- `edit event 2 d/2025-10-05T19:00 l/COM3-01-12`
-
+- `edit event 1 n/Welcome`
+- `edit event 2 d/2025-10-05T19:00 v/COM3-01-12`
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> You can edit multiple fields in one command, e.g., <code>edit member 3 n/New Name p/91234567</code>.</div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> Ensure the <code>INDEX</code> refers to the currently displayed list (members vs. events).</div>
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>
 
 
 
@@ -494,6 +519,49 @@ Examples:
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Choose aliases that mirror your team’s habits and keep it short for easier recall, e.g., <code>rm</code> for <code>delete</code>.</div>
 
 
+
+
+### Marking Attendance — `mark`
+
+Marks a member's attendance for a specific event.
+Effect: Increases the member's Attendance count by 1; Adds the member's name to the event's Attendees
+
+Format: `mark m/MEMBER_INDEX e/EVENT_INDEX` or `mark e/EVENT_INDEX m/MEMBER_INDEX`
+
+- `MEMBER_INDEX` and `EVENT_INDEX` (both 1-based) refer to the index numbers shown in their respective currently displayed lists.
+- Both pararmeters are required exactly once: `m/` (member index) and `e/` (event index).
+- Duplicate check: a member already marked for an event cannot be marked again.
+
+Examples:
+
+- `mark m/1 e/2`
+
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>
+
+
+
+
+### Unmarking Attendance — `unmark`
+
+Removes a member's attendance from a specific event.
+Effect: Decreases the member's Attendance count by 1; Removes the member's name to the event's Attendees
+
+Format: `unmark m/MEMBER_INDEX e/EVENT_INDEX` or `unmark e/EVENT_INDEX m/MEMBER_INDEX`
+
+- `MEMBER_INDEX` and `EVENT_INDEX` refer to the index numbers shown in their respective currently displayed lists and must be positive integers.
+- Both parameters are required exactly once: `m/` (member index) and `e/` (event index).
+- Duplicate check: you can only unmark if the member is currently marked for that event.
+
+Examples:
+
+- `unmark m/1 e/2`
+
+<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> If unsure whether a member is marked for an event, unmarking will tell you if there is nothing to unmark. Use <code>list member</code> and <code>list event</code> to verify indices first.</div>
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>>
+
+
+
+
 ### Unaliasing Commands — `unalias`
 
 Remove an existing alias for a command word
@@ -520,6 +588,29 @@ Exits the program.
 Format: `exit`
 
 [Back to top](#top)
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## Sample Data on First Run
+
+If you don’t have existing data files, the app starts with a small set of sample entries so you can try commands immediately.
+
+- Sample members (name — phone — email — year — roles):
+  - Alex Yeoh — 87438807 — alexyeoh@u.nus.edu — Year 1 — VicePresident
+  - Bernice Yu — 99272758 — berniceyu@u.nus.edu — Year 2 — OperationsHead, Treasurer
+  - Charlotte Oliveiro — 93210283 — charlotte@u.nus.edu — Year 3 — MarketingHead
+  - David Li — 91031282 — lidavid@u.nus.edu — Year 4 — President
+  - Irfan Ibrahim — 92492021 — irfan@u.nus.edu — Year 1 — Member
+  - Roy Balakrishnan — 92624417 — royb@u.nus.edu — Year 2 — Secretriat
+
+- Sample aliases (available only if no alias data exists yet):
+  - delete → d
+  - add → a
+  - list → l
+
+Note:
+- Once you save your own data, subsequent runs will load your saved data instead of the samples.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -636,6 +727,15 @@ Problem: “Dates should be in ISO format YYYY-MM-DDTHH:MM”
 - Solution: Enter `YYYY-MM-DDTHH:MM` (e.g., `2025-10-05T19:00`).
 
 
+Problem: “Member is already marked for attendance at this event”
+- Reason: Duplicate attendance.
+- Solution: No action needed or use `unmark m/<MEMBER_INDEX> e/<EVENT_INDEX>` first.
+
+Problem: “Member is not marked at this event”
+- Reason: Nothing to unmark for the chosen member/event.
+- Solution: Verify indices (use `list member` and `list event`) and then `mark` if needed.
+
+
 Problem: “Unknown command”
 - Reason: Typos or using a command that does not exist.
 - Solution: Run `help` to see supported commands. Consider creating an alias for frequently used commands.
@@ -738,6 +838,14 @@ Problem: “Could not save data due to insufficient permissions …”
     <tr>
     <td><strong>unalias</strong></td>
     <td><code>unalias delete</code>, <code>unalias all</code></td>
+    </tr>
+    <tr>
+    <td><strong>mark</strong></td>
+    <td><code>mark m/1 e/2</code></td>
+    </tr>
+    <tr>
+    <td><strong>unmark</strong></td>
+    <td><code>unmark m/1 e/2</code></td>
     </tr>
     <tr>
     <td><strong>help</strong></td>

@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Year {
 
-    public static final String MESSAGE_CONSTRAINTS = "Year must be 1, 2, 3 or 4.";
+    public static final String MESSAGE_CONSTRAINTS = "Year must only be 1, 2, 3 or 4.";
     public static final String VALIDATION_REGEX = "[1-4]";
 
     public final String value;

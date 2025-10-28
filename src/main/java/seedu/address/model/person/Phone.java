@@ -9,10 +9,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Phone {
 
-    public static final String MESSAGE_CONSTRAINTS_NUMBER = "Phone number should only contain numbers";
+    public static final String MESSAGE_CONSTRAINTS_NUMBER = "Phone number should only contain digits";
     public static final String MESSAGE_CONSTRAINTS_LENGTH = "Phone number must be exactly 8 digits.";
     public static final String MESSAGE_CONSTRAINTS_START = "Phone number must start with 8 or 9.";
-    public static final String MESSAGE_CONSTRAINTS_SPACES = "Phone number must not contain spaces between digits.";
+    public static final String MESSAGE_CONSTRAINTS_SPACES = "Phone number must not contain spaces between the digits.";
     private static final String DIGITS_ONLY_REGEX = "\\d+";
     private static final String INTERNAL_WHITESPACE_REGEX = ".*\\s+.*";
     private static final int REQUIRED_LENGTH = 8;
