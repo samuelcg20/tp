@@ -42,7 +42,8 @@ public class ClearMemberCommandTest {
 
         // Use a custom assertion that accounts for showMembers being true
         ClearMemberCommand command = new ClearMemberCommand();
-        CommandResult expectedResult = new CommandResult(ClearMemberCommand.MESSAGE_SUCCESS, false, false, true, false);
+        CommandResult expectedResult = new CommandResult(ClearMemberCommand.MESSAGE_SUCCESS,
+                false, false, true, false);
 
         assertCommandSuccess(command, model, expectedResult, expectedModel);
     }
@@ -90,7 +91,7 @@ public class ClearMemberCommandTest {
 
         // Verify the model state
         assertEquals(0, model.getAddressBook().getPersonList().size());
-        assertEquals(initialMemberCount, expectedModel.getAddressBook().getPersonList().size()); // expectedModel unchanged
+        assertEquals(initialMemberCount, expectedModel.getAddressBook().getPersonList().size());
     }
 
     @Test
