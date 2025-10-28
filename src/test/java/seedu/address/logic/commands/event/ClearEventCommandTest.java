@@ -1,10 +1,10 @@
-/*
 package seedu.address.logic.commands.event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEvents.getTypicalEvents;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import seedu.address.model.event.Event;
 
 /**
  * Contains unit tests for {@code ClearEventCommand}.
-
+ */
 public class ClearEventCommandTest {
 
     private Model model;
@@ -51,6 +51,7 @@ public class ClearEventCommandTest {
     public void execute_nonEmptyAddressBook_success() {
         // Verify model has events before clearing
         assertFalse(model.getAddressBook().getEventList().isEmpty());
+        int initialEventCount = model.getAddressBook().getEventList().size();
 
         ClearEventCommand command = new ClearEventCommand();
         CommandResult result = command.execute(model);
@@ -64,6 +65,9 @@ public class ClearEventCommandTest {
 
         // Verify model state after execution
         assertTrue(model.getAddressBook().getEventList().isEmpty());
+
+        // Verify that expected number of events were cleared
+        assertEquals(initialEventCount, getTypicalEvents().size());
     }
 
     @Test
@@ -71,7 +75,10 @@ public class ClearEventCommandTest {
         // Get initial event count
         List<Event> initialEvents = model.getAddressBook().getEventList();
         int initialSize = initialEvents.size();
-        assertTrue(initialSize > 0, "Model should start with events");
+        assertTrue(initialSize > 0, "Model should start with " + initialSize + " events");
+
+        // Verify we have the expected typical events
+        assertEquals(getTypicalEvents().size(), initialSize);
 
         // Execute clear command
         new ClearEventCommand().execute(model);
@@ -85,25 +92,29 @@ public class ClearEventCommandTest {
     @Test
     public void execute_attendanceCleanupPerformed() {
         // This test verifies that cleanupEventAttendance is called for each event
-        // You might need to mock or spy on the model to verify this behavior
-        // For now, we'll verify the end state
+        // For now, we'll verify the end state and that all events are properly cleared
 
         int initialEventCount = model.getAddressBook().getEventList().size();
-        assertTrue(initialEventCount > 0, "Should have events to clear");
+        assertTrue(initialEventCount > 0, "Should have " + initialEventCount + " events to clear");
+
+        // Verify specific events exist before clearing
+        List<Event> typicalEvents = getTypicalEvents();
+        for (Event event : typicalEvents) {
+            assertTrue(model.getAddressBook().getEventList().contains(event));
+        }
 
         new ClearEventCommand().execute(model);
 
         // Verify events are cleared
         assertTrue(model.getAddressBook().getEventList().isEmpty());
-
-        // Note: To properly test attendance cleanup, you might need to:
-        // 1. Create events with attendance
-        // 2. Verify that person attendance counts are updated when events are cleared
-        // 3. This might be better as an integration test
     }
 
     @Test
     public void execute_multipleClears_success() {
+        // Verify initial state
+        int initialEventCount = model.getAddressBook().getEventList().size();
+        assertTrue(initialEventCount > 0, "Should start with events");
+
         // First clear
         new ClearEventCommand().execute(model);
         assertTrue(model.getAddressBook().getEventList().isEmpty());
@@ -117,14 +128,36 @@ public class ClearEventCommandTest {
     public void execute_verifyModelStateAfterClear() {
         // Store some initial state for verification
         int initialEventCount = model.getAddressBook().getEventList().size();
+        List<Event> initialEvents = List.copyOf(model.getAddressBook().getEventList());
 
         // Execute the command
         new ClearEventCommand().execute(model);
 
         // Verify the model state
         assertEquals(0, model.getAddressBook().getEventList().size());
-        // expectedModel should remain unchanged
+
+        // expectedModel should remain unchanged (not affected by clear operation)
         assertEquals(initialEventCount, expectedModel.getAddressBook().getEventList().size());
+
+        // Verify all initial events are still in expectedModel
+        for (Event event : initialEvents) {
+            assertTrue(expectedModel.getAddressBook().getEventList().contains(event));
+        }
+    }
+
+    @Test
+    public void execute_eventsWithNoAttendance_stillClearsSuccessfully() {
+        // Test that events without attendance are still properly cleared
+        Model modelWithEvents = new ModelManager(getTypicalAddressBook(), new AliasBook(), new UserPrefs());
+
+        // Verify we have events
+        assertFalse(modelWithEvents.getAddressBook().getEventList().isEmpty());
+
+        // Clear events
+        new ClearEventCommand().execute(modelWithEvents);
+
+        // Verify successful clearance
+        assertTrue(modelWithEvents.getAddressBook().getEventList().isEmpty());
     }
 
     @Test
@@ -146,5 +179,3 @@ public class ClearEventCommandTest {
     }
 
 }
-
- */
