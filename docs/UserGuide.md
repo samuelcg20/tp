@@ -75,7 +75,6 @@ title: ComClubConnect User Guide
             <a href="#features">Features</a>
             <ul>
                 <li><a href="#viewing-help--help">Viewing Help</a></li>
-                <li><a href="#guided-tour">Guided Tour</a></li>
                 <li><a href="#adding-entries--add">Adding Entries</a></li>
                 <li><a href="#listing-entries--list">Listing Entries</a></li>
                 <li><a href="#editing-entries--edit">Editing Entries</a></li>
@@ -114,7 +113,6 @@ If you are a fast typer, ComClubConnect enables you to track members, plan event
 - [Quick CLI Tutorial](#quick-cli-tutorial)
 - [Features](#features)
     - [Viewing Help — `help`](#viewing-help--help)
-    - [Guided Tour — `guidedtour`](#guided-tour)
     - [Adding Entries — `add`](#adding-entries--add)
     - [Listing Entries — `list`](#listing-entries--list)
     - [Editing Entries — `edit`](#editing-entries--edit)
@@ -288,25 +286,20 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 
 ### Viewing Help — `help`
 
-Opens the Help window.
+Need help? You can copy the user guide link or click the green button to explore the guided tour.
 
 Format: `help`
 
 ![help message](images/helpMessage.png)
 
-<div markdown="span" class="alert alert-success">✅ <strong>Tip: </strong> <code>F1</code> or use the Help menu to open the Help window quickly.</div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If the Help window is minimized, running <code>help</code> again will not open a new window. Restore the minimized window instead.</div>
-
-
-
 #### Guided Tour
 
-The green button from the Help window opens the Guided Tour, which showcases the key features of the Address Book interface.
+This is an interactive walkthrough that helps you get to know the app. It highlights key components of our application— with color cues and in-depth explanations.
 
 ![Guided Tour Overview](images/annotatedGuidedTour.png)
 
-The Guided Tour walks you through major areas of the application — such as the **Menu Bar**, **Command Box**, **Result Display**, **Member/Event List Display**, and **Status Bar** — with color-coded highlights and brief explanations to help you get familiar with the interface.
-
+<div markdown="span" class="alert alert-success">✅ <strong>Tip: </strong> <code>F1</code> or use the Help menu to open the Help window quickly.</div>
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If the Help window is minimized, running <code>help</code> again will not open a new window. Restore the minimized window instead.</div>
 
 
 
