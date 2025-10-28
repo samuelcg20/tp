@@ -29,11 +29,18 @@ public class EventName {
      * Returns a lowercase, space-normalized version of {@code fullName} for identity comparison.
      */
     public String canonicalForIdentity() {
-        // Trim leading and trailing spaces
-        String trimmed = fullName.trim();
-        // Collapse multiple internal spaces to a single space
-        String collapsed = trimmed.replaceAll(" +", " ");
+        String collapsed = normalizeWhitespace(fullName);
         return collapsed.toLowerCase();
+    }
+
+    /**
+     * Returns the input with leading/trailing spaces removed and multiple internal
+     * spaces collapsed to a single space. Preserves original letter casing.
+     */
+    public static String normalizeWhitespace(String input) {
+        requireNonNull(input);
+        String trimmed = input.trim();
+        return trimmed.replaceAll(" +", " ");
     }
 
     public static boolean isValidEventName(String test) {
