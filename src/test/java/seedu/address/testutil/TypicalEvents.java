@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_WORK
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_VENUE_WELCOME_TEA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_VENUE_WORKSHOP;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

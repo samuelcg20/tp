@@ -69,6 +69,7 @@ title: ComClubConnect User Guide
     <strong>Quick Links</strong>
     <ul>
         <li><a href="#about-this-guide">About This Guide</a></li>
+        <li><a href="#how-to-use-this-guide">How To Use This Guide</a></li>
         <li><a href="#quick-start">Quick Start</a></li>
         <li><a href="#quick-cli-tutorial">Quick CLI Tutorial</a></li>
         <li>
@@ -100,15 +101,15 @@ title: ComClubConnect User Guide
 <div markdown="1">
 <a id="top"></a>
 
-ComClubConnect is a desktop application designed for **NUS CCA leaders** to **manage members and events** efficiently.  
-It is optimised for use via a **Command Line Interface (CLI)** while retaining an **intuitive Graphical User Interface (GUI)**.
+ComClubConnect is a desktop application designed for **NUS CCA leaders** that helps you **manage members, plan events and communicate updates** more efficiently than traditional spreadsheet tools or GUI-only applications.
 
-If you are a fast typer, ComClubConnect enables you to track members, plan events, and communicate updates more efficiently than traditional spreadsheet tools or GUI-only applications.
+It is optimised for use via a **Command Line Interface (CLI)** while retaining an **intuitive Graphical User Interface (GUI)**.
 
 ---
 
 ## Table of Contents
 - [About This Guide](#about-this-guide)
+- [How To Use This Guide](#how-to-use-this-guide)
 - [Quick Start](#quick-start)
 - [Quick CLI Tutorial](#quick-cli-tutorial)
 - [Features](#features)
@@ -139,30 +140,28 @@ If you are a fast typer, ComClubConnect enables you to track members, plan event
 ## About This Guide
 
 
-This guide is written for NUS CCA leaders who need to maintain member records, plan events, and perform routine admin tasks quickly and accurately using a keyboard-first workflow.
+This guide is for NUS CCA leaders like you who want to keep track of members, plan events, and handle routine admin tasks quickly and easily using a keyboard-first workflow.
 
+**What you should know before starting:**
+- You should be comfortable using a command-line interface on Windows, macOS, or Linux.
+- You should know how to copy and paste commands, and edit plain text files.
+- You should be familiar with CCA operations, including roles, member lists, and event details such as dates, times, and venues.
 
-Assumed prior knowledge:
-- Be comfortable using a command-line interface on Windows, macOS, or Linux.
-- Know how to copy and paste commands, and edit plain text files.
-- Be familiar with CCA operations, including roles, member lists, and event details such as dates, times, and venues.
+[Back to table of contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+## How to use this guide
+- [Quick Start](#quick-start): Learn how to open the app and try basic example commands.
+- [Features](#features): Learn what each command does, how to use it step by step, and get examples and helpful tips.
+- [Troubleshooting & FAQ](#faq): Find answers to common problems and questions you might have.
 
-How to use this guide:
-- Quick Start: Learn how to launch the app and try basic example commands.
-- Features: Detailed explanations of each command, including syntax, usage steps, examples, and helpful notes.
-- Troubleshooting & FAQ: Find solutions to common issues and answers to frequently asked questions.
-
-[Back to top](#top)
+[Back to table of contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
+<h2 style="margin-bottom: 0.2em;">Quick Start</h2>
 
-
-
-## Quick Start
-
-### Step 1: Ensure you have Java 17 installed on your computer.<br>
+<h3 style="margin-top: 0.2em;">Step 1: Ensure you have Java 17 installed on your computer.</h3>
 #### Checking your Java version:
 - Open a command terminal
     - **Windows users**: Press Windows + R, type cmd, and press Enter
@@ -180,11 +179,11 @@ How to use this guide:
 - After installation, restart your terminal and repeat the above steps to verify the version again
 
 
-### Step 2: Download ComClubConnect
+<h3 style="margin-top: 0.2em;">Step 2: Download ComClubConnect</h3>
 Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T09-2/tp/releases).
 
 
-### Step 3: Place the file in a folder
+<h3 style="margin-top: 0.2em;">Step 3: Place the file in a folder</h3>
 - Your app comes in a single file that ends with .jar (for example, addressbook.jar). You’ll need to decide where you want to keep this file — this will be your ComClubConnect home folder.
     - Find your downloaded `.jar` file (for example, in your Downloads folder).
     - Right-click the file and choose Copy.
@@ -192,7 +191,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
     - Right-click an empty space and select Paste.
 
 
-### Step 4: Run the application
+<h3 style="margin-top: 0.2em;">Step 4: Run the application</h3>
 - Copy the pathname of the ComCLubConnect home folder
     - **Windows users**: Right click on the folder and select "Copy as path"
     - **Mac users**: Right click on the folder and select "Copy as pathname"
@@ -200,8 +199,11 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 - Open a command terminal as mentioned in step 2
 - Type `cd <copied filepath>` command to enter the folder
 - Type `java -jar addressbook.jar` command to run the application.<br>
-- A GUI similar to the below should appear in a few seconds. Note that the app contains some sample data and the layout is explained in coloured boxes.<br>
-  ![Ui](images/Ui.png)
+- A GUI like the one below will appear on your screen in a few seconds. Note that the app contains some sample data. The layout is explained below.<br>
+
+![Ui](images/Ui.png)
+
+[Back to table of contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -243,7 +245,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 - For more details on the commands, see [Features](#features).
 
 
-[Back to top](#top)
+[Back to table of contents](#table-of-contents)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -579,7 +581,7 @@ Exits the program.
 
 Format: `exit`
 
-[Back to top](#top)
+[Back to table of contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -604,6 +606,8 @@ If you don’t have existing data files, the app starts with a small set of samp
 Note:
 - Once you save your own data, subsequent runs will load your saved data instead of the samples.
 
+[Back to table of contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 
@@ -612,7 +616,7 @@ Note:
 
 Data is saved to disk automatically after any command that changes data. No manual save is needed.
 
-[Back to top](#top)
+[Back to table of contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -628,7 +632,7 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 
 
-[Back to top](#top)
+[Back to table of contents](#table-of-contents)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -688,7 +692,7 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 
 
-[Back to top](#top)
+[Back to table of contents](#table-of-contents)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -740,7 +744,7 @@ Problem: “Could not save data due to insufficient permissions …”
 
 
 
-[Back to top](#top)
+[Back to table of contents](#table-of-contents)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -756,8 +760,7 @@ Problem: “Could not save data due to insufficient permissions …”
 
 
 
-
-[Back to top](#top)
+[Back to table of contents](#table-of-contents)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -852,6 +855,6 @@ Problem: “Could not save data due to insufficient permissions …”
 </div>
 
 
-[Back to top](#top)
+[Back to table of contents](#table-of-contents)
 
 </div>

@@ -79,8 +79,7 @@ public class AddEventCommandTest {
     @Test
     public void execute_eventWithTooLongName_throwsIllegalArgumentException() {
         String longName = "National University Hackathon Challenge 2025";
-        assertThrows(IllegalArgumentException.class,
-                () -> new EventBuilder().withName(longName).build());
+        assertThrows(IllegalArgumentException.class, () -> new EventBuilder().withName(longName).build());
     }
 
     @Test
@@ -111,8 +110,7 @@ public class AddEventCommandTest {
         Event event = new EventBuilder().build();
         AddEventCommand command = new AddEventCommand(event);
         ModelStub modelStubWithEvent = new ModelStubWithEvent(event);
-        assertThrows(CommandException.class, MESSAGE_DUPLICATE_EVENT,
-                () -> command.execute(modelStubWithEvent));
+        assertThrows(CommandException.class, MESSAGE_DUPLICATE_EVENT, () -> command.execute(modelStubWithEvent));
     }
 
     @Test
@@ -121,61 +119,52 @@ public class AddEventCommandTest {
         ModelStub modelStubWithEvent = new ModelStubWithEvent(
                 new EventBuilder().withName("welcome tea").build());
         AddEventCommand command = new AddEventCommand(event);
-        assertThrows(CommandException.class, MESSAGE_DUPLICATE_EVENT,
-                () -> command.execute(modelStubWithEvent));
+        assertThrows(CommandException.class, MESSAGE_DUPLICATE_EVENT, () -> command.execute(modelStubWithEvent));
     }
 
     // === INVALID NAME CASES ===
 
     @Test
     public void execute_invalidNameWithSymbols_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new EventBuilder().withName("Hack@thon2025!").build());
+        assertThrows(IllegalArgumentException.class, () -> new EventBuilder().withName("Hack@thon2025!").build());
     }
 
     @Test
     public void execute_invalidNameEmpty_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new EventBuilder().withName("").build());
+        assertThrows(IllegalArgumentException.class, () -> new EventBuilder().withName("").build());
     }
 
     @Test
     public void execute_invalidNameSpacesOnly_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new EventBuilder().withName("    ").build());
+        assertThrows(IllegalArgumentException.class, () -> new EventBuilder().withName("    ").build());
     }
 
     @Test
     public void execute_invalidNameTooLong_throwsIllegalArgumentException() {
         String name = "Annual Student " + "Hackathon ".repeat(15);
-        assertThrows(IllegalArgumentException.class,
-                () -> new EventBuilder().withName(name).build());
+        assertThrows(IllegalArgumentException.class, () -> new EventBuilder().withName(name).build());
     }
 
     // === INVALID DATE CASES ===
 
     @Test
     public void execute_invalidDateFormatSlash_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new EventBuilder().withDate("2025/09/01 18:00").build());
+        assertThrows(IllegalArgumentException.class, () -> new EventBuilder().withDate("2025/09/01 18:00").build());
     }
 
     @Test
     public void execute_invalidDateFormatText_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new EventBuilder().withDate("Sept 1st 2025 18:00").build());
+        assertThrows(IllegalArgumentException.class, () -> new EventBuilder().withDate("Sept 1st 2025 18:00").build());
     }
 
     @Test
     public void execute_invalidDateTimeMissing_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new EventBuilder().withDate("2025-09-01").build());
+        assertThrows(IllegalArgumentException.class, () -> new EventBuilder().withDate("2025-09-01").build());
     }
 
     @Test
     public void execute_invalidDateTimeTooEarly_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new EventBuilder().withDate("0001-01-01 00:00").build());
+        assertThrows(IllegalArgumentException.class, () -> new EventBuilder().withDate("0001-01-01 00:00").build());
     }
 
     // === INVALID LOCATION CASES ===
@@ -183,8 +172,7 @@ public class AddEventCommandTest {
     @Test
     public void execute_invalidVenueTooLong_throwsIllegalArgumentException() {
         String venue = "LT" + "A".repeat(200);
-        assertThrows(IllegalArgumentException.class,
-                () -> new EventBuilder().withLocation(venue).build());
+        assertThrows(IllegalArgumentException.class, () -> new EventBuilder().withLocation(venue).build());
     }
 
     @Test
@@ -197,8 +185,7 @@ public class AddEventCommandTest {
 
     @Test
     public void execute_invalidVenueEmpty_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new EventBuilder().withLocation("").build());
+        assertThrows(IllegalArgumentException.class, () -> new EventBuilder().withLocation("").build());
     }
 
     // === MISCELLANEOUS / EDGE CASES ===
@@ -232,9 +219,6 @@ public class AddEventCommandTest {
         assertTrue(new AddEventCommand(e).toString().contains("Welcome Tea"));
     }
 
-    /**
-     * A default model stub that has all of the methods failing.
-     */
     /**
      * A default model stub that has all of the methods failing.
      * Replace the previous incomplete ModelStub with this full implementation.
