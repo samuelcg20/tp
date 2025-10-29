@@ -3,11 +3,16 @@ package seedu.address.model.alias;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalAliases.ADD_ALIAS;
+import static seedu.address.testutil.TypicalAliases.CLEAR_ALIAS;
+import static seedu.address.testutil.TypicalAliases.DELETE_ALIAS;
 
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.TypicalAliases;
 
 /**
  * Contains unit tests for {@link AliasBook}.
@@ -24,24 +29,22 @@ public class AliasBookTest {
 
     @Test
     public void addAlias_successfulAddition() {
-        Alias alias = new Alias("add", "a");
-        aliasBook.addAlias(alias);
+        aliasBook.addAlias(ADD_ALIAS);
         assertTrue(aliasBook.isAliasPresent("a"));
         assertTrue(aliasBook.isCommandPresent("add"));
     }
 
     @Test
     public void removeAlias_aliasRemovedSuccessfully() {
-        Alias alias = new Alias("add", "a");
-        aliasBook.addAlias(alias);
-        aliasBook.removeAlias("a");
-        assertFalse(aliasBook.isAliasPresent("a"));
+        aliasBook.addAlias(DELETE_ALIAS);
+        aliasBook.removeAlias("del");
+        assertFalse(aliasBook.isAliasPresent("del"));
     }
 
     @Test
     public void getActualCommandWord_existingAlias_returnsCommand() {
-        aliasBook.addAlias(new Alias("delete", "rm"));
-        assertEquals("delete", AliasBook.getActualCommandWord("rm"));
+        aliasBook.addAlias(CLEAR_ALIAS);
+        assertEquals("clear", AliasBook.getActualCommandWord("c"));
     }
 
     @Test
@@ -51,35 +54,43 @@ public class AliasBookTest {
 
     @Test
     public void getAliasForCommandWord_existingCommand_returnsAlias() {
-        aliasBook.addAlias(new Alias("add", "a"));
+        aliasBook.addAlias(ADD_ALIAS);
         assertEquals("a", aliasBook.getAliasForCommandWord("add"));
     }
 
     @Test
     public void getAliasForCommandWord_nonExistingCommand_returnsNull() {
-        assertEquals(null, aliasBook.getAliasForCommandWord("invalid"));
+        assertEquals(null, aliasBook.getAliasForCommandWord("nonexistent"));
     }
 
     @Test
     public void isEmpty_afterAddingAndClearing_returnsTrue() {
-        aliasBook.addAlias(new Alias("add", "a"));
+        aliasBook.addAlias(ADD_ALIAS);
         aliasBook.clear();
         assertTrue(aliasBook.isEmpty());
     }
 
     @Test
     public void getAliasList_returnsCorrectList() {
-        aliasBook.addAlias(new Alias("add", "a"));
-        aliasBook.addAlias(new Alias("delete", "d"));
+        aliasBook.addAlias(ADD_ALIAS);
+        aliasBook.addAlias(DELETE_ALIAS);
         List<Alias> aliases = aliasBook.getAliasList();
         assertEquals(2, aliases.size());
-        assertTrue(aliases.contains(new Alias("add", "a")));
-        assertTrue(aliases.contains(new Alias("delete", "d")));
+        assertTrue(aliases.contains(ADD_ALIAS));
+        assertTrue(aliases.contains(DELETE_ALIAS));
     }
 
     @Test
     public void toString_returnsStringRepresentation() {
-        aliasBook.addAlias(new Alias("add", "a"));
+        aliasBook.addAlias(ADD_ALIAS);
         assertEquals("{a=add}", aliasBook.toString());
+    }
+
+    @Test
+    public void getTypicalAliasBook_containsExpectedAliases() {
+        AliasBook typical = TypicalAliases.getTypicalAliasBook();
+        assertTrue(typical.isAliasPresent("a"));
+        assertTrue(typical.isAliasPresent("del"));
+        assertTrue(typical.isAliasPresent("ls"));
     }
 }
