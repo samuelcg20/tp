@@ -30,7 +30,7 @@ public class Alias {
             "The command word entered to create an alias for is invalid!\n"
             + "Type 'help to view list of supported commands";
     public static final String MESSAGE_CONSTRAINS_ALIAS_WORD =
-            "Word chosen for alias should be alphanumeric and at most 10 characters";
+            "Word chosen for alias should be alphanumeric, at most 10 characters and not be an existing command word.";
 
     public static final Set<String> SET_OF_COMMANDS = new HashSet<>(Arrays.asList(
             AddCommand.COMMAND_WORD,
