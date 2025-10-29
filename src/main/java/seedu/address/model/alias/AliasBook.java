@@ -108,15 +108,6 @@ public class AliasBook {
                 .toList();
     }
 
-    /**
-     * Returns an unmodifiable copy of the alias map.
-     *
-     * @return Unmodifiable view of alias mappings.
-     */
-    public Map<String, String> getAliasMap() {
-        return Map.copyOf(aliasMap);
-    }
-
     @Override
     public String toString() {
         return aliasMap.toString();
