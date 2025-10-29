@@ -379,32 +379,44 @@ Examples:
 
 ### Editing Entries — `edit`
 
-Edits an existing member or event.
+You can use the edit command to update details of an existing member or event in your list.
 
 **Members:**
 
 Format: `edit member INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/YEAR] [r/ROLE]…`
 
-- Edits the member at `INDEX` (1-based) in the currently displayed members list.
-- At least one optional field must be provided and each field is used maximally once.
-- Providing one or more `r/ROLE` values replaces all existing roles.
-- Editing a member’s `NAME` to one that would create a duplicate is not allowed. See what constitutes as attempting to duplicate in members [here](#duplicate-members).
+- You choose which member to edit by specifying their `INDEX` (the first member is 1).
+- You must include at least one field to edit - for example, a name, phone number, or email.
+- Each field prefix (like n/, p/, e/, etc.) can be used only once in a single command.
+- If you add one or more r/ROLE values, all previous roles will be replaced with the new ones.
+- You cannot change a member’s `NAME` to one that would create a duplicate. See what constitutes as attempting to duplicate in members [here](#duplicate-members).
 
 Examples:
-- `edit member 2 n/Betsy Crower`
+- `edit member 2 n/Betsy Crower` 
+→ This command changes the name of the second member in your list to Betsy Crower, while keeping all other details (like phone number, email, etc.) the same.
+
 - `edit member 1 p/91234567 e/johndoe@u.nus.edu`
+→ This updates the first member’s phone number to 91234567 and email to johndoe@u.nus.edu, keeping everything else unchanged.
+
+![Edit Member Screenshot](images/EditMemberResult.png)
 
 **Events:**
 
 Format: `edit event INDEX [n/NAME] [d/DATE_TIME] [v/VENUE]`
 
-- Edits the event at `INDEX` (1-based) in the currently displayed events list.
-- At least one optional field must be provided and each field is used maximally once.
-- Editing a event’s `NAME` and/or `DATE_TIME` to one that would create a duplicate is not allowed. See what constitutes as attempting to duplicate in events [here](#duplicate-events).
+- You choose which event to edit by specifying its INDEX (the first member is 1).
+- You must include at least one field to change — such as the event name, date/time, or venue.
+- Each prefix (n/, d/, v/) can only be used once per command.
+- Editing an event’s `NAME` and/or `DATE_TIME` to one that would create a duplicate is not allowed. See what constitutes as attempting to duplicate in events [here](#duplicate-events).
 
 Examples:
 - `edit event 1 n/Welcome`
+→ This renames the first event in your list to “Welcome” while keeping the date/time and venue the same.
+
 - `edit event 2 d/2025-10-05T19:00 v/COM3-01-12`
+→ This updates the second event’s date/time to 5 October 2025, 7:00 PM, and changes the venue to COM3-01-12.
+
+![Edit Event Screenshot](images/EditEventResult.png)
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> You can edit multiple fields in one command, e.g., <code>edit member 3 n/New Name p/91234567</code>.</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>
@@ -417,7 +429,7 @@ Examples:
 
 Finds members or events matching the given criteria. Matching is case-insensitive and by whole words.
 
-**Member**:
+**Members:**:
 
 Find your members by **either** member's name **or** member's year of study but **not both**.
 
@@ -425,10 +437,13 @@ Format: `find member n/KEYWORDS…` (Find by member name)  **or** `find member y
 
 Examples:
 - `find member n/Alex`
+  → This shows you all members whose **name** contains “Alex”.
+
 - `find member y/1`
+→ This shows you all members in **year 1**.
 
 
-**Events**:
+**Events:**:
 
 Find your events by **either** event's name **or** event's venue but **not both**.
 
@@ -436,7 +451,10 @@ Format: `find event n/KEYWORDS…` (Find by event name) **or** `find event v/KEY
 
 Examples:
 - `find event n/Graduation`
+→ This shows you all events whose **name** includes “Graduation”.
+
 - `find event v/COM1`
+→ This shows you all events held at the **venue** “COM1”.
 
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Enter multiple keywords to widen your search results, e.g., <code>find member n/Alex David</code> will show all members whose names contain either “Alex” or “David”. </div>
@@ -447,19 +465,22 @@ Examples:
 
 ### Deleting Entries — `delete`
 
-Deletes a member or event by its displayed index.
+You can use the `delete` command to remove a **member** or an **event** from your list.
 
 
 Format: `delete TYPE INDEX`
 
 
 - `TYPE` is either `member` or `event`.
-- `INDEX` refers to the index number shown in the current list and must be a positive integer.
+- `INDEX` refers to the index number shown in the current list and must be a positive number.
 
 
 Examples:
 - `delete member 2`
+→ This removes the second member in your current list.
+
 - `delete event 1`
+→ This removes the first event in your current list.
 
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Use <code>list member</code> or <code>list event</code> just before deleting to avoid index confusion.</div>
