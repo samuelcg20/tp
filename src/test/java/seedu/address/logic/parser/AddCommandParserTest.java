@@ -1,171 +1,113 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_TYPE;
+import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.event.AddEventCommand;
+
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.member.AddMemberCommand;
-import seedu.address.model.event.Date;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventName;
-import seedu.address.model.event.Venue;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
+import seedu.address.testutil.PersonBuilder;
 
-import java.util.Set;
-
-/**
- * Tests for AddCommandParser.
- * Covers both member and event parsing behaviour.
- */
 public class AddCommandParserTest {
 
-    private final AddCommandParser parser = new AddCommandParser();
-
-    // ----------------------------
-    // MEMBER TESTS
-    // ----------------------------
+    private AddCommandParser parser = new AddCommandParser();
 
     @Test
-    public void parse_member_allFieldsPresent_success() throws Exception {
-        String userInput = "member n/Alice Tan p/98765432 e/alice@email.com y/2 t/Exco t/Logistics";
+    public void parse_allFieldsPresent_success() {
+        // Single tag
+        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        assertParseSuccess(parser, "member " + PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + YEAR_DESC_BOB + TAG_DESC_FRIEND, new AddMemberCommand(expectedPerson));
 
-        Person expectedPerson = new Person(
-                new Name("Alice Tan"),
-                new Phone("98765432"),
-                new Email("alice@email.com"),
-                new Year("2"),
-                Set.of(new Tag("Exco"), new Tag("Logistics"))
-        );
-
-        AddMemberCommand expectedCommand = new AddMemberCommand(expectedPerson);
-        assertParseSuccess(parser, userInput, expectedCommand);
+        // Multiple tags
+        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
+        assertParseSuccess(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB
+                + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, new AddMemberCommand(expectedPersonMultipleTags));
     }
 
     @Test
-    public void parse_member_missingOptionalFields_success() throws Exception {
-        String userInput = "member n/Bob Lee p/91234567 e/bob@email.com y/1";
-
-        Person expectedPerson = new Person(
-                new Name("Bob Lee"),
-                new Phone("91234567"),
-                new Email("bob@email.com"),
-                new Year("1"),
-                Set.of() // no tags
-        );
-
-        AddMemberCommand expectedCommand = new AddMemberCommand(expectedPerson);
-        assertParseSuccess(parser, userInput, expectedCommand);
+    public void parse_optionalFieldsMissing_success() {
+        // No tags
+        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        assertParseSuccess(parser, "member " + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + YEAR_DESC_AMY,
+                new AddMemberCommand(expectedPerson));
     }
 
     @Test
-    public void parse_member_missingCompulsoryField_failure() {
+    public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // Missing name prefix
-        assertParseFailure(parser, "member p/91234567 e/bob@email.com y/2", expectedMessage);
+        assertParseFailure(parser, "member " + VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB,
+                expectedMessage);
 
-        // Missing year
-        assertParseFailure(parser, "member n/Bob p/91234567 e/bob@email.com", expectedMessage);
+        // Missing phone prefix
+        assertParseFailure(parser, "member " + NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB,
+                expectedMessage);
 
-        // Empty args after 'member'
-        assertParseFailure(parser, "member ", expectedMessage);
+        // Missing email prefix
+        assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + YEAR_DESC_BOB,
+                expectedMessage);
+
+        // Missing year prefix
+        assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_YEAR_BOB,
+                expectedMessage);
     }
 
     @Test
-    public void parse_member_invalidValues_failure() {
-        // Invalid email
-        assertParseFailure(parser,
-                "member n/Bob p/91234567 e/invalidemail y/2",
-                Email.MESSAGE_CONSTRAINTS);
+    public void parse_repeatedNonTagValue_failure() {
+        String validPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB + TAG_DESC_FRIEND;
+
+        // multiple names
+        assertParseFailure(parser, "member " + NAME_DESC_AMY + validPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
+
+        // multiple phones
+        assertParseFailure(parser, "member " + PHONE_DESC_AMY + validPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
+
+        // multiple emails
+        assertParseFailure(parser, "member " + EMAIL_DESC_AMY + validPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
+
+        // multiple years
+        assertParseFailure(parser, "member " + YEAR_DESC_AMY + validPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_YEAR));
+    }
+
+    @Test
+    public void parse_invalidValue_failure() {
+        // Invalid name
+        assertParseFailure(parser, "member " + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB,
+                Name.MESSAGE_CONSTRAINTS);
 
         // Invalid phone
-        assertParseFailure(parser,
-                "member n/Bob p/abc e/bob@email.com y/2",
+        assertParseFailure(parser, "member " + NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + YEAR_DESC_BOB,
                 Phone.MESSAGE_CONSTRAINTS_NUMBER);
 
+        // Invalid email
+        assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + YEAR_DESC_BOB,
+                Email.MESSAGE_CONSTRAINTS);
+
         // Invalid year
-        assertParseFailure(parser,
-                "member n/Bob p/91234567 e/bob@email.com y/notANumber",
+        assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_YEAR_DESC,
                 Year.MESSAGE_CONSTRAINTS);
-    }
 
-    // ----------------------------
-    // EVENT TESTS
-    // ----------------------------
-
-    @Test
-    public void parse_event_allFieldsPresent_success() throws Exception {
-        String userInput = "event n/Orientation d/2025-08-15 l/Hall 1";
-
-        Event expectedEvent = new Event(
-                new EventName("Orientation"),
-                new Date("2025-08-15T00:00"),
-                new Venue("Hall 1")
-        );
-
-        AddEventCommand expectedCommand = new AddEventCommand(expectedEvent);
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_event_missingCompulsoryField_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
-
-        // Missing name
-        assertParseFailure(parser, "event d/2025-08-15 l/Hall 1", expectedMessage);
-
-        // Missing date
-        assertParseFailure(parser, "event n/Orientation l/Hall 1", expectedMessage);
-
-        // Missing location
-        assertParseFailure(parser, "event n/Orientation d/2025-08-15", expectedMessage);
-    }
-
-    @Test
-    public void parse_event_invalidValues_failure() {
-        // Invalid date
-        assertParseFailure(parser,
-                "event n/Orientation d/invalidDate l/Hall 1",
-                Date.MESSAGE_CONSTRAINTS);
-
-        // Invalid venue
-        assertParseFailure(parser,
-                "event n/Orientation d/2025-08-15 l/",
-                Venue.MESSAGE_CONSTRAINTS);
-    }
-
-    // ----------------------------
-    // GENERAL / INVALID INPUT TESTS
-    // ----------------------------
-
-    @Test
-    public void parse_invalidCommandType_failure() {
-        assertParseFailure(parser,
-                "club n/Test p/123",
-                String.format(MESSAGE_INVALID_TYPE, AddCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_emptyInput_failure() {
-        assertParseFailure(parser,
-                "   ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_missingType_failure() {
-        assertParseFailure(parser,
-                "n/Bob p/91234567 e/bob@email.com y/2",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        // Invalid tag
+        assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB + INVALID_TAG_DESC,
+                Tag.MESSAGE_CONSTRAINTS);
     }
 }
-
