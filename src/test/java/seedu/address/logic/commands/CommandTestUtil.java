@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.event.EditEventCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.member.EditMemberCommand;
 import seedu.address.model.AddressBook;
@@ -24,6 +25,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EditMemberDescriptorBuilder;
 
 /**
@@ -64,6 +66,8 @@ public class CommandTestUtil {
 
     public static final EditMemberCommand.EditMemberDescriptor DESC_AMY;
     public static final EditMemberCommand.EditMemberDescriptor DESC_BOB;
+    public static final EditEventCommand.EditEventDescriptor DESC_WORKSHOP;
+    public static final EditEventCommand.EditEventDescriptor DESC_WELCOME_TEA;
 
     static {
         DESC_AMY = new EditMemberDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -91,6 +95,16 @@ public class CommandTestUtil {
     public static final String INVALID_EVENT_NAME_DESC = " " + PREFIX_NAME + "CS@Workshop"; // '@' not allowed
     public static final String INVALID_EVENT_DATE_DESC = " " + PREFIX_DATE + "2025/09/01 18:00"; // not ISO format
     public static final String INVALID_EVENT_VENUE_DESC = " " + PREFIX_LOCATION + "A".repeat(80); // exceeds 75 chars
+
+    static {
+        DESC_WORKSHOP = new EditEventDescriptorBuilder().withName(VALID_EVENT_NAME_WORKSHOP)
+                .withDate(VALID_EVENT_DATE_WORKSHOP).withVenue(VALID_EVENT_VENUE_WORKSHOP).build();
+        DESC_WELCOME_TEA = new EditEventDescriptorBuilder().withName(VALID_EVENT_NAME_WELCOME_TEA)
+                .withDate(VALID_EVENT_DATE_WELCOME_TEA).withVenue(VALID_EVENT_VENUE_WELCOME_TEA).build();
+    }
+
+
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
@@ -115,6 +129,29 @@ public class CommandTestUtil {
             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Executes the {@code command} and checks that:
+     * <ul>
+     *   <li>The {@link CommandResult} equals {@code expectedCommandResult}</li>
+     *   <li>The feedback message matches {@code expectedMessage}</li>
+     *   <li>The {@code actualModel} matches {@code expectedModel}</li>
+     * </ul>
+     *
+     * Used for commands that may trigger UI state changes (e.g., showing events or members).
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel,
+                                            String expectedMessage, CommandResult expectedCommandResult,
+                                            Model expectedModel) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            assertEquals(expectedCommandResult, result);
+            assertEquals(expectedMessage, result.getFeedbackToUser());
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
     }
 
     /**
