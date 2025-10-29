@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.alias.Alias;
 
 /**
- * Displays the list view of aliased stored in the message box
+ * Displays the list view of aliased stored in the message box.
  */
 public class AliasListCommand extends AliasCommand {
 

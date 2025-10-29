@@ -260,8 +260,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasAlias(String aliasWord) {
-        return aliasBook.isAliasPresent(aliasWord);
+    public boolean hasAlias(Alias alias) {
+        return aliasBook.isAliasPresent(alias.getAliasWord());
     }
 
     @Override
@@ -270,10 +270,26 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void removeExistingAlias(String commandWord) {
+    public boolean hasCommand(Alias alias) {
+        return aliasBook.isCommandPresent(alias.getCommandWord());
+    }
+
+    @Override
+    public void removeAlias(String commandWord) {
         String key = aliasBook.getAliasForCommandWord(commandWord);
         assert key != null : "Key should not be null";
         aliasBook.removeAlias(key);
+    }
+
+    @Override
+    public void removeAlias(Alias alias) {
+        removeAlias(alias.getCommandWord());
+    }
+
+    @Override
+    public void replaceAlias(Alias alias) {
+        removeAlias(alias);
+        addAlias(alias);
     }
 
     @Override
@@ -283,22 +299,17 @@ public class ModelManager implements Model {
 
     @Override
     public List<Alias> getAliasList() {
-        return getAliasBook().getAliasList();
+        return aliasBook.getAliasList();
     }
 
     @Override
     public void clearAllAliases() {
-        getAliasBook().clear();
+        aliasBook.clear();
     }
 
     @Override
     public boolean isAliasBookEmpty() {
         return aliasBook.isEmpty();
-    }
-
-    @Override
-    public String actualCommand(String commandText) {
-        return aliasBook.getCommandWordForAlias(commandText);
     }
 
     //=========== Filtered Person List Accessors =============================================================

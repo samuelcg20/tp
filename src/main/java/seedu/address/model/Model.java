@@ -129,29 +129,37 @@ public interface Model {
     /**
      * Returns true if the alias word exists in the alias book.
      */
-    boolean hasAlias(String aliasWord);
+    boolean hasAlias(Alias alias);
 
     /**
-     * Return true if the command word already has an alias
+     * Return true if the command word already has an alias.
      */
     boolean hasCommand(String commandWord);
 
-    /** Return true if the AliasBook is empty */
+    /**
+     * Return true if the command word in the given {@code alias} already has an alias.
+     */
+    boolean hasCommand(Alias alias);
+
+    /** Return true if the AliasBook is empty. */
     boolean isAliasBookEmpty();
 
-    /** Removes the alias for the particular command word */
-    void removeExistingAlias(String commandWord);
+    /** Removes the alias for the particular command word. */
+    void removeAlias(String commandWord);
 
-    /** Returns the actual command the alias represent */
-    String actualCommand(String commandText);
+    /** Removes the alias for the particular command word. */
+    void removeAlias(Alias alias);
 
-    /** Returns the book containing aliases */
+    /** Replaces the existing alias for a command word.*/
+    void replaceAlias(Alias alias);
+
+    /** Returns the book containing the stored aliases. */
     AliasBook getAliasBook();
 
-    /** Returns a list form of the alias book */
+    /** Returns a list form of the alias book. */
     List<Alias> getAliasList();
 
-    /** Clears all the existing stored aliases */
+    /** Clears all the existing stored aliases. */
     void clearAllAliases();
 
     /** Returns an unmodifiable view of the filtered event list */
