@@ -265,8 +265,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasCommand(String commandWord) {
+        return aliasBook.isCommandPresent(commandWord);
+    }
+
+    @Override
     public boolean hasCommand(Alias alias) {
         return aliasBook.isCommandPresent(alias.getCommandWord());
+    }
+
+    @Override
+    public void removeAlias(String commandWord) {
+        String key = aliasBook.getAliasForCommandWord(commandWord);
+        assert key != null : "Key should not be null";
+        aliasBook.removeAlias(key);
     }
 
     @Override
@@ -278,18 +290,6 @@ public class ModelManager implements Model {
     public void replaceAlias(Alias alias) {
         removeAlias(alias);
         addAlias(alias);
-    }
-
-    @Override
-    public boolean hasCommand(String commandWord) {
-        return aliasBook.isCommandPresent(commandWord);
-    }
-
-    @Override
-    public void removeAlias(String commandWord) {
-        String key = aliasBook.getAliasForCommandWord(commandWord);
-        assert key != null : "Key should not be null";
-        aliasBook.removeAlias(key);
     }
 
     @Override

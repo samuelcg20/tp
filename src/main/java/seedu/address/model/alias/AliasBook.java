@@ -68,7 +68,10 @@ public class AliasBook {
      */
     public static String getActualCommandWord(String word) {
         String commandWord = aliasMap.get(word);
-        return commandWord == null ?  word : commandWord;
+        if (commandWord == null) {
+            return word;
+        }
+        return commandWord;
     }
 
     /**
