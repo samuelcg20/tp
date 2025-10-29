@@ -159,10 +159,10 @@ This guide is for NUS CCA leaders like you who want to keep track of members, pl
 
 --------------------------------------------------------------------------------------------------------------------
 
-<h2 style="margin-bottom: 0.2em;">Quick Start</h2>
+<h2 id = "quick-start" style="margin-bottom: 0.2em;">Quick Start</h2>
 
-<h3 style="margin-top: 0.2em;">Step 1: Ensure you have Java 17 installed on your computer.</h3>
-#### Checking your Java version:
+<h3 style="margin-top: 0.3em;">Step 1: Ensure you have Java 17 installed on your computer.</h3>
+**Checking your Java version:**
 - Open a command terminal
     - **Windows users**: Press Windows + R, type cmd, and press Enter
     - **Mac users**: Open Terminal from Spotlight (press ⌘ + Space, type Terminal)
@@ -171,7 +171,7 @@ This guide is for NUS CCA leaders like you who want to keep track of members, pl
 - If Java is installed, you'll see the version number (e.g., `java version "17.0.1"`)
 - The first number should be 17
 
-#### If Java is not installed or the version is below 17:
+**If Java is not installed or the version is below 17:**
 - Download and install Java 17 by following the guide:
     - [for Windows users](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
     - [for Mac users](https://se-education.org/guides/tutorials/javaInstallationMac.html)
@@ -179,11 +179,11 @@ This guide is for NUS CCA leaders like you who want to keep track of members, pl
 - After installation, restart your terminal and repeat the above steps to verify the version again
 
 
-<h3 style="margin-top: 0.2em;">Step 2: Download ComClubConnect</h3>
+<h3 style="margin-top: 0.3em;">Step 2: Download ComClubConnect</h3>
 Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T09-2/tp/releases).
 
 
-<h3 style="margin-top: 0.2em;">Step 3: Place the file in a folder</h3>
+<h3 style="margin-top: 0.3em;">Step 3: Place the file in a folder</h3>
 - Your app comes in a single file that ends with .jar (for example, addressbook.jar). You’ll need to decide where you want to keep this file — this will be your ComClubConnect home folder.
     - Find your downloaded `.jar` file (for example, in your Downloads folder).
     - Right-click the file and choose Copy.
@@ -191,7 +191,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
     - Right-click an empty space and select Paste.
 
 
-<h3 style="margin-top: 0.2em;">Step 4: Run the application</h3>
+<h3 style="margin-top: 0.3em;">Step 4: Run the application</h3>
 - Copy the pathname of the ComCLubConnect home folder
     - **Windows users**: Right click on the folder and select "Copy as path"
     - **Mac users**: Right click on the folder and select "Copy as pathname"
