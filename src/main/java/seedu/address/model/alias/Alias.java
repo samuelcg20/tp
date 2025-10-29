@@ -88,10 +88,23 @@ public class Alias {
         return this.aliasWord;
     }
 
+    /**
+     * Checks whether the given word is a valid command word.
+     *
+     * @param word Word to validate.
+     * @return {@code true} if the word matches a valid command, {@code false} otherwise.
+     */
     public static boolean isValidCommandWord(String word) {
         return SET_OF_COMMANDS.contains(word);
     }
 
+    /**
+     * Returns whether the given word can be used as an alias word.
+     * A valid alias must be alphanumeric, not exceed ten characters, and not be an existing command word.
+     *
+     * @param word Word to validate.
+     * @return {@code true} if the word is a valid alias, {@code false} otherwise.
+     */
     public static boolean isValidAliasWord(String word) {
         boolean containsAlphanumeric = word.matches(VALIDATION_REGEX);
         boolean isValidLength = word.length() <= 10;

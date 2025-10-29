@@ -47,7 +47,7 @@ public class AliasCommandParser implements Parser<AliasCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AliasCommand
      * and returns an AliasCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     @Override
     public AliasCommand parse(String args) throws ParseException {
@@ -68,7 +68,6 @@ public class AliasCommandParser implements Parser<AliasCommand> {
         Alias alias = ParserUtil.parseAlias(commandWord, aliasWord);
         return new AliasCreateCommand(alias);
 
-       // return new AliasCreateCommand(aliasWord, commandWord);
     }
 
 }

@@ -129,11 +129,6 @@ public interface Model {
     /**
      * Returns true if the alias word exists in the alias book.
      */
-    boolean hasAlias(String aliasWord);
-
-    /**
-     * Returns true if the alias word exists in the alias book.
-     */
     boolean hasAlias(Alias alias);
 
     /**
@@ -142,7 +137,7 @@ public interface Model {
     boolean hasCommand(String commandWord);
 
     /**
-     * Return true if the command word already has an alias.
+     * Return true if the command word in the given {@code alias} already has an alias.
      */
     boolean hasCommand(Alias alias);
 
@@ -158,7 +153,7 @@ public interface Model {
     /** Replaces the existing alias for a command word.*/
     void replaceAlias(Alias alias);
 
-    /** Returns the book containing aliases. */
+    /** Returns the book containing the stored aliases. */
     AliasBook getAliasBook();
 
     /** Returns a list form of the alias book. */

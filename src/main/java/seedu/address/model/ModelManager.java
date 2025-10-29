@@ -260,11 +260,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasAlias(String aliasWord) {
-        return aliasBook.isAliasPresent(aliasWord);
-    }
-
-    @Override
     public boolean hasAlias(Alias alias) {
         return aliasBook.isAliasPresent(alias.getAliasWord());
     }

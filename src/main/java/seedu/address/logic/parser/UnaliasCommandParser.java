@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.alias.Alias;
 
 /**
- * Parses input arguments and creates a new UnaliasCommandParser object
+ * Parses input arguments and creates a new UnaliasCommand object.
  */
 public class UnaliasCommandParser implements Parser<UnaliasCommand> {
 

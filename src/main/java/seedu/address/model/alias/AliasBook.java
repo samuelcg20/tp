@@ -60,10 +60,11 @@ public class AliasBook {
     }
 
     /**
-     * Returns the command word mapped to the given alias word.
+     * Returns the command word mapped to the specified alias word.
+     * If no alias exists for the given word, the original word is returned.
      *
      * @param word Alias word to resolve.
-     * @return Command word if alias exists, or {@code null} otherwise.
+     * @return Corresponding command word if an alias exists; otherwise, the original word.
      */
     public static String getActualCommandWord(String word) {
         String commandWord = aliasMap.get(word);

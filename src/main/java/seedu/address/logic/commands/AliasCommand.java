@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 /**
- * Creates an alias for existing command words.
+ * Represents a command that manages command aliases.
  */
 public abstract class AliasCommand extends Command {
 
