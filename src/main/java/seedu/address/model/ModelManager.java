@@ -317,11 +317,6 @@ public class ModelManager implements Model {
         return aliasBook.isEmpty();
     }
 
-    @Override
-    public String actualCommand(String commandText) {
-        return aliasBook.getCommandWordForAlias(commandText);
-    }
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**

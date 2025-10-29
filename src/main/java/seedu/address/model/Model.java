@@ -158,9 +158,6 @@ public interface Model {
     /** Replaces the existing alias for a command word.*/
     void replaceAlias(Alias alias);
 
-    /** Returns the actual command the alias represent */
-    String actualCommand(String commandText);
-
     /** Returns the book containing aliases. */
     AliasBook getAliasBook();
 
