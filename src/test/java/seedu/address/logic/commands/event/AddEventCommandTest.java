@@ -342,12 +342,37 @@ public class AddEventCommandTest {
         }
 
         @Override
+        public boolean hasAlias(Alias alias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasCommand(String commandWord) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public boolean hasCommand(Alias alias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean isAliasBookEmpty() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeAlias(String commandWord) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeAlias(Alias alias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void replaceAlias(Alias alias) {
             throw new AssertionError("This method should not be called.");
         }
 
