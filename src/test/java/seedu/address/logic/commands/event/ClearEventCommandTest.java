@@ -3,6 +3,7 @@ package seedu.address.logic.commands.event;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalAliases.getTypicalAliasBook;
 import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalEvents.getTypicalEvents;
 
@@ -28,8 +29,8 @@ public class ClearEventCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new AliasBook(), new UserPrefs());
-        expectedModel = new ModelManager(getTypicalAddressBook(), new AliasBook(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), getTypicalAliasBook(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalAliasBook(), new UserPrefs());
     }
 
     @Test

@@ -14,6 +14,8 @@ import seedu.address.model.person.Person;
 public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command. Type 'help' to view list of commands.";
+    public static final String MESSAGE_UNKNOWN_COMMAND_UNALIAS =
+            "The command word entered to unalias is unknown! \n%1$s";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_TYPE =
             "Please state if this operation is for 'member' or 'event'. \n%1$s";
