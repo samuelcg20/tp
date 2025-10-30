@@ -82,7 +82,7 @@ title: User Guide
                 <li><a href="#finding-entries--find">Finding Entries</a></li>
                 <li><a href="#deleting-entries--delete">Deleting Entries</a></li>
                 <li><a href="#clearing-entries--clear">Clearing Entries</a></li>
-                <li><a href="##aliasing-commands--alias">Aliasing Commands</a></li>
+                <li><a href="#aliasing-commands--alias">Aliasing Commands</a></li>
                 <li><a href="#marking-attendance--mark">Marking Attendance</a></li>
                 <li><a href="#unmarking-attendance--unmark">Unmarking Attendance</a></li>
                 <li><a href="#unaliasing-commands--unalias">Unaliasing Commands</a></li>
