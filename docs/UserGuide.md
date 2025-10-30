@@ -590,7 +590,7 @@ Examples:
 
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Choose aliases that mirror your team’s habits and keep it short for easier recall, e.g., <code>rm</code> for <code>delete</code>.</div>
-<div markdown="span" class="alert alert-info"> ℹ️ <strong>Note:</strong> Command words are case-sensitive, whereas aliases are not. For instance, <code>alias delete Unmark</code> is valid, but <code>alias delete unmark</code> isn’t.</div>
+<div markdown="span" class="alert alert-info"> ℹ️ <strong>Note:</strong> Command words are case-sensitive, whereas aliases are not. For instance, <code>alias delete Unmark</code> is valid, but <code>alias delete unmark</code> is not valid.</div>
 
 
 [Back to table of contents](#table-of-contents)
