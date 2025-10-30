@@ -263,9 +263,9 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 - Some commands require a `TYPE` immediately after the command word: `member` or `event` (e.g., `add member`, `list event`).
 - Words in `UPPER_CASE` are parameters you supply. For example, in `add member n/NAME`, `NAME` can be `John Doe`.
 - Items in square brackets are optional.
-<br> e.g n/NAME [t/TAG] can be used as n/John Doe t/friend or as n/John Doe.
+<br> e.g `n/NAME [r/ROLE]` can be used as `n/John Doe r/President` or as `n/John Doe`.
 - Items with …​ after them can be used multiple times including zero times.
-<br> e.g. [t/TAG]…​ can be used as   (i.e. 0 times), t/President, t/President t/Alumni etc.
+<br> e.g. `[r/ROLE]…`​ can be used as   (i.e. 0 times), `r/President`, `r/President r/Alumni` etc.
 - Parameters must follow the order for all commands except for `mark` and `unmark`.
 - Command words and prefixes are case-sensitive
 - Leading and trailing spaces around the entire command, `TYPE` and each parameter value are ignored
@@ -282,13 +282,14 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 | **YEAR (`y/`)**  | - Must not be blank <br> - Only be `1`, `2`, `3`, or `4`                                                                                                                                                                                                                                     |
 | **ROLE (`r/`)**  | - At least one role is required i.e. must not be blank <br> - Each role is a single alphanumeric word with no internal spaces <br> - To add additonal roles, use `r/` prefix again before the additional role <br> - Input must be at most 35 characters (including spaces)                                 |
 
-<a id="event-constraints"></a>
 **Event field constraints**
+{: #event-constraints }
+
 | Field                | Constraints                                                                                                   |
 | -------------------- | ------------------------------------------------------------------------------------------------------------- |
 | **NAME (`n/`)**      | - Alphanumeric and spaces only <br> - Extra internal spaces will be allowed for input but removed when stored <br> - Input must be at most 35 characters (including spaces) |
 | **DATE_TIME (`d/`)** | - Should be in ISO format (no seconds) `YYYY-MM-DDThh:mm`                                                     |
-| **VENUE (`v/`)**     | - Must not be blank <br> - Must not start with whitespace <br> - Input must be at most 75 characters (including spaces)     |
+| **VENUE (`v/`)**     | - Must not be blank <br> - Input must be at most 75 characters (including spaces)     |
 
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If you are using a PDF version, commands that wrap across lines may lose spaces when copied — retype if needed.</div>
 </div>
@@ -319,7 +320,7 @@ This is an interactive walkthrough that helps you get to know the app. It highli
 You can add a new member or event to your list.
 
 
-**Members:**
+**To add members:**
 
 Format: `add member n/NAME p/PHONE e/EMAIL y/YEAR r/ROLE [r/ROLE]…`
 
@@ -334,7 +335,7 @@ Examples:
 - `add member n/Jane Tan p/91234567 e/janetan@u.nus.edu y/3 r/Treasurer r/Logistics`
 → Adds Jane Tan with phone 91234567, email janetan@u.nus.edu, year 3, roles Treasurer and Logistics.
 
-**Events:**
+**To add events:**
 
 - Format: `add event n/NAME d/DATE_TIME v/VENUE`
 
@@ -371,7 +372,7 @@ Examples:
 
 You can use the edit command to update details of an existing member or event in your list.
 
-**Members:**
+**To edit members:**
 
 Format: `edit member INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/YEAR] [r/ROLE]…`
 
@@ -391,7 +392,7 @@ Examples:
 
 ![Edit Member Screenshot](images/EditMemberResult.png)
 
-**Events:**
+**To edit events:**
 
 Format: `edit event INDEX [n/NAME] [d/DATE_TIME] [v/VENUE]`
 
@@ -553,7 +554,7 @@ Examples:
 
 ### Unmarking Attendance — `unmark`
 
-You can remove a member's attendance from an event. Their attendance increases and they are added to the event’s attendees list.
+You can remove a member's attendance from an event. Their attendance decreases and they are removed from the event’s attendees list.
 
 Format: `unmark m/MEMBER_INDEX e/EVENT_INDEX` or `unmark e/EVENT_INDEX m/MEMBER_INDEX`
 
@@ -665,11 +666,13 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
     - `John DoE` and `john doe` → duplicate
     - `Jane  Doe` and `jane doe` → duplicate
 
+
 <a id="duplicate-events"></a>
 - Are duplicate events allowed?
 - No. Two events with the same name and the same date are considered duplicates. Name matching is case-insensitive and ignores extra (i.e. more than one) internal spaces.
 <br> Examples:
     - `Welcome  TeA` on `2025-09-01T18:00` and `welcome tea` on `2025-09-01T18:00` → duplicate
+
 
 - Can I import my existing member list from Excel/Google Sheets?
 - Not directly. You can copy key details and add members using `add member ...`. Power users can transform CSV to match `addressbook.json`, but be careful with format.
