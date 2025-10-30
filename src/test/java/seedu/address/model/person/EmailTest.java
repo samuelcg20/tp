@@ -47,6 +47,7 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("peter..jack@u.nus.edu")); // local part has two consecutive periods
         assertFalse(Email.isValidEmail("peterjack@nus.edu")); // wrong domain
         assertFalse(Email.isValidEmail("peterjack@u.nus.com")); // wrong top-level domain
+        assertFalse(Email.isValidEmail("if.you.dream.it_you.can.do.it@u.nus.edu")); // exceeds 35 characters
 
         // valid email
         assertTrue(Email.isValidEmail("PeterJack_1190@u.nus.edu")); // underscore in local part
@@ -56,7 +57,6 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("a@u.nus.edu")); // minimal local part
         assertTrue(Email.isValidEmail("test123@u.nus.edu")); // alphanumeric local part
         assertTrue(Email.isValidEmail("a1+be.d@u.nus.edu")); // mixture of characters
-        assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@u.nus.edu")); // long local part
     }
 
     @Test
