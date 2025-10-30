@@ -19,9 +19,15 @@ Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
 Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
 Class JsonAdaptedPerson
+Class JsonAdaptedEvent
 Class JsonAdaptedTag
 }
 
+package "AliasBook Storage" #F4F6F6{
+Class "<<interface>>\nAliasBookStorage" as AliasBookStorage
+Class JsonAliasBookStorage
+Class JsonSerializableAliasBook
+Class JsonAdaptedAlias
 }
 
 Class HiddenOutside #FFFFFF
@@ -30,6 +36,7 @@ HiddenOutside ..> Storage
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" AliasBookStorage
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> AddressBookStorage
@@ -38,6 +45,10 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonSerializableAddressBook --> "*" JsonAdaptedEvent
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAliasBookStorage .up.|> AliasBookStorage
+JsonAliasBookStorage ..> JsonSerializableAliasBook
+JsonSerializableAliasBook --> "*" JsonAdaptedAlias
 
 @enduml
