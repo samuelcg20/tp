@@ -117,7 +117,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2526S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/UpdatedModelClassDiagram.png" width="450" />
+<img src="images/FinalModelClassDiagram.png" width="550" />
 
 
 
@@ -142,11 +142,11 @@ The `Model` component:
 
 **API** : [`Storage.java`](https://github.com/AY2526S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/UpdatedStorageClassDiagram.png" width="550" />
+<img src="images/FinalStorageClassDiagram.png" width="750" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both address book data, alias book data and user preference data in JSON format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `AliasBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 The address book JSON structure contains two top-level arrays: `persons` and `events`. Each `person` is serialized via `JsonAdaptedPerson`, and each `event` via `JsonAdaptedEvent`.
@@ -163,6 +163,18 @@ Example (abridged):
   ]
 }
 ```
+The alias book JSON structure contains one-level array: `alias`. Each `alias` is serialized via `JsonAdaptedAlias`.
+
+Example (abridged):
+
+```
+{
+  "aliases" : [ {
+    "commandWord" : "delete",
+    "aliasWord" : "d"
+  } ]
+}
+```
 
 ### Common classes
 
@@ -174,9 +186,9 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Alias feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -663,19 +675,7 @@ testers are expected to do more *exploratory* testing.
    2b. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-[//]: # (### Adding a member/event)
 
-[//]: # ()
-[//]: # (1. Adding a member/event)
-
-[//]: # ()
-[//]: # (   1a. Prerequisites: None)
-
-[//]: # (   )
-[//]: # (   1b. Test case 1: `add member n/Jean Doe p/98765432 e/jean@u.nus.edu y/2 r/President`<br>)
-
-[//]: # ( )
-[//]: # (   Expected: Jean Doe is added into member's list. Details of the added member will be )
 ### Adding a member/event
 
 1. Adding a new member/event

@@ -11,6 +11,7 @@ Package Model as ModelPackage <<Rectangle>>{
   Class AddressBook
   Class ModelManager
   Class UserPrefs
+  Class AliasBook
 
   Class UniquePersonList
   Class UniqueEventList
@@ -24,6 +25,7 @@ Package Model as ModelPackage <<Rectangle>>{
   Class EventName
   Class Date
   Class Venue
+  Class Alias
 
   Class I #FFFFFF
 }
@@ -38,10 +40,12 @@ Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
+ModelManager -down-> "1" AliasBook
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 AddressBook *--> "1" UniqueEventList
+AliasBook *--> "*" Alias
 UniquePersonList --> "~* all" Person
 UniqueEventList --> "~* filtered" Event
 
@@ -68,4 +72,5 @@ Date -[hidden]right-> Venue
 
 ModelManager --> "~* all" Event
 ModelManager --> "~* filtered" Person
+ModelManager --> "~* all" Alias
 @enduml

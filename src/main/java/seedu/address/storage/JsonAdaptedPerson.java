@@ -24,6 +24,8 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MESSAGE_INVALID_ATTENDANCE_COUNT =
+            "Person's attendance count cannot be negative.";
 
     private final String name;
     private final String phone;
@@ -128,6 +130,10 @@ class JsonAdaptedPerson {
         final Year modelYear = new Year(year);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        if (attendanceCount != null && attendanceCount < 0) {
+            throw new IllegalValueException(MESSAGE_INVALID_ATTENDANCE_COUNT);
+        }
 
         int modelAttendanceCount = (attendanceCount != null) ? attendanceCount : 0;
 
