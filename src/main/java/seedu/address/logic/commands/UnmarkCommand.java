@@ -1,9 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.List;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -14,7 +10,7 @@ import seedu.address.model.person.Person;
 /**
  * Removes a member's attendance from a specified event.
  */
-public class UnmarkCommand extends Command {
+public class UnmarkCommand extends AttendanceCommand {
 
     public static final String COMMAND_WORD = "unmark";
 
@@ -27,40 +23,19 @@ public class UnmarkCommand extends Command {
     public static final String MESSAGE_INVALID_EVENT_INDEX = "Event index is invalid";
     public static final String MESSAGE_NO_ATTENDANCE_TO_UNMARK = "Member is not marked at this event";
 
-    private final Index memberIndex;
-    private final Index eventIndex;
-
     /**
      * Creates an UnmarkCommand to remove a member's attendance from a specified event.
      */
     public UnmarkCommand(Index memberIndex, Index eventIndex) {
-        this.memberIndex = memberIndex;
-        this.eventIndex = eventIndex;
+        super(memberIndex, eventIndex);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        List<Person> lastShownPersonList = model.getFilteredPersonList();
-        List<Event> lastShownEventList = model.getFilteredEventList();
-
-        int memberZeroBased = memberIndex.getZeroBased();
-        int eventZeroBased = eventIndex.getZeroBased();
-
-        // Validate member index within shown list
-        if (memberZeroBased < 0 || memberZeroBased >= lastShownPersonList.size()) {
-            throw new CommandException(MESSAGE_INVALID_MEMBER_INDEX);
-        }
-
-        // Validate event index within shown list
-        if (eventZeroBased < 0 || eventZeroBased >= lastShownEventList.size()) {
-            throw new CommandException(MESSAGE_INVALID_EVENT_INDEX);
-        }
-
-        // Get the actual Person and Event objects
-        Person memberToUnmark = lastShownPersonList.get(memberZeroBased);
-        Event eventToUnmark = lastShownEventList.get(eventZeroBased);
+        AttendanceContext context =
+                resolveAttendanceContext(model, MESSAGE_INVALID_MEMBER_INDEX, MESSAGE_INVALID_EVENT_INDEX);
+        Person memberToUnmark = context.getMember();
+        Event eventToUnmark = context.getEvent();
 
         // Check if member is actually marked for attendance
         if (!eventToUnmark.hasAttendee(memberToUnmark.getName().fullName)) {
