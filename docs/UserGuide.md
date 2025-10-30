@@ -209,6 +209,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 
 ![Ui](images/Ui.png)
 
+
 [Back to table of contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -359,6 +360,8 @@ This is an interactive walkthrough that helps you get to know the app. It highli
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If the Help window is minimized, running <code>help</code> again will not open a new window. You should restore the minimized window instead.</div>
 
 
+[Back to table of contents](#table-of-contents)
+
 
 ### Adding Entries — `add`
 
@@ -394,6 +397,10 @@ Examples:
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Since roles are a single alphanumeric word and cannot contain spaces, consider using CamelCase (e.g. <code>r/TechLead</code>).</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> All required prefixes must appear exactly once: <code>n/</code>, <code>p/</code>, <code>e/</code>, <code>y/</code> (member) and <code>n/</code>, <code>d/</code>, <code>v/</code> (event). Only <code>r/</code> may repeat, and at least one <code>r/</code> is required.</div>
 
+
+[Back to table of contents](#table-of-contents)
+
+
 ### Listing Entries — `list`
 
 You can view the entire current list of members or events.
@@ -412,6 +419,10 @@ Examples:
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Running this command resets any previous filters and shows the full list again.</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> Extra inputs after <code>list TYPE</code> are not allowed (e.g., <code>list member now</code> is invalid).</div>
+
+
+[Back to table of contents](#table-of-contents)
+
 
 ### Editing Entries — `edit`
 
@@ -460,6 +471,7 @@ Examples:
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>
 
 
+[Back to table of contents](#table-of-contents)
 
 
 ### Finding Entries — `find`
@@ -499,6 +511,7 @@ Examples:
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The list that will be used will be filtered list. You can <code>edit</code> or <code>delete</code> by using index from the <strong>filtered list</strong>. To <code>edit</code> or <code>delete</code> other entries, <code>list TYPE</code>before proceeding.</div>
 
 
+[Back to table of contents](#table-of-contents)
 
 
 ### Deleting Entries — `delete`
@@ -525,6 +538,7 @@ Examples:
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> Deletions cannot be undone. Double-check the index before confirming.</div>
 
 
+[Back to table of contents](#table-of-contents)
 
 
 ### Clearing Entries — `clear`
@@ -550,6 +564,7 @@ Examples:
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> This action deletes all entries of the chosen type. It cannot be undone.</div>
 
 
+[Back to table of contents](#table-of-contents)
 
 
 ### Aliasing Commands — `alias`
@@ -575,6 +590,7 @@ Examples:
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Choose aliases that mirror your team’s habits and keep it short for easier recall, e.g., <code>rm</code> for <code>delete</code>.</div>
 
 
+[Back to table of contents](#table-of-contents)
 
 
 ### Marking Attendance — `mark`
@@ -602,6 +618,7 @@ Examples:
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>
 
 
+[Back to table of contents](#table-of-contents)
 
 
 ### Unmarking Attendance — `unmark`
@@ -630,6 +647,7 @@ Examples:
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>>
 
 
+[Back to table of contents](#table-of-contents)
 
 
 ### Unaliasing Commands — `unalias`
@@ -648,6 +666,10 @@ Examples:
 - `unalias all`
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> To replace an existing alias for a command word, simply <code>alias NEW_ALIAS_WORD COMMAND_WORD</code> instead of <code>unalias COMMAND_WORD</code> followed by <code>alias NEW_ALIAS_WORD COMMAND_WORD</code>.</div>
+
+
+[Back to table of contents](#table-of-contents)
+
 
 ### Exiting — `exit`
 
@@ -704,8 +726,6 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If the JSON format becomes invalid, the app will start with an empty data file on the next run. Make a backup first. Invalid values (e.g., non-<code>@u.nus.edu</code> emails or malformed dates) may cause unexpected behavior.</div>
-
-
 
 
 [Back to table of contents](#table-of-contents)

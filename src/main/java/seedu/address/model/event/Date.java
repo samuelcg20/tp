@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents an Event date (YYYY-MM-DD).
@@ -13,9 +14,11 @@ import java.time.format.DateTimeParseException;
  */
 public class Date {
 
-    public static final String MESSAGE_CONSTRAINTS = "Dates should be in ISO format YYYY-MM-DDTHH:MM";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Input for dates should be in ISO format YYYY-MM-DDTHH:MM (no seconds allowed)";
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+    public static final DateTimeFormatter FORMATTER =
+            DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm").withResolverStyle(ResolverStyle.STRICT);
 
     public final String value;
 
