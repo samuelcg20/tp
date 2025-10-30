@@ -23,7 +23,8 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";
-    public static final String MESSAGE_EVENT_LISTED_OVERVIEW = "%1$d events listed!";
+    public static final String MESSAGE_MULTIPLE_PREFIXES_MEMBER = "Multiple member operation prefixes detected! \n%1$s";
+    public static final String MESSAGE_MULTIPLE_PREFIXES_EVENT = "Multiple event operation prefixes detected! \n%1$s";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

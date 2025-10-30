@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_TYPE;
+import static seedu.address.logic.Messages.MESSAGE_MULTIPLE_PREFIXES_EVENT;
+import static seedu.address.logic.Messages.MESSAGE_MULTIPLE_PREFIXES_MEMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
@@ -91,7 +93,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (keywordsPartContainsOtherPrefixes) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MULTIPLE_PREFIXES_MEMBER, FindCommand.MESSAGE_USAGE));
         }
 
         String[] nameKeywords = keywordsPart.split("\\s+");
@@ -117,7 +119,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (keywordsPartContainsOtherPrefixes) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MULTIPLE_PREFIXES_MEMBER, FindCommand.MESSAGE_USAGE));
         }
         String[] nameKeywords = keywordsPart.split("\\s+");
         return new FindMemberYearCommand(
@@ -157,7 +159,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (keywordsPartContainsOtherPrefixes) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MULTIPLE_PREFIXES_EVENT, FindCommand.MESSAGE_USAGE));
         }
         String[] locationKeywords = keywordsPart.split("\\s+");
         return new FindEventLocationCommand(
@@ -182,7 +184,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (keywordsPartContainsOtherPrefixes) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MULTIPLE_PREFIXES_EVENT, FindCommand.MESSAGE_USAGE));
         }
         String[] nameKeywords = keywordsPart.split("\\s+");
         return new FindEventNameCommand(
