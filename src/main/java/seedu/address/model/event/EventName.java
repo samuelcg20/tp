@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class EventName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and\n"
-                    + "spaces, should not be blank\n" + "and must be at most 35 characters long.";
+            "Input for names should only contain alphanumeric characters and "
+                    + "spaces, should not be blank " + "and must be at most 35 characters long.";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
