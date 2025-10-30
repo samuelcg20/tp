@@ -82,8 +82,10 @@ title: User Guide
                 <li><a href="#finding-entries--find">Finding Entries</a></li>
                 <li><a href="#deleting-entries--delete">Deleting Entries</a></li>
                 <li><a href="#clearing-entries--clear">Clearing Entries</a></li>
+                <li><a href="##aliasing-commands--alias">Aliasing Commands</a></li>
                 <li><a href="#marking-attendance--mark">Marking Attendance</a></li>
                 <li><a href="#unmarking-attendance--unmark">Unmarking Attendance</a></li>
+                <li><a href="#unaliasing-commands--unalias">Unaliasing Commands</a></li>
                 <li><a href="#exiting--exit">Exiting</a></li>
             </ul>
         </li>
@@ -120,8 +122,10 @@ It is optimised for use via a **Command Line Interface (CLI)** while retaining a
     - [Finding Entries — `find`](#finding-entries--find)
     - [Deleting Entries — `delete`](#deleting-entries--delete)
     - [Clearing Entries — `clear`](#clearing-entries--clear)
+    - [Aliasing Commands — `alias`](#aliasing-commands--alias)
     - [Marking Attendance — `mark`](#marking-attendance--mark)
     - [Unmarking Attendance — `unmark`](#unmarking-attendance--unmark)
+    - [Unaliasing Commands — `unalias`](#unaliasing-commands--unalias)
     - [Exiting — `exit`](#exiting--exit)
 - [Saving Your Data](#saving-your-data)
 - [Editing the Data File (Advanced)](#editing-the-data-file-advanced)
