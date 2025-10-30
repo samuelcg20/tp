@@ -1,16 +1,16 @@
 ---
 layout: page
-title: ComClubConnect User Guide
+title: User Guide
 ---
 
 <style>
     .quick-links {
     position: fixed;
-    top: 120px;
+    top: 60px;
     right: 0px;
-    width: 150px;
-    padding: 1rem;
-    font-size: 0.95rem;
+    width: 130px;
+    padding: 0.5rem;
+    font-size: 0.8rem;
     z-index: 1000;
     }
     .quick-links ul {
@@ -19,12 +19,12 @@ title: ComClubConnect User Guide
     margin: 0;
     }
     .quick-links ul ul {
-    margin-left: 1rem;
-    margin-top: 0.3rem;
-    font-size: 0.9rem;
+    margin-left: 0.8rem;
+    margin-top: 0.2rem;
+    font-size: 0.75rem;
     }
     .quick-links li {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
     }
     .quick-links a {
     text-decoration: none;
@@ -82,8 +82,10 @@ title: ComClubConnect User Guide
                 <li><a href="#finding-entries--find">Finding Entries</a></li>
                 <li><a href="#deleting-entries--delete">Deleting Entries</a></li>
                 <li><a href="#clearing-entries--clear">Clearing Entries</a></li>
+                <li><a href="##aliasing-commands--alias">Aliasing Commands</a></li>
                 <li><a href="#marking-attendance--mark">Marking Attendance</a></li>
                 <li><a href="#unmarking-attendance--unmark">Unmarking Attendance</a></li>
+                <li><a href="#unaliasing-commands--unalias">Unaliasing Commands</a></li>
                 <li><a href="#exiting--exit">Exiting</a></li>
             </ul>
         </li>
@@ -120,8 +122,10 @@ It is optimised for use via a **Command Line Interface (CLI)** while retaining a
     - [Finding Entries — `find`](#finding-entries--find)
     - [Deleting Entries — `delete`](#deleting-entries--delete)
     - [Clearing Entries — `clear`](#clearing-entries--clear)
+    - [Aliasing Commands — `alias`](#aliasing-commands--alias)
     - [Marking Attendance — `mark`](#marking-attendance--mark)
     - [Unmarking Attendance — `unmark`](#unmarking-attendance--unmark)
+    - [Unaliasing Commands — `unalias`](#unaliasing-commands--unalias)
     - [Exiting — `exit`](#exiting--exit)
 - [Saving Your Data](#saving-your-data)
 - [Editing the Data File (Advanced)](#editing-the-data-file-advanced)
@@ -380,7 +384,7 @@ Format: `edit member INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/YEAR] [r/ROLE]…`
 - You must include at least one field to edit - for example, a name, phone number, or email.
 - Each field prefix (like n/, p/, e/, y/, r/) can be used only once in a single command.
 - If you add one or more r/ROLE values, all previous roles will be replaced with the new ones.
-- Adding duplicate members are not allowed. See FAQ for notes on what constitutes a [duplicate member](#duplicate-members)
+- You cannot edit a member to create a duplicate. See FAQ for notes on what constitutes a [duplicate member](#duplicate-members)
 - For field constraints: see [Member field constraints](#member-constraints)
 
 Examples:
@@ -399,7 +403,7 @@ Format: `edit event INDEX [n/NAME] [d/DATE_TIME] [v/VENUE]`
 - You choose which event to edit by specifying its INDEX (the first member is 1).
 - You must include at least one field to change — such as the event name, date/time, or venue.
 - Each prefix (n/, d/, v/) can only be used once per command.
-- Adding duplicate events are not allowed. See FAQ for notes on what constitutes a [duplicate event](#duplicate-events)
+- You cannot edit an event to create a duplicate. See FAQ for notes on what constitutes a [duplicate event](#duplicate-events)
 - For field constraints: see [Event field constraints](#event-constraints)
 
 Examples:
