@@ -383,7 +383,7 @@ Format: `edit member INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/YEAR] [r/ROLE]…`
 - You must include at least one field to edit - for example, a name, phone number, or email.
 - Each field prefix (like n/, p/, e/, y/, r/) can be used only once in a single command.
 - If you add one or more r/ROLE values, all previous roles will be replaced with the new ones.
-- Adding duplicate members are not allowed. See FAQ for notes on what constitutes a [duplicate member](#duplicate-members)
+- You cannot edit a member to create a duplicate. See FAQ for notes on what constitutes a [duplicate member](#duplicate-members)
 - For field constraints: see [Member field constraints](#member-constraints)
 
 Examples:
@@ -402,7 +402,7 @@ Format: `edit event INDEX [n/NAME] [d/DATE_TIME] [v/VENUE]`
 - You choose which event to edit by specifying its INDEX (the first member is 1).
 - You must include at least one field to change — such as the event name, date/time, or venue.
 - Each prefix (n/, d/, v/) can only be used once per command.
-- Adding duplicate events are not allowed. See FAQ for notes on what constitutes a [duplicate event](#duplicate-events)
+- You cannot edit an event to create a duplicate. See FAQ for notes on what constitutes a [duplicate event](#duplicate-events)
 - For field constraints: see [Event field constraints](#event-constraints)
 
 Examples:
