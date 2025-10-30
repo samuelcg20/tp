@@ -55,7 +55,8 @@ public class DeleteEventCommandTest {
 
         // model should have one fewer event and should not contain the deleted event
         List<Event> after = model.getFilteredEventList();
-        assertEquals(initialSize - 1, after.size(), "Model size should decrease by 1 after deletion");
+        assertEquals(initialSize - 1, after.size(),
+                "Model size should decrease by 1 after deletion");
         assertFalse(after.contains(eventToDelete), "Deleted event should no longer be present");
     }
 
