@@ -51,7 +51,7 @@ public class AliasCreateCommandTest {
     }
 
     @Test
-    public void execute_duplicateCommandWord_replacesAlias_success() throws CommandException {
+    public void execute_duplicateCommandWordReplacesAliasSuccess() throws CommandException {
         // "delete" command already has DELETE_ALIAS in TypicalAliases
         Alias newAlias = new Alias("delete", "delNew");
 

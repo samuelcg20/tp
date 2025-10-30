@@ -66,10 +66,6 @@ public class Alias {
         this.aliasWord = aliasWord;
     }
 
-    public Alias(String commandWord) {
-        this(commandWord, commandWord);
-    }
-
     /**
      * Returns the command word of this alias.
      *

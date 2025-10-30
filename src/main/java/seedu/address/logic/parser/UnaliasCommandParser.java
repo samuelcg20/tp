@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND_UNALIAS;
 
 import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.commands.UnaliasCommand;
@@ -32,7 +32,7 @@ public class UnaliasCommandParser implements Parser<UnaliasCommand> {
                 && !commandWordToRemove.equalsIgnoreCase("all");
 
         if (isInvalidCommandWord) {
-            throw new ParseException(String.format(MESSAGE_UNKNOWN_COMMAND, AliasCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_UNKNOWN_COMMAND_UNALIAS, AliasCommand.MESSAGE_USAGE));
         }
 
         return new UnaliasCommand(commandWordToRemove);

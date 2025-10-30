@@ -59,4 +59,24 @@ public class UnaliasCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, commandWordToRemove));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles null
+        if (!(other instanceof UnaliasCommand)) {
+            return false;
+        }
+
+        UnaliasCommand otherUnaliasCommand = (UnaliasCommand) other;
+
+        if (commandWordToRemove.equalsIgnoreCase("all")) {
+            return commandWordToRemove.equalsIgnoreCase(otherUnaliasCommand.commandWordToRemove);
+        }
+
+        return this.commandWordToRemove.equals(otherUnaliasCommand.commandWordToRemove);
+    }
+
 }

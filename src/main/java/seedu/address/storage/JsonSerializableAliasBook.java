@@ -18,7 +18,7 @@ import seedu.address.model.alias.AliasBook;
 @JsonRootName(value = "aliasbook")
 class JsonSerializableAliasBook {
 
-    public static final String MESSAGE_DUPLICATE_ALIAS = "Alias list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_ALIAS = "Alias list contains duplicate alias.";
 
     private final List<JsonAdaptedAlias> aliases = new ArrayList<>();
 
@@ -46,10 +46,15 @@ class JsonSerializableAliasBook {
      */
     public AliasBook toModelType() throws IllegalValueException {
         AliasBook aliasBook = new AliasBook();
+        aliasBook.clear();
         for (JsonAdaptedAlias jsonAdaptedAlias : aliases) {
             Alias alias = jsonAdaptedAlias.toModelType();
+            if (aliasBook.isAliasPresent(alias.getAliasWord())) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ALIAS);
+            }
             aliasBook.addAlias(alias);
         }
         return aliasBook;
     }
+
 }
