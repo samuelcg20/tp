@@ -477,9 +477,9 @@ Examples:
 ### Finding Entries — `find`
 
 
-Finds members or events matching the given criteria. Matching is case-insensitive and by whole words.
+You can find members or events that match your search criteria. The search ignores letter case and matches whole words.
 
-**Members:**
+**To Find Member(s):**
 
 Find your members by **either** member's name **or** member's year of study but **not both**.
 
@@ -488,6 +488,7 @@ Format: `find member n/KEYWORDS…` (Find by member name)  **or** `find member y
 Examples:
 - `find member n/Alex`
 → This shows you all members whose **name** contains “Alex”.
+- `find member n/David John` → This shows you all members whose **name** contains "David" **or** "John" **or** both.
 
 - `find member y/1`
 → This shows you all members in **year 1**.
@@ -501,14 +502,15 @@ Format: `find event n/KEYWORDS…` (Find by event name) **or** `find event v/KEY
 
 Examples:
 - `find event n/Graduation`
-→ This shows you all events whose **name** includes “Graduation”.
+→ This shows you all events whose **name** contains “Graduation”.
 
 - `find event v/COM1`
 → This shows you all events held at the **venue** “COM1”.
+- `find event v/COM2 COM3` → This shows you all events held at the **venue** “COM2” **or** "COM3" **or** both.
 
 
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Enter multiple keywords to widen your search results, e.g., <code>find member n/Alex David</code> will show all members whose names contain either “Alex” or “David”. </div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The list that will be used will be filtered list. You can <code>edit</code> or <code>delete</code> by using index from the <strong>filtered list</strong>. To <code>edit</code> or <code>delete</code> other entries, <code>list TYPE</code>before proceeding.</div>
+<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Enter multiple keywords to widen your search results, e.g., <code>find member n/Alex David</code>. </div>
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> After using <code>find</code>, only matching entries are shown in a <strong>filtered list</strong>. If you want to <code>edit</code> or <code>delete</code> an entry, use the <strong>index number from this filtered list</strong>. To modify entries not currently visible, run <code>list TYPE</code> to show all members or events again.</div>
 
 
 [Back to table of contents](#table-of-contents)
@@ -570,7 +572,7 @@ Examples:
 ### Aliasing Commands — `alias`
 
 
-Create a custom alias for any command word for your greater convenience.
+Tired of long commands? Create your own aliases to run your favorite commands faster and more easily.
 
 
 Format: `alias COMMAND_WORD ALIAS`
@@ -578,16 +580,17 @@ Format: `alias COMMAND_WORD ALIAS`
 
 - Supported `COMMAND_WORD`s: `add`, `edit`, `delete`, `clear`, `find`, `list`, `help`, `exit`, `alias`, `unalias`, `mark`, `unmark`.
 - `ALIAS` must be a single word, not a built-in command word and not an existing `ALIAS`.
-- To view your stored aliases, enter `alias` with **no keywords**.
+- To view your stored aliases, enter `alias` alone with **no keywords**.
 
 
 Examples:
 - `alias delete rm` — After this, `rm member 1` works like `delete member 1`.
-- `alias list ls`
+- `alias list ls` - After this, `ls event` works like `list event`.
 - `alias` - Your stored aliases will be displayed.
 
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Choose aliases that mirror your team’s habits and keep it short for easier recall, e.g., <code>rm</code> for <code>delete</code>.</div>
+<div markdown="span" class="alert alert-info"> ℹ️ <strong>Note:</strong> Command words are case-sensitive, whereas aliases are not. For instance, <code>alias delete Unmark</code> is valid, but <code>alias delete unmark</code> isn’t.</div>
 
 
 [Back to table of contents](#table-of-contents)
@@ -652,13 +655,13 @@ Examples:
 
 ### Unaliasing Commands — `unalias`
 
-Remove an existing alias for a command word
+Delete the alias you have created for any command word.
 
 Format: `unalias COMMAND_WORD`
 
 - Supported `COMMAND_WORD`s: `add`, `edit`, `delete`, `clear`, `find`, `list`, `help`, `exit`, `alias`, `unalias`, `mark`, `unmark`.
 - Enter only **one** `COMMAND_WORD`. 
-- To remove **all** aliases, enter `all` as the `COMMAND_WORD`.
+- To remove **all** aliases, enter `all` as the `COMMAND_WORD`. 
 
 Examples:
 
@@ -666,7 +669,7 @@ Examples:
 - `unalias all`
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> To replace an existing alias for a command word, simply <code>alias NEW_ALIAS_WORD COMMAND_WORD</code> instead of <code>unalias COMMAND_WORD</code> followed by <code>alias NEW_ALIAS_WORD COMMAND_WORD</code>.</div>
-
+<div markdown="span" class="alert alert-info"> ℹ️ <strong>Note:</strong> The keyword <code>all</code> is <strong>not a command word</strong>, so it is <strong>not case-sensitive</strong>. Both <code>unalias all</code> and <code>unalias All</code> will work the same way.</div>
 
 [Back to table of contents](#table-of-contents)
 
