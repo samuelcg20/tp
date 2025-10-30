@@ -10,15 +10,25 @@ import seedu.address.model.Model;
 import seedu.address.model.event.LocationContainsKeywordsPredicate;
 
 /**
- * Finds and lists all events in address book whose location contains any of the argument keywords.
- * Keyword matching is case-insensitive.
+ * Finds and lists all events in the address book whose location contains
+ * any of the specified keywords. The search is case-insensitive and matches
+ * partial keywords as well.
+ *
+ * <p>Example usage:
+ * <pre>
+ *     findeventlocation library
+ * </pre>
+ * will list all events with "library" appearing anywhere in their location field.</p>
  */
 public class FindEventLocationCommand extends FindCommand {
 
     private final LocationContainsKeywordsPredicate predicate;
 
     /**
-     * Creates a FindMemberCommand to find the specified {@code NameContainsKeywordsPredicate}
+     * Constructs a {@code FindEventLocationCommand} with the given predicate
+     * to filter the event list based on location keywords.
+     *
+     * @param predicate the condition used to test each event's location.
      */
     public FindEventLocationCommand(LocationContainsKeywordsPredicate predicate) {
         super();
