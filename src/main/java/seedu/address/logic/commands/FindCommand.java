@@ -11,7 +11,7 @@ public abstract class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds members or events matching the given keywords.\n"
-            + "Parameters: TYPE(either member or event) PREFIX(based on type)\n"
+            + "Parameters: TYPE(either member or event), PREFIX(based on type)/keywords...\n"
             + "Example: " + COMMAND_WORD + " member n/alice Bob\n"
             + "Example: " + COMMAND_WORD + " member y/1\n"
             + "Example: " + COMMAND_WORD + " event n/ideate\n"
