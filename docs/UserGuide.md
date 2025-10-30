@@ -266,8 +266,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 <br> e.g n/NAME [t/TAG] can be used as n/John Doe t/friend or as n/John Doe.
 - Items with …​ after them can be used multiple times including zero times.
 <br> e.g. [t/TAG]…​ can be used as   (i.e. 0 times), t/President, t/President t/Alumni etc.
-- Parameters must follow the order for all commands except for  `mark` and `unmark`.
-- Extraneous parameters for commands that do not take parameters or `TYPE` (i.e. `help` and `exit`) are ignored.
+- Parameters must follow the order for all commands except for `mark` and `unmark`.
 - Command words and prefixes are case-sensitive
 - Leading and trailing spaces around the entire command, `TYPE` and each parameter value are ignored
 - Internal spaces are kept as typed unless a field forbids spaces (e.g. phone numbers must not contain internal spaces)
