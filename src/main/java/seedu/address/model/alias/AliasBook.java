@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class AliasBook {
 
-    private final Map<String, String> aliasMap = new HashMap<>();
+    private static final Map<String, String> aliasMap = new HashMap<>();
 
     /**
      * Adds a new alias mapping to the alias book.
@@ -60,13 +60,18 @@ public class AliasBook {
     }
 
     /**
-     * Returns the command word mapped to the given alias word.
+     * Returns the command word mapped to the specified alias word.
+     * If no alias exists for the given word, the original word is returned.
      *
-     * @param aliasWord Alias word to resolve.
-     * @return Command word if alias exists, or {@code null} otherwise.
+     * @param word Alias word to resolve.
+     * @return Corresponding command word if an alias exists; otherwise, the original word.
      */
-    public String getCommandWordForAlias(String aliasWord) {
-        return aliasMap.get(aliasWord);
+    public static String getActualCommandWord(String word) {
+        String commandWord = aliasMap.get(word);
+        if (commandWord == null) {
+            return word;
+        }
+        return commandWord;
     }
 
     /**
@@ -101,15 +106,6 @@ public class AliasBook {
                 .stream()
                 .map(entry -> new Alias(entry.getValue(), entry.getKey()))
                 .toList();
-    }
-
-    /**
-     * Returns an unmodifiable copy of the alias map.
-     *
-     * @return Unmodifiable view of alias mappings.
-     */
-    public Map<String, String> getAliasMap() {
-        return Map.copyOf(aliasMap);
     }
 
     @Override
