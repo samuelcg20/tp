@@ -21,7 +21,19 @@ import seedu.address.model.event.EventName;
 import seedu.address.model.event.Venue;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing event in the address book.
+ * <p>
+ * The command allows users to update one or more fields (event name, date, or venue)
+ * of an existing event identified by its index in the displayed event list.
+ * The event's attendance list is preserved.
+ * </p>
+ *
+ * <p>Example usage:
+ * <pre>
+ *     editevent 1 n/Project Demo d/2025-11-01T15:00 l/UTown
+ * </pre>
+ * edits the first event in the list to have the name "Project Demo",
+ * date "2025-11-01T15:00", and venue "UTown".</p>
  */
 public class EditEventCommand extends EditCommand {
 
@@ -34,20 +46,22 @@ public class EditEventCommand extends EditCommand {
 
     // ======================================= EditMemberDescriptor class =======================================
     /**
-     * A descriptor class that stores details to edit a {@code Person}.
-     * Each non-null field value replaces the corresponding field value of the target {@code Person}.
+     * Stores the details to edit an {@link Event}.
+     * Each non-null field value will replace the corresponding field value of the target {@code Event}.
      */
     public static class EditEventDescriptor extends EditCommand.EditDescriptor {
         private EventName eventName;
         private Date date;
         private Venue venue;
 
-
+        /** Constructs an empty {@code EditEventDescriptor}. */
         public EditEventDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * Creates a new {@code EditEventDescriptor} with the same field values as the given descriptor.
+         *
+         * @param toCopy the descriptor to copy from.
          */
         public EditEventDescriptor(EditEventDescriptor toCopy) {
             setEventName(toCopy.eventName);

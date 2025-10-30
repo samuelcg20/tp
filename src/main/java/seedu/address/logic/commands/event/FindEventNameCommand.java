@@ -12,15 +12,25 @@ import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case-insensitive.
+ * Finds and lists all events in the address book whose names contain
+ * any of the specified keywords. The search is case-insensitive and matches
+ * partial keywords within event names.
+ *
+ * <p>Example usage:
+ * <pre>
+ *     findeventname conference
+ * </pre>
+ * will list all events with "conference" appearing anywhere in their name.</p>
  */
 public class FindEventNameCommand extends FindCommand {
 
     private final EventNameContainsKeywordsPredicate predicate;
 
     /**
-     * Creates a FindMemberCommand to find the specified {@code NameContainsKeywordsPredicate}
+     * Constructs a {@code FindEventNameCommand} with the given predicate
+     * to filter the event list based on event name keywords.
+     *
+     * @param predicate the condition used to test each event’s name.
      */
     public FindEventNameCommand(EventNameContainsKeywordsPredicate predicate) {
         super();
