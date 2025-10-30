@@ -2,12 +2,10 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_TYPE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.Messages.MESSAGE_MULTIPLE_PREFIXES_EVENT;
+import static seedu.address.logic.Messages.MESSAGE_MULTIPLE_PREFIXES_MEMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Arrays;
@@ -87,17 +85,11 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String blank = " ";
-        boolean keywordsPartContainsOtherPrefixes = keywordsPart.contains(blank + PREFIX_YEAR.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_EMAIL.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_DATE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_PHONE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_LOCATION.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_TAG.getPrefix());
+        boolean keywordsPartContainsOtherPrefixes = CliSyntax.containsAnyPrefixForMember(keywordsPart);
 
         if (keywordsPartContainsOtherPrefixes) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MULTIPLE_PREFIXES_MEMBER, FindCommand.MESSAGE_USAGE));
         }
 
         String[] nameKeywords = keywordsPart.split("\\s+");
@@ -119,17 +111,11 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String blank = " ";
-        boolean keywordsPartContainsOtherPrefixes = keywordsPart.contains(blank + PREFIX_NAME.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_EMAIL.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_LOCATION.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_DATE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_PHONE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_TAG.getPrefix());
+        boolean keywordsPartContainsOtherPrefixes = CliSyntax.containsAnyPrefixForMember(keywordsPart);
 
         if (keywordsPartContainsOtherPrefixes) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MULTIPLE_PREFIXES_MEMBER, FindCommand.MESSAGE_USAGE));
         }
         String[] nameKeywords = keywordsPart.split("\\s+");
         return new FindMemberYearCommand(
@@ -152,7 +138,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     /**
-     * Creates a {@code FindEventLocationCommand} by parsing keywords after the "l/" prefix.
+     * Creates a {@code FindEventLocationCommand} by parsing keywords after the "v/" prefix.
      *
      * @param remainingArgs user input after "find event"
      * @return command to find events by location
@@ -164,17 +150,12 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        String blank = " ";
-        boolean keywordsPartContainsOtherPrefixes = keywordsPart.contains(blank + PREFIX_NAME.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_DATE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_YEAR.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_EMAIL.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_PHONE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_TAG.getPrefix());
+
+        boolean keywordsPartContainsOtherPrefixes = CliSyntax.containsAnyPrefixForEvent(keywordsPart);
 
         if (keywordsPartContainsOtherPrefixes) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MULTIPLE_PREFIXES_EVENT, FindCommand.MESSAGE_USAGE));
         }
         String[] locationKeywords = keywordsPart.split("\\s+");
         return new FindEventLocationCommand(
@@ -194,17 +175,12 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        String blank = " ";
-        boolean keywordsPartContainsOtherPrefixes = keywordsPart.contains(blank + PREFIX_LOCATION.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_DATE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_YEAR.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_EMAIL.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_PHONE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_TAG.getPrefix());
+
+        boolean keywordsPartContainsOtherPrefixes = CliSyntax.containsAnyPrefixForEvent(keywordsPart);
 
         if (keywordsPartContainsOtherPrefixes) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MULTIPLE_PREFIXES_EVENT, FindCommand.MESSAGE_USAGE));
         }
         String[] nameKeywords = keywordsPart.split("\\s+");
         return new FindEventNameCommand(

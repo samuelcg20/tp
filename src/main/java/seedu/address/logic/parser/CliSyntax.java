@@ -16,4 +16,32 @@ public class CliSyntax {
     public static final Prefix PREFIX_MEMBER = new Prefix("m/");
     public static final Prefix PREFIX_EVENT = new Prefix("e/");
 
+    /**
+     * Returns true if the given text contains any of the provided prefixes used in member operations.
+     *
+     * @param text The text to check.
+     * @return True if text contains any of the prefixes, false otherwise.
+     */
+    public static boolean containsAnyPrefixForMember(String text) {
+        String blank = " ";
+        return text.contains(blank + PREFIX_YEAR.getPrefix())
+                || text.contains(blank + PREFIX_EMAIL.getPrefix())
+                || text.contains(blank + PREFIX_PHONE.getPrefix())
+                || text.contains(blank + PREFIX_TAG.getPrefix())
+                || text.contains(blank + PREFIX_NAME.getPrefix());
+    }
+
+    /**
+     * Returns true if the given text contains any of the provided prefixes used in event operations.
+     *
+     * @param text The text to check.
+     * @return True if text contains any of the prefixes, false otherwise.
+     */
+    public static boolean containsAnyPrefixForEvent(String text) {
+        String blank = " ";
+        return text.contains(blank + PREFIX_DATE.getPrefix())
+                || text.contains(blank + PREFIX_LOCATION.getPrefix())
+                || text.contains(blank + PREFIX_NAME.getPrefix());
+    }
+
 }
