@@ -1,9 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.List;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -14,7 +10,7 @@ import seedu.address.model.person.Person;
 /**
  * Marks a member's attendance at a specified event.
  */
-public class MarkCommand extends Command {
+public class MarkCommand extends AttendanceCommand {
 
     public static final String COMMAND_WORD = "mark";
 
@@ -27,40 +23,19 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_INVALID_EVENT_INDEX = "Event index is invalid";
     public static final String MESSAGE_DUPLICATE_ATTENDANCE = "Member is already marked for attendance at this event";
 
-    private final Index memberIndex;
-    private final Index eventIndex;
-
     /**
      * Creates a MarkCommand to mark a member's attendance at a specified event.
      */
     public MarkCommand(Index memberIndex, Index eventIndex) {
-        this.memberIndex = memberIndex;
-        this.eventIndex = eventIndex;
+        super(memberIndex, eventIndex);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        List<Person> lastShownPersonList = model.getFilteredPersonList();
-        List<Event> lastShownEventList = model.getFilteredEventList();
-
-        int memberZeroBased = memberIndex.getZeroBased();
-        int eventZeroBased = eventIndex.getZeroBased();
-
-        // Validate member index within shown list
-        if (memberZeroBased < 0 || memberZeroBased >= lastShownPersonList.size()) {
-            throw new CommandException(MESSAGE_INVALID_MEMBER_INDEX);
-        }
-
-        // Validate event index within shown list
-        if (eventZeroBased < 0 || eventZeroBased >= lastShownEventList.size()) {
-            throw new CommandException(MESSAGE_INVALID_EVENT_INDEX);
-        }
-
-        // Get the actual Person and Event objects
-        Person memberToMark = lastShownPersonList.get(memberZeroBased);
-        Event eventToMark = lastShownEventList.get(eventZeroBased);
+        AttendanceContext context =
+                resolveAttendanceContext(model, MESSAGE_INVALID_MEMBER_INDEX, MESSAGE_INVALID_EVENT_INDEX);
+        Person memberToMark = context.getMember();
+        Event eventToMark = context.getEvent();
 
         // Guard against duplicate attendance
         if (eventToMark.hasAttendee(memberToMark.getName().fullName)) {
