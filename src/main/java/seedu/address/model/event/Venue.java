@@ -10,7 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Venue {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Venue should not be blank and should not start with whitespace";
+            "Input for venue should not be blank "
+                    + "and must be at most 75 characters long including spaces.";
 
     // First char non-space, then any char sequence
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -27,7 +28,7 @@ public class Venue {
     }
 
     public static boolean isValidVenue(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= 75;
     }
 
     @Override

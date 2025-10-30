@@ -201,8 +201,9 @@ public class EditMemberCommand extends EditCommand {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Year updatedYear = editPersonDescriptor.getYear().orElse(personToEdit.getYear());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        int attendanceCount = personToEdit.getAttendanceCount(); // Preserve attendance count
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedYear, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedYear, updatedTags, attendanceCount);
     }
 
     @Override
@@ -212,7 +213,7 @@ public class EditMemberCommand extends EditCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditMemberCommand)) {
             return false;
         }
 

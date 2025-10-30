@@ -10,7 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class EventName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Input for names should only contain alphanumeric characters and "
+                    + "spaces, should not be blank " + "and must be at most 35 characters long.";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
@@ -25,8 +26,26 @@ public class EventName {
         this.fullName = name;
     }
 
+    /**
+     * Returns a lowercase, space-normalized version of {@code fullName} for identity comparison.
+     */
+    public String canonicalForIdentity() {
+        String collapsed = normalizeWhitespace(fullName);
+        return collapsed.toLowerCase();
+    }
+
+    /**
+     * Returns the input with leading/trailing spaces removed and multiple internal
+     * spaces collapsed to a single space. Preserves original letter casing.
+     */
+    public static String normalizeWhitespace(String input) {
+        requireNonNull(input);
+        String trimmed = input.trim();
+        return trimmed.replaceAll(" +", " ");
+    }
+
     public static boolean isValidEventName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= 35;
     }
 
     @Override

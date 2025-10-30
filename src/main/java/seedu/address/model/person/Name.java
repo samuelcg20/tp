@@ -10,7 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Member name should only contain alphanumeric characters and spaces, and it should not be blank"
+            + " and the input must be at most 35 characters long.";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -35,18 +36,25 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= 35;
     }
 
     /**
      * Returns a canonical form of the name for identity comparison.
      */
     public String canonicalForIdentity() {
-        // Trim leading and trailing spaces
-        String trimmed = fullName.trim();
-        // Collapse multiple internal spaces to a single space
-        String collapsed = trimmed.replaceAll(" +", " ");
+        String collapsed = normalizeWhitespace(fullName);
         return collapsed.toLowerCase();
+    }
+
+    /**
+     * Returns the input with leading/trailing spaces removed and multiple internal
+     * spaces collapsed to a single space. Preserves original letter casing.
+     */
+    public static String normalizeWhitespace(String input) {
+        requireNonNull(input);
+        String trimmed = input.trim();
+        return trimmed.replaceAll(" +", " ");
     }
 
     @Override

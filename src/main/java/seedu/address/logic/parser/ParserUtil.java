@@ -9,10 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.alias.Alias;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.Venue;
-// import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -47,11 +47,11 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
+        String normalizedName = Name.normalizeWhitespace(name);
+        if (!Name.isValidName(normalizedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Name(normalizedName);
     }
 
     /**
@@ -92,21 +92,6 @@ public class ParserUtil {
         assert Phone.isValidStart(trimmedPhone) : "Invariant: phone must start with 8 or 9";
         return new Phone(trimmedPhone);
     }
-
-    // /**
-    //  * Parses a {@code String address} into an {@code Address}.
-    //  * Leading and trailing whitespaces will be trimmed.
-    //  *
-    //  * @throws ParseException if the given {@code address} is invalid.
-    //  */
-    // public static Address parseAddress(String address) throws ParseException {
-    //     requireNonNull(address);
-    //     String trimmedAddress = address.trim();
-    //     if (!Address.isValidAddress(trimmedAddress)) {
-    //         throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-    //     }
-    //     return new Address(trimmedAddress);
-    // }
 
     /**
      * Parses a {@code String year} into a {@code Year}.
@@ -176,11 +161,11 @@ public class ParserUtil {
      */
     public static EventName parseEventName(String eventName) throws ParseException {
         requireNonNull(eventName);
-        String trimmedEventName = eventName.trim();
-        if (!EventName.isValidEventName(trimmedEventName)) {
+        String normalizedEventName = EventName.normalizeWhitespace(eventName);
+        if (!EventName.isValidEventName(normalizedEventName)) {
             throw new ParseException(EventName.MESSAGE_CONSTRAINTS);
         }
-        return new EventName(trimmedEventName);
+        return new EventName(normalizedEventName);
     }
 
     /**
@@ -208,5 +193,27 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String commandWord} and {@code String aliasWord} into a {@code Alias}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Alias} is invalid.
+     */
+    public static Alias parseAlias(String commandWord, String aliasWord) throws ParseException {
+        requireNonNull(commandWord, aliasWord);
+        String trimmedCommandWord = commandWord.trim();
+        String trimmedAliasWord = aliasWord.trim();
+
+        if (!Alias.isValidCommandWord(trimmedCommandWord)) {
+            throw new ParseException(Alias.MESSAGE_CONSTRAINS_COMMAND_WORD);
+        }
+
+        if (!Alias.isValidAliasWord(trimmedAliasWord)) {
+            throw new ParseException(Alias.MESSAGE_CONSTRAINS_ALIAS_WORD);
+        }
+
+        return new Alias(commandWord, aliasWord);
     }
 }

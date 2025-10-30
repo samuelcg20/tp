@@ -13,9 +13,10 @@ public class Email {
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@u.nus.edu "
             + "and adhere to the following constraints:\n"
             + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
-            + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special "
-            + "characters.\n"
-            + "2. The domain must be exactly '@u.nus.edu'.";
+            + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part should also not start or end with "
+            + "any special characters.\n"
+            + "2. The domain must be exactly '@u.nus.edu'.\n"
+            + "3. The email input must be at most 35 characters long.";
     // alphanumeric and special characters
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
     private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
@@ -39,7 +40,7 @@ public class Email {
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= 35;
     }
 
     @Override

@@ -98,12 +98,24 @@ public class ModelManager implements Model {
 
     @Override
     public void resetMembers() {
+        // Clean up attendance in all events for every existing person before clearing
+        List<Person> existingPersons = new ArrayList<>(this.addressBook.getPersonList());
+        for (Person person : existingPersons) {
+            cleanupPersonAttendance(person);
+        }
+
         List<Person> persons = new ArrayList<>();
         this.addressBook.setPersons(persons);
     }
 
     @Override
     public void resetEvents() {
+        // Clean up attendance counts in all persons for every existing event before clearing
+        List<Event> existingEvents = new ArrayList<>(this.addressBook.getEventList());
+        for (Event event : existingEvents) {
+            cleanupEventAttendance(event);
+        }
+
         List<Event> events = new ArrayList<>();
         this.addressBook.setEvents(events);
     }
@@ -118,7 +130,26 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        // Clean up attendance records before deleting the person
+        cleanupPersonAttendance(target);
         addressBook.removePerson(target);
+    }
+
+    /**
+     * Cleans up attendance records when a person is deleted.
+     * Removes the person's name from all event attendance lists.
+     */
+    private void cleanupPersonAttendance(Person person) {
+        String personName = person.getName().fullName;
+        // Get all events and remove this person from their attendance lists
+        List<Event> allEvents = addressBook.getEventList();
+        for (Event event : allEvents) {
+            if (!event.hasAttendee(personName)) {
+                continue;
+            }
+            Event updatedEvent = event.removeFromAttendanceList(personName);
+            addressBook.setEvent(event, updatedEvent);
+        }
     }
 
     @Override
@@ -131,7 +162,26 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
+        // If the person's name changed, update attendance records
+        if (!target.getName().equals(editedPerson.getName())) {
+            updatePersonNameInAttendance(target.getName().fullName, editedPerson.getName().fullName);
+        }
+
         addressBook.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Updates person name in all event attendance lists when a person's name is edited.
+     */
+    private void updatePersonNameInAttendance(String oldName, String newName) {
+        List<Event> allEvents = addressBook.getEventList();
+        for (Event event : allEvents) {
+            if (!event.hasAttendee(oldName)) {
+                continue;
+            }
+            Event updated = event.replaceAttendeeName(oldName, newName);
+            addressBook.setEvent(event, updated);
+        }
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -161,7 +211,32 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteEvent(Event target) {
+        // Clean up attendance records before deleting the event
+        cleanupEventAttendance(target);
         addressBook.removeEvent(target);
+    }
+
+    /**
+     * Cleans up attendance records when an event is deleted.
+     * Decreases attendance count for all members who were marked for this event.
+     */
+    private void cleanupEventAttendance(Event event) {
+        if (event.getAttendees().isEmpty()) {
+            return;
+        }
+        List<String> memberNames = event.getAttendees();
+        // Get all persons and decrease their attendance count
+        List<Person> allPersons = addressBook.getPersonList();
+        for (Person person : allPersons) {
+            String personName = person.getName().fullName;
+            // Check if this person was marked for attendance at this event
+            if (!memberNames.contains(personName)) {
+                continue;
+            }
+            int newAttendanceCount = Math.max(0, person.getAttendanceCount() - 1);
+            Person updatedPerson = person.withAttendanceCount(newAttendanceCount);
+            addressBook.setPerson(person, updatedPerson);
+        }
     }
 
     @Override
@@ -185,8 +260,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasAlias(String aliasWord) {
-        return aliasBook.isAliasPresent(aliasWord);
+    public boolean hasAlias(Alias alias) {
+        return aliasBook.isAliasPresent(alias.getAliasWord());
     }
 
     @Override
@@ -195,10 +270,26 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void removeExistingAlias(String commandWord) {
+    public boolean hasCommand(Alias alias) {
+        return aliasBook.isCommandPresent(alias.getCommandWord());
+    }
+
+    @Override
+    public void removeAlias(String commandWord) {
         String key = aliasBook.getAliasForCommandWord(commandWord);
         assert key != null : "Key should not be null";
         aliasBook.removeAlias(key);
+    }
+
+    @Override
+    public void removeAlias(Alias alias) {
+        removeAlias(alias.getCommandWord());
+    }
+
+    @Override
+    public void replaceAlias(Alias alias) {
+        removeAlias(alias);
+        addAlias(alias);
     }
 
     @Override
@@ -207,8 +298,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String actualCommand(String commandText) {
-        return aliasBook.getCommandWordForAlias(commandText);
+    public List<Alias> getAliasList() {
+        return aliasBook.getAliasList();
+    }
+
+    @Override
+    public void clearAllAliases() {
+        aliasBook.clear();
+    }
+
+    @Override
+    public boolean isAliasBookEmpty() {
+        return aliasBook.isEmpty();
     }
 
     //=========== Filtered Person List Accessors =============================================================
