@@ -262,24 +262,33 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 **Notes on command format**
 - Some commands require a `TYPE` immediately after the command word: `member` or `event` (e.g., `add member`, `list event`).
 - Words in `UPPER_CASE` are parameters you supply. For example, in `add member n/NAME`, `NAME` can be `John Doe`.
-- Items in square brackets are optional. Items marked with `…` can repeat, including zero times.
-- Parameters must follow the order for a command.
-- Extraneous parameters for commands that do not take parameters (such as `help` and `exit`) are ignored.
+- Items in square brackets are optional.
+<br> e.g n/NAME [t/TAG] can be used as n/John Doe t/friend or as n/John Doe.
+- Items with …​ after them can be used multiple times including zero times.
+<br> e.g. [t/TAG]…​ can be used as   (i.e. 0 times), t/President, t/President t/Alumni etc.
+- Parameters must follow the order for all commands except for `mark` and `unmark`.
 - Command words and prefixes are case-sensitive
 - Leading and trailing spaces around the entire command, `TYPE` and each parameter value are ignored
 - Internal spaces are kept as typed unless a field forbids spaces (e.g. phone numbers must not contain internal spaces)
 
-**Prefix reference used in commands involving members**
-- `n/` name
-- `p/` phone (8 digits, starts with 8 or 9)
-- `e/` email (must end with `@u.nus.edu`)
-- `y/` year of study (`1`–`4`)
-- `r/` role(s) — alphanumeric, can appear multiple times
+<a id="member-constraints"></a>
+**Member field constraints**
 
-**Prefix reference used in commands involving events**
-- `n/` event name
-- `d/` date-time in ISO format `YYYY-MM-DDTHH:MM`
-- `v/` location
+| Field            | Constraints                                                                                                                                                                                                                                                                                  |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **NAME (`n/`)**  | - Alphanumeric and spaces only <br> - Extra internal spaces (i.e. more than one) will be allowed for input but removed when stored <br> - At most 35 characters (including spaces)                                                                                                          |
+| **PHONE (`p/`)** | - Must not be blank <br> - Digits only <br> - Exactly 8 digits <br> - Must start with 8 or 9 <br> - must not contain spaces between the digits                                                                                                       |
+| **EMAIL (`e/`)** | - Must not be blank <br> - Must be of the format `local-part@u.nus.edu` <br> - `local-part` should only contain alphanumeric characters and these special characters `+_.-`. It should also not start or end with any of such special characters <br> - The domain must be exactly '@u.nus.edu' <br> - At most 35 characters (including spaces) |
+| **YEAR (`y/`)**  | - Must not be blank <br> - Only be `1`, `2`, `3`, or `4`                                                                                                                                                                                                                                     |
+| **ROLE (`r/`)**  | - At least one role is required i.e. must not be blank <br> - Each role is a single alphanumeric word with no internal spaces <br> - To add additonal roles, use `r/` prefix again before the additional role <br> - At most 35 characters (including spaces)                                |
+
+<a id="event-constraints"></a>
+**Event field constraints**
+| Field                | Constraints                                                                                                   |
+| -------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **NAME (`n/`)**      | - Alphanumeric and spaces only <br> - Extra internal spaces will be allowed for input but removed when stored <br> - At most 35 characters (including spaces) |
+| **DATE_TIME (`d/`)** | - Should be in ISO format (no seconds) `YYYY-MM-DDThh:mm`                                                     |
+| **VENUE (`v/`)**     | - Must not be blank <br> - Must not start with whitespace <br> - At most 75 characters (including spaces)     |
 
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If you are using a PDF version, commands that wrap across lines may lose spaces when copied — retype if needed.</div>
 </div>
@@ -307,63 +316,41 @@ This is an interactive walkthrough that helps you get to know the app. It highli
 
 ### Adding Entries — `add`
 
-Adds a member or an event.
+You can add a new member or event to your list.
 
 
 **Members:**
 
 Format: `add member n/NAME p/PHONE e/EMAIL y/YEAR r/ROLE [r/ROLE]…`
 
-| Field            | Constraints                                                                                                                                                                                                                                                                            |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **NAME (`n/`)**  | - Alphanumeric and spaces only <br> - Extra internal spaces (i.e. more than one) will be allowed for input but removed when stored                                                                                                                                                     |
-| **PHONE (`p/`)** | - Must not be blank <br> - Digits only <br> - Exactly 8 digits <br> - Must start with 8 or 9 <br> - must not contain spaces between the digits                                                                                                                                         |
-| **EMAIL (`e/`)** | - Must not be blank <br> - Must be of the format `local-part@u.nus.edu` <br> - `local-part` should only contain alphanumeric characters and these special characters `+_.-`. It should also not start or end with any special character <br> - The domain must be exactly '@u.nus.edu' |
-| **YEAR (`y/`)**  | - Must not be blank <br> - Only be `1`, `2`, `3`, or `4`                                                                                                                                                                                                                               |
-| **ROLE (`r/`)**  | - At least one role is required i.e. must not be blank <br> - Each role is a single alphanumeric word with no internal spaces <br> - To add additonal roles, use `r/` prefix again before the additional role                                                                          |
+- You cannot add duplicate members. See FAQ for notes on what constitutes a [duplicate member](#duplicate-members)
+- For field constraints: see [Member field constraints](#member-constraints)
 
-<div style="border: 2px solid #ccc; padding: 10px; border-radius: 6px;">
-  <a id="duplicate-members"></a>
-  <b>Attempts to duplicate members are not allowed </b>
-  <ul style="margin: 8px 0 0 20px;">
-    <li>Two members with the <u>same name</u> are considered duplicates.</li>
-    <li>Name matching is case-insensitive and ignores extra internal spaces (e.g. `John  DoE` equals `john doe`).</li>
-  </ul>
-</div>
 
 Examples:
 - `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President`
+→ Adds John Doe with phone 98765432, email johndoe@u.nus.edu, year 1, role President.
+
 - `add member n/Jane Tan p/91234567 e/janetan@u.nus.edu y/3 r/Treasurer r/Logistics`
+→ Adds Jane Tan with phone 91234567, email janetan@u.nus.edu, year 3, roles Treasurer and Logistics.
 
 **Events:**
 
 - Format: `add event n/NAME d/DATE_TIME v/VENUE`
 
-| Field                | Constraints                                                                                                   |
-| -------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **NAME (`n/`)**      | - Alphanumeric and spaces only <br> - Extra internal spaces will be allowed for input but removed when stored |
-| **DATE_TIME (`d/`)** | - Should be in ISO format (no seconds) `YYYY-MM-DDThh:mm`                                                     |
-| **VENUE (`v/`)**     |                                                                                                               |
-
-<div style="border: 2px solid #ccc; padding: 10px; border-radius: 6px;">
-  <a id="duplicate-events"></a>
-  <b>Attempts to duplicate events are not allowed </b>
-  <ul style="margin: 8px 0 0 20px;">
-    <li>Two events with the <u>same name</u> and <u>same date</u> are considered duplicates.</li>
-    <li>Name matching is case-insensitive and ignores extra internal spaces (e.g. `John  DoE` equals `john doe`).</li>
-  </ul>
-</div>
+- You cannot add duplicate events. See FAQ for notes on what constitutes a [duplicate event](#duplicate-events)
+- For field constraints: see [Event field constraints](#event-constraints)
 
 Examples:
 - `add event n/Welcome Tea d/2025-09-01T18:00 v/COM1-01-02`
-- `add event n/CS Workshop d/2025-12-30T14:30 v/NUS COM2`
+→ Creates “Welcome Tea” on 2025-09-01 18:00 at COM1-01-02.
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Since roles are a single alphanumeric word and cannot contain spaces, consider using CamelCase (e.g. <code>r/TechLead</code>).</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> All required prefixes must appear exactly once: <code>n/</code>, <code>p/</code>, <code>e/</code>, <code>y/</code> (member) and <code>n/</code>, <code>d/</code>, <code>v/</code> (event). Only <code>r/</code> may repeat, and at least one <code>r/</code> is required.</div>
 
 ### Listing Entries — `list`
 
-Displays the entire current list of members or events.
+You can view the entire current list of members or events.
 Both lists show entries in the order they were added (i.e. newest at the bottom).
 
 Format: `list TYPE`
@@ -372,7 +359,10 @@ Format: `list TYPE`
 
 Examples:
 - `list member`
+→ Shows all members (resets any filters).
+
 - `list event`
+→ Shows all events (resets any filters).
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Running this command resets any previous filters and shows the full list again.</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> Extra inputs after <code>list TYPE</code> are not allowed (e.g., <code>list member now</code> is invalid).</div>
@@ -387,9 +377,10 @@ Format: `edit member INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/YEAR] [r/ROLE]…`
 
 - You choose which member to edit by specifying their `INDEX` (the first member is 1).
 - You must include at least one field to edit - for example, a name, phone number, or email.
-- Each field prefix (like n/, p/, e/, etc.) can be used only once in a single command.
+- Each field prefix (like n/, p/, e/, y/, r/) can be used only once in a single command.
 - If you add one or more r/ROLE values, all previous roles will be replaced with the new ones.
-- You cannot change a member’s `NAME` to one that would create a duplicate. See what constitutes as attempting to duplicate in members [here](#duplicate-members).
+- Adding duplicate members are not allowed. See FAQ for notes on what constitutes a [duplicate member](#duplicate-members)
+- For field constraints: see [Member field constraints](#member-constraints)
 
 Examples:
 - `edit member 2 n/Betsy Crower` 
@@ -407,7 +398,8 @@ Format: `edit event INDEX [n/NAME] [d/DATE_TIME] [v/VENUE]`
 - You choose which event to edit by specifying its INDEX (the first member is 1).
 - You must include at least one field to change — such as the event name, date/time, or venue.
 - Each prefix (n/, d/, v/) can only be used once per command.
-- Editing an event’s `NAME` and/or `DATE_TIME` to one that would create a duplicate is not allowed. See what constitutes as attempting to duplicate in events [here](#duplicate-events).
+- Adding duplicate events are not allowed. See FAQ for notes on what constitutes a [duplicate event](#duplicate-events)
+- For field constraints: see [Event field constraints](#event-constraints)
 
 Examples:
 - `edit event 1 n/Welcome`
@@ -429,7 +421,7 @@ Examples:
 
 Finds members or events matching the given criteria. Matching is case-insensitive and by whole words.
 
-**Members:**:
+**Members:**
 
 Find your members by **either** member's name **or** member's year of study but **not both**.
 
@@ -437,13 +429,13 @@ Format: `find member n/KEYWORDS…` (Find by member name)  **or** `find member y
 
 Examples:
 - `find member n/Alex`
-  → This shows you all members whose **name** contains “Alex”.
+→ This shows you all members whose **name** contains “Alex”.
 
 - `find member y/1`
 → This shows you all members in **year 1**.
 
 
-**Events:**:
+**Events:**
 
 Find your events by **either** event's name **or** event's venue but **not both**.
 
@@ -503,7 +495,10 @@ Format: `clear TYPE`
 
 Examples:
 - `clear member`
+→ Removes all members.
+
 - `clear event`
+→ Removes all events.
 
 
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> This action deletes all entries of the chosen type. It cannot be undone.</div>
@@ -538,8 +533,7 @@ Examples:
 
 ### Marking Attendance — `mark`
 
-Marks a member's attendance for a specific event.
-Effect: Increases the member's Attendance count by 1; Adds the member's name to the event's Attendees
+You can add a member's attendance to an event. Their attendance increases and they are added to the event’s attendees list.
 
 Format: `mark m/MEMBER_INDEX e/EVENT_INDEX` or `mark e/EVENT_INDEX m/MEMBER_INDEX`
 
@@ -550,6 +544,7 @@ Format: `mark m/MEMBER_INDEX e/EVENT_INDEX` or `mark e/EVENT_INDEX m/MEMBER_INDE
 Examples:
 
 - `mark m/1 e/2`
+→ Marks member at current member index 1 as attending event at current event index 2
 
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>
 
@@ -558,8 +553,7 @@ Examples:
 
 ### Unmarking Attendance — `unmark`
 
-Removes a member's attendance from a specific event.
-Effect: Decreases the member's Attendance count by 1; Removes the member's name to the event's Attendees
+You can remove a member's attendance from an event. Their attendance increases and they are added to the event’s attendees list.
 
 Format: `unmark m/MEMBER_INDEX e/EVENT_INDEX` or `unmark e/EVENT_INDEX m/MEMBER_INDEX`
 
@@ -570,6 +564,7 @@ Format: `unmark m/MEMBER_INDEX e/EVENT_INDEX` or `unmark e/EVENT_INDEX m/MEMBER_
 Examples:
 
 - `unmark m/1 e/2`
+→ Unmarks member at current member index 1 as attending event at current event index 2
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> If unsure whether a member is marked for an event, unmarking will tell you if there is nothing to unmark. Use <code>list member</code> and <code>list event</code> to verify indices first.</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>>
@@ -597,7 +592,7 @@ Examples:
 ### Exiting — `exit`
 
 
-Exits the program.
+You can exit the program.
 
 
 Format: `exit`
@@ -663,12 +658,21 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 ## FAQ
 
+<a id="duplicate-members"></a>
+- Are duplicate members allowed?
+- No. Two members with the same name are considered duplicates. Name matching is case-insensitive and ignores extra (i.e. more than one) internal spaces.
+<br> Examples:
+    - `John DoE` and `john doe` → duplicate
+    - `Jane  Doe` and `jane doe` → duplicate
+
+<a id="duplicate-events"></a>
+- Are duplicate events allowed?
+- No. Two events with the same name and the same date are considered duplicates. Name matching is case-insensitive and ignores extra (i.e. more than one) internal spaces.
+<br> Examples:
+    - `Welcome  TeA` on `2025-09-01T18:00` and `welcome tea` on `2025-09-01T18:00` → duplicate
+
 - Can I import my existing member list from Excel/Google Sheets?
 - Not directly. You can copy key details and add members using `add member ...`. Power users can transform CSV to match `addressbook.json`, but be careful with format.
-
-
-- Do aliases persist across restarts?
-- No. Aliases last for the current session only.
 
 
 - Why does my email keep getting rejected?
