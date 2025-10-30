@@ -41,8 +41,8 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // No tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, "member " + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + YEAR_DESC_AMY,
+        Person expectedPerson = new PersonBuilder(AMY).withTags("friend").build();
+        assertParseSuccess(parser, "member " + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + YEAR_DESC_AMY + TAG_DESC_FRIEND,
                 new AddMemberCommand(expectedPerson));
     }
 
@@ -91,19 +91,19 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // Invalid name
-        assertParseFailure(parser, "member " + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB,
+        assertParseFailure(parser, "member " + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB + TAG_DESC_FRIEND,
                 Name.MESSAGE_CONSTRAINTS);
 
         // Invalid phone
-        assertParseFailure(parser, "member " + NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + YEAR_DESC_BOB,
+        assertParseFailure(parser, "member " + NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + YEAR_DESC_BOB + TAG_DESC_FRIEND,
                 Phone.MESSAGE_CONSTRAINTS_NUMBER);
 
         // Invalid email
-        assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + YEAR_DESC_BOB,
+        assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + YEAR_DESC_BOB + TAG_DESC_FRIEND,
                 Email.MESSAGE_CONSTRAINTS);
 
         // Invalid year
-        assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_YEAR_DESC,
+        assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_YEAR_DESC + TAG_DESC_FRIEND,
                 Year.MESSAGE_CONSTRAINTS);
 
         // Invalid tag
