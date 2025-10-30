@@ -109,6 +109,23 @@ public class AliasBook {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof AliasBook)) {
+            return false;
+        }
+        AliasBook otherAliasBook = (AliasBook) other;
+        return getAliasList().equals(otherAliasBook.getAliasList());
+    }
+
+    @Override
+    public int hashCode() {
+        return getAliasList().hashCode();
+    }
+
+    @Override
     public String toString() {
         return aliasMap.toString();
     }

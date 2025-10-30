@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant "m:MarkCommand" as MarkCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+end box
+
+MarkCommand -> ModelManager : resolveAttendanceContext()
+activate ModelManager
+
+ModelManager -> ModelManager : getFilteredPersonList()
+ModelManager -> ModelManager : getFilteredEventList()
+
+MarkCommand -> ModelManager : setPerson(updated)
+ModelManager -> AddressBook : setPerson(...)
+activate AddressBook
+AddressBook --> ModelManager
+deactivate AddressBook
+
+MarkCommand -> ModelManager : setEvent(updated)
+ModelManager -> AddressBook : setEvent(...)
+activate AddressBook
+AddressBook --> ModelManager
+deactivate AddressBook
+
+ModelManager --> MarkCommand
+deactivate ModelManager
+@enduml

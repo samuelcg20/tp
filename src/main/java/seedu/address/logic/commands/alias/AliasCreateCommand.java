@@ -56,7 +56,7 @@ public class AliasCreateCommand extends AliasCommand {
         }
 
         AliasCreateCommand otherAliasCreateCommand = (AliasCreateCommand) other;
-        return this.alias.equals(alias);
+        return this.alias.equals(otherAliasCreateCommand.alias);
     }
 
     @Override

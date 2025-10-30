@@ -1,0 +1,38 @@
+@startuml
+!include style.puml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+actor User
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as Parser LOGIC_COLOR
+participant "m:MarkCommand" as MarkCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("mark m/1 e/2")
+activate LogicManager
+
+LogicManager -> Parser : parseCommand("mark ...")
+activate Parser
+
+create MarkCommand
+Parser -> MarkCommand
+activate MarkCommand
+
+MarkCommand --> Parser
+deactivate MarkCommand
+
+Parser --> LogicManager : command
+deactivate Parser
+
+LogicManager -> MarkCommand : execute(model)
+activate MarkCommand
+
+MarkCommand --> LogicManager : CommandResult
+deactivate MarkCommand
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml

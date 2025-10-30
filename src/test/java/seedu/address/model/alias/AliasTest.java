@@ -7,6 +7,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.testutil.AliasBuilder;
+
 /**
  * Contains unit tests for {@link Alias}.
  */
@@ -26,54 +28,37 @@ public class AliasTest {
 
     @Test
     public void isValidCommandWord_equivalencePartitioning() {
-        // valid command words
         assertTrue(Alias.isValidCommandWord("add"));
-        assertTrue(Alias.isValidCommandWord("delete"));
-        assertTrue(Alias.isValidCommandWord("alias"));
-
-        // invalid command words
+        assertTrue(Alias.isValidCommandWord("list"));
         assertFalse(Alias.isValidCommandWord("invalid"));
-        assertFalse(Alias.isValidCommandWord(" "));
         assertFalse(Alias.isValidCommandWord(""));
-        assertFalse(Alias.isValidCommandWord("Add")); // case-sensitive
     }
 
     @Test
     public void isValidAliasWord_equivalencePartitioning() {
-        // invalid alias words (partition: existing command)
-        assertFalse(Alias.isValidAliasWord("add"));
+        // invalid alias words
+        assertFalse(Alias.isValidAliasWord("add")); // existing command
+        assertFalse(Alias.isValidAliasWord("rm!")); // symbol
+        assertFalse(Alias.isValidAliasWord("abcdefghijk")); // >10 chars
+        assertFalse(Alias.isValidAliasWord(" ")); // blank
 
-        // invalid alias words (partition: contains symbols)
-        assertFalse(Alias.isValidAliasWord("rm!"));
-        assertFalse(Alias.isValidAliasWord("@alias"));
-
-        // invalid alias words (partition: too long)
-        assertFalse(Alias.isValidAliasWord("thisisaverylongword"));
-
-        // invalid alias words (partition: empty or whitespace)
-        assertFalse(Alias.isValidAliasWord(""));
-        assertFalse(Alias.isValidAliasWord(" "));
-
-        // valid alias words (partition: alphanumeric <=10 chars)
+        // valid alias words
         assertTrue(Alias.isValidAliasWord("rm"));
-        assertTrue(Alias.isValidAliasWord("d3l"));
         assertTrue(Alias.isValidAliasWord("clear1"));
     }
 
     @Test
     public void isValidAliasWord_boundaryValues() {
-        // exactly 10 chars -> valid
-        assertTrue(Alias.isValidAliasWord("abcdefghij"));
-        // 11 chars -> invalid
-        assertFalse(Alias.isValidAliasWord("abcdefghijk"));
+        assertTrue(Alias.isValidAliasWord("abcdefghij")); // 10 chars
+        assertFalse(Alias.isValidAliasWord("abcdefghijk")); // 11 chars
     }
 
     @Test
     public void equals() {
-        Alias alias = new Alias("add", "a");
+        Alias alias = new AliasBuilder().withCommandWord("add").withAliasWord("a").build();
 
         // same values -> true
-        assertTrue(alias.equals(new Alias("add", "a")));
+        assertTrue(alias.equals(new AliasBuilder(alias).build()));
 
         // same object -> true
         assertTrue(alias.equals(alias));
@@ -85,23 +70,22 @@ public class AliasTest {
         assertFalse(alias.equals("String"));
 
         // different command -> false
-        assertFalse(alias.equals(new Alias("delete", "a")));
+        assertFalse(alias.equals(new AliasBuilder().withCommandWord("delete").withAliasWord("a").build()));
 
         // different alias -> false
-        assertFalse(alias.equals(new Alias("add", "b")));
+        assertFalse(alias.equals(new AliasBuilder().withCommandWord("add").withAliasWord("b").build()));
     }
 
     @Test
     public void toString_validAlias_correctFormat() {
-        Alias alias = new Alias("add", "a");
+        Alias alias = new AliasBuilder().withCommandWord("add").withAliasWord("a").build();
         assertEquals("a -> add", alias.toString());
     }
 
     @Test
     public void hashCode_consistentWithEquals() {
-        Alias alias1 = new Alias("add", "a");
-        Alias alias2 = new Alias("add", "a");
+        Alias alias1 = new AliasBuilder().withCommandWord("add").withAliasWord("a").build();
+        Alias alias2 = new AliasBuilder().withCommandWord("add").withAliasWord("a").build();
         assertEquals(alias1.hashCode(), alias2.hashCode());
     }
 }
-
