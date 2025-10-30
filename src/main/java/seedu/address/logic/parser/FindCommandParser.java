@@ -87,13 +87,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String blank = " ";
-        boolean keywordsPartContainsOtherPrefixes = keywordsPart.contains(blank + PREFIX_YEAR.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_EMAIL.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_DATE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_PHONE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_LOCATION.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_TAG.getPrefix());
+        boolean keywordsPartContainsOtherPrefixes = CliSyntax.containsAnyPrefixForMember(keywordsPart);
 
         if (keywordsPartContainsOtherPrefixes) {
             throw new ParseException(
@@ -119,13 +113,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String blank = " ";
-        boolean keywordsPartContainsOtherPrefixes = keywordsPart.contains(blank + PREFIX_NAME.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_EMAIL.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_LOCATION.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_DATE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_PHONE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_TAG.getPrefix());
+        boolean keywordsPartContainsOtherPrefixes = CliSyntax.containsAnyPrefixForMember(keywordsPart);
 
         if (keywordsPartContainsOtherPrefixes) {
             throw new ParseException(
@@ -152,7 +140,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     /**
-     * Creates a {@code FindEventLocationCommand} by parsing keywords after the "l/" prefix.
+     * Creates a {@code FindEventLocationCommand} by parsing keywords after the "v/" prefix.
      *
      * @param remainingArgs user input after "find event"
      * @return command to find events by location
@@ -164,13 +152,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        String blank = " ";
-        boolean keywordsPartContainsOtherPrefixes = keywordsPart.contains(blank + PREFIX_NAME.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_DATE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_YEAR.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_EMAIL.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_PHONE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_TAG.getPrefix());
+
+        boolean keywordsPartContainsOtherPrefixes = CliSyntax.containsAnyPrefixForEvent(keywordsPart);
 
         if (keywordsPartContainsOtherPrefixes) {
             throw new ParseException(
@@ -194,13 +177,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        String blank = " ";
-        boolean keywordsPartContainsOtherPrefixes = keywordsPart.contains(blank + PREFIX_LOCATION.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_DATE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_YEAR.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_EMAIL.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_PHONE.getPrefix())
-                || keywordsPart.contains(blank + PREFIX_TAG.getPrefix());
+
+        boolean keywordsPartContainsOtherPrefixes = CliSyntax.containsAnyPrefixForEvent(keywordsPart);
 
         if (keywordsPartContainsOtherPrefixes) {
             throw new ParseException(
