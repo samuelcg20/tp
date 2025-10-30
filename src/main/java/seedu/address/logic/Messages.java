@@ -52,7 +52,7 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Year: ")
                 .append(person.getYear())
-                .append("; Role: ");
+                .append("; Tag: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
     }

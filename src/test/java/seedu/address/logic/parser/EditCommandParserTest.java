@@ -16,8 +16,8 @@ import seedu.address.logic.commands.member.EditMemberCommand.EditMemberDescripto
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Year;
 import seedu.address.testutil.EditMemberDescriptorBuilder;
 
 /**
@@ -79,7 +79,7 @@ public class EditCommandParserTest {
 
         // empty tag
         assertParseFailure(parser, "member 1 r/",
-                "Role cannot be empty. Key in a role after 'r/'.");
+                "Tag cannot be empty. Key in a role after 'r/'.");
 
         // multiple invalid values, only first invalid captured
         assertParseFailure(parser, "member 1 n/!@# e/invalid@", Name.MESSAGE_CONSTRAINTS);
@@ -168,7 +168,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = "member " + targetIndex.getOneBased() + " r/";
 
-        String expectedMessage = "Role cannot be empty. Key in a role after 'r/'.";
+        String expectedMessage = "Tag cannot be empty. Key in a role after 'r/'.";
         assertParseFailure(parser, userInput, expectedMessage);
     }
 

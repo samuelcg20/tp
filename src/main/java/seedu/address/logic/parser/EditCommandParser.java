@@ -78,7 +78,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         List<String> tagValues = argMultimap.getAllValues(PREFIX_TAG);
         if (tagValues.stream().anyMatch(String::isBlank)) {
-            throw new ParseException("Role cannot be empty. Key in a role after 'r/'.");
+            throw new ParseException("Tag cannot be empty. Key in a role after 'r/'.");
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);

@@ -287,7 +287,7 @@ public CommandResult execute(Model model) throws CommandException {
 
 * has a need to manage a significant number of member contacts
 * needs to track CCA members' attendance for event participation
-* classify members into their different roles
+* classify members into their different tags
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions

@@ -7,7 +7,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag {
+public class
+Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Roles should be alphanumeric"
             + " and the input must be at most 35 characters long.";

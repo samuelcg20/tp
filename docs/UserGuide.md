@@ -151,7 +151,7 @@ This guide is for NUS CCA leaders like you who want to keep track of members, pl
 **What you should know before starting:**
 - You should be comfortable using a command-line interface on Windows, macOS, or Linux.
 - You should know how to copy and paste commands, and edit plain text files.
-- You should be familiar with CCA operations, including roles, member lists, and event details such as dates, times, and venues.
+- You should be familiar with CCA operations, including tags, member lists, and event details such as dates, times, and venues.
 
 [Back to table of contents](#table-of-contents)
 
@@ -305,7 +305,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
     </tr>
     <tr>
       <td><strong>ROLE (`r/`)</strong></td>
-      <td>- At least one role is required i.e. must not be blank <br> - Each role is a single alphanumeric word with no internal spaces <br> - To add additonal roles, use `r/` prefix again before the additional role <br> - Input must be at most 35 characters (including spaces)</td>
+      <td>- At least one role is required i.e. must not be blank <br> - Each role is a single alphanumeric word with no internal spaces <br> - To add additonal tags, use `r/` prefix again before the additional role <br> - Input must be at most 35 characters (including spaces)</td>
     </tr>
   </tbody>
 </table>
@@ -380,7 +380,7 @@ Examples:
 → Adds John Doe with phone 98765432, email johndoe@u.nus.edu, year 1, role President.
 
 - `add member n/Jane Tan p/91234567 e/janetan@u.nus.edu y/3 r/Treasurer r/Logistics`
-→ Adds Jane Tan with phone 91234567, email janetan@u.nus.edu, year 3, roles Treasurer and Logistics.
+→ Adds Jane Tan with phone 91234567, email janetan@u.nus.edu, year 3, tags Treasurer and Logistics.
 
 **To add events:**
 
@@ -393,7 +393,7 @@ Examples:
 - `add event n/Welcome Tea d/2025-09-01T18:00 v/COM1-01-02`
 → Creates “Welcome Tea” on 2025-09-01 18:00 at COM1-01-02.
 
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Since roles are a single alphanumeric word and cannot contain spaces, consider using CamelCase (e.g. <code>r/TechLead</code>).</div>
+<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Since tags are a single alphanumeric word and cannot contain spaces, consider using CamelCase (e.g. <code>r/TechLead</code>).</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> All required prefixes must appear exactly once: <code>n/</code>, <code>p/</code>, <code>e/</code>, <code>y/</code> (member) and <code>n/</code>, <code>d/</code>, <code>v/</code> (event). Only <code>r/</code> may repeat, and at least one <code>r/</code> is required.</div>
 
 
@@ -434,7 +434,7 @@ Format: `edit member INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/YEAR] [r/ROLE]…`
 - You choose which member to edit by specifying their `INDEX` (the first member is 1).
 - You must include at least one field to edit - for example, a name, phone number, or email.
 - Each field prefix (like n/, p/, e/, y/, r/) can be used only once in a single command.
-- If you add one or more r/ROLE values, all previous roles will be replaced with the new ones.
+- If you add one or more r/ROLE values, all previous tags will be replaced with the new ones.
 - You cannot edit a member to create a duplicate. See FAQ for notes on what constitutes a [duplicate member](#duplicate-members)
 - For field constraints: see [Member field constraints](#member-constraints)
 
@@ -690,7 +690,7 @@ Format: `exit`
 
 If you don’t have existing data files, the app starts with a small set of sample entries so you can try commands immediately.
 
-- Sample members (name — phone — email — year — roles):
+- Sample members (name — phone — email — year — tags):
   - Alex Yeoh — 87438807 — alexyeoh@u.nus.edu — Year 1 — VicePresident
   - Bernice Yu — 99272758 — berniceyu@u.nus.edu — Year 2 — OperationsHead, Treasurer
   - Charlotte Oliveiro — 93210283 — charlotte@u.nus.edu — Year 3 — MarketingHead
@@ -767,7 +767,7 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 - Exactly 8 digits, starting with `8` or `9`, and no spaces.
 
 
-- How do I record multiple roles for a member?
+- How do I record multiple tags for a member?
 - Repeat the `r/` prefix, e.g., `r/President r/TechLead`. Roles are alphanumeric and cannot contain spaces.
 
 
