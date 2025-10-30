@@ -88,7 +88,8 @@ title: User Guide
                 <li><a href="#unaliasing-commands--unalias">Unaliasing Commands</a></li>
                 <li><a href="#exiting--exit">Exiting</a></li>
             </ul>
-        </li>
+        </li> 
+        <li><a href="#sample-data-on-first-run">Sample Data on First Run</a></li>
         <li><a href="#saving-your-data">Saving Your Data</a></li>
         <li><a href="#editing-the-data-file-advanced">Editing the Data File</a></li>
         <li><a href="#faq">FAQ</a></li>
@@ -127,6 +128,7 @@ It is optimised for use via a **Command Line Interface (CLI)** while retaining a
     - [Unmarking Attendance — `unmark`](#unmarking-attendance--unmark)
     - [Unaliasing Commands — `unalias`](#unaliasing-commands--unalias)
     - [Exiting — `exit`](#exiting--exit)
+- [Sample Data on First Run](#sample-data-on-first-run)
 - [Saving Your Data](#saving-your-data)
 - [Editing the Data File (Advanced)](#editing-the-data-file-advanced)
 - [FAQ](#faq)
