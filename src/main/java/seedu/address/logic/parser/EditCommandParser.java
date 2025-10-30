@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Collection;
@@ -21,7 +21,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.event.EditEventCommand;
 import seedu.address.logic.commands.member.EditMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.role.Role;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -54,7 +54,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     private EditMemberCommand createEditMemberCommand(String keywords) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(keywords,
-                        PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR, PREFIX_TAG);
+                        PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR, PREFIX_ROLE);
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -76,12 +76,12 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setYear(ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get()));
         }
 
-        List<String> tagValues = argMultimap.getAllValues(PREFIX_TAG);
-        if (tagValues.stream().anyMatch(String::isBlank)) {
+        List<String> roleValues = argMultimap.getAllValues(PREFIX_ROLE);
+        if (roleValues.stream().anyMatch(String::isBlank)) {
             throw new ParseException("Role cannot be empty. Key in a role after 'r/'.");
         }
 
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_ROLE)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditMemberCommand.MESSAGE_NOT_EDITED);
@@ -120,18 +120,18 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code Collection<String> roles} into a {@code Set<Role>} if {@code roles} is non-empty.
+     * If {@code roles} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Role>} containing zero roles.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<Role>> parseTagsForEdit(Collection<String> roles) throws ParseException {
+        assert roles != null;
 
-        if (tags.isEmpty()) {
+        if (roles.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        Collection<String> roleSet = roles.size() == 1 && roles.contains("") ? Collections.emptySet() : roles;
+        return Optional.of(ParserUtil.parseTags(roleSet));
     }
 
 }

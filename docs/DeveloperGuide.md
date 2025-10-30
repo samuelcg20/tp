@@ -131,7 +131,7 @@ The `Model` component:
   This is exposed externally as a `ReadOnlyUserPrefs` object.
 * does not depend on any of the other components (as the `Model` represents core data entities that should make sense on their own).
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique role, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/UpdatedBetterModelClassDiagram.png" width="450" />
 
@@ -156,7 +156,7 @@ Example (abridged):
 ```
 {
   "persons": [
-    { "name": "Alex Yeoh", "phone": "87438807", "email": "alexyeoh@u.nus.edu", "year": "1", "tags": [] }
+    { "name": "Alex Yeoh", "phone": "87438807", "email": "alexyeoh@u.nus.edu", "year": "1", "roles": [] }
   ],
   "events": [
     { "name": "Welcome Tea", "date": "2025-12-30T18:00", "venue": "COM1-01" }

@@ -8,7 +8,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Year;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.role.Role;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -25,7 +25,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Year year;
-    private Set<Tag> tags;
+    private Set<Role> roles;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -35,7 +35,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         year = new Year(DEFAULT_YEAR);
-        tags = new HashSet<>();
+        roles = new HashSet<>();
     }
 
     /**
@@ -46,7 +46,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         year = personToCopy.getYear();
-        tags = new HashSet<>(personToCopy.getTags());
+        roles = new HashSet<>(personToCopy.getTags());
     }
 
     /**
@@ -58,10 +58,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code roles} into a {@code Set<Role>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withTags(String ... roles) {
+        this.roles = SampleDataUtil.getTagSet(roles);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, year, tags);
+        return new Person(name, phone, email, year, roles);
     }
 
 }

@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Collections;
@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.role.Role;
 
 
 /**
@@ -34,7 +34,7 @@ public abstract class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_YEAR + "YEAR(1-4)] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_ROLE + "ROLE]...\n"
             + "Examples:\n"
             + "  " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -54,7 +54,7 @@ public abstract class EditCommand extends Command {
      */
 
     public abstract static class EditDescriptor {
-        private Set<Tag> tags;
+        private Set<Role> roles;
 
         public EditDescriptor() {}
 
@@ -64,20 +64,20 @@ public abstract class EditCommand extends Command {
         public abstract boolean isAnyFieldEdited();
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code roles} to this object's {@code roles}.
+         * A defensive copy of {@code roles} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTags(Set<Role> roles) {
+            this.roles = (roles != null) ? new HashSet<>(roles) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable role set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code roles} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Role>> getTags() {
+            return (roles != null) ? Optional.of(Collections.unmodifiableSet(roles)) : Optional.empty();
         }
 
         @Override
@@ -92,13 +92,13 @@ public abstract class EditCommand extends Command {
             }
 
             EditDescriptor otherEditDescriptor = (EditDescriptor) other;
-            return Objects.equals(tags, otherEditDescriptor.tags);
+            return Objects.equals(roles, otherEditDescriptor.roles);
         }
 
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("tags", tags)
+                    .add("roles", roles)
                     .toString();
         }
     }

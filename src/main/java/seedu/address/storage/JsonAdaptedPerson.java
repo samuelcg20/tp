@@ -16,7 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Year;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.role.Role;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -31,7 +31,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String year;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedTag> roles = new ArrayList<>();
     private final Integer attendanceCount;
 
     /**
@@ -40,13 +40,13 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("year") String year,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("attendanceCount") Integer attendanceCount) {
+            @JsonProperty("roles") List<JsonAdaptedTag> roles, @JsonProperty("attendanceCount") Integer attendanceCount) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.year = year;
-        if (tags != null) {
-            this.tags.addAll(tags);
+        if (roles != null) {
+            this.roles.addAll(roles);
         }
         this.attendanceCount = attendanceCount;
     }
@@ -59,7 +59,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         year = source.getYear().value;
-        tags.addAll(source.getTags().stream()
+        roles.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         attendanceCount = source.getAttendanceCount();
@@ -71,9 +71,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+        final List<Role> personRoles = new ArrayList<>();
+        for (JsonAdaptedTag role : roles) {
+            personRoles.add(role.toModelType());
         }
 
         if (name == null) {
@@ -129,7 +129,7 @@ class JsonAdaptedPerson {
         }
         final Year modelYear = new Year(year);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Role> modelRoles = new HashSet<>(personRoles);
 
         if (attendanceCount != null && attendanceCount < 0) {
             throw new IllegalValueException(MESSAGE_INVALID_ATTENDANCE_COUNT);
@@ -137,7 +137,7 @@ class JsonAdaptedPerson {
 
         int modelAttendanceCount = (attendanceCount != null) ? attendanceCount : 0;
 
-        return new Person(modelName, modelPhone, modelEmail, modelYear, modelTags, modelAttendanceCount);
+        return new Person(modelName, modelPhone, modelEmail, modelYear, modelRoles, modelAttendanceCount);
     }
 
 }

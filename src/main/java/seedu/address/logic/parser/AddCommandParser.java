@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Set;
@@ -27,7 +27,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Year;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.role.Role;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -75,9 +75,9 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddMemberCommand checkAddMember(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(" " + args,
-                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR, PREFIX_TAG);
+                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR, PREFIX_ROLE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_YEAR, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_YEAR, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROLE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -88,9 +88,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         // Parse year and store in model
         Year year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Role> roleList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ROLE));
 
-        Person person = new Person(name, phone, email, year, tagList);
+        Person person = new Person(name, phone, email, year, roleList);
 
         return new AddMemberCommand(person);
     }

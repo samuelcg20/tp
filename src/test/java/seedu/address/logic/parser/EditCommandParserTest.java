@@ -17,7 +17,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Year;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.role.Role;
 import seedu.address.testutil.EditMemberDescriptorBuilder;
 
 /**
@@ -71,13 +71,13 @@ public class EditCommandParserTest {
         // invalid year
         assertParseFailure(parser, "member 1 y/notayear", Year.MESSAGE_CONSTRAINTS);
 
-        // invalid tag
-        assertParseFailure(parser, "member 1 r/@", Tag.MESSAGE_CONSTRAINTS);
+        // invalid role
+        assertParseFailure(parser, "member 1 r/@", Role.MESSAGE_CONSTRAINTS);
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "member 1 p/abcd e/amy@example.com", Phone.MESSAGE_CONSTRAINTS_NUMBER);
 
-        // empty tag
+        // empty role
         assertParseFailure(parser, "member 1 r/",
                 "Role cannot be empty. Key in a role after 'r/'.");
 
@@ -141,7 +141,7 @@ public class EditCommandParserTest {
         descriptor = new EditMemberDescriptorBuilder().withYear("3").build();
         assertParseSuccess(parser, userInput, new EditMemberCommand(targetIndex, descriptor));
 
-        // tags
+        // roles
         userInput = "member " + targetIndex.getOneBased() + " r/friend";
         descriptor = new EditMemberDescriptorBuilder().withTags("friend").build();
         assertParseSuccess(parser, userInput, new EditMemberCommand(targetIndex, descriptor));

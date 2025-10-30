@@ -1,33 +1,33 @@
-package seedu.address.model.tag;
+package seedu.address.model.role;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Role in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag {
+public class Role {
 
     public static final String MESSAGE_CONSTRAINTS = "Roles should be alphanumeric"
             + " and the input must be at most 35 characters long.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String tagName;
+    public final String roleName;
 
     /**
-     * Constructs a {@code Tag}.
+     * Constructs a {@code Role}.
      *
-     * @param tagName A valid tag name.
+     * @param roleName A valid role name.
      */
-    public Tag(String tagName) {
-        requireNonNull(tagName);
-        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+    public Role(String roleName) {
+        requireNonNull(roleName);
+        checkArgument(isValidTagName(roleName), MESSAGE_CONSTRAINTS);
+        this.roleName = roleName;
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid role name.
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX) && test.length() <= 35;
@@ -40,24 +40,24 @@ public class Tag {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Tag)) {
+        if (!(other instanceof Role)) {
             return false;
         }
 
-        Tag otherTag = (Tag) other;
-        return tagName.equals(otherTag.tagName);
+        Role otherRole = (Role) other;
+        return roleName.equals(otherRole.roleName);
     }
 
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return roleName.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return '[' + roleName + ']';
     }
 
 }
