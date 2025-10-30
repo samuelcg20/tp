@@ -1,16 +1,16 @@
 ---
 layout: page
-title: ComClubConnect User Guide
+title: User Guide
 ---
 
 <style>
     .quick-links {
     position: fixed;
-    top: 120px;
+    top: 60px;
     right: 0px;
-    width: 150px;
-    padding: 1rem;
-    font-size: 0.95rem;
+    width: 130px;
+    padding: 0.5rem;
+    font-size: 0.8rem;
     z-index: 1000;
     }
     .quick-links ul {
@@ -19,12 +19,12 @@ title: ComClubConnect User Guide
     margin: 0;
     }
     .quick-links ul ul {
-    margin-left: 1rem;
-    margin-top: 0.3rem;
-    font-size: 0.9rem;
+    margin-left: 0.8rem;
+    margin-top: 0.2rem;
+    font-size: 0.75rem;
     }
     .quick-links li {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
     }
     .quick-links a {
     text-decoration: none;
