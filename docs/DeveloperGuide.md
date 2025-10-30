@@ -117,7 +117,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2526S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/UpdatedModelClassDiagram.png" width="450" />
+<img src="images/FinalModelClassDiagram.png" width="550" />
 
 
 
@@ -142,11 +142,11 @@ The `Model` component:
 
 **API** : [`Storage.java`](https://github.com/AY2526S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/UpdatedStorageClassDiagram.png" width="550" />
+<img src="images/FinalStorageClassDiagram.png" width="750" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both address book data, alias book data and user preference data in JSON format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `AliasBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 The address book JSON structure contains two top-level arrays: `persons` and `events`. Each `person` is serialized via `JsonAdaptedPerson`, and each `event` via `JsonAdaptedEvent`.
@@ -163,6 +163,18 @@ Example (abridged):
   ]
 }
 ```
+The alias book JSON structure contains one-level array: `alias`. Each `alias` is serialized via `JsonAdaptedAlias`.
+
+Example (abridged):
+
+```
+{
+  "aliases" : [ {
+    "commandWord" : "delete",
+    "aliasWord" : "d"
+  } ]
+}
+```
 
 ### Common classes
 
@@ -174,93 +186,85 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Attendance feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The attendance feature lets CCA leaders record participation for each event via the `mark` and `unmark` commands. It spans the Logic, Model, Storage, and UI layers:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+`MarkCommand` and `UnmarkCommand` sit on top of a shared `AttendanceCommand` base to keep validation, parsing, and model updates consistent. `AttendanceParserUtil` handles shared CLI syntax (`m/` for member index and `e/` for event index), the `ModelManager` updates both `Person` and `Event` records, storage serialises the updated state, and the UI renders the refreshed attendance counts and attendee lists.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Key operations exposed by the attendance feature:
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+* `AttendanceCommand#resolveAttendanceContext(...)` – looks up the targeted member and event in the currently filtered lists, throwing if either index is invalid.
+* `AttendanceParserUtil#parseIndexes(...)` – tokenises `m/` and `e/` prefixes, forbids duplicates, and produces the `Index` values shared by both commands.
+* `MarkCommand#execute(...)` – increments the selected member's attendance count and appends their name to the chosen event.
+* `UnmarkCommand#execute(...)` – removes the member's name from the event and clamps the member's attendance count so it cannot drop below zero.
+* `ModelManager` helpers (`cleanupPersonAttendance(...)`, `updatePersonNameInAttendance(...)`, `cleanupEventAttendance(...)`) – keep attendance data coherent when members or events are edited, cleared, or deleted.
+* `JsonAdaptedPerson` / `JsonAdaptedEvent` – persist the updated attendance count and comma-delimited attendee list.
+* `PersonCard` / `EventCard` – surface the synchronised count and attendee names in the UI.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Steps below illustrate how the mark/unmark workflow plays out:
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Step 1. A leader ensures both the members and events panes show the desired entries (usually by running `list members` and `list events`). The `AttendanceCommand` subclass will resolve indexes only against these filtered lists.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The leader executes `mark m/1 e/2`. `LogicManager` parses the command word, instantiates `MarkCommand`, and invokes `execute(model)`, as shown in the logic sequence diagram.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![Mark command through Logic](images/AttendanceMarkSequenceLogic.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. Inside `execute(...)`, the command resolves the context, increments the member's attendance count, and appends the member name to the event. `ModelManager` writes both updates through to the underlying `AddressBook` while the storage layer keeps the JSON payloads consistent. The model sequence diagram highlights how `MarkCommand`, `ModelManager`, and the `AddressBook` collaborate to persist the changes.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![Mark command through Model](images/AttendanceMarkSequenceModel.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+Step 4. If the leader later issues `unmark` for the same indices, the command uses the same validation path, reverses the event update, and clamps the member's count. The UI immediately reflects the change because it is observing the filtered lists.
 
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `MarkCommand` guards against duplicate attendance. Attempting to mark an already recorded member results in a clear validation error without modifying either record.</div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+```java
+// Core of mark execution
+public CommandResult execute(Model model) throws CommandException {
+    AttendanceContext context =
+            resolveAttendanceContext(model, MESSAGE_INVALID_MEMBER_INDEX, MESSAGE_INVALID_EVENT_INDEX);
+    Person memberToMark = context.getMember();
+    Event eventToMark = context.getEvent();
 
-![UndoRedoState3](images/UndoRedoState3.png)
+    if (eventToMark.hasAttendee(memberToMark.getName().fullName)) {
+        throw new CommandException(MESSAGE_DUPLICATE_ATTENDANCE);
+    }
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+    Person updatedMember = memberToMark.withAttendanceCount(memberToMark.getAttendanceCount() + 1);
+    model.setPerson(memberToMark, updatedMember);
 
-</div>
+    Event updatedEvent = eventToMark.addToAttendanceList(memberToMark.getName().fullName);
+    model.setEvent(eventToMark, updatedEvent);
 
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
+    return new CommandResult(MESSAGE_SUCCESS);
+}
+```
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
+#### Example usage
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+1. A CCA leader lists members and events so the relevant entries are visible.
+2. The leader runs `mark m/1 e/2`. `AttendanceCommand#resolveAttendanceContext` resolves the first visible member and second visible event, guaranteeing both indexes are valid within the filtered lists.
+3. `MarkCommand` increments the member's attendance count and appends the member name to the chosen event. The UI cards update immediately to display the new count and attendee list.
+4. If the leader later runs `unmark m/1 e/2`, the command reverses the updates to keep both records synchronised.
 
-</div>
+#### Design considerations
 
-Similarly, how an undo operation goes through the `Model` component is shown below:
+**Aspect: Tracking attendance counts**
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
+* Alternative: derive counts by scanning every event. Rejected because the UI and storage layers would need to recompute the aggregate repeatedly, hurting responsiveness and complicating persistence.
+* Current choice: store the counter directly on `Person`. The `ModelManager` clean-up hooks ensure the counter never drifts away from the event data.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+**Aspect: Representing event attendees**
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+* Alternative: retain references to `Person` objects. This risks stale pointers after edits and introduces circular serialisation concerns.
+* Current choice: store canonical member names in a single delimited `String` (`Event.ATTENDANCE_DELIMITER`). It keeps persistence simple and allows easy rewrites when names change.
 
-</div>
+**Aspect: Command syntax**
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+* Alternative: accept member/event names. This becomes ambiguous when duplicates exist and breaks consistency with other index-based commands.
+* Current choice: reuse zero-based indexes so the commands remain unambiguous with filtered lists and align with the rest of the CLI.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -663,19 +667,7 @@ testers are expected to do more *exploratory* testing.
    2b. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-[//]: # (### Adding a member/event)
 
-[//]: # ()
-[//]: # (1. Adding a member/event)
-
-[//]: # ()
-[//]: # (   1a. Prerequisites: None)
-
-[//]: # (   )
-[//]: # (   1b. Test case 1: `add member n/Jean Doe p/98765432 e/jean@u.nus.edu y/2 r/President`<br>)
-
-[//]: # ( )
-[//]: # (   Expected: Jean Doe is added into member's list. Details of the added member will be )
 ### Adding a member/event
 
 1. Adding a new member/event
@@ -693,7 +685,21 @@ testers are expected to do more *exploratory* testing.
 
    1e. Other incorrect add commands to try: `add`, `add n/`, `...` <br>
    Expected: Similar to previous.
-2. _{ more test cases …​ }_
+
+2. Adding a member with an existing name
+
+   2a. Prerequisites: A member named `Jean Doe` already exists (e.g., created by Test case 1).
+
+   2b. Test case: `add member n/jean doe p/91234567 e/jean.alt@u.nus.edu y/3 r/Treasurer`<br>
+   Expected: Command fails with a duplicate member error because member names are case-insensitive identifiers.
+
+3. Adding an event with the same name and date
+
+   3a. Prerequisites: An event named `Orientation` on `2025-08-01T18:00` already exists (e.g., Test case 2).
+
+   3b. Test case: `add event n/Orientation d/2025-08-01T18:00 v/NUS LT27`<br>
+   Expected: Command fails with a duplicate event error (same name and date).
+   Expected: Command fails with a duplicate event error.
 
 ### Deleting a member/event
 
@@ -712,7 +718,7 @@ testers are expected to do more *exploratory* testing.
 
    1e. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-2. _{ more test cases …​ }_
+2. _-_
 
 ### Listing members/events
 
@@ -726,6 +732,34 @@ testers are expected to do more *exploratory* testing.
 
    1c. Other incorrect list commands to try: `list`, `list x`<br>
    Expected: Error details shown in the status message. Status bar remains the same.
+
+### Marking and unmarking attendance
+
+1. Marking a member for an event
+
+   1a. Prerequisites: At least one member and one event displayed via `list members` and `list events`. Ensure the chosen member is not already marked for the target event.
+
+   1b. Test case 1: `mark m/1 e/1`<br>
+   Expected: Attendance marked successfully. Member's attendance count increases by 1 and the event card lists the member.
+
+   1c. Test case 2: Repeat `mark m/1 e/1`<br>
+   Expected: Error message stating the member is already marked. No changes to member count or event list.
+
+   1d. Other incorrect mark commands to try: `mark m/0 e/1`, `mark m/1 e/99` (where indexes are out of range)<br>
+   Expected: Error message indicating the invalid index.
+
+2. Unmarking a member from an event
+
+   2a. Prerequisites: Member is already marked for the selected event (e.g., run `mark m/1 e/1` first).
+
+   2b. Test case 1: `unmark m/1 e/1`<br>
+   Expected: Attendance removed successfully. Member's attendance count decreases by 1 (not below zero) and the event card no longer lists the member.
+
+   2c. Test case 2: Repeat `unmark m/1 e/1`<br>
+   Expected: Error message stating there is no attendance to unmark.
+
+   2d. Other incorrect unmark commands to try: `unmark m/0 e/1`, `unmark m/1 e/99`<br>
+   Expected: Error message indicating the invalid index.
 
 ### Saving data
 
