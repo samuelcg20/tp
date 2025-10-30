@@ -117,7 +117,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2526S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/UpdatedModelClassDiagram.png" width="450" />
+<img src="images/FinalModelClassDiagram.png" width="550" />
 
 
 
@@ -142,11 +142,11 @@ The `Model` component:
 
 **API** : [`Storage.java`](https://github.com/AY2526S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/UpdatedStorageClassDiagram.png" width="550" />
+<img src="images/FinalStorageClassDiagram.png" width="750" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both address book data, alias book data and user preference data in JSON format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `AliasBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 The address book JSON structure contains two top-level arrays: `persons` and `events`. Each `person` is serialized via `JsonAdaptedPerson`, and each `event` via `JsonAdaptedEvent`.
@@ -161,6 +161,18 @@ Example (abridged):
   "events": [
     { "name": "Welcome Tea", "date": "2025-12-30T18:00", "venue": "COM1-01" }
   ]
+}
+```
+The alias book JSON structure contains one-level array: `alias`. Each `alias` is serialized via `JsonAdaptedAlias`.
+
+Example (abridged):
+
+```
+{
+  "aliases" : [ {
+    "commandWord" : "delete",
+    "aliasWord" : "d"
+  } ]
 }
 ```
 
