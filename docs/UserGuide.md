@@ -276,19 +276,19 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 
 | Field            | Constraints                                                                                                                                                                                                                                                                                  |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **NAME (`n/`)**  | - Alphanumeric and spaces only <br> - Extra internal spaces (i.e. more than one) will be allowed for input but removed when stored <br> - At most 35 characters (including spaces)                                                                                                          |
+| **NAME (`n/`)**  | - Alphanumeric and spaces only <br> - Extra internal spaces (i.e. more than one) will be allowed for input but removed when stored <br> - Input must be at most 35 characters (including spaces)                                                                                                          |
 | **PHONE (`p/`)** | - Must not be blank <br> - Digits only <br> - Exactly 8 digits <br> - Must start with 8 or 9 <br> - must not contain spaces between the digits                                                                                                       |
-| **EMAIL (`e/`)** | - Must not be blank <br> - Must be of the format `local-part@u.nus.edu` <br> - `local-part` should only contain alphanumeric characters and these special characters `+_.-`. It should also not start or end with any of such special characters <br> - The domain must be exactly '@u.nus.edu' <br> - At most 35 characters (including spaces) |
+| **EMAIL (`e/`)** | - Must not be blank <br> - Must be of the format `local-part@u.nus.edu` <br> - `local-part` should only contain alphanumeric characters and these special characters `+_.-`. It should also not start or end with any of such special characters <br> - The domain must be exactly '@u.nus.edu' <br> - Input must be at most 35 characters (including spaces)  |
 | **YEAR (`y/`)**  | - Must not be blank <br> - Only be `1`, `2`, `3`, or `4`                                                                                                                                                                                                                                     |
-| **ROLE (`r/`)**  | - At least one role is required i.e. must not be blank <br> - Each role is a single alphanumeric word with no internal spaces <br> - To add additonal roles, use `r/` prefix again before the additional role <br> - At most 35 characters (including spaces)                                |
+| **ROLE (`r/`)**  | - At least one role is required i.e. must not be blank <br> - Each role is a single alphanumeric word with no internal spaces <br> - To add additonal roles, use `r/` prefix again before the additional role <br> - Input must be at most 35 characters (including spaces)                                 |
 
 <a id="event-constraints"></a>
 **Event field constraints**
 | Field                | Constraints                                                                                                   |
 | -------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **NAME (`n/`)**      | - Alphanumeric and spaces only <br> - Extra internal spaces will be allowed for input but removed when stored <br> - At most 35 characters (including spaces) |
+| **NAME (`n/`)**      | - Alphanumeric and spaces only <br> - Extra internal spaces will be allowed for input but removed when stored <br> - Input must be at most 35 characters (including spaces) |
 | **DATE_TIME (`d/`)** | - Should be in ISO format (no seconds) `YYYY-MM-DDThh:mm`                                                     |
-| **VENUE (`v/`)**     | - Must not be blank <br> - Must not start with whitespace <br> - At most 75 characters (including spaces)     |
+| **VENUE (`v/`)**     | - Must not be blank <br> - Must not start with whitespace <br> - Input must be at most 75 characters (including spaces)     |
 
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If you are using a PDF version, commands that wrap across lines may lose spaces when copied — retype if needed.</div>
 </div>
