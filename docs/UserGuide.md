@@ -407,9 +407,6 @@ Examples:
 ![Edit Member Screenshot](images/EditMemberResult.png)
 
 
-[Back to table of contents](#table-of-contents)
-
-
 **Events:**
 
 Format: `edit event INDEX [n/NAME] [d/DATE_TIME] [v/VENUE]`
