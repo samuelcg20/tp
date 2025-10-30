@@ -280,22 +280,61 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 <a id="member-constraints"></a>
 **Member field constraints**
 
-| Field            | Constraints                                                                                                                                                                                                                                                                                  |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **NAME (`n/`)**  | - Alphanumeric and spaces only <br> - Extra internal spaces (i.e. more than one) will be allowed for input but removed when stored <br> - Input must be at most 35 characters (including spaces)                                                                                                          |
-| **PHONE (`p/`)** | - Must not be blank <br> - Digits only <br> - Exactly 8 digits <br> - Must start with 8 or 9 <br> - must not contain spaces between the digits                                                                                                       |
-| **EMAIL (`e/`)** | - Must not be blank <br> - Must be of the format `local-part@u.nus.edu` <br> - `local-part` should only contain alphanumeric characters and these special characters `+_.-`. It should also not start or end with any of such special characters <br> - The domain must be exactly '@u.nus.edu' <br> - Input must be at most 35 characters (including spaces)  |
-| **YEAR (`y/`)**  | - Must not be blank <br> - Only be `1`, `2`, `3`, or `4`                                                                                                                                                                                                                                     |
-| **ROLE (`r/`)**  | - At least one role is required i.e. must not be blank <br> - Each role is a single alphanumeric word with no internal spaces <br> - To add additonal roles, use `r/` prefix again before the additional role <br> - Input must be at most 35 characters (including spaces)                                 |
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Constraints</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>NAME (`n/`)</strong></td>
+      <td>- Alphanumeric and spaces only <br> - Extra internal spaces (i.e. more than one) will be allowed for input but removed when stored <br> - Input must be at most 35 characters (including spaces)</td>
+    </tr>
+    <tr>
+      <td><strong>PHONE (`p/`)</strong></td>
+      <td>- Must not be blank <br> - Digits only <br> - Exactly 8 digits <br> - Must start with 8 or 9 <br> - Must not contain spaces between the digits</td>
+    </tr>
+    <tr>
+      <td><strong>EMAIL (`e/`)</strong></td>
+      <td>- Must not be blank <br> - Must be of the format `local-part@u.nus.edu` <br> - `local-part` should only contain alphanumeric characters and these special characters `+_.-`. It should also not start or end with any of such special characters <br> - The domain must be exactly '@u.nus.edu' <br> - Input must be at most 35 characters (including spaces)</td>
+    </tr>
+    <tr>
+      <td><strong>YEAR (`y/`)</strong></td>
+      <td>- Must not be blank <br> - Only be `1`, `2`, `3`, or `4`</td>
+    </tr>
+    <tr>
+      <td><strong>ROLE (`r/`)</strong></td>
+      <td>- At least one role is required i.e. must not be blank <br> - Each role is a single alphanumeric word with no internal spaces <br> - To add additonal roles, use `r/` prefix again before the additional role <br> - Input must be at most 35 characters (including spaces)</td>
+    </tr>
+  </tbody>
+</table>
 
 **Event field constraints**
-{: #event-constraints }
 
-| Field                | Constraints                                                                                                   |
-| -------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **NAME (`n/`)**      | - Alphanumeric and spaces only <br> - Extra internal spaces will be allowed for input but removed when stored <br> - Input must be at most 35 characters (including spaces) |
-| **DATE_TIME (`d/`)** | - Should be in ISO format (no seconds) `YYYY-MM-DDThh:mm`                                                     |
-| **VENUE (`v/`)**     | - Must not be blank <br> - Input must be at most 75 characters (including spaces)     |
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Constraints</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>NAME (`n/`)</strong></td>
+      <td>- Alphanumeric and spaces only <br> - Extra internal spaces will be allowed for input but removed when stored <br> - Input must be at most 35 characters (including spaces)</td>
+    </tr>
+    <tr>
+      <td><strong>DATE_TIME (`d/`)</strong></td>
+      <td>- Should be in ISO format (no seconds) `YYYY-MM-DDThh:mm`</td>
+    </tr>
+    <tr>
+      <td><strong>VENUE (`v/`)</strong></td>
+      <td>- Must not be blank <br> - Input must be at most 75 characters (including spaces)</td>
+    </tr>
+  </tbody>
+</table>
 
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If you are using a PDF version, commands that wrap across lines may lose spaces when copied — retype if needed.</div>
 </div>
@@ -540,18 +579,25 @@ Examples:
 
 ### Marking Attendance — `mark`
 
-You can add a member's attendance to an event. Their attendance increases and they are added to the event’s attendees list.
+You can add a member's attendance to an event. Their attendance increases by 1 and they are added to the event’s attendees list.
 
 Format: `mark m/MEMBER_INDEX e/EVENT_INDEX` or `mark e/EVENT_INDEX m/MEMBER_INDEX`
 
 - `MEMBER_INDEX` and `EVENT_INDEX` (both 1-based) refer to the index numbers shown in their respective currently displayed lists.
 - Both pararmeters are required exactly once: `m/` (member index) and `e/` (event index).
-- Duplicate check: a member already marked for an event cannot be marked again.
+- A member already marked for an event cannot be marked again.
 
 Examples:
 
 - `mark m/1 e/2`
 → Marks member at current member index 1 as attending event at current event index 2
+
+
+![Mark Screenshot](images/MarkResult.png)
+
+
+![Mark 2 Screenshot](images/MarkResult2.png)
+
 
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>
 
@@ -560,18 +606,25 @@ Examples:
 
 ### Unmarking Attendance — `unmark`
 
-You can remove a member's attendance from an event. Their attendance decreases and they are removed from the event’s attendees list.
+You can remove a member's attendance from an event. Their attendance decreases by 1 and they are removed from the event’s attendees list.
 
 Format: `unmark m/MEMBER_INDEX e/EVENT_INDEX` or `unmark e/EVENT_INDEX m/MEMBER_INDEX`
 
 - `MEMBER_INDEX` and `EVENT_INDEX` refer to the index numbers shown in their respective currently displayed lists and must be positive integers.
 - Both parameters are required exactly once: `m/` (member index) and `e/` (event index).
-- Duplicate check: you can only unmark if the member is currently marked for that event.
+- You can only unmark if the member is currently marked for that event.
 
 Examples:
 
 - `unmark m/1 e/2`
 → Unmarks member at current member index 1 as attending event at current event index 2
+
+
+![Unmark Screenshot](images/UnmarkResult.png)
+
+
+![Unmark 2 Screenshot](images/UnmarkResult2.png)
+
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> If unsure whether a member is marked for an event, unmarking will tell you if there is nothing to unmark. Use <code>list member</code> and <code>list event</code> to verify indices first.</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>>
@@ -718,10 +771,6 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 - Can multiple EXCO members use the same data file?
 - Yes. Share the `addressbook.json` file via a cloud drive, but ensure only one person runs the app and edits the file at a time to avoid conflicts.
-
-
-- Will names be treated as duplicates if capitalization differs?
-- Yes. Member name matching is case-insensitive for uniqueness (e.g., `John Doe` and `john doe` are considered the same).
 
 
 
