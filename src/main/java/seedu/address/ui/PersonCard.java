@@ -55,7 +55,7 @@ public class PersonCard extends UiPart<Region> {
         year.setText("Year " + person.getYear().value);
         email.setText(person.getEmail().value);
         attendance.setText("Attendance: " + person.getAttendanceCount());
-        person.getTags().stream()
+        person.getRoles().stream()
                 .sorted(Comparator.comparing(role -> role.roleName))
                 .forEach(role -> roles.getChildren().add(new Label(role.roleName)));
     }

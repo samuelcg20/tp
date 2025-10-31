@@ -96,7 +96,7 @@ public class EditCommandParserTest {
                 .withPhone("91234567")
                 .withEmail("amy@u.nus.edu")
                 .withYear("2")
-                .withTags("friend", "classmate")
+                .withRoles("friend", "classmate")
                 .build();
 
         EditMemberCommand expectedCommand = new EditMemberCommand(targetIndex, descriptor);
@@ -143,7 +143,7 @@ public class EditCommandParserTest {
 
         // roles
         userInput = "member " + targetIndex.getOneBased() + " r/friend";
-        descriptor = new EditMemberDescriptorBuilder().withTags("friend").build();
+        descriptor = new EditMemberDescriptorBuilder().withRoles("friend").build();
         assertParseSuccess(parser, userInput, new EditMemberCommand(targetIndex, descriptor));
     }
 
@@ -164,7 +164,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_resetTags_throwsParseException() {
+    public void parse_resetRoles_throwsParseException() {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = "member " + targetIndex.getOneBased() + " r/";
 

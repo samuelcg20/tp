@@ -23,22 +23,22 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@u.nus.edu"),
                 new Year("1"),
-                getTagSet("VicePresident")),
+                getRoleSet("VicePresident")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@u.nus.edu"),
                 new Year("2"),
-                getTagSet("OperationsHead", "Treasurer")),
+                getRoleSet("OperationsHead", "Treasurer")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@u.nus.edu"),
                 new Year("3"),
-                getTagSet("MarketingHead")),
+                getRoleSet("MarketingHead")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@u.nus.edu"),
                 new Year("4"),
-                getTagSet("President")),
+                getRoleSet("President")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@u.nus.edu"),
                 new Year("1"),
-                getTagSet("Member")),
+                getRoleSet("Member")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@u.nus.edu"),
                 new Year("2"),
-                getTagSet("Secretriat"))
+                getRoleSet("Secretriat"))
         };
     }
 
@@ -69,7 +69,7 @@ public class SampleDataUtil {
     /**
      * Returns a role set containing the list of strings given.
      */
-    public static Set<Role> getTagSet(String... strings) {
+    public static Set<Role> getRoleSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Role::new)
                 .collect(Collectors.toSet());

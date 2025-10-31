@@ -88,7 +88,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         // Parse year and store in model
         Year year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
-        Set<Role> roleList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ROLE));
+        Set<Role> roleList = ParserUtil.parseRoles(argMultimap.getAllValues(PREFIX_ROLE));
 
         Person person = new Person(name, phone, email, year, roleList);
 

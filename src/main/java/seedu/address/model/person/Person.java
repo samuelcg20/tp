@@ -70,7 +70,7 @@ public class Person {
      * Returns an immutable role set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Role> getTags() {
+    public Set<Role> getRoles() {
         return Collections.unmodifiableSet(roles);
     }
 

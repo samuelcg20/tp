@@ -129,13 +129,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code role} is invalid.
      */
-    public static Role parseTag(String role) throws ParseException {
+    public static Role parseRole(String role) throws ParseException {
         requireNonNull(role);
-        String trimmedTag = role.trim();
-        if (!Role.isValidTagName(trimmedTag)) {
+        String trimmedRole = role.trim();
+        if (!Role.isValidRoleName(trimmedRole)) {
             throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
-        return new Role(trimmedTag);
+        return new Role(trimmedRole);
     }
 
     /**
@@ -186,11 +186,11 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> roles} into a {@code Set<Role>}.
      */
-    public static Set<Role> parseTags(Collection<String> roles) throws ParseException {
+    public static Set<Role> parseRoles(Collection<String> roles) throws ParseException {
         requireNonNull(roles);
         final Set<Role> roleSet = new HashSet<>();
         for (String roleName : roles) {
-            roleSet.add(parseTag(roleName));
+            roleSet.add(parseRole(roleName));
         }
         return roleSet;
     }

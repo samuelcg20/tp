@@ -60,7 +60,7 @@ public class EditMemberCommand extends EditCommand {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setYear(toCopy.year);
-            setTags(toCopy.roles);
+            setRoles(toCopy.roles);
         }
 
         /**
@@ -108,7 +108,7 @@ public class EditMemberCommand extends EditCommand {
          * A defensive copy of {@code roles} is used internally.
          */
         @Override
-        public void setTags(Set<Role> roles) {
+        public void setRoles(Set<Role> roles) {
             this.roles = (roles != null) ? new HashSet<>(roles) : null;
         }
 

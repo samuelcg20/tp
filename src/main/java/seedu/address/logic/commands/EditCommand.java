@@ -67,7 +67,7 @@ public abstract class EditCommand extends Command {
          * Sets {@code roles} to this object's {@code roles}.
          * A defensive copy of {@code roles} is used internally.
          */
-        public void setTags(Set<Role> roles) {
+        public void setRoles(Set<Role> roles) {
             this.roles = (roles != null) ? new HashSet<>(roles) : null;
         }
 

@@ -58,10 +58,10 @@
 
 //         PersonBuilder personInList = new PersonBuilder(lastPerson);
 //         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-//                 .withTags(VALID_ROLE_HUSBAND).build();
+//                 .withRoles(VALID_ROLE_HUSBAND).build();
 
 //         EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder().withName(VALID_NAME_BOB)
-//                 .withPhone(VALID_PHONE_BOB).withTags(VALID_ROLE_HUSBAND).build();
+//                 .withPhone(VALID_PHONE_BOB).withRoles(VALID_ROLE_HUSBAND).build();
 //         EditCommand editCommand = new EditMemberCommand(indexLastPerson, descriptor);
 
 //         String expectedMessage =

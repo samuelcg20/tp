@@ -27,15 +27,15 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withYear("1").withEmail("alice@u.nus.edu")
             .withPhone("94351253")
-            .withTags("friends").build();
+            .withRoles("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withYear("2")
             .withEmail("johnd@u.nus.edu").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withRoles("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@u.nus.edu").withYear("3").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@u.nus.edu").withYear("4").withTags("friends").build();
+            .withEmail("cornelia@u.nus.edu").withYear("4").withRoles("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94822244")
             .withEmail("werner@u.nus.edu").withYear("1").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94824274")
@@ -51,9 +51,9 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withYear(VALID_YEAR_AMY).withTags(VALID_ROLE_FRIEND).build();
+            .withEmail(VALID_EMAIL_AMY).withYear(VALID_YEAR_AMY).withRoles(VALID_ROLE_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withYear(VALID_YEAR_BOB).withTags(VALID_ROLE_HUSBAND, VALID_ROLE_FRIEND)
+            .withEmail(VALID_EMAIL_BOB).withYear(VALID_YEAR_BOB).withRoles(VALID_ROLE_HUSBAND, VALID_ROLE_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

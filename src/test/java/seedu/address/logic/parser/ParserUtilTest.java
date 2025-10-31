@@ -149,25 +149,25 @@
 //     }
 
 //     @Test
-//     public void parseTag_null_throwsNullPointerException() {
-//         assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+//     public void parseRole_null_throwsNullPointerException() {
+//         assertThrows(NullPointerException.class, () -> ParserUtil.parseRole(null));
 //     }
 
 //     @Test
-//     public void parseTag_invalidValue_throwsParseException() {
-//         assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_ROLE));
+//     public void parseRole_invalidValue_throwsParseException() {
+//         assertThrows(ParseException.class, () -> ParserUtil.parseRole(INVALID_ROLE));
 //     }
 
 //     @Test
-//     public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-//         Role expectedTag = new Role(VALID_ROLE_1);
-//         assertEquals(expectedTag, ParserUtil.parseTag(VALID_ROLE_1));
+//     public void parseRole_validValueWithoutWhitespace_returnsRole() throws Exception {
+//         Role expectedRole = new Role(VALID_ROLE_1);
+//         assertEquals(expectedRole, ParserUtil.parseRole(VALID_ROLE_1));
 //     }
 
 //     @Test
-//     public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
+//     public void parseRole_validValueWithWhitespace_returnsTrimmedRole() throws Exception {
 //         String roleWithWhitespace = WHITESPACE + VALID_ROLE_1 + WHITESPACE;
-//         Role expectedTag = new Role(VALID_ROLE_1);
+//         Role expectedRole = new Role(VALID_ROLE_1);
 //         assertEquals(expectedTag, ParserUtil.parseTag(roleWithWhitespace));
 //     }
 

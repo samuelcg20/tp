@@ -52,24 +52,24 @@ public class AddCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         // Single role
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_ROLE_FRIEND).build();
+        Person expectedPerson = new PersonBuilder(BOB).withRoles(VALID_ROLE_FRIEND).build();
         assertParseSuccess(parser, "member " + PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + YEAR_DESC_BOB + ROLE_DESC_FRIEND,
                 new AddMemberCommand(expectedPerson));
 
         // Multiple roles
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB)
-                .withTags(VALID_ROLE_FRIEND, VALID_ROLE_HUSBAND).build();
+        Person expectedPersonMultipleRoles = new PersonBuilder(BOB)
+                .withRoles(VALID_ROLE_FRIEND, VALID_ROLE_HUSBAND).build();
 
         assertParseSuccess(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + YEAR_DESC_BOB + ROLE_DESC_FRIEND + ROLE_DESC_HUSBAND,
-                new AddMemberCommand(expectedPersonMultipleTags));
+                new AddMemberCommand(expectedPersonMultipleRoles));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // No roles
-        Person expectedPerson = new PersonBuilder(AMY).withTags("friend").build();
+        Person expectedPerson = new PersonBuilder(AMY).withRoles("friend").build();
         assertParseSuccess(parser, "member " + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                         + YEAR_DESC_AMY + ROLE_DESC_FRIEND, new AddMemberCommand(expectedPerson));
     }
@@ -96,7 +96,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_repeatedNonTagValue_failure() {
+    public void parse_repeatedNonRoleValue_failure() {
         String validPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB + ROLE_DESC_FRIEND;
 
         // multiple names

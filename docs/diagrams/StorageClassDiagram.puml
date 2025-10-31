@@ -20,7 +20,7 @@ Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
 Class JsonAdaptedPerson
 Class JsonAdaptedEvent
-Class JsonAdaptedTag
+Class JsonAdaptedRole
 }
 
 package "AliasBook Storage" #F4F6F6{
@@ -46,7 +46,7 @@ JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonSerializableAddressBook --> "*" JsonAdaptedEvent
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAdaptedPerson --> "*" JsonAdaptedRole
 JsonAliasBookStorage .up.|> AliasBookStorage
 JsonAliasBookStorage ..> JsonSerializableAliasBook
 JsonSerializableAliasBook --> "*" JsonAdaptedAlias

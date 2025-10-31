@@ -81,7 +81,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException("Role cannot be empty. Key in a role after 'r/'.");
         }
 
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_ROLE)).ifPresent(editPersonDescriptor::setTags);
+        parseRolesForEdit(argMultimap.getAllValues(PREFIX_ROLE)).ifPresent(editPersonDescriptor::setRoles);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditMemberCommand.MESSAGE_NOT_EDITED);
@@ -124,14 +124,14 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code roles} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Role>} containing zero roles.
      */
-    private Optional<Set<Role>> parseTagsForEdit(Collection<String> roles) throws ParseException {
+    private Optional<Set<Role>> parseRolesForEdit(Collection<String> roles) throws ParseException {
         assert roles != null;
 
         if (roles.isEmpty()) {
             return Optional.empty();
         }
         Collection<String> roleSet = roles.size() == 1 && roles.contains("") ? Collections.emptySet() : roles;
-        return Optional.of(ParserUtil.parseTags(roleSet));
+        return Optional.of(ParserUtil.parseRoles(roleSet));
     }
 
 }

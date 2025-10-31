@@ -9,27 +9,27 @@ import seedu.address.model.role.Role;
 /**
  * Jackson-friendly version of {@link Role}.
  */
-class JsonAdaptedTag {
+class JsonAdaptedRole {
 
     private final String roleName;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code roleName}.
+     * Constructs a {@code JsonAdaptedRole} with the given {@code roleName}.
      */
     @JsonCreator
-    public JsonAdaptedTag(String roleName) {
+    public JsonAdaptedRole(String roleName) {
         this.roleName = roleName;
     }
 
     /**
      * Converts a given {@code Role} into this class for Jackson use.
      */
-    public JsonAdaptedTag(Role source) {
+    public JsonAdaptedRole(Role source) {
         roleName = source.roleName;
     }
 
     @JsonValue
-    public String getTagName() {
+    public String getRoleName() {
         return roleName;
     }
 
@@ -39,7 +39,7 @@ class JsonAdaptedTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted role.
      */
     public Role toModelType() throws IllegalValueException {
-        if (!Role.isValidTagName(roleName)) {
+        if (!Role.isValidRoleName(roleName)) {
             throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
         }
         return new Role(roleName);

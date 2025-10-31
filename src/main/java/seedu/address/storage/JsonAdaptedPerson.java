@@ -31,7 +31,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String year;
-    private final List<JsonAdaptedTag> roles = new ArrayList<>();
+    private final List<JsonAdaptedRole> roles = new ArrayList<>();
     private final Integer attendanceCount;
 
     /**
@@ -40,7 +40,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("year") String year,
-            @JsonProperty("roles") List<JsonAdaptedTag> roles, @JsonProperty("attendanceCount") Integer attendanceCount) {
+            @JsonProperty("roles") List<JsonAdaptedRole> roles, @JsonProperty("attendanceCount") Integer attendanceCount) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -59,8 +59,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         year = source.getYear().value;
-        roles.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        roles.addAll(source.getRoles().stream()
+                .map(JsonAdaptedRole::new)
                 .collect(Collectors.toList()));
         attendanceCount = source.getAttendanceCount();
     }
@@ -72,7 +72,7 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Role> personRoles = new ArrayList<>();
-        for (JsonAdaptedTag role : roles) {
+        for (JsonAdaptedRole role : roles) {
             personRoles.add(role.toModelType());
         }
 
