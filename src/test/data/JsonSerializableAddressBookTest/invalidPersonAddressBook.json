@@ -1,8 +1,12 @@
 {
-  "persons": [ {
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
-    "year": "1"
-  } ]
+  "persons": [
+    {
+      "name": "Hans Mu@ster",
+      "phone": "94351253",
+      "email": "hans@u.nus.edu",
+      "year": "1",
+      "tags": [],
+      "attendanceCount": 0
+    }
+  ]
 }

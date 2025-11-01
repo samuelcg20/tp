@@ -1,14 +1,22 @@
 {
-  "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@u.nus.edu",
-    "year": "1",
-    "tags": [ "President" ]
-  }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@u.nus.edu",
-    "year": "2"
-  } ]
+  "persons": [
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@u.nus.edu",
+      "year": "1",
+      "tags": [
+        "friends"
+      ],
+      "attendanceCount": 0
+    },
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "pauline@u.nus.edu",
+      "year": "2",
+      "tags": [],
+      "attendanceCount": 0
+    }
+  ]
 }

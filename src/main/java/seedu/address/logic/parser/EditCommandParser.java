@@ -51,10 +51,29 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
     }
 
+    /**
+     * Parses input for an {@link EditMemberCommand}.
+     *
+     * @param keywords The user input string containing parameters for editing a member.
+     * @return An {@link EditMemberCommand} with parsed values.
+     * @throws ParseException If the input format is invalid or missing required parameters.
+     */
     private EditMemberCommand createEditMemberCommand(String keywords) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(keywords,
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR, PREFIX_TAG);
+        Index index;
+        return getEditMemberCommand(argMultimap);
+    }
+
+    /**
+     * Builds an {@link EditMemberCommand} using parsed arguments from the provided {@link ArgumentMultimap}.
+     *
+     * @param argMultimap A map of argument prefixes to their respective values.
+     * @return A fully constructed {@link EditMemberCommand}.
+     * @throws ParseException If any field is invalid or no editable fields are specified.
+     */
+    private EditMemberCommand getEditMemberCommand(ArgumentMultimap argMultimap) throws ParseException {
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -89,12 +108,31 @@ public class EditCommandParser implements Parser<EditCommand> {
         return new EditMemberCommand(index, editPersonDescriptor);
     }
 
+    /**
+     * Parses input for an {@link EditEventCommand}.
+     *
+     * @param keywords The user input string containing parameters for editing an event.
+     * @return An {@link EditEventCommand} with parsed values.
+     * @throws ParseException If the input format is invalid or missing required parameters.
+     */
     private EditEventCommand createEditEventCommand(String keywords) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(keywords,
                         PREFIX_NAME, PREFIX_DATE, PREFIX_LOCATION);
         Index index;
 
+        return getEditEventCommand(argMultimap);
+    }
+
+    /**
+     * Builds an {@link EditEventCommand} using parsed arguments from the provided {@link ArgumentMultimap}.
+     *
+     * @param argMultimap A map of argument prefixes to their respective values.
+     * @return A fully constructed {@link EditEventCommand}.
+     * @throws ParseException If any field is invalid or no editable fields are specified.
+     */
+    private static EditEventCommand getEditEventCommand(ArgumentMultimap argMultimap) throws ParseException {
+        Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
