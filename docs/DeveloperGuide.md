@@ -723,10 +723,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Viewing all members/events
 
-   1a. Test case 1: `list members`<br>
+   1a. Test case 1: `list member`<br>
    Expected: All members are displayed in the list.
 
-   1b. Test case 2: `list events`<br>
+   1b. Test case 2: `list event`<br>
    Expected: All events are displayed in the list.
 
    1c. Other incorrect list commands to try: `list`, `list x`<br>
@@ -760,10 +760,3 @@ testers are expected to do more *exploratory* testing.
    2d. Other incorrect unmark commands to try: `unmark m/0 e/1`, `unmark m/1 e/99`<br>
    Expected: Error message indicating the invalid index.
 
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
