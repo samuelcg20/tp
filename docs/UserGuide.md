@@ -433,7 +433,7 @@ Format: `edit member INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/YEAR] [r/ROLE]…`
 
 - You choose which member to edit by specifying their `INDEX` (the first member is 1).
 - You must include at least one field to edit - for example, a name, phone number, or email.
-- Each field prefix (like n/, p/, e/, y/, r/) can be used only once in a single command.
+- Each of the following field prefixes - n/, p/, e/, y/ - can be used only once in a single command.
 - If you add one or more r/ROLE values, all previous roles will be replaced with the new ones.
 - You cannot edit a member to create a duplicate. See FAQ for notes on what constitutes a [duplicate member](#duplicate-members)
 - For field constraints: see [Member field constraints](#member-constraints)
