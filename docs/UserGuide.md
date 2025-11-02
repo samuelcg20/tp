@@ -289,7 +289,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
   <tbody>
     <tr>
       <td><strong>NAME (`n/`)</strong></td>
-      <td>- Alphanumeric and spaces only <br> - Extra internal spaces (i.e. more than one) will be allowed for input but removed when stored <br> - Input must be at most 35 characters (including spaces)</td>
+      <td>- Alphanumeric and spaces only <br> - Extra internal spaces (i.e. more than one) between words will be allowed for input but removed when stored <br> - Input must be at most 35 characters (including spaces)</td>
     </tr>
     <tr>
       <td><strong>PHONE (`p/`)</strong></td>
