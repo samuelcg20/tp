@@ -141,16 +141,16 @@ public class EventTest {
     }
 
     @Test
-    public void isSameEvent_sameNameAndDate_returnsTrue() {
+    public void isSameEvent_sameVenueAndDate_returnsTrue() {
         Event event1 = new Event(name, date, venue);
-        Event event2 = new Event(new EventName("Hackathon 2025"), date, new Venue("Other Venue"));
+        Event event2 = new Event(new EventName("Hackathon 2026"), date, venue);
         assertTrue(event1.isSameEvent(event2));
     }
 
     @Test
-    public void isSameEvent_differentNameOrDate_returnsFalse() {
+    public void isSameEvent_sameName_returnsFalse() {
         Event event1 = new Event(name, date, venue);
-        Event event2 = new Event(new EventName("Hackathon X"), date, venue);
+        Event event2 = new Event(name, date, new Venue("Different Venue"));
         Event event3 = new Event(name, new Date("2025-10-30T15:30"), venue);
         assertFalse(event1.isSameEvent(event2));
         assertFalse(event1.isSameEvent(event3));
@@ -170,13 +170,6 @@ public class EventTest {
         Event event2 = new Event(new EventName("Hackathon 2025"), new Date("2025-10-29T15:30"),
                 new Venue("Block 123, Tech Hall"), "Alice, Bob");
         assertTrue(event1.equals(event2));
-    }
-
-    @Test
-    public void equals_differentValues_returnsFalse() {
-        Event event1 = new Event(name, date, venue, attendance);
-        Event event2 = new Event(new EventName("Hackathon X"), date, venue, attendance);
-        assertFalse(event1.equals(event2));
     }
 
     @Test

@@ -264,7 +264,7 @@ public CommandResult execute(Model model) throws CommandException {
 **Aspect: Command syntax**
 
 * Alternative: accept member/event names. This becomes ambiguous when duplicates exist and breaks consistency with other index-based commands.
-* Current choice: reuse zero-based indexes so the commands remain unambiguous with filtered lists and align with the rest of the CLI.
+* Current choice: reuse one-based indexes so the commands remain unambiguous with filtered lists and align with the rest of the CLI.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -302,17 +302,17 @@ attendance for members and filter members by event attendance.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​              | I want to …​                                   | So that I can…​                                                                                                     |
-|--------|----------------------|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
-| `* * *` | CCA leader           | add a new meember with their details           | keep a complete active member list                                                                                  |
-| `* * *` | CCA leader           | delete a member                                | remove inactive members                                                                                             |
-| `* * *` | CCA leader           | add an event with date/time                    | track attendance later                                                                                |
-| `* * *` | CCA leader/secretary | view the entire address book details | retrieve info from the the address book and also be sure that it always stays accurate and up to date |
-| `* * *` | CCA leader           | delete an event                      | remove cancelled events                                                                               |
-| `* *`  | CCA leader           | create aliases for commands                 | type faster by using shorter, personalised command names                                                                       |
-| `* *`  | CCA leader           | view a guided tour                 | learn the main interface features easily without referring back to the guide                                                                       |
-| `* *`  | CCA leader           | search for members or events by keywords                | find specific entries quickly without scrolling through long lists                                                                       |
-| `*`    | CCA leader           | undo or redo my last action                 | reverse mistakes such as deleting the wrong entry                                                                      |
+| Priority | As a …​              | I want to …​                                  | So that I can…​                                                                                   |
+|--------|----------------------|-----------------------------------------------|---------------------------------------------------------------------------------------------------|
+| `* * *` | CCA leader           | add a new member with their details           | keep a complete active member list                                                                |
+| `* * *` | CCA leader           | delete a member                               | remove inactive members                                                                           |
+| `* * *` | CCA leader           | add an event with date/time                   | track attendance later                                                                            |
+| `* * *` | CCA leader/secretary | view the entire address book details | retrieve info from the address book and also be sure that it always stays accurate and up to date |
+| `* * *` | CCA leader           | delete an event                      | remove cancelled events                                                                           |
+| `* *`  | CCA leader           | create aliases for commands                 | type faster by using shorter, personalised command names                                          |
+| `* *`  | CCA leader           | view a guided tour                 | learn the main interface features easily without referring back to the guide                      |
+| `* *`  | CCA leader           | search for members or events by keywords               | find specific entries quickly without scrolling through long lists                                |
+| `*`    | CCA leader           | undo or redo my last action                 | reverse mistakes such as deleting the wrong entry                                                 |
 
 
 ### Use cases
@@ -361,7 +361,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a member.
-2. ComCLubConnect adds the new member to the list.
+2. ComClubConnect adds the new member to the list.
 3. ComClubConnect confirms that the member has been added successfully.
 
     Use case ends.
@@ -370,17 +370,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1a. ComClubConnect detects duplicate member.
     - 1a1. ComClubConnect informs user on duplicate member being present.
-    - Use case resumes at step 2.
+    - Use case ends.
 - 1b. ComClubConnect detects invalid input.
     - 1b1. ComClubConnect informs user on invalid input.
-    - Use case resumes at step 2.
+    - Use case ends.
 
 **UC4: Add an event**
 
 **MSS**
 
 1. User requests to add an event.
-2. ComCLubConnect adds the new event to the list.
+2. ComClubConnect adds the new event to the list.
 3. ComClubConnect confirms that the event has been added successfully.
 
    Use case ends.
@@ -389,10 +389,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1a. ComClubConnect detects duplicate event.
     - 1a1. ComClubConnect informs user on duplicate event being present.
-    - Use case resumes at step 2.
+    - Use case ends.
 - 1b. ComClubConnect detects invalid input.
     - 1b1. ComClubConnect informs user on invalid input.
-    - Use case resumes at step 2.
+    - Use case ends.
 
 **UC5: Delete a member**
 
@@ -400,7 +400,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User performs [<u>UC1: list members</u>](#use-case-list-members).
 2. User requests to delete a member in the displayed list by index.
-3. ComCLubConnect deletes the specified member.
+3. ComClubConnect deletes the specified member.
 4. ComClubConnect confirms that the member has been deleted.
 
    Use case ends.
@@ -411,7 +411,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Use case ends.
 - 2a. ComClubConnect detects index is invalid.
     - 2a1. ComClubConnect informs user on invalid index.
-    - Use case resumes at step 2.
+    - Use case ends.
 
 **UC6: Delete an event**
 
@@ -419,7 +419,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User performs [<u>UC2: list events</u>](#use-case-list-events).
 2. User requests to delete an event in the displayed list by index.
-3. ComCLubConnect deletes the specified event.
+3. ComClubConnect deletes the specified event.
 4. ComClubConnect confirms that the event has been deleted.
 
    Use case ends.
@@ -430,7 +430,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Use case ends.
 - 2a. ComClubConnect detects index is invalid.
     - 2a1. ComClubConnect informs user on invalid index.
-    - Use case resumes at step 2.
+    - Use case ends.
 
 **UC7: Edit a member**
 
@@ -438,7 +438,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User performs [<u>UC1: list members</u>](#use-case-list-members).
 2. User requests to edit a member in the displayed list.
-3. ComCLubConnect edits the specified member.
+3. ComClubConnect edits the specified member.
 4. ComClubConnect confirms that the member has been edited.
 
    Use case ends.
@@ -449,7 +449,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Use case ends.
 - 2a. ComClubConnect detects input is invalid.
     - 2a1. ComClubConnect informs user on invalid index.
-    - Use case resumes at step 2.
+    - Use case ends.
 
 **UC8: Edit an event**
 
@@ -457,7 +457,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User performs [<u>UC2: list events</u>](#use-case-list-events).
 2. User requests to edit an event in the displayed list.
-3. ComCLubConnect edits the specified event.
+3. ComClubConnect edits the specified event.
 4. ComClubConnect confirms that the event has been edited.
 
    Use case ends.
@@ -468,7 +468,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Use case ends.
 - 2a. ComClubConnect detects input is invalid.
     - 2a1. ComClubConnect informs user on invalid index.
-    - Use case resumes at step 2.
+    - Use case ends.
 
 **UC9: Find members**
 
@@ -476,7 +476,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User performs [<u>UC1: list members</u>](#use-case-list-members).
 2. User requests to find members in the displayed list.
-3. ComCLubConnect checks input and displays filtered list containing members that meet the filter requirements.
+3. ComClubConnect checks input and displays filtered list containing members that meet the filter requirements.
 4. ComClubConnect confirms that the members have been found.
 
    Use case ends.
@@ -485,7 +485,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. ComClubConnect detects input is invalid.
     - 2a1. ComClubConnect informs user on invalid input.
-    - Use case resumes at step 2.
+    - Use case ends.
 
 **UC10: Find events**
 
@@ -493,7 +493,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User performs [<u>UC2: list events</u>](#use-case-list-events).
 2. User requests to find events in the displayed list.
-3. ComCLubConnect checks input and displays filtered list containing events that meet the filter requirement.
+3. ComClubConnect checks input and displays filtered list containing events that meet the filter requirement.
 4. ComClubConnect confirms that the events have been found.
 
    Use case ends.
@@ -502,14 +502,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. ComClubConnect detects input is invalid.
     - 2a1. ComClubConnect informs user on invalid input.
-    - Use case resumes at step 2.
+    - Use case ends.
 
 **UC11: Clear all members**
 
 **MSS**
 
 1. User requests to clear all members.
-2. ComCLubConnect clears all members from the list.
+2. ComClubConnect clears all members from the list.
 3. ComClubConnect confirms that all members have been cleared.
 
    Use case ends.
@@ -518,14 +518,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. ComClubConnect detects command is invalid.
     - 2a1. ComClubConnect informs user on invalid command.
-    - Use case resumes at step 1.
+    - Use case ends.
 
 **UC12: Clear all events**
 
 **MSS**
 
 1. User requests to clear all events.
-2. ComCLubConnect clears all events from the list.
+2. ComClubConnect clears all events from the list.
 3. ComClubConnect confirms that all events have been cleared.
 
    Use case ends.
@@ -534,28 +534,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. ComClubConnect detects command is invalid.
     - 2a1. ComClubConnect informs user on invalid command.
-    - Use case resumes at step 1.
+    - Use case ends.
 
 **UC13: Exit ComClubConnect**
 
 **MSS**
 
 1. User requests to exit ComClubConnect.
-2. ComCLubConnect acknowledges and closes the window.
+2. ComClubConnect acknowledges and closes the window.
    Use case ends.
 
 **Extensions**
 
 - 1a. ComClubConnect detects command is invalid.
     - 1a1. ComClubConnect informs user on invalid command.
-    - Use case resumes at step 1.
+    - Use case ends.
 
 **UC14: View help information**
 
 **MSS**
 
 1. User requests to view help information.
-2. ComCLubConnect opens the help window.
+2. ComClubConnect opens the help window.
 3. User acknowledges and closes the help window.
    Use case ends.
 
@@ -572,7 +572,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to create a new alias for an existing command.
-2. ComCLubConnect saves the alias mapping.
+2. ComClubConnect saves the alias mapping.
 3. ComClubConnect confirms that the alias was created successfully.
    Use case ends.
 
@@ -580,7 +580,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1a. ComClubConnect detects alias command already exists.
     - 1a1. ComClubConnect informs user on the already existing alias command.
-    - Use case resumes at step 1.
+    - Use case ends.
 
 **UC16: Mark a member's attendance for an event**
 
@@ -596,8 +596,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 3a. ComClubConnect detects input is invalid.
-    - 1a1. ComClubConnect informs user on the invalid input.
-    - Use case resumes at step 3.
+    - 3a1. ComClubConnect informs user on the invalid input.
+    - Use case ends.
 
 **UC17: Unmark a member's attendance for an event**
 
@@ -614,7 +614,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 3a. ComClubConnect detects input is invalid.
     - 1a1. ComClubConnect informs user on the invalid input.
-    - Use case resumes at step 3.
+    - Use case ends.
 
 ### Non-Functional Requirements
 
@@ -622,9 +622,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  The system should be able to handle at least 50 members and 20 events without noticeable sluggishness in performance for typical usage.
 3.  Core commands (add, delete, list) should return results within 1 second for datasets within these limits.
 4.  Error messages should be clear, specific, and actionable, guiding the user to correct invalid inputs.
-5.  Member and event records must be stored persistently so that no data is lost between application restarts.
+5.  Member and event records must be stored persistently in a database, with all changes saved immediately (within 1 second) to ensure no data is lost between application restarts or failures.
 6.  The system must validate all input to prevent injection of unsupported or malicious characters.
-7.  The application should start up and be ready to accept commands within 5 seconds on a typical laptop.
+7.  The application should start up and be ready to accept commands within 8 seconds on a typical laptop.
 8.  All stored data should be in a human-readable text format (e.g., JSON/XML/CSV) so that it can be migrated easily to another system if needed.
 
 
@@ -699,7 +699,6 @@ testers are expected to do more *exploratory* testing.
 
    3b. Test case: `add event n/Orientation d/2025-08-01T18:00 v/NUS LT27`<br>
    Expected: Command fails with a duplicate event error (same name and date).
-   Expected: Command fails with a duplicate event error.
 
 ### Deleting a member/event
 

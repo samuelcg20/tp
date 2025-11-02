@@ -15,7 +15,8 @@ import java.time.format.ResolverStyle;
 public class Date {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Input for dates should be in ISO format YYYY-MM-DDTHH:MM (no seconds allowed)";
+            "Input for dates should be in ISO format YYYY-MM-DDTHH:MM (no seconds allowed)."
+                    + " The date and time must be valid (e.g. 14:60 or 2025-02-30 are not allowed).";
 
     public static final DateTimeFormatter FORMATTER =
             DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm").withResolverStyle(ResolverStyle.STRICT);

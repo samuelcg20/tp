@@ -11,17 +11,30 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
 /**
- * Adds a person to the address book.
+ * Adds a new event to the address book.
+ *
+ * <p>This command creates an {@link Event} object and adds it to the model if
+ * it does not already exist. Events are considered duplicates if they share the
+ * same identifying details (as defined by {@code Event#equals(Event)}).</p>
+ *
+ * <p>Example usage:
+ * <pre>
+ *     addevent n/CS2103T Lecture d/2025-10-31T14:00 l/COM1-0207
+ * </pre>
+ * adds a new event named "CS2103T Lecture" scheduled at COM1-0207 on 31 Oct 2025, 2:00 PM.</p>
  */
 public class AddEventCommand extends AddCommand {
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EVENT =
+            "Event with the same venue, date and time already exists in the address book";
 
     private final Event toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Constructs an {@code AddEventCommand} with the specified {@code Event} to be added.
+     *
+     * @param event the event to add; must not be {@code null}.
      */
     public AddEventCommand(Event event) {
         super();

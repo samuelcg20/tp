@@ -30,9 +30,9 @@ import seedu.address.model.person.Year;
  */
 public class EditMemberCommand extends EditCommand {
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_MEMBER_SUCCESS = "Edited Member: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This member already exists in the address book.";
 
     private final Index index;
     private final EditMemberDescriptor editMemberDescriptor;
@@ -155,8 +155,8 @@ public class EditMemberCommand extends EditCommand {
     // ==================================================================================================
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the member in the filtered member list to edit
+     * @param editPersonDescriptor details to edit the member with
      */
     public EditMemberCommand(Index index, EditMemberDescriptor editPersonDescriptor) {
         super();
@@ -186,7 +186,7 @@ public class EditMemberCommand extends EditCommand {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return CommandResult.showMembers(
-                String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+                String.format(MESSAGE_EDIT_MEMBER_SUCCESS, Messages.format(editedPerson)));
     }
 
     /**
