@@ -27,7 +27,7 @@ public class AddEventCommand extends AddCommand {
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT =
-            "Event with the same venue and time already exists in the address book";
+            "Event with the same venue, date and time already exists in the address book";
 
     private final Event toAdd;
 
