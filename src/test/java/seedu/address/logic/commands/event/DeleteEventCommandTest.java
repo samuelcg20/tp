@@ -33,9 +33,9 @@ public class DeleteEventCommandTest {
         model = new ModelManager();
 
         // Add three events to the model for test determinism
-        model.addEvent(new EventBuilder().withName("Hackathon").build());
-        model.addEvent(new EventBuilder().withName("Workshop").build());
-        model.addEvent(new EventBuilder().withName("Seminar").build());
+        model.addEvent(new EventBuilder().withName("Hackathon").withLocation("Location 1").build());
+        model.addEvent(new EventBuilder().withName("Workshop").withLocation("Location 2").build());
+        model.addEvent(new EventBuilder().withName("Seminar").withLocation("Location 3").build());
     }
 
     @Test

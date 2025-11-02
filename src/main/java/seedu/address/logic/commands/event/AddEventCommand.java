@@ -26,7 +26,8 @@ import seedu.address.model.event.Event;
 public class AddEventCommand extends AddCommand {
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EVENT =
+            "Event with the same venue, date and time already exists in the address book";
 
     private final Event toAdd;
 
