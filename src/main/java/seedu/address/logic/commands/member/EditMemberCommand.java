@@ -180,14 +180,24 @@ public class EditMemberCommand extends EditCommand {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editMemberDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (hasIdentityChanged(personToEdit, editedPerson)) {
+            Optional<String> duplicateMessage = MemberDuplicateMessageUtil.buildDuplicateIdentityMessage(
+                    model.getAddressBook().getPersonList(), editedPerson, personToEdit);
+            if (duplicateMessage.isPresent()) {
+                throw new CommandException(duplicateMessage.get());
+            }
         }
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return CommandResult.showMembers(
                 String.format(MESSAGE_EDIT_MEMBER_SUCCESS, Messages.format(editedPerson)));
+    }
+
+    private static boolean hasIdentityChanged(Person original, Person edited) {
+        boolean phoneChanged = !original.getPhone().equals(edited.getPhone());
+        boolean emailChanged = !original.getEmail().value.equalsIgnoreCase(edited.getEmail().value);
+        return phoneChanged || emailChanged;
     }
 
     /**
