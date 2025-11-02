@@ -207,10 +207,10 @@ public class AddEventCommandTest {
     }
 
     @Test
-    public void equals_differentEvents_returnsFalse() {
+    public void equals_differentNameSameVenueAndDate_returnsTrue() {
         AddEventCommand cmd1 = new AddEventCommand(new EventBuilder().withName("A").build());
         AddEventCommand cmd2 = new AddEventCommand(new EventBuilder().withName("B").build());
-        assertFalse(cmd1.equals(cmd2));
+        assertTrue(cmd1.equals(cmd2));
     }
 
     @Test
