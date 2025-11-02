@@ -42,9 +42,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         String type = argsParts[0];
         String keywords = argsParts[1];
-        if (type.equalsIgnoreCase("member")) {
+        if (ParserUtil.isMember(type)) {
             return createEditMemberCommand(keywords);
-        } else if (type.equalsIgnoreCase("event")) {
+        } else if (ParserUtil.isEvent(type)) {
             return createEditEventCommand(keywords);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));

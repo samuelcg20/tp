@@ -198,13 +198,13 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 
 
 <h3 style="margin-top: 0.3em;">Step 4: Run the application</h3>
-- Copy the pathname of the ComCLubConnect home folder
+- Copy the pathname of the ComClubConnect home folder
     - **Windows users**: Right click on the folder and select "Copy as path"
     - **Mac users**: Right click on the folder and select "Copy as pathname"
     - **Linux users**: Right click on the folder and select "Copy path"
 - Open a command terminal as mentioned in step 2
 - Type `cd <copied filepath>` command to enter the folder
-- Type `java -jar addressbook.jar` command to run the application.<br>
+- Type `java -jar ComClubConnect.jar` command to run the application.<br>
 - A GUI like the one below will appear on your screen in a few seconds. Note that the app contains some sample data. The layout is explained below.<br>
 
 ![Ui](images/Ui.png)
@@ -301,11 +301,11 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
     </tr>
     <tr>
       <td><strong>YEAR (`y/`)</strong></td>
-      <td>- Must not be blank <br> - Only be `1`, `2`, `3`, or `4`</td>
+      <td>- Must not be blank <br> - Must be one of `1`, `2`, `3`, or `4`</td>
     </tr>
     <tr>
       <td><strong>ROLE (`r/`)</strong></td>
-      <td>- At least one role is required i.e. must not be blank <br> - Each role is a single alphanumeric word with no internal spaces <br> - To add additonal roles, use `r/` prefix again before the additional role <br> - Input must be at most 35 characters (including spaces)</td>
+      <td>- At least one role is required i.e. must not be blank <br> - Each role is a single alphanumeric word with no internal spaces <br> - To add additional roles, use `r/` prefix again before the additional role <br> - Input must be at most 35 characters (including spaces)</td>
     </tr>
   </tbody>
 </table>
@@ -602,7 +602,7 @@ You can add a member's attendance to an event. Their attendance increases by 1 a
 Format: `mark m/MEMBER_INDEX e/EVENT_INDEX` or `mark e/EVENT_INDEX m/MEMBER_INDEX`
 
 - `MEMBER_INDEX` and `EVENT_INDEX` (both 1-based) refer to the index numbers shown in their respective currently displayed lists.
-- Both pararmeters are required exactly once: `m/` (member index) and `e/` (event index).
+- Both parameters are required exactly once: `m/` (member index) and `e/` (event index).
 - A member already marked for an event cannot be marked again.
 
 Examples:
@@ -790,9 +790,6 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 - The app says it can’t save due to permissions. What should I do?
 - Move the `.jar` file to a folder you have write access to (e.g., your home folder or desktop) and run it again.
 
-
-- Can multiple EXCO members use the same data file?
-- Yes. Share the `addressbook.json` file via a cloud drive, but ensure only one person runs the app and edits the file at a time to avoid conflicts.
 
 
 
