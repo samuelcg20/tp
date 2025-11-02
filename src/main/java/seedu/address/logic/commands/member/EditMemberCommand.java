@@ -31,7 +31,8 @@ import seedu.address.model.tag.Tag;
 public class EditMemberCommand extends EditCommand {
 
     public static final String MESSAGE_EDIT_MEMBER_SUCCESS = "Edited Member: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED =
+            "At least one field to edit must be provided and the index provided must be valid.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This member already exists in the address book.";
 
     private final Index index;
