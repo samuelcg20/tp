@@ -347,7 +347,7 @@ Need help? You can copy the user guide link or click the green button to explore
 
 Format: `help`
 
-![help message](images/helpMessage.png)
+![help message](images/UpdatedHelpMessage.png)
 
 #### Guided Tour
 
