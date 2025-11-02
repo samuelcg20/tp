@@ -130,16 +130,10 @@ public class Event {
     }
 
     /**
-     * Returns true if both events have the same identity (name and date).
+     * Returns true if both events have the same identity (date and venue).
      */
     public boolean isSameEvent(Event otherEvent) {
-        if (otherEvent == this) {
-            return true;
-        }
-
-        return otherEvent != null
-                && otherEvent.getName().canonicalForIdentity().equals(getName().canonicalForIdentity())
-                && otherEvent.getDate().equals(getDate());
+        return otherEvent.equals(this);
     }
 
     @Override
@@ -153,10 +147,8 @@ public class Event {
         }
 
         Event otherEvent = (Event) other;
-        return name.equals(otherEvent.name)
-                && date.equals(otherEvent.date)
-                && venue.equals(otherEvent.venue)
-                && attendanceList.equals(otherEvent.attendanceList);
+        return date.equals(otherEvent.date)
+                && venue.equals(otherEvent.venue);
     }
 
     @Override
