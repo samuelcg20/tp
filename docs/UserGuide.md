@@ -525,7 +525,7 @@ Format: `delete TYPE INDEX`
 
 - `TYPE` is either `member` or `event`.
 - `INDEX` refers to the index number shown in the current list and must be a positive number.
-
+- Deleting an upcoming event reverses any attendance previously marked for it, while deleting a past event leaves attendance counts unchanged so that historical records remain intact for the active members.
 
 Examples:
 - `delete member 2`
@@ -604,6 +604,7 @@ Format: `mark m/MEMBER_INDEX e/EVENT_INDEX` or `mark e/EVENT_INDEX m/MEMBER_INDE
 - `MEMBER_INDEX` and `EVENT_INDEX` (both 1-based) refer to the index numbers shown in their respective currently displayed lists.
 - Both parameters are required exactly once: `m/` (member index) and `e/` (event index).
 - A member already marked for an event cannot be marked again.
+- If either or both the member and event indexes are invalid, ComClubConnect reports that both indexes are invalid
 
 Examples:
 
@@ -632,6 +633,7 @@ Format: `unmark m/MEMBER_INDEX e/EVENT_INDEX` or `unmark e/EVENT_INDEX m/MEMBER_
 - `MEMBER_INDEX` and `EVENT_INDEX` refer to the index numbers shown in their respective currently displayed lists and must be positive integers.
 - Both parameters are required exactly once: `m/` (member index) and `e/` (event index).
 - You can only unmark if the member is currently marked for that event.
+- If either or both the member and event indexes are invalid, ComClubConnect reports that both indexes are invalid
 
 Examples:
 
@@ -742,10 +744,11 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 <a id="duplicate-members"></a>
 - Are duplicate members allowed?
-- No. Two members with the same name are considered duplicates. Name matching is case-insensitive and ignores extra (i.e. more than one) internal spaces.
+- No. Two members with the same phone number or NUS email are considered duplicates. Email matching is case-insensitive. Members with same name is not considered to be duplicates.
 <br> Examples:
-    - `John DoE` and `john doe` → duplicate
-    - `Jane  Doe` and `jane doe` → duplicate
+    - Members with same phone number `91234567` and `91234567` → duplicate
+    - Members with same email `alex@u.nus.edu` and `Alex@u.nus.edu` → duplicate
+    - Members with same name `Alex Tan` and `Alex Tan` with different phone numbers and emails → not duplicate
 
 
 <a id="duplicate-events"></a>

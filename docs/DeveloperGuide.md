@@ -207,7 +207,7 @@ Key operations exposed by the attendance feature:
 * `AttendanceParserUtil#parseIndexes(...)` – tokenises `m/` and `e/` prefixes, forbids duplicates, and produces the `Index` values shared by both commands.
 * `MarkCommand#execute(...)` – increments the selected member's attendance count and appends their name to the chosen event.
 * `UnmarkCommand#execute(...)` – removes the member's name from the event and clamps the member's attendance count so it cannot drop below zero.
-* `ModelManager` helpers (`cleanupPersonAttendance(...)`, `updatePersonNameInAttendance(...)`, `cleanupEventAttendance(...)`) – keep attendance data coherent when members or events are edited, cleared, or deleted.
+* `ModelManager` helpers (`cleanupPersonAttendance(...)`, `updatePersonNameInAttendance(...)`, `cleanupEventAttendance(...)`) – keep attendance data coherent when members or events are edited, cleared, or deleted. `ModelManager#deleteEvent(...)` consults `Date#isPastCurrDate()` so only upcoming events undo attendance; past events leave counts untouched.
 * `JsonAdaptedPerson` / `JsonAdaptedEvent` – persist the updated attendance count and comma-delimited attendee list.
 * `PersonCard` / `EventCard` – surface the synchronised count and attendee names in the UI.
 
@@ -225,7 +225,7 @@ Step 3. Inside `execute(...)`, the command resolves the context, increments the 
 
 Step 4. If the leader later issues `unmark` for the same indices, the command uses the same validation path, reverses the event update, and clamps the member's count. The UI immediately reflects the change because it is observing the filtered lists.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** `MarkCommand` guards against duplicate attendance. Attempting to mark an already recorded member results in a clear validation error without modifying either record.</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `MarkCommand` guards against duplicate attendance. Attempting to mark an already recorded member results in a clear validation error without modifying either record. `AttendanceCommand#resolveAttendanceContext` also validates both indexes together and surfaces `MESSAGE_INVALID_MEMBER_AND_EVENT_INDEX` when they are simultaneously out of range.</div>
 
 ```java
 // Core of mark execution
@@ -693,12 +693,12 @@ testers are expected to do more *exploratory* testing.
    1e. Other incorrect add commands to try: `add`, `add n/`, `...` <br>
    Expected: Similar to previous.
 
-2. Adding a member with an existing name
+2. Adding a member with an existing phone/email
 
-   2a. Prerequisites: A member named `Jean Doe` already exists (e.g., created by Test case 1).
+   2a. Prerequisites: A member with phone `98765432` already exists (e.g., created by Test case 1).
 
-   2b. Test case: `add member n/jean doe p/91234567 e/jean.alt@u.nus.edu y/3 r/Treasurer`<br>
-   Expected: Command fails with a duplicate member error because member names are case-insensitive identifiers.
+   2b. Test case: `add member n/Jeanette Doe p/98765432 e/jean.alt@u.nus.edu y/3 r/Treasurer`<br>
+   Expected: Command fails with a duplicate member error because the phone number matches an existing member (repeat with a unique phone but the same email to test the email path).
 
 3. Adding an event with the same name and date
 

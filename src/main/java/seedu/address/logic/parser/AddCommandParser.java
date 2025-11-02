@@ -47,8 +47,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         String[] argsParts = trimmedArgs.split("\\s+", 2);
         String type = argsParts[0];
-        boolean isMemberCommand = type.equalsIgnoreCase("member");
-        boolean isEventCommand = type.equalsIgnoreCase("event");
+        boolean isMemberCommand = ParserUtil.isMember(type);
+        boolean isEventCommand = ParserUtil.isEvent(type);
 
         if (!isMemberCommand && !isEventCommand) {
             throw new ParseException(String.format(MESSAGE_INVALID_TYPE, AddCommand.MESSAGE_USAGE));

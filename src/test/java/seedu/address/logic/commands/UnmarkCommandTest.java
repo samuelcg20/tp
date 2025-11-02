@@ -77,6 +77,20 @@ public class UnmarkCommandTest {
     }
 
     @Test
+    public void execute_bothIndexesInvalid_throwsCommandException() {
+        Person member = new PersonBuilder().withName("Farah Lee").build().withAttendanceCount(1);
+        Event event = new EventBuilder().withName("Design Review").build()
+                .addToAttendanceList(member.getName().fullName);
+        Model model = prepareModel(member, event);
+
+        Index outOfBoundsMemberIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundsEventIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
+        UnmarkCommand command = new UnmarkCommand(outOfBoundsMemberIndex, outOfBoundsEventIndex);
+
+        assertCommandFailure(command, model, AttendanceCommand.MESSAGE_INVALID_MEMBER_AND_EVENT_INDEX);
+    }
+
+    @Test
     public void execute_attendanceDoesNotGoBelowZero_success() throws Exception {
         Person member = new PersonBuilder().withName("Evelyn Koh").build(); // attendance count 0
         Event event = new EventBuilder().withName("Code Sprint").build()

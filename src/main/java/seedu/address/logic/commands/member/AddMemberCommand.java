@@ -2,6 +2,8 @@ package seedu.address.logic.commands.member;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Optional;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
@@ -16,7 +18,6 @@ import seedu.address.model.person.Person;
 public class AddMemberCommand extends AddCommand {
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Person toAdd;
 
@@ -33,8 +34,10 @@ public class AddMemberCommand extends AddCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        Optional<String> duplicateMessage = MemberDuplicateMessageUtil.buildDuplicateIdentityMessage(
+                model.getAddressBook().getPersonList(), toAdd, null);
+        if (duplicateMessage.isPresent()) {
+            throw new CommandException(duplicateMessage.get());
         }
 
         model.addPerson(toAdd);
@@ -62,4 +65,5 @@ public class AddMemberCommand extends AddCommand {
                 .add("toAdd", toAdd)
                 .toString();
     }
+
 }

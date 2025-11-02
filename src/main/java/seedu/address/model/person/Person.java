@@ -82,16 +82,21 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name (case-insensitive).
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons share the same phone number or email address.
+     * Email comparison is case-insensitive. Sharing the same name alone does not qualify.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().canonicalForIdentity().equals(getName().canonicalForIdentity());
+        if (otherPerson == null) {
+            return false;
+        }
+
+        boolean hasSamePhone = otherPerson.getPhone().equals(getPhone());
+        boolean hasSameEmail = otherPerson.getEmail().value.equalsIgnoreCase(getEmail().value);
+        return hasSamePhone || hasSameEmail;
     }
 
     /**

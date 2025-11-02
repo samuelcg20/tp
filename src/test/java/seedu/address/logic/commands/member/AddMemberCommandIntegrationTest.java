@@ -44,7 +44,48 @@ public class AddMemberCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddMemberCommand(personInList), model, AddMemberCommand.MESSAGE_DUPLICATE_PERSON);
+        String expectedMessage = "Duplicate member: another member already uses the same "
+                + "phone number and email address.";
+        assertCommandFailure(new AddMemberCommand(personInList), model, expectedMessage);
+    }
+
+    @Test
+    public void execute_sameNameDifferentContact_success() {
+        Person personInList = model.getAddressBook().getPersonList().get(0);
+        Person newPerson = new PersonBuilder().withName(personInList.getName().fullName)
+                .withPhone("93334444").withEmail("uniquealex@u.nus.edu").withYear("1").build();
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new AliasBook(), new UserPrefs());
+        expectedModel.addPerson(newPerson);
+
+        CommandResult expectedCommandResult = CommandResult.showMembers(String.format(
+                AddMemberCommand.MESSAGE_SUCCESS, Messages.format(newPerson)));
+
+        assertCommandSuccess(new AddMemberCommand(newPerson), model,
+                expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    public void execute_samePhoneDifferentName_throwsCommandException() {
+        Person personInList = model.getAddressBook().getPersonList().get(0);
+        Person duplicatePhonePerson = new PersonBuilder().withName("Different Name")
+                .withPhone(personInList.getPhone().value)
+                .withEmail("differentphone@u.nus.edu").withYear("2").build();
+
+        String expectedMessage = "Duplicate member: another member already uses the same phone number.";
+        assertCommandFailure(new AddMemberCommand(duplicatePhonePerson), model,
+                expectedMessage);
+    }
+
+    @Test
+    public void execute_sameEmailDifferentName_throwsCommandException() {
+        Person personInList = model.getAddressBook().getPersonList().get(0);
+        Person duplicateEmailPerson = new PersonBuilder().withName("Another Name")
+                .withPhone("93445566").withEmail(personInList.getEmail().value.toUpperCase()).withYear("3").build();
+
+        String expectedMessage = "Duplicate member: another member already uses the same email address.";
+        assertCommandFailure(new AddMemberCommand(duplicateEmailPerson), model,
+                expectedMessage);
     }
 }
 

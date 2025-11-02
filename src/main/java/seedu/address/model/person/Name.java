@@ -41,14 +41,6 @@ public class Name {
     }
 
     /**
-     * Returns a canonical form of the name for identity comparison.
-     */
-    public String canonicalForIdentity() {
-        String collapsed = normalizeWhitespace(fullName);
-        return collapsed.toLowerCase();
-    }
-
-    /**
      * Returns the input with leading/trailing spaces removed and multiple internal
      * spaces collapsed to a single space. Preserves original letter casing.
      */
