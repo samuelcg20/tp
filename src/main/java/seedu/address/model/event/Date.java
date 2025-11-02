@@ -43,6 +43,14 @@ public class Date {
         }
     }
 
+    /**
+     * Returns true if this date-time is before the current system time.
+     */
+    public boolean isPastCurrDate() {
+        LocalDateTime dateTime = LocalDateTime.parse(value, FORMATTER);
+        return dateTime.isBefore(LocalDateTime.now());
+    }
+
     @Override
     public String toString() {
         return value;

@@ -80,6 +80,19 @@ public class MarkCommandTest {
     }
 
     @Test
+    public void execute_bothIndexesInvalid_throwsCommandException() {
+        Person member = new PersonBuilder().withName("Ethan Lim").build();
+        Event event = new EventBuilder().withName("Tech Talk").build();
+        Model model = prepareModel(member, event);
+
+        Index outOfBoundsMemberIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundsEventIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
+        MarkCommand command = new MarkCommand(outOfBoundsMemberIndex, outOfBoundsEventIndex);
+
+        assertCommandFailure(command, model, AttendanceCommand.MESSAGE_INVALID_MEMBER_AND_EVENT_INDEX);
+    }
+
+    @Test
     public void equals() {
         MarkCommand markFirst = new MarkCommand(Index.fromOneBased(1), Index.fromOneBased(1));
         MarkCommand markSecond = new MarkCommand(Index.fromOneBased(2), Index.fromOneBased(1));

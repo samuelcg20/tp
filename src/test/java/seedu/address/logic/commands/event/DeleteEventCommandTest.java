@@ -17,8 +17,13 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.Venue;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.EventBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 /**
  * Tests for {@link DeleteEventCommand}.
@@ -87,6 +92,46 @@ public class DeleteEventCommandTest {
                 Messages.format(eventToDelete));
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertFalse(model.getFilteredEventList().contains(eventToDelete));
+    }
+
+    @Test
+    public void execute_futureEvent_attendanceDecremented() throws Exception {
+        Model freshModel = new ModelManager();
+        Person attendee = new PersonBuilder().withName("Future Member")
+                .withPhone("90000001").withEmail("future@u.nus.edu").build().withAttendanceCount(1);
+        freshModel.addPerson(attendee);
+
+        Event futureEvent = new Event(new EventName("Future Event"),
+                new Date("2999-01-01T00:00"), new Venue("COM1-01"),
+                attendee.getName().fullName);
+        freshModel.addEvent(futureEvent);
+
+        DeleteEventCommand command = new DeleteEventCommand(Index.fromOneBased(1));
+        command.execute(freshModel);
+
+        Person updatedAttendee = freshModel.getAddressBook().getPersonList().get(0);
+        assertEquals(0, updatedAttendee.getAttendanceCount());
+        assertTrue(freshModel.getAddressBook().getEventList().isEmpty());
+    }
+
+    @Test
+    public void execute_pastEvent_attendanceUnaffected() throws Exception {
+        Model freshModel = new ModelManager();
+        Person attendee = new PersonBuilder().withName("Past Member")
+                .withPhone("90000002").withEmail("past@u.nus.edu").build().withAttendanceCount(2);
+        freshModel.addPerson(attendee);
+
+        Event pastEvent = new Event(new EventName("Past Event"),
+                new Date("2000-01-01T00:00"), new Venue("COM1-02"),
+                attendee.getName().fullName);
+        freshModel.addEvent(pastEvent);
+
+        DeleteEventCommand command = new DeleteEventCommand(Index.fromOneBased(1));
+        command.execute(freshModel);
+
+        Person updatedAttendee = freshModel.getAddressBook().getPersonList().get(0);
+        assertEquals(2, updatedAttendee.getAttendanceCount());
+        assertTrue(freshModel.getAddressBook().getEventList().isEmpty());
     }
 
     @Test
