@@ -9,7 +9,14 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project was developed based on the [AddressBook-Level 3 (AB3)](https://github.com/se-edu/addressbook-level3) project by the [SE-EDU initiative](https://se-education.org/).  
+  Portions of the codebase (such as command structure, parser utilities, and test framework setup) were adapted from AB3.
+
+* The project uses the [JUnit 5](https://junit.org/junit5/) testing framework for unit and integration testing.
+
+* The project builds upon the JavaFX UI framework for the graphical interface.
+
+* Some coding conventions and documentation structures were inspired by materials from the [SE-EDU Developer Guide](https://se-education.org/guides/tutorials/) and other SE-EDU resources.
 
 --------------------------------------------------------------------------------------------------------------------
 
