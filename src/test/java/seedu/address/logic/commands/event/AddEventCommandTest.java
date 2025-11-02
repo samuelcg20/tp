@@ -2,7 +2,6 @@ package seedu.address.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.event.AddEventCommand.MESSAGE_DUPLICATE_EVENT;
 import static seedu.address.testutil.Assert.assertThrows;
