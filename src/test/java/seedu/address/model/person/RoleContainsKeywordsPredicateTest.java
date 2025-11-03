@@ -41,8 +41,8 @@ public class RoleContainsKeywordsPredicateTest {
     @Test
     public void test_roleContainsKeywords_returnsTrue() {
         // One keyword (exact match)
-        RoleContainsKeywordsPredicate predicate = new RoleContainsKeywordsPredicate(Collections.singletonList("member"));
-        assertTrue(predicate.test(new PersonBuilder().withRole("member").build()));
+        RoleContainsKeywordsPredicate predicate = new RoleContainsKeywordsPredicate(Collections.singletonList("mem"));
+        assertTrue(predicate.test(new PersonBuilder().withRole("mem").build()));
 
         // Multiple keywords (one matches)
         predicate = new RoleContainsKeywordsPredicate(Arrays.asList("member", "Lember"));
