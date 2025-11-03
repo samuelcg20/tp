@@ -58,7 +58,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete member 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -124,7 +124,7 @@ How the parsing works:
 <img src="images/CommandClasses.png" width="500"/>
 
 Here are the classes in `Logic` that are used after parsing a user command:
-* After parsing a user command, the `XYZCommandParser` class creates an `XYZMmeberCommand` object or `XYZEventCommand` object depending on whether the operation is for member or event.
+* After parsing a user command, the `XYZCommandParser` class creates an `XYZMemberCommand` object or `XYZEventCommand` object depending on whether the operation is for member or event.
 * All `XYZMemberCommand` and `XYZEventCommand` classes inherit from `XYZCommand` abstract class which inherits from `Command` abstract class so that they can be treated similarly where possible e.g, during testing.
 
 
@@ -145,7 +145,7 @@ The `Model` component:
   This is exposed externally as a `ReadOnlyUserPrefs` object.
 * does not depend on any of the other components (as the `Model` represents core data entities that should make sense on their own).
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) addressbook model is given below.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -301,14 +301,14 @@ public CommandResult execute(Model model) throws CommandException {
 
 * has a need to manage a significant number of member contacts
 * needs to track CCA members' attendance for event participation
-* classify members into their different tags
+* classify active members into their different roles
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
 
-**Value proposition**: keep track of members and events easily with simple one-line commands. Record
+**Value proposition**: keep track of active members and events easily with simple one-line commands. Record
 attendance for members and filter members by event attendance.
 
 
@@ -316,17 +316,17 @@ attendance for members and filter members by event attendance.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​              | I want to …​                                  | So that I can…​                                                                                   |
-|--------|----------------------|-----------------------------------------------|---------------------------------------------------------------------------------------------------|
-| `* * *` | CCA leader           | add a new member with their details           | keep a complete active member list                                                                |
-| `* * *` | CCA leader           | delete a member                               | remove inactive members                                                                           |
-| `* * *` | CCA leader           | add an event with date/time                   | track attendance later                                                                            |
-| `* * *` | CCA leader/secretary | view the entire address book details | retrieve info from the address book and also be sure that it always stays accurate and up to date |
-| `* * *` | CCA leader           | delete an event                      | remove cancelled events                                                                           |
-| `* *`  | CCA leader           | create aliases for commands                 | type faster by using shorter, personalised command names                                          |
-| `* *`  | CCA leader           | view a guided tour                 | learn the main interface features easily without referring back to the guide                      |
-| `* *`  | CCA leader           | search for members or events by keywords               | find specific entries quickly without scrolling through long lists                                |
-| `*`    | CCA leader           | undo or redo my last action                 | reverse mistakes such as deleting the wrong entry                                                 |
+| Priority | As a …​              | I want to …​                                  | So that I can…​                                                                                  |
+|--------|----------------------|-----------------------------------------------|--------------------------------------------------------------------------------------------------|
+| `* * *` | CCA leader           | add a new member with their details           | keep a complete active member list                                                               |
+| `* * *` | CCA leader           | delete a member                               | remove inactive members                                                                          |
+| `* * *` | CCA leader           | add an event with date/time                   | manage past and upcoming events                                                                  |
+| `* * *` | CCA leader           | view the entire address book details | retrieve info from the address book and also be sure that it always stays accurate and up to date |
+| `* * *` | CCA leader           | delete an event                      | remove cancelled events                                                                          |
+| `* *`  | CCA leader           | create aliases for commands                 | type faster by using shorter, personalised command names                                         |
+| `* *`  | CCA leader           | view a guided tour                 | learn the main interface features easily without referring back to the guide                     |
+| `* *`  | CCA leader           | search for members or events by keywords               | find specific entries quickly without scrolling through long lists                               |
+| `*`    | CCA leader           | undo or redo my last action                 | reverse mistakes such as deleting the wrong entry                                                |
 
 
 ### Use cases
@@ -490,7 +490,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User performs [<u>UC1: list members</u>](#use-case-list-members).
 2. User requests to find members in the displayed list.
-3. ComClubConnect checks input and displays filtered list containing members that meet the filter requirements.
+3. ComClubConnect displays filtered list containing members that meet the filter requirements.
 4. ComClubConnect confirms that the members have been found.
 
    Use case ends.
@@ -507,7 +507,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User performs [<u>UC2: list events</u>](#use-case-list-events).
 2. User requests to find events in the displayed list.
-3. ComClubConnect checks input and displays filtered list containing events that meet the filter requirement.
+3. ComClubConnect displays filtered list containing events that meet the filter requirement.
 4. ComClubConnect confirms that the events have been found.
 
    Use case ends.
@@ -556,7 +556,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to exit ComClubConnect.
 2. ComClubConnect acknowledges and closes the window.
-   Use case ends.
+   
+    Use case ends.
 
 **Extensions**
 
@@ -571,7 +572,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to view help information.
 2. ComClubConnect opens the help window.
 3. User acknowledges and closes the help window.
-   Use case ends.
+
+    Use case ends.
 
 **Extensions**
 
@@ -586,9 +588,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to create a new alias for an existing command.
-2. ComClubConnect saves the alias mapping.
-3. ComClubConnect confirms that the alias was created successfully.
-   Use case ends.
+2. ComClubConnect confirms that the alias was created successfully.
+
+    Use case ends.
 
 **Extensions**
 
@@ -605,7 +607,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to mark a particular member's attendance for a particular event.
 4. ComClubConnect marks the attendance of the member as requested by user.
 5. ComClubConnect confirms that the member's attendance for the event was marked.
-   Use case ends.
+
+    Use case ends.
 
 **Extensions**
 
@@ -621,8 +624,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User performs [<u>UC2: list events</u>](#use-case-list-events).
 3. User requests to unmark a particular member's attendance for a particular event.
 4. ComClubConnect unmarks the attendance of the member as requested by user.
-5. ComClubConnect confirms that the member's attendance for the event was unmarked.
-   Use case ends.
+   5. ComClubConnect confirms that the member's attendance for the event was unmarked.
+
+       Use case ends.
 
 **Extensions**
 
@@ -653,6 +657,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Error Message**: A feedback response from the system that informs the user about invalid or incorrect inputs (e.g., invalid phone number, missing parameters).
 * **Command Line Interface(CLI)**: A text-based user interface where users type in commands (e.g., add, delete, list) instead of using graphical menus.
 * **Member**: An individual registered in the CCA with details such as name, contact number, email, and role.
+* **Event**: An organized activity or occasion conducted by the CCA, such as a workshop, performance, competition, meeting, or social gathering, planned to achieve specific objectives or engage its members.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -671,14 +676,14 @@ testers are expected to do more *exploratory* testing.
 
    1a. Download the jar file and copy into an empty folder
 
-   1b. Double-click the jar file 
+   1b. Double-click the jar file or running `java -jar "[CS2103T-T09-2][ComClubConnect].jar"` 
        Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
    2a. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2b. Re-launch the app by double-clicking the jar file.<br>
+   2b. Re-launch the app by double-clicking the jar file or running `java -jar "[CS2103T-T09-2][ComClubConnect].jar"`.<br>
        Expected: The most recent window size and location is retained.
 
 
@@ -707,9 +712,9 @@ testers are expected to do more *exploratory* testing.
    2b. Test case: `add member n/Jeanette Doe p/98765432 e/jean.alt@u.nus.edu y/3 r/Treasurer`<br>
    Expected: Command fails with a duplicate member error because the phone number matches an existing member (repeat with a unique phone but the same email to test the email path).
 
-3. Adding an event with the same name and date
+3. Adding an event with the same venue and date
 
-   3a. Prerequisites: An event named `Orientation` on `2025-08-01T18:00` already exists (e.g., Test case 2).
+   3a. Prerequisites: An event at `NUS LT27` on `2025-08-01T18:00` already exists (e.g., Test case 2).
 
    3b. Test case: `add event n/Orientation d/2025-08-01T18:00 v/NUS LT27`<br>
    Expected: Command fails with a duplicate event error (same name and date).
@@ -731,7 +736,7 @@ testers are expected to do more *exploratory* testing.
 
    1e. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-2. _-_
+
 
 ### Listing members/events
 
@@ -758,7 +763,7 @@ testers are expected to do more *exploratory* testing.
    1c. Test case 2: Repeat `mark m/1 e/1`<br>
    Expected: Error message stating the member is already marked. No changes to member count or event list.
 
-   1d. Other incorrect mark commands to try: `mark m/0 e/1`, `mark m/1 e/99` (where indexes are out of range)<br>
+   1d. Other incorrect mark commands to try: `mark m/0 e/1`, `mark m/1 e/0` (where indexes are out of range)<br>
    Expected: Error message indicating the invalid index.
 
 2. Unmarking a member from an event
@@ -771,6 +776,6 @@ testers are expected to do more *exploratory* testing.
    2c. Test case 2: Repeat `unmark m/1 e/1`<br>
    Expected: Error message stating there is no attendance to unmark.
 
-   2d. Other incorrect unmark commands to try: `unmark m/0 e/1`, `unmark m/1 e/99`<br>
+   2d. Other incorrect unmark commands to try: `unmark m/0 e/1`, `unmark m/1 e/0`<br>
    Expected: Error message indicating the invalid index.
 
