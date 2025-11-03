@@ -580,33 +580,6 @@ Examples:
 [Back to table of contents](#table-of-contents)
 
 
-### Aliasing Commands — `alias`
-
-
-Tired of long commands? Create your own aliases to run your favorite commands faster and more easily.
-
-
-Format: `alias COMMAND_WORD ALIAS`
-
-
-- Supported `COMMAND_WORD`s: `add`, `edit`, `delete`, `clear`, `find`, `list`, `help`, `exit`, `alias`, `unalias`, `mark`, `unmark`.
-- `ALIAS` must be a single word, not a built-in command word and not an existing `ALIAS`.
-- To view your stored aliases, enter `alias` alone with **no keywords**.
-
-
-Examples:
-- `alias delete rm` — After this, `rm member 1` works like `delete member 1`.
-- `alias list ls` - After this, `ls event` works like `list event`.
-- `alias` - Your stored aliases will be displayed.
-
-
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Choose aliases that mirror your team’s habits and keep it short for easier recall, e.g., <code>rm</code> for <code>delete</code>.</div>
-<div markdown="span" class="alert alert-info"> ℹ️ <strong>Note:</strong> Command words are case-sensitive, whereas aliases are not. For instance, <code>alias delete Unmark</code> is valid, but <code>alias delete unmark</code> is not valid.</div>
-
-
-[Back to table of contents](#table-of-contents)
-
-
 ### Marking Attendance — `mark`
 
 You can add a member's attendance to an event. Their attendance increases by 1 and they are added to the event’s attendees list.
@@ -665,6 +638,31 @@ Examples:
 
 [Back to table of contents](#table-of-contents)
 
+### Aliasing Commands — `alias`
+
+
+Tired of long commands? Create your own aliases to run your favorite commands faster and more easily.
+
+
+Format: `alias COMMAND_WORD ALIAS`
+
+
+- Supported `COMMAND_WORD`s: `add`, `edit`, `delete`, `clear`, `find`, `list`, `help`, `exit`, `alias`, `unalias`, `mark`, `unmark`.
+- `ALIAS` must be a single word, not a built-in command word and not an existing `ALIAS`.
+- To view your stored aliases, enter `alias` alone with **no keywords**.
+
+
+Examples:
+- `alias delete rm` — After this, `rm member 1` works like `delete member 1`.
+- `alias list ls` - After this, `ls event` works like `list event`.
+- `alias` - Your stored aliases will be displayed.
+
+
+<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Choose aliases that mirror your team’s habits and keep it short for easier recall, e.g., <code>rm</code> for <code>delete</code>.</div>
+<div markdown="span" class="alert alert-info"> ℹ️ <strong>Note:</strong> Command words are case-sensitive, whereas aliases are not. For instance, <code>alias delete Unmark</code> is valid, but <code>alias delete unmark</code> is not valid.</div>
+
+
+[Back to table of contents](#table-of-contents)
 
 ### Unaliasing Commands — `unalias`
 
