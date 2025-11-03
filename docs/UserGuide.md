@@ -296,7 +296,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 - Some commands require a *type* immediately after the command word: `member` or `event` (e.g., `add member`, `list event`).
 - Words in `UPPER_CASE` are *parameters* you supply. For example, in `add member n/NAME`, `NAME` is the parameter where we can input the actual value `John Doe`.
 - All required *prefixes* must appear exactly once: <code>n/</code>, <code>p/</code>, <code>e/</code>, <code>y/</code>, <code>r/</code> (member) and <code>n/</code>, <code>d/</code>, <code>v/</code> (event).
-- Prefixes are followed parameters. 
+- Prefixes are followed by parameters. 
 - Items in square brackets are optional.
 - Items with …​ after them can be used multiple times but at least once.
 - Command words and prefixes are <a href="#case-sensitive" class="glossary-term">case-sensitive</a>.
