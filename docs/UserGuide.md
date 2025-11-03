@@ -347,13 +347,13 @@ Need help? You can copy the user guide link or click the green button to explore
 
 Format: `help`
 
-![help message](images/Help.png)
+![help message](images/CaptionHelp.png)
 
 #### Guided Tour
 
 This is an interactive walkthrough that helps you get to know the app. It highlights key components of our application— with color cues and in-depth explanations.
 
-![Guided Tour Overview](images/GuidedTour.png)
+![Guided Tour Overview](images/CaptionGuidedTour.png)
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip: </strong> You can use the <code>F1</code> key or the Help menu to open the Help window quickly.</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If the Help window is minimized, running <code>help</code> again will not open a new window. You should restore the minimized window instead.</div>
@@ -445,7 +445,7 @@ Examples:
 - `edit member 1 p/91234567 e/johndoe@u.nus.edu`
 → This updates the first member’s phone number to 91234567 and email to johndoe@u.nus.edu, keeping everything else unchanged.
 
-![Edit Member Screenshot](images/EditMemberCommand.png)
+![Edit Member Screenshot](images/CaptionEditMemberCommand.png)
 
 **To edit events:**
 
@@ -464,7 +464,7 @@ Examples:
 - `edit event 2 d/2025-10-05T19:00 v/COM3-01-12`
 → This updates the second event’s date/time to 5 October 2025, 7:00 PM, and changes the venue to COM3-01-12.
 
-![Edit Event Screenshot](images/EditEventCommand.png)
+![Edit Event Screenshot](images/CaptionEditEventCommand.png)
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> You can edit multiple fields in one command, e.g., <code>edit member 3 n/New Name p/91234567</code>.</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>
@@ -612,10 +612,10 @@ Examples:
 → Marks member at current member index 1 as attending event at current event index 2
 
 
-![Mark Screenshot](images/MarkCommand1.png)
+![Mark Screenshot](images/CaptionMarkCommand1.png)
 
 
-![Mark 2 Screenshot](images/MarkCommand2.png)
+![Mark 2 Screenshot](images/CaptionMarkCommand2.png)
 
 
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>
@@ -641,10 +641,10 @@ Examples:
 → Unmarks member at current member index 1 as attending event at current event index 2
 
 
-![Unmark Screenshot](images/UnmarkCommand1.png)
+![Unmark Screenshot](images/CaptionUnmarkCommand1.png)
 
 
-![Unmark 2 Screenshot](images/UnmarkCommand2.png)
+![Unmark 2 Screenshot](images/CaptionUnmarkCommand2.png)
 
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> If unsure whether a member is marked for an event, unmarking will tell you if there is nothing to unmark. Use <code>list member</code> and <code>list event</code> to verify indices first.</div>
