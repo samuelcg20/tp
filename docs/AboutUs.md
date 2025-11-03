@@ -13,7 +13,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/khantminn290.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/Khantminn290)]
 [[portfolio](team/johndoe.md)]
 
