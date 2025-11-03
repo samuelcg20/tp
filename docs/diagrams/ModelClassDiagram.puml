@@ -53,7 +53,7 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Year
-Person *--> "*" Role
+Person *--> Role
 
 Event *--> EventName
 Event *--> Date
