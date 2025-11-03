@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-
-
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;

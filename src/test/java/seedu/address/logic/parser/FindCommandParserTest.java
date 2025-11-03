@@ -12,12 +12,12 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.event.FindEventDateCommand;
 import seedu.address.logic.commands.event.FindEventNameCommand;
 import seedu.address.logic.commands.member.FindMemberNameCommand;
-import seedu.address.logic.commands.member.FindMemberYearCommand;
+import seedu.address.logic.commands.member.FindMemberRoleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.DateContainsKeywordsPredicate;
 import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.YearContainsKeywordsPredicate;
+import seedu.address.model.person.RoleContainsKeywordsPredicate;
 
 /**
  * Extensive tests for {@code FindCommandParser}.
@@ -48,10 +48,11 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validMemberYear_returnsFindMemberYearCommand() throws Exception {
+    public void parse_validMemberRole_returnsFindMemberYearCommand() throws Exception {
         FindCommand expectedCommand =
-                new FindMemberYearCommand(new YearContainsKeywordsPredicate(Arrays.asList("1", "2")));
-        assertEquals(expectedCommand, parser.parse("member y/1 2"));
+                new FindMemberRoleCommand(
+                        new RoleContainsKeywordsPredicate(Arrays.asList("member", "leader")));
+        assertEquals(expectedCommand, parser.parse("member r/member leader"));
     }
 
     @Test
@@ -167,6 +168,7 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_memberWithEventPrefix_throwsParseException() {
+        assertThrows(ParseException.class, () -> parser.parse("member v/UTown"));
         // using event prefix d/ in member command
         assertThrows(ParseException.class, () -> parser.parse("member d/2025"));
     }
