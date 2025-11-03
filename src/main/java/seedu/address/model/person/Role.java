@@ -17,7 +17,7 @@ public class Role {
 
     /**
      * Constructs a {@code Role}.
-     * @param roleName A valid tag name.
+     * @param roleName A valid role name.
      */
     public Role(String roleName) {
         requireNonNull(roleName);
@@ -26,7 +26,7 @@ public class Role {
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid role name.
      */
     public static boolean isValidRoleName(String test) {
         return test.matches(VALIDATION_REGEX) && test.length() <= 35;

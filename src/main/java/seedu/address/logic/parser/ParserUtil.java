@@ -14,7 +14,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
 import seedu.address.model.person.Year;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -141,16 +140,16 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String role} into a {@code Role}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code role} is invalid.
      */
     public static Role parseRole(String role) throws ParseException {
         requireNonNull(role);
         String normalizedRoleName = Role.normalizeWhitespace(role);
         if (!Role.isValidRoleName(normalizedRoleName)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
         return new Role(normalizedRoleName);
     }
