@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Role {
 
-    public static final String MESSAGE_CONSTRAINTS = "Roles should be alphanumeric"
-            + " and the input must be at most 35 characters long.";
+    public static final String MESSAGE_CONSTRAINTS = "Roles should be alphanumeric " +
+            "and the input must be at most 35 characters long (excluding leading and trailing spaces).";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String roleName;

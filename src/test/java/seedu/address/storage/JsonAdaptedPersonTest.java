@@ -28,7 +28,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_EMAIL_TOO_LONG = "averyveryveryverylonglocalpart123456@u.nus.edu";
     private static final String INVALID_YEAR = "6";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_ROLE = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -142,7 +142,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(
-                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_YEAR, VALID_ROLE, VALID_ATTENDANCE);
+                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_YEAR, INVALID_ROLE, VALID_ATTENDANCE);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
