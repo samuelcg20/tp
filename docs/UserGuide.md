@@ -279,7 +279,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 <a id="member-constraints"></a>
 **Member field constraints**
 
-<table >
+<table>
   <thead>
     <tr>
       <th>Field</th>
