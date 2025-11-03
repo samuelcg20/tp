@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_TYPE;
 
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.event.ListEventCommand;
 import seedu.address.logic.commands.member.ListMemberCommand;
@@ -27,17 +28,7 @@ public class ListCommandParser implements Parser<ListCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
-        // Type indicates whether to list members or events
-        String type = argsParts[0];
-        boolean isInvalidType = !type.equalsIgnoreCase("member")
-                && !type.equalsIgnoreCase("event");
-
-        if (isInvalidType) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_TYPE, ListCommand.MESSAGE_USAGE));
-        }
-
-        return matchType(type);
+        return matchType(argsParts[0]);
     }
 
     /**
@@ -45,13 +36,13 @@ public class ListCommandParser implements Parser<ListCommand> {
      * @param type Member or Event
      * @return ListMemberCommand or ListEventCommand
      */
-    public ListCommand matchType(String type) {
+    public ListCommand matchType(String type) throws ParseException {
         if (ParserUtil.isMember(type)) {
             return new ListMemberCommand();
         } else if (ParserUtil.isEvent(type)) {
             return new ListEventCommand();
         } else {
-            return null;
+            throw new ParseException(String.format(MESSAGE_INVALID_TYPE, ListCommand.MESSAGE_USAGE));
         }
     }
 }
