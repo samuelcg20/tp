@@ -839,6 +839,15 @@ Problem: “Unknown command”
 
 
 ## Glossary
+<a id="command-line-interface"></a>
+- **Command-Line Interface**
+
+  A CLI allows users to interact with a computer or application by typing text commands into a console or terminal. It’s non-graphical and relies on precise command syntax.
+
+<a id="graphical-user-interface"></a>
+- **Graphical User Interface**
+  
+  A GUI allows users to interact with a computer or application through graphical elements such as windows, icons, buttons, and menus.
 
 <a id="consecutive-spaces-between-words"></a>
 - **Consecutive spaces between words**  
