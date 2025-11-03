@@ -16,8 +16,8 @@ import seedu.address.logic.commands.member.EditMemberCommand.EditMemberDescripto
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Year;
 import seedu.address.testutil.EditMemberDescriptorBuilder;
 
 /**
@@ -79,7 +79,7 @@ public class EditCommandParserTest {
 
         // empty tag
         assertParseFailure(parser, "member 1 r/",
-                "Role cannot be empty. Key in a role after 'r/'.");
+                "Tag cannot be empty. Key in a role after 'r/'.");
 
         // multiple invalid values, only first invalid captured
         assertParseFailure(parser, "member 1 n/!@# e/invalid@", Name.MESSAGE_CONSTRAINTS);
@@ -89,14 +89,14 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = "member " + targetIndex.getOneBased()
-                + " n/Amy Bee p/91234567 e/amy@u.nus.edu y/2 r/friend r/classmate";
+                + " n/Amy Bee p/91234567 e/amy@u.nus.edu y/2 r/President";
 
         EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder()
                 .withName("Amy Bee")
                 .withPhone("91234567")
                 .withEmail("amy@u.nus.edu")
                 .withYear("2")
-                .withTags("friend", "classmate")
+                .withRole("President")
                 .build();
 
         EditMemberCommand expectedCommand = new EditMemberCommand(targetIndex, descriptor);
@@ -143,7 +143,7 @@ public class EditCommandParserTest {
 
         // tags
         userInput = "member " + targetIndex.getOneBased() + " r/friend";
-        descriptor = new EditMemberDescriptorBuilder().withTags("friend").build();
+        descriptor = new EditMemberDescriptorBuilder().withRole("friend").build();
         assertParseSuccess(parser, userInput, new EditMemberCommand(targetIndex, descriptor));
     }
 
@@ -168,7 +168,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = "member " + targetIndex.getOneBased() + " r/";
 
-        String expectedMessage = "Role cannot be empty. Key in a role after 'r/'.";
+        String expectedMessage = "Tag cannot be empty. Key in a role after 'r/'.";
         assertParseFailure(parser, userInput, expectedMessage);
     }
 

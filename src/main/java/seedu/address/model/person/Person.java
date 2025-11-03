@@ -2,13 +2,9 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -23,26 +19,26 @@ public class Person {
 
     // Data fields
     private final Year year;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Role role;
     private final int attendanceCount;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Year year, Set<Tag> tags) {
-        this(name, phone, email, year, tags, 0);
+    public Person(Name name, Phone phone, Email email, Year year, Role role) {
+        this(name, phone, email, year, role, 0);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Year year, Set<Tag> tags, int attendanceCount) {
-        requireAllNonNull(name, phone, email, year, tags);
+    public Person(Name name, Phone phone, Email email, Year year, Role role, int attendanceCount) {
+        requireAllNonNull(name, phone, email, year, role);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.year = year;
-        this.tags.addAll(tags);
+        this.role = role;
         this.attendanceCount = attendanceCount;
     }
 
@@ -70,15 +66,15 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Role getRole() {
+        return this.role;
     }
 
     /**
      * Returns a new Person with updated attendance count.
      */
     public Person withAttendanceCount(int newAttendanceCount) {
-        return new Person(name, phone, email, year, tags, newAttendanceCount);
+        return new Person(name, phone, email, year, role, newAttendanceCount);
     }
 
     /**
@@ -119,14 +115,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && year.equals(otherPerson.year)
-                && tags.equals(otherPerson.tags)
+                && role.equals(otherPerson.role)
                 && attendanceCount == otherPerson.attendanceCount;
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, year, tags, attendanceCount);
+        return Objects.hash(name, phone, email, year, role, attendanceCount);
     }
 
     @Override
@@ -136,7 +132,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("year", year)
-                .add("tags", tags)
+                .add("tags", role)
                 .add("attendanceCount", attendanceCount)
                 .toString();
     }

@@ -1,6 +1,6 @@
 [![Java CI](https://github.com/AY2526S1-CS2103T-T09-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2526S1-CS2103T-T09-2/tp/actions/workflows/gradle.yml)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/UpdatedUi.png)
 
 
 * This project is **based on the [AddressBook-Level3](https://se-education.org/addressbook-level3)** project created by the [SE-EDU initiative](https://se-education.org).
@@ -14,6 +14,6 @@
 
 * The project simulates an **ongoing software system** designed for **desktop use**, aimed at simplifying **member management** and **event tracking** for CCAs in NUS.
     * It is **implemented using Object-Oriented Programming (OOP) principles**, providing a **clear and maintainable architecture**.
-    * The code base is **adapted to meet CCA-specific needs** such as **member roles**, **attendance records**, and **event listings**, while keeping complexity **manageable for student developers**.
+    * The code base is **adapted to meet CCA-specific needs** such as **member tags**, **attendance records**, and **event listings**, while keeping complexity **manageable for student developers**.
     * It includes **comprehensive documentation**, **user stories**, and **meeting logs**, reflecting the **iterative and collaborative nature** of software engineering projects.
     * For the detailed documentation of this project, see **[ComClubConnect Website](https://ay2526s1-cs2103t-t09-2.github.io/tp/)**.
