@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.storage.JsonAdaptedPerson.MESSAGE_INVALID_ATTENDANCE_COUNT;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
@@ -10,7 +11,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.person.Year;
 
 /**
@@ -25,12 +28,12 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_EMAIL_TOO_LONG = "averyveryveryverylonglocalpart123456@u.nus.edu";
     private static final String INVALID_YEAR = "6";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_ROLE = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_ROLE = BENSON.getRole().toString();
+    private static final String VALID_ROLE = "President";
     private static final String VALID_YEAR = BENSON.getYear().value;
     private static final Integer VALID_ATTENDANCE = BENSON.getAttendanceCount();
 
@@ -139,8 +142,23 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(
-                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_YEAR, "Role.", VALID_ATTENDANCE);
+                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_YEAR, INVALID_ROLE, VALID_ATTENDANCE);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
+    @Test
+    public void toModelType_negativeAttendanceCount_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(
+                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_YEAR, VALID_ROLE, -1);
+        assertThrows(IllegalValueException.class, MESSAGE_INVALID_ATTENDANCE_COUNT, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullAttendanceCount_defaultsToZero() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(
+                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_YEAR, VALID_ROLE, null);
+        Person expected = new Person(BENSON.getName(), BENSON.getPhone(), BENSON.getEmail(),
+                BENSON.getYear(), new Role(VALID_ROLE), 0);
+        assertEquals(expected, person.toModelType());
+    }
 }
