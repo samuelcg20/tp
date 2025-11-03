@@ -7,10 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -21,12 +20,11 @@ import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.Venue;
-// import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Role;
 import seedu.address.model.person.Year;
 
 /**
@@ -47,8 +45,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         String[] argsParts = trimmedArgs.split("\\s+", 2);
         String type = argsParts[0];
-        boolean isMemberCommand = type.equalsIgnoreCase("member");
-        boolean isEventCommand = type.equalsIgnoreCase("event");
+        boolean isMemberCommand = ParserUtil.isMember(type);
+        boolean isEventCommand = ParserUtil.isEvent(type);
 
         if (!isMemberCommand && !isEventCommand) {
             throw new ParseException(String.format(MESSAGE_INVALID_TYPE, AddCommand.MESSAGE_USAGE));
@@ -75,9 +73,9 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddMemberCommand checkAddMember(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(" " + args,
-                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR, PREFIX_TAG);
+                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR, PREFIX_ROLE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_YEAR, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_YEAR, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROLE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -88,9 +86,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         // Parse year and store in model
         Year year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
 
-        Person person = new Person(name, phone, email, year, tagList);
+        Person person = new Person(name, phone, email, year, role);
 
         return new AddMemberCommand(person);
     }

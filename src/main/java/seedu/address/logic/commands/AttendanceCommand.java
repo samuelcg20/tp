@@ -12,8 +12,11 @@ import seedu.address.model.person.Person;
 
 /**
  * Base class for attendance-related commands that operate on a member and an event.
- */
+    */
 public abstract class AttendanceCommand extends Command {
+
+    public static final String MESSAGE_INVALID_MEMBER_AND_EVENT_INDEX =
+            "Both member and event indices are invalid.";
 
     protected final Index memberIndex;
     protected final Index eventIndex;
@@ -37,12 +40,18 @@ public abstract class AttendanceCommand extends Command {
         List<Event> lastShownEventList = model.getFilteredEventList();
 
         int memberZeroBased = memberIndex.getZeroBased();
-        if (memberZeroBased < 0 || memberZeroBased >= lastShownPersonList.size()) {
+        int eventZeroBased = eventIndex.getZeroBased();
+
+        boolean invalidMember = memberZeroBased < 0 || memberZeroBased >= lastShownPersonList.size();
+        boolean invalidEvent = eventZeroBased < 0 || eventZeroBased >= lastShownEventList.size();
+
+        if (invalidMember && invalidEvent) {
+            throw new CommandException(MESSAGE_INVALID_MEMBER_AND_EVENT_INDEX);
+        }
+        if (invalidMember) {
             throw new CommandException(invalidMemberMessage);
         }
-
-        int eventZeroBased = eventIndex.getZeroBased();
-        if (eventZeroBased < 0 || eventZeroBased >= lastShownEventList.size()) {
+        if (invalidEvent) {
             throw new CommandException(invalidEventMessage);
         }
 

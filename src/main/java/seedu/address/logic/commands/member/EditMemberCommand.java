@@ -3,12 +3,9 @@ package seedu.address.logic.commands.member;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -22,7 +19,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Role;
 import seedu.address.model.person.Year;
 
 /**
@@ -31,7 +28,8 @@ import seedu.address.model.person.Year;
 public class EditMemberCommand extends EditCommand {
 
     public static final String MESSAGE_EDIT_MEMBER_SUCCESS = "Edited Member: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED =
+            "At least one field to edit must be provided and the index provided must be valid.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This member already exists in the address book.";
 
     private final Index index;
@@ -47,7 +45,7 @@ public class EditMemberCommand extends EditCommand {
         private Phone phone;
         private Email email;
         private Year year;
-        private Set<Tag> tags;
+        private Role role;
 
         public EditMemberDescriptor() {}
 
@@ -60,7 +58,7 @@ public class EditMemberCommand extends EditCommand {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setYear(toCopy.year);
-            setTags(toCopy.tags);
+            setRole(toCopy.role);
         }
 
         /**
@@ -68,7 +66,7 @@ public class EditMemberCommand extends EditCommand {
          */
         @Override
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, year, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, year, role);
         }
 
         public void setName(Name name) {
@@ -103,23 +101,12 @@ public class EditMemberCommand extends EditCommand {
             return Optional.ofNullable(year);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        @Override
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setRole(Role role) {
+            this.role = role;
         }
 
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        @Override
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Role> getRole() {
+            return Optional.ofNullable(role);
         }
 
         @Override
@@ -138,7 +125,7 @@ public class EditMemberCommand extends EditCommand {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(year, otherEditPersonDescriptor.year)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(role, otherEditPersonDescriptor.role);
         }
 
         @Override
@@ -148,7 +135,7 @@ public class EditMemberCommand extends EditCommand {
                     .add("phone", phone)
                     .add("email", email)
                     .add("year", year)
-                    .add("tags", tags)
+                    .add("role", role)
                     .toString();
         }
     }
@@ -179,14 +166,24 @@ public class EditMemberCommand extends EditCommand {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editMemberDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (hasIdentityChanged(personToEdit, editedPerson)) {
+            Optional<String> duplicateMessage = MemberDuplicateMessageUtil.buildDuplicateIdentityMessage(
+                    model.getAddressBook().getPersonList(), editedPerson, personToEdit);
+            if (duplicateMessage.isPresent()) {
+                throw new CommandException(duplicateMessage.get());
+            }
         }
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return CommandResult.showMembers(
                 String.format(MESSAGE_EDIT_MEMBER_SUCCESS, Messages.format(editedPerson)));
+    }
+
+    private static boolean hasIdentityChanged(Person original, Person edited) {
+        boolean phoneChanged = !original.getPhone().equals(edited.getPhone());
+        boolean emailChanged = !original.getEmail().value.equalsIgnoreCase(edited.getEmail().value);
+        return phoneChanged || emailChanged;
     }
 
     /**
@@ -200,10 +197,10 @@ public class EditMemberCommand extends EditCommand {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Year updatedYear = editPersonDescriptor.getYear().orElse(personToEdit.getYear());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Role updatedRole = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
         int attendanceCount = personToEdit.getAttendanceCount(); // Preserve attendance count
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedYear, updatedTags, attendanceCount);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedYear, updatedRole, attendanceCount);
     }
 
     @Override

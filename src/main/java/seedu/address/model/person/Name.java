@@ -10,14 +10,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Member name should only contain alphanumeric characters and spaces, and it should not be blank"
-            + " and the input must be at most 35 characters long.";
+            "Member names can include letters, spaces, hyphens (-), apostrophes (’), slashes (/), and periods (.),"
+                    + " Name input should not be blank"
+                    + " and the input must be at most 35 characters long.";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^(?=.*[A-Za-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ'’\\-./\\s]+$";
 
     public final String fullName;
 
@@ -37,14 +38,6 @@ public class Name {
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX) && test.length() <= 35;
-    }
-
-    /**
-     * Returns a canonical form of the name for identity comparison.
-     */
-    public String canonicalForIdentity() {
-        String collapsed = normalizeWhitespace(fullName);
-        return collapsed.toLowerCase();
     }
 
     /**

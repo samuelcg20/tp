@@ -132,4 +132,16 @@ public class DateTest {
         assertTrue(Date.isValidDate("2025-10-29T00:00")); // midnight
         assertTrue(Date.isValidDate("2025-10-29T23:59")); // last minute
     }
+
+    @Test
+    public void isPastCurrDate_pastDate_returnsTrue() {
+        Date pastDate = new Date("2000-01-01T00:00");
+        assertTrue(pastDate.isPastCurrDate());
+    }
+
+    @Test
+    public void isPastCurrDate_futureDate_returnsFalse() {
+        Date futureDate = new Date("2999-01-01T00:00");
+        assertFalse(futureDate.isPastCurrDate());
+    }
 }

@@ -113,7 +113,9 @@ public class ModelManager implements Model {
         // Clean up attendance counts in all persons for every existing event before clearing
         List<Event> existingEvents = new ArrayList<>(this.addressBook.getEventList());
         for (Event event : existingEvents) {
-            cleanupEventAttendance(event);
+            if (!event.getDate().isPastCurrDate()) {
+                cleanupEventAttendance(event);
+            }
         }
 
         List<Event> events = new ArrayList<>();
@@ -211,8 +213,9 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteEvent(Event target) {
-        // Clean up attendance records before deleting the event
-        cleanupEventAttendance(target);
+        if (!target.getDate().isPastCurrDate()) {
+            cleanupEventAttendance(target);
+        }
         addressBook.removeEvent(target);
     }
 

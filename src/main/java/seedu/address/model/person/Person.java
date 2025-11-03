@@ -23,26 +23,26 @@ public class Person {
 
     // Data fields
     private final Year year;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Role role;
     private final int attendanceCount;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Year year, Set<Tag> tags) {
-        this(name, phone, email, year, tags, 0);
+    public Person(Name name, Phone phone, Email email, Year year, Role role) {
+        this(name, phone, email, year, role, 0);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Year year, Set<Tag> tags, int attendanceCount) {
-        requireAllNonNull(name, phone, email, year, tags);
+    public Person(Name name, Phone phone, Email email, Year year, Role role, int attendanceCount) {
+        requireAllNonNull(name, phone, email, year, role);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.year = year;
-        this.tags.addAll(tags);
+        this.role = role;
         this.attendanceCount = attendanceCount;
     }
 
@@ -70,28 +70,33 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Role getRole() {
+        return this.role;
     }
 
     /**
      * Returns a new Person with updated attendance count.
      */
     public Person withAttendanceCount(int newAttendanceCount) {
-        return new Person(name, phone, email, year, tags, newAttendanceCount);
+        return new Person(name, phone, email, year, role, newAttendanceCount);
     }
 
     /**
-     * Returns true if both persons have the same name (case-insensitive).
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons share the same phone number or email address.
+     * Email comparison is case-insensitive. Sharing the same name alone does not qualify.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().canonicalForIdentity().equals(getName().canonicalForIdentity());
+        if (otherPerson == null) {
+            return false;
+        }
+
+        boolean hasSamePhone = otherPerson.getPhone().equals(getPhone());
+        boolean hasSameEmail = otherPerson.getEmail().value.equalsIgnoreCase(getEmail().value);
+        return hasSamePhone || hasSameEmail;
     }
 
     /**
@@ -114,14 +119,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && year.equals(otherPerson.year)
-                && tags.equals(otherPerson.tags)
+                && role.equals(otherPerson.role)
                 && attendanceCount == otherPerson.attendanceCount;
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, year, tags, attendanceCount);
+        return Objects.hash(name, phone, email, year, role, attendanceCount);
     }
 
     @Override
@@ -131,7 +136,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("year", year)
-                .add("tags", tags)
+                .add("tags", role)
                 .add("attendanceCount", attendanceCount)
                 .toString();
     }

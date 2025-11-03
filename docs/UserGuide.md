@@ -289,7 +289,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
   <tbody>
     <tr>
       <td><strong>NAME (`n/`)</strong></td>
-      <td>- Alphanumeric and spaces only <br> - Extra internal spaces (i.e. more than one) will be allowed for input but removed when stored <br> - Input must be at most 35 characters (including spaces)</td>
+      <td>- Alphanumeric and spaces only <br> - Extra internal spaces (i.e. more than one) between words will be allowed for input but removed when stored <br> - Input must be at most 35 characters (including spaces)</td>
     </tr>
     <tr>
       <td><strong>PHONE (`p/`)</strong></td>
@@ -347,7 +347,7 @@ Need help? You can copy the user guide link or click the green button to explore
 
 Format: `help`
 
-![help message](images/helpMessage.png)
+![help message](images/UpdatedHelpMessage.png)
 
 #### Guided Tour
 
@@ -433,7 +433,7 @@ Format: `edit member INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/YEAR] [r/ROLE]…`
 
 - You choose which member to edit by specifying their `INDEX` (the first member is 1).
 - You must include at least one field to edit - for example, a name, phone number, or email.
-- Each field prefix (like n/, p/, e/, y/, r/) can be used only once in a single command.
+- Each of the following field prefixes - n/, p/, e/, y/ - can be used only once in a single command.
 - If you add one or more r/ROLE values, all previous roles will be replaced with the new ones.
 - You cannot edit a member to create a duplicate. See FAQ for notes on what constitutes a [duplicate member](#duplicate-members)
 - For field constraints: see [Member field constraints](#member-constraints)
@@ -525,7 +525,7 @@ Format: `delete TYPE INDEX`
 
 - `TYPE` is either `member` or `event`.
 - `INDEX` refers to the index number shown in the current list and must be a positive number.
-
+- Deleting an upcoming event reverses any attendance previously marked for it, while deleting a past event leaves attendance counts unchanged so that historical records remain intact for the active members.
 
 Examples:
 - `delete member 2`
@@ -604,6 +604,7 @@ Format: `mark m/MEMBER_INDEX e/EVENT_INDEX` or `mark e/EVENT_INDEX m/MEMBER_INDE
 - `MEMBER_INDEX` and `EVENT_INDEX` (both 1-based) refer to the index numbers shown in their respective currently displayed lists.
 - Both parameters are required exactly once: `m/` (member index) and `e/` (event index).
 - A member already marked for an event cannot be marked again.
+- If either or both the member and event indexes are invalid, ComClubConnect reports that both indexes are invalid
 
 Examples:
 
@@ -632,6 +633,7 @@ Format: `unmark m/MEMBER_INDEX e/EVENT_INDEX` or `unmark e/EVENT_INDEX m/MEMBER_
 - `MEMBER_INDEX` and `EVENT_INDEX` refer to the index numbers shown in their respective currently displayed lists and must be positive integers.
 - Both parameters are required exactly once: `m/` (member index) and `e/` (event index).
 - You can only unmark if the member is currently marked for that event.
+- If either or both the member and event indexes are invalid, ComClubConnect reports that both indexes are invalid
 
 Examples:
 
@@ -742,10 +744,11 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 <a id="duplicate-members"></a>
 - Are duplicate members allowed?
-- No. Two members with the same name are considered duplicates. Name matching is case-insensitive and ignores extra (i.e. more than one) internal spaces.
+- No. Two members with the same phone number or NUS email are considered duplicates. Email matching is case-insensitive. Members with same name is not considered to be duplicates.
 <br> Examples:
-    - `John DoE` and `john doe` → duplicate
-    - `Jane  Doe` and `jane doe` → duplicate
+    - Members with same phone number `91234567` and `91234567` → duplicate
+    - Members with same email `alex@u.nus.edu` and `Alex@u.nus.edu` → duplicate
+    - Members with same name `Alex Tan` and `Alex Tan` with different phone numbers and emails → not duplicate
 
 
 <a id="duplicate-events"></a>
