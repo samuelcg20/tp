@@ -41,8 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@u.nus.edu";
     public static final String VALID_YEAR_AMY = "1";
     public static final String VALID_YEAR_BOB = "2";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_ROLE_PRESIDENT = "President";
+    public static final String VALID_ROLE_TREASURER = "Treasurer";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -52,14 +52,14 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String YEAR_DESC_AMY = " " + PREFIX_YEAR + VALID_YEAR_AMY;
     public static final String YEAR_DESC_BOB = " " + PREFIX_YEAR + VALID_YEAR_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_ROLE + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_ROLE + VALID_TAG_HUSBAND;
+    public static final String ROLE_DESC_TREASURER = " " + PREFIX_ROLE + VALID_ROLE_TREASURER;
+    public static final String ROLE_DESC_PRESIDENT = " " + PREFIX_ROLE + VALID_ROLE_PRESIDENT;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob@gmail.com"; // non-NUS domain
     public static final String INVALID_YEAR_DESC = " " + PREFIX_YEAR + "5"; // only 1-4 allowed for year
-    public static final String INVALID_TAG_DESC = " " + PREFIX_ROLE + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "president*"; // '*' not allowed in roles
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -72,10 +72,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditMemberDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withYear(VALID_YEAR_AMY)
-                .withRole(VALID_TAG_FRIEND).build();
+                .withRole(VALID_ROLE_TREASURER).build();
         DESC_BOB = new EditMemberDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withYear(VALID_YEAR_BOB)
-                .withRole(VALID_TAG_HUSBAND).build();
+                .withRole(VALID_ROLE_PRESIDENT).build();
     }
 
     public static final String VALID_EVENT_NAME_WELCOME_TEA = "Welcome Tea";

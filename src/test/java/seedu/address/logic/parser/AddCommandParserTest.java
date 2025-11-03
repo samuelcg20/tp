@@ -6,19 +6,19 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ROLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_YEAR_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.ROLE_DESC_TREASURER;
+import static seedu.address.logic.commands.CommandTestUtil.ROLE_DESC_PRESIDENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_TREASURER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.YEAR_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.YEAR_DESC_BOB;
@@ -51,26 +51,26 @@ public class AddCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         // Single tag
-        Person expectedPerson = new PersonBuilder(BOB).withRole(VALID_TAG_FRIEND).build();
+        Person expectedPerson = new PersonBuilder(BOB).withRole(VALID_ROLE_TREASURER).build();
         assertParseSuccess(parser, "member " + PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + YEAR_DESC_BOB + TAG_DESC_FRIEND,
+                + EMAIL_DESC_BOB + YEAR_DESC_BOB + ROLE_DESC_TREASURER,
                 new AddMemberCommand(expectedPerson));
 
         // Multiple tags
         Person expectedPersonMultipleTags = new PersonBuilder(BOB)
-                .withRole(VALID_TAG_FRIEND).build();
+                .withRole(VALID_ROLE_TREASURER).build();
 
-        assertParseSuccess(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + YEAR_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
-                new AddMemberCommand(expectedPersonMultipleTags));
+        assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + YEAR_DESC_BOB + ROLE_DESC_TREASURER + ROLE_DESC_PRESIDENT,
+                "Multiple values specified for the following single-valued field(s): r/");
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // No tags
-        Person expectedPerson = new PersonBuilder(AMY).withRole("friend").build();
+        Person expectedPerson = new PersonBuilder(AMY).withRole(VALID_ROLE_TREASURER).build();
         assertParseSuccess(parser, "member " + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                        + YEAR_DESC_AMY + TAG_DESC_FRIEND, new AddMemberCommand(expectedPerson));
+                        + YEAR_DESC_AMY + ROLE_DESC_TREASURER, new AddMemberCommand(expectedPerson));
     }
 
     @Test
@@ -96,7 +96,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
-        String validPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB + TAG_DESC_FRIEND;
+        String validPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB + ROLE_DESC_TREASURER;
 
         // multiple names
         assertParseFailure(parser, "member " + NAME_DESC_AMY + validPersonString,
@@ -119,22 +119,22 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // Invalid name
         assertParseFailure(parser, "member " + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + YEAR_DESC_BOB + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                        + YEAR_DESC_BOB + ROLE_DESC_TREASURER, Name.MESSAGE_CONSTRAINTS);
 
         // Invalid phone
         assertParseFailure(parser, "member " + NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
-                        + YEAR_DESC_BOB + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS_NUMBER);
+                        + YEAR_DESC_BOB + ROLE_DESC_TREASURER, Phone.MESSAGE_CONSTRAINTS_NUMBER);
 
         // Invalid email
         assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
-                        + YEAR_DESC_BOB + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                        + YEAR_DESC_BOB + ROLE_DESC_TREASURER, Email.MESSAGE_CONSTRAINTS);
 
         // Invalid year
         assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + INVALID_YEAR_DESC + TAG_DESC_FRIEND, Year.MESSAGE_CONSTRAINTS);
+                        + INVALID_YEAR_DESC + ROLE_DESC_TREASURER, Year.MESSAGE_CONSTRAINTS);
 
         // Invalid tag
         assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + YEAR_DESC_BOB + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
+                        + YEAR_DESC_BOB + INVALID_ROLE_DESC, Tag.MESSAGE_CONSTRAINTS);
     }
 }
