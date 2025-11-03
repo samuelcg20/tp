@@ -6,20 +6,21 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_ROLE;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_TYPE;
 import static seedu.address.logic.Messages.MESSAGE_MULTIPLE_PREFIXES_EVENT;
 import static seedu.address.logic.Messages.MESSAGE_MULTIPLE_PREFIXES_MEMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.event.FindEventLocationCommand;
+import seedu.address.logic.commands.event.FindEventDateCommand;
 import seedu.address.logic.commands.event.FindEventNameCommand;
 import seedu.address.logic.commands.member.FindMemberNameCommand;
 import seedu.address.logic.commands.member.FindMemberRoleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Date;
+import seedu.address.model.event.DateContainsKeywordsPredicate;
 import seedu.address.model.event.EventNameContainsKeywordsPredicate;
-import seedu.address.model.event.LocationContainsKeywordsPredicate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Role;
@@ -139,8 +140,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         remainingArgs = remainingArgs.trim();
         if (remainingArgs.startsWith(PREFIX_NAME.getPrefix())) {
             return getFindEventNameCommand(remainingArgs);
-        } else if (remainingArgs.startsWith(PREFIX_LOCATION.getPrefix())) {
-            return getFindEventLocationCommand(remainingArgs);
+        } else if (remainingArgs.startsWith(PREFIX_DATE.getPrefix())) {
+            return getFindEventDateCommand(remainingArgs);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_TYPE, FindCommand.MESSAGE_USAGE));
         }
@@ -153,7 +154,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @return command to find events by location
      * @throws ParseException if no keywords are provided or format is invalid
      */
-    private static FindEventLocationCommand getFindEventLocationCommand(String remainingArgs) throws ParseException {
+    private static FindEventDateCommand getFindEventDateCommand(String remainingArgs) throws ParseException {
         String keywordsPart = remainingArgs.substring(2).trim(); // remove l/
         if (keywordsPart.isEmpty()) {
             throw new ParseException(
@@ -166,9 +167,14 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_MULTIPLE_PREFIXES_EVENT, FindCommand.MESSAGE_USAGE));
         }
-        String[] locationKeywords = keywordsPart.split("\\s+");
-        return new FindEventLocationCommand(
-                new LocationContainsKeywordsPredicate(Arrays.asList(locationKeywords)));
+        String[] dateKeywords = keywordsPart.split("\\s+");
+        for (String name : dateKeywords) {
+            if (!Date.isValidPartialDate(name)) {
+                throw new ParseException(
+                        "Please enter a valid partial date.(e.g. 14:60 or 2025-02-30 are not allowed).");
+            }
+        }
+        return new FindEventDateCommand(new DateContainsKeywordsPredicate(Arrays.asList(dateKeywords)));
     }
 
     /**
