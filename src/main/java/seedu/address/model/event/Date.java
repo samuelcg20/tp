@@ -3,7 +3,10 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Year;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
@@ -19,6 +22,15 @@ public class Date {
                     + " The date and time must be valid (e.g. 14:60 or 2025-02-30 are not allowed).";
 
     public static final DateTimeFormatter FORMATTER =
+            DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm").withResolverStyle(ResolverStyle.STRICT);
+
+    public static final DateTimeFormatter YEAR_FORMATTER =
+            DateTimeFormatter.ofPattern("uuuu").withResolverStyle(ResolverStyle.STRICT);
+    public static final DateTimeFormatter YEAR_MONTH_FORMATTER =
+            DateTimeFormatter.ofPattern("uuuu-MM").withResolverStyle(ResolverStyle.STRICT);
+    public static final DateTimeFormatter DATE_FORMATTER =
+            DateTimeFormatter.ofPattern("uuuu-MM-dd").withResolverStyle(ResolverStyle.STRICT);
+    public static final DateTimeFormatter DATETIME_FORMATTER =
             DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm").withResolverStyle(ResolverStyle.STRICT);
 
     public final String value;
@@ -38,6 +50,26 @@ public class Date {
     public static boolean isValidDate(String test) {
         try {
             LocalDateTime.parse(test, FORMATTER);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    /** Checks if the input matches and parses as a valid partial date or date-time. */
+    public static boolean isValidPartialDate(String input) {
+        try {
+            if (input.matches("\\d{4}$")) {
+                Year.parse(input, YEAR_FORMATTER);
+            } else if (input.matches("\\d{4}-\\d{2}$")) {
+                YearMonth.parse(input, YEAR_MONTH_FORMATTER);
+            } else if (input.matches("\\d{4}-\\d{2}-\\d{2}$")) {
+                LocalDate.parse(input, DATE_FORMATTER);
+            } else if (input.matches("\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$")) {
+                LocalDateTime.parse(input, DATETIME_FORMATTER);
+            } else {
+                return false;
+            }
             return true;
         } catch (DateTimeParseException e) {
             return false;

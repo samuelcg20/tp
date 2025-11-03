@@ -15,6 +15,6 @@ public abstract class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " member n/alice Bob\n"
             + "Example: " + COMMAND_WORD + " member y/1\n"
             + "Example: " + COMMAND_WORD + " event n/ideate\n"
-            + "Example: " + COMMAND_WORD + " event v/NUS";
+            + "Example: " + COMMAND_WORD + " event d/2025-12-12T14:00";
 
 }
