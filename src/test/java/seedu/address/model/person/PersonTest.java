@@ -65,7 +65,8 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same phone or same email -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(ALICE.getEmail().value).build();
+        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(ALICE.getEmail().value)
+                .build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         editedAlice = new PersonBuilder(ALICE).withPhone(ALICE.getPhone().value).withEmail(VALID_EMAIL_BOB).build();
@@ -92,13 +93,13 @@ public class PersonTest {
     @Test
     public void toStringMethod() {
         Person person = new PersonBuilder(ALICE).build();
-        String expected = Person.class.getCanonicalName() +
-                "{name=" + person.getName() +
-                ", phone=" + person.getPhone() +
-                ", email=" + person.getEmail() +
-                ", year=" + person.getYear() +
-                ", tags=" + person.getRole() +
-                ", attendanceCount=" + person.getAttendanceCount() + "}";
+        String expected = Person.class.getCanonicalName()
+                + "{name=" + person.getName()
+                + ", phone=" + person.getPhone()
+                + ", email=" + person.getEmail()
+                + ", year=" + person.getYear()
+                + ", tags=" + person.getRole()
+                + ", attendanceCount=" + person.getAttendanceCount() + "}";
         assertEquals(expected, person.toString());
     }
 }

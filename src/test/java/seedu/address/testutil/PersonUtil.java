@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import seedu.address.logic.commands.member.AddMemberCommand;
-import seedu.address.logic.commands.member.EditMemberCommand;
 import seedu.address.logic.commands.member.EditMemberCommand.EditMemberDescriptor;
 import seedu.address.model.person.Person;
 
