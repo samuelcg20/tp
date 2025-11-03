@@ -9,7 +9,12 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
+import seedu.address.model.person.Year;
 
 /**
  * Tests for {@link JsonAdaptedPerson}.
@@ -22,7 +27,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_PHONE_START = "74351253";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_EMAIL_TOO_LONG = "averyveryveryverylonglocalpart123456@u.nus.edu";
-    private static final String INVALID_YEAR = "5";
+    private static final String INVALID_YEAR = "6";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();

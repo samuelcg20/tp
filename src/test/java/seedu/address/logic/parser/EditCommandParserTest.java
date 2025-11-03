@@ -13,7 +13,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.member.EditMemberCommand;
 import seedu.address.logic.commands.member.EditMemberCommand.EditMemberDescriptor;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
+import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditMemberDescriptorBuilder;
 
