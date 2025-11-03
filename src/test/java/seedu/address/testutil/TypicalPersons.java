@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_TREASURER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_BOB;
 
@@ -30,7 +30,7 @@ public class TypicalPersons {
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withYear("2")
             .withEmail("johnd@u.nus.edu").withPhone("98765432")
-            .withRole("friends").build();
+            .withRole("President").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@u.nus.edu").withYear("3")
             .withRole("member").build();
@@ -51,9 +51,9 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withYear(VALID_YEAR_AMY).withRole(VALID_TAG_FRIEND).build();
+            .withEmail(VALID_EMAIL_AMY).withYear(VALID_YEAR_AMY).withRole(VALID_ROLE_TREASURER).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withYear(VALID_YEAR_BOB).withRole(VALID_TAG_FRIEND)
+            .withEmail(VALID_EMAIL_BOB).withYear(VALID_YEAR_BOB).withRole(VALID_ROLE_TREASURER)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

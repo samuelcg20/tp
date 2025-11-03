@@ -6,7 +6,7 @@
 // import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 // import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 // import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-// import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+// import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_PRESIDENT;
 // import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 // import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 // import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -58,10 +58,10 @@
 
 //         PersonBuilder personInList = new PersonBuilder(lastPerson);
 //         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-//                 .withRole(VALID_TAG_HUSBAND).build();
+//                 .withRole(VALID_ROLE_PRESIDENT).build();
 
 //         EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder().withName(VALID_NAME_BOB)
-//                 .withPhone(VALID_PHONE_BOB).withRole(VALID_TAG_HUSBAND).build();
+//                 .withPhone(VALID_PHONE_BOB).withRole(VALID_ROLE_PRESIDENT).build();
 //         EditCommand editCommand = new EditMemberCommand(indexLastPerson, descriptor);
 
 //         String expectedMessage =
