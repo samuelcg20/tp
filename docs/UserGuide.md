@@ -213,9 +213,9 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 - Open a command terminal as mentioned in step 2
 - Type `cd <copied filepath>` command to enter the folder
 - Type `java -jar ComClubConnect.jar` command to run the application.<br>
-- A GUI like the one below will appear on your screen in a few seconds. Note that the app contains some sample data. The layout is explained below.<br>
+- A GUI like the one below will appear on your screen in a few seconds. Note that the app contains some sample data.<br>
 
-![Ui](images/Ui.png)
+![Ui](images/UpdatedUi.png)
 
 
 [Back to table of contents](#table-of-contents)
@@ -226,10 +226,10 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 
 - Click the command input box (top of the UI), type a command exactly as shown (prefixes like `n/`, `p/`, `e/`, `y/`, `r/`, `d/`, `v/` are required), then press **Enter**.
 
-    - Typical response types:
-        - **Success message** with brief summary (e.g., “New event added: …”).
-        - **List output** after `list` or `find`, showing matching member or event entries.
-        - **Error message** beginning with “Invalid command format!” or a validation message — read it carefully and retry.
+    - Types of responses you might see:
+        - **Success message:** Confirms your action with a brief summary (e.g., “New event added: …”).
+        - **List view:** Appears after `list` or `find` commands, showing matching member or event entries.
+        - **Error message:** Explains what went wrong — for example, incorrect input or missing information. Read it carefully and retry.
 
 
 - Example sequence:
@@ -358,13 +358,13 @@ Need help? You can copy the user guide link or click the green button to explore
 
 Format: `help`
 
-![help message](images/UpdatedHelpMessage.png)
+![help message](images/CaptionHelp.png)
 
 #### Guided Tour
 
 This is an interactive walkthrough that helps you get to know the app. It highlights key components of our application— with color cues and in-depth explanations.
 
-![Guided Tour Overview](images/annotatedGuidedTour.png)
+![Guided Tour Overview](images/UpdatedCaptionGuidedTour.png)
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip: </strong> You can use the <code>F1</code> key or the Help menu to open the Help window quickly.</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If the Help window is minimized, running <code>help</code> again will not open a new window. You should restore the minimized window instead.</div>
@@ -455,7 +455,7 @@ Examples:
 - `edit member 1 p/91234567 e/johndoe@u.nus.edu`
 → This updates the first member’s phone number to 91234567 and email to johndoe@u.nus.edu, keeping everything else unchanged.
 
-![Edit Member Screenshot](images/EditMemberResult.png)
+![Edit Member Screenshot](images/CaptionEditMemberCommand.png)
 
 **To edit events:**
 
@@ -474,7 +474,7 @@ Examples:
 - `edit event 2 d/2025-10-05T19:00 v/COM3-01-12`
 → This updates the second event’s date/time to 5 October 2025, 7:00 PM, and changes the venue to COM3-01-12.
 
-![Edit Event Screenshot](images/EditEventResult.png)
+![Edit Event Screenshot](images/CaptionEditEventCommand.png)
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> You can edit multiple fields in one command, e.g., <code>edit member 3 n/New Name p/91234567</code>.</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>
@@ -622,10 +622,10 @@ Examples:
 → Marks member at current member index 1 as attending event at current event index 2
 
 
-![Mark Screenshot](images/MarkResult.png)
+![Mark Screenshot](images/CaptionMarkCommand1.png)
 
 
-![Mark 2 Screenshot](images/MarkResult2.png)
+![Mark 2 Screenshot](images/CaptionMarkCommand2.png)
 
 
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>
@@ -651,10 +651,10 @@ Examples:
 → Unmarks member at current member index 1 as attending event at current event index 2
 
 
-![Unmark Screenshot](images/UnmarkResult.png)
+![Unmark Screenshot](images/CaptionUnmarkCommand1.png)
 
 
-![Unmark 2 Screenshot](images/UnmarkResult2.png)
+![Unmark 2 Screenshot](images/CaptionUnmarkCommand2.png)
 
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> If unsure whether a member is marked for an event, unmarking will tell you if there is nothing to unmark. Use <code>list member</code> and <code>list event</code> to verify indices first.</div>
