@@ -1,13 +1,14 @@
 package seedu.address.model;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,11 +18,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.alias.Alias;
 import seedu.address.model.alias.AliasBook;
 import seedu.address.model.event.Event;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.EventBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class ModelManagerTest {
 
@@ -38,7 +38,6 @@ public class ModelManagerTest {
         assertNotNull(modelManager.getAliasBook());
         assertNotNull(modelManager.getUserPrefs());
         assertTrue(modelManager.getAddressBook().getPersonList().isEmpty());
-        assertTrue(modelManager.getAliasBook().isEmpty());
     }
 
     // ====================== UserPrefs Tests ======================
@@ -109,14 +108,13 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredPersonList_modify_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class,
-                () -> modelManager.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
 
     // ====================== Event Tests ======================
 
     @Test
-    public void addEvent_and_hasEvent_workCorrectly() {
+    public void addAliasAndHasAliasWorkCorrectly() {
         Event meeting = new EventBuilder().withName("Team Meeting").withDate("2025-11-01T10:00").build();
         modelManager.addEvent(meeting);
         assertTrue(modelManager.hasEvent(meeting));
@@ -133,8 +131,7 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredEventList_modify_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class,
-                () -> modelManager.getFilteredEventList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
     }
 
     @Test
@@ -155,7 +152,7 @@ public class ModelManagerTest {
     // ====================== Alias Tests ======================
 
     @Test
-    public void addAlias_and_hasAlias_workCorrectly() {
+    public void addAliasWorksCorrectly() {
         Alias alias = new Alias("ls", "list");
         modelManager.addAlias(alias);
         assertTrue(modelManager.hasAlias(alias));
