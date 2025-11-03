@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
+ * Represents a Role in the address book.
+ * Guarantees: immutable; name is valid as declared in {@link #isValidRoleName(String)}
  */
 public class Role {
 
@@ -17,7 +17,6 @@ public class Role {
 
     /**
      * Constructs a {@code Role}.
-     *
      * @param roleName A valid tag name.
      */
     public Role(String roleName) {
