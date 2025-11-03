@@ -1,5 +1,4 @@
-@startuml
-!include style.puml
+   @startuml
 !include style.puml
 skinparam ArrowFontStyle plain
 
@@ -14,17 +13,16 @@ end box
 [-> LogicManager : execute("mark m/1 e/2")
 activate LogicManager
 
-LogicManager -> Parser : parseCommand("mark ...")
+LogicManager -> Parser : parseCommand("mark m/1 e/2")
 activate Parser
 
 create MarkCommand
-Parser -> MarkCommand
+Parser -> MarkCommand : new MarkCommand(memberIndex, eventIndex)
 activate MarkCommand
-
 MarkCommand --> Parser
 deactivate MarkCommand
 
-Parser --> LogicManager : command
+Parser --> LogicManager : MarkCommand
 deactivate Parser
 
 LogicManager -> MarkCommand : execute(model)
@@ -33,6 +31,6 @@ activate MarkCommand
 MarkCommand --> LogicManager : CommandResult
 deactivate MarkCommand
 
-[<-- LogicManager
+LogicManager --> User : CommandResult
 deactivate LogicManager
 @enduml
