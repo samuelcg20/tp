@@ -43,7 +43,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2526S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2526S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -75,13 +75,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2526S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2526S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2526S1-CS2103T-T09-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -92,7 +92,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2526S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -177,7 +177,7 @@ Example (abridged):
   ]
 }
 ```
-The alias book JSON structure contains one-level array: `alias`. Each `alias` is serialized via `JsonAdaptedAlias`.
+The alias book JSON structure contains one-level array: `aliases`. Each `aliases` is serialized via `JsonAdaptedAlias`.
 
 Example (abridged):
 
@@ -220,7 +220,7 @@ Key operations exposed by the attendance feature:
 
 Steps below illustrate how the mark/unmark workflow plays out:
 
-Step 1. A leader ensures both the members and events panes show the desired entries (usually by running `list members` and `list events`). The `AttendanceCommand` subclass will resolve indexes only against these filtered lists.
+Step 1. A leader ensures both the members and events panes show the desired entries (usually by running `list member` and `list event`). The `AttendanceCommand` subclass will resolve indexes only against these filtered lists.
 
 Step 2. The leader executes `mark m/1 e/2`. `LogicManager` parses the command word, instantiates `MarkCommand`, and invokes `execute(model)`, as shown in the logic sequence diagram.
 
@@ -625,7 +625,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User performs [<u>UC2: list events</u>](#use-case-list-events).
 3. User requests to unmark a particular member's attendance for a particular event.
 4. ComClubConnect unmarks the attendance of the member as requested by user.
-   5. ComClubConnect confirms that the member's attendance for the event was unmarked.
+5. ComClubConnect confirms that the member's attendance for the event was unmarked.
 
        Use case ends.
 
@@ -697,7 +697,7 @@ testers are expected to do more *exploratory* testing.
    1b. Test case 1: `add member n/Jean Doe p/98765432 e/jean@u.nus.edu y/2 r/President`<br>
    Expected: Jean Doe is added into the member's list. Details of the added member shown in the status message.
 
-   1c. Test case 2: `add event n/Orientation d/2025-08-01T18:00 v/NUS`<br>
+   1c. Test case 2: `add event n/Orientation d/2025-08-01T18:00 v/NUS LT27`<br>
    Expected: Event Orientation is added into the event's list. Details of the added event shown in the status message.
 
    1d. Invalid test case: `add member n/ p/`<br>
@@ -724,7 +724,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a member/event while all members/events are being shown
 
-   1a. Prerequisites: List all members/events using the `list members`/`list events` command. Multiple members/events in the list.
+   1a. Prerequisites: List all members/events using the `list member`/`list event` command. Multiple members/events in the list.
 
    1b. Test case 1: `delete member 1`<br>
        Expected: First member is deleted from the list. Details of the deleted member shown in the status message.
@@ -756,7 +756,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Marking a member for an event
 
-   1a. Prerequisites: At least one member and one event displayed via `list members` and `list events`. Ensure the chosen member is not already marked for the target event.
+   1a. Prerequisites: At least one member and one event displayed via `list member` and `list event`. Ensure the chosen member is not already marked for the target event.
 
    1b. Test case 1: `mark m/1 e/1`<br>
    Expected: Attendance marked successfully. Member's attendance count increases by 1 and the event card lists the member.
