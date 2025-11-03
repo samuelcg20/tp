@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,6 @@ import seedu.address.logic.commands.event.FindEventNameCommand;
 import seedu.address.logic.commands.member.FindMemberNameCommand;
 import seedu.address.logic.commands.member.FindMemberYearCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.event.Date;
 import seedu.address.model.event.DateContainsKeywordsPredicate;
 import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -57,7 +55,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_memberName_withExtraWhitespace_returnsFindMemberNameCommand() throws Exception {
+    public void parse_withExtraWhitespace_returnsFindMemberNameCommand() throws Exception {
         // extra spaces between and around keywords should be handled
         FindCommand expectedCommand =
                 new FindMemberNameCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
@@ -75,7 +73,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_eventName_withLeadingTrailingSpaces_returnsFindEventNameCommand() throws Exception {
+    public void parse_withLeadingTrailingSpaces_returnsFindEventNameCommand() throws Exception {
         FindCommand expectedCommand =
                 new FindEventNameCommand(
                         new EventNameContainsKeywordsPredicate(Arrays.asList("Ideate", "Hackathon")));
@@ -110,14 +108,14 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_eventDate_multipleKeywords_returnsFindEventDateCommand() throws Exception {
+    public void parse_multipleKeywords_returnsFindEventDateCommand() throws Exception {
         FindCommand expectedCommand =
                 new FindEventDateCommand(new DateContainsKeywordsPredicate(Arrays.asList("2025-12", "2026")));
         assertEquals(expectedCommand, parser.parse("event d/2025-12 2026"));
     }
 
     @Test
-    public void parse_eventDate_withWhitespaceAroundKeywords_returnsFindEventDateCommand() throws Exception {
+    public void parse_withWhitespaceAroundKeywords_returnsFindEventDateCommand() throws Exception {
         FindCommand expectedCommand =
                 new FindEventDateCommand(new DateContainsKeywordsPredicate(Arrays.asList("2025-12")));
         assertEquals(expectedCommand, parser.parse("event d/  2025-12  "));
@@ -182,29 +180,26 @@ public class FindCommandParserTest {
     // ---------------------- invalid partial dates (parser-level validation) ----------------------
 
     @Test
-    public void parse_eventDate_invalidPartialDay_throwsParseException() {
+    public void parse_invalidPartialDay_throwsParseException() {
         // 2025-02-30 is an invalid date (Feb 30)
-        ParseException ex = assertThrows(ParseException.class,
-                () -> parser.parse("event d/2025-02-30"));
+        ParseException ex = assertThrows(ParseException.class, () -> parser.parse("event d/2025-02-30"));
         // parser uses a custom message for invalid partial date — assert it appears
         String expectedMsgStart = "Please enter a valid partial date.";
         assertEquals(true, ex.getMessage().startsWith(expectedMsgStart));
     }
 
     @Test
-    public void parse_eventDate_invalidTime_throwsParseException() {
+    public void parse_invalidTime_throwsParseException() {
         // invalid time "14:60"
-        ParseException ex = assertThrows(ParseException.class,
-                () -> parser.parse("event d/2025-12-15T14:60"));
+        ParseException ex = assertThrows(ParseException.class, () -> parser.parse("event d/2025-12-15T14:60"));
         String expectedMsgStart = "Please enter a valid partial date.";
         assertEquals(true, ex.getMessage().startsWith(expectedMsgStart));
     }
 
     @Test
-    public void parse_eventDate_malformedPartial_noAccepted_if_invalidPartial_throwsParseException() {
+    public void parse_invalidPartial_throwsParseException() {
         // "2025-12-15T14:0" is malformed (minutes not two digits) and should be rejected by parser validation
-        ParseException ex = assertThrows(ParseException.class,
-                () -> parser.parse("event d/2025-12-15T14:0"));
+        ParseException ex = assertThrows(ParseException.class, () -> parser.parse("event d/2025-12-15T14:0"));
         String expectedMsgStart = "Please enter a valid partial date.";
         assertEquals(true, ex.getMessage().startsWith(expectedMsgStart));
     }
@@ -220,7 +215,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_eventDate_yearMonthBoundary_acceptedOrRejectedAppropriately() {
+    public void parse_yearMonthBoundary_acceptedOrRejectedAppropriately() {
         // "2025-00" month zero is invalid; expect ParseException
         assertThrows(ParseException.class, () -> parser.parse("event d/2025-00"));
         // "2025-13" month 13 invalid
@@ -230,7 +225,7 @@ public class FindCommandParserTest {
     // ---------------------- miscellaneous: ensure split trimming behaviour ----------------------
 
     @Test
-    public void parse_eventDate_multipleSpacesBetweenKeywords_handledCorrectly() throws Exception {
+    public void parse_multipleSpacesBetweenKeywords_handledCorrectly() throws Exception {
         FindCommand expectedCommand =
                 new FindEventDateCommand(
                         new DateContainsKeywordsPredicate(Arrays.asList("2025-12", "2026-01")));
@@ -238,7 +233,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_eventDate_keywordWithLeadingTrailingSpaces_isTrimmedBeforeSplit() throws Exception {
+    public void parse_keywordWithLeadingTrailingSpaces_isTrimmedBeforeSplit() throws Exception {
         FindCommand expectedCommand =
                 new FindEventDateCommand(new DateContainsKeywordsPredicate(Arrays.asList("2025-12")));
         assertEquals(expectedCommand, parser.parse("event d/   2025-12   "));
