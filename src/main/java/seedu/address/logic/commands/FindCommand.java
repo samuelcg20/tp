@@ -13,7 +13,7 @@ public abstract class FindCommand extends Command {
             + ": Finds members or events matching the given keywords.\n"
             + "Parameters: TYPE(either member or event), PREFIX(based on type)/keywords...\n"
             + "Example: " + COMMAND_WORD + " member n/alice Bob\n"
-            + "Example: " + COMMAND_WORD + " member y/1\n"
+            + "Example: " + COMMAND_WORD + " member r/leader\n"
             + "Example: " + COMMAND_WORD + " event n/ideate\n"
             + "Example: " + COMMAND_WORD + " event d/2025-12-12T14:00";
 
