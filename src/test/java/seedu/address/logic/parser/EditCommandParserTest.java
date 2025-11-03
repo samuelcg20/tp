@@ -89,14 +89,14 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = "member " + targetIndex.getOneBased()
-                + " n/Amy Bee p/91234567 e/amy@u.nus.edu y/2 r/friend r/classmate";
+                + " n/Amy Bee p/91234567 e/amy@u.nus.edu y/2 r/President";
 
         EditMemberDescriptor descriptor = new EditMemberDescriptorBuilder()
                 .withName("Amy Bee")
                 .withPhone("91234567")
                 .withEmail("amy@u.nus.edu")
                 .withYear("2")
-                .withTags("friend", "classmate")
+                .withRole("President")
                 .build();
 
         EditMemberCommand expectedCommand = new EditMemberCommand(targetIndex, descriptor);
@@ -143,7 +143,7 @@ public class EditCommandParserTest {
 
         // tags
         userInput = "member " + targetIndex.getOneBased() + " r/friend";
-        descriptor = new EditMemberDescriptorBuilder().withTags("friend").build();
+        descriptor = new EditMemberDescriptorBuilder().withRole("friend").build();
         assertParseSuccess(parser, userInput, new EditMemberCommand(targetIndex, descriptor));
     }
 
