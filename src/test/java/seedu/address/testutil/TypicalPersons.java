@@ -30,7 +30,7 @@ public class TypicalPersons {
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withYear("2")
             .withEmail("johnd@u.nus.edu").withPhone("98765432")
-            .withRole("friends").build();
+            .withRole("President").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@u.nus.edu").withYear("3")
             .withRole("member").build();

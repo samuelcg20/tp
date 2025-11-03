@@ -9,11 +9,7 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Year;
+import seedu.address.model.person.*;
 
 /**
  * Tests for {@link JsonAdaptedPerson}.
@@ -32,7 +28,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_ROLE = BENSON.getRole().toString();
+    private static final String VALID_ROLE = "President";
     private static final String VALID_YEAR = BENSON.getYear().value;
     private static final Integer VALID_ATTENDANCE = BENSON.getAttendanceCount();
 
@@ -141,7 +137,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(
-                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_YEAR, "Role.", VALID_ATTENDANCE);
+                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_YEAR, VALID_ROLE, VALID_ATTENDANCE);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
@@ -157,7 +153,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_YEAR, VALID_ROLE, null);
         Person expected = new Person(BENSON.getName(), BENSON.getPhone(), BENSON.getEmail(),
-                BENSON.getYear(), BENSON.getRole(), 0);
+                BENSON.getYear(), new Role(VALID_ROLE), 0);
         assertEquals(expected, person.toModelType());
     }
 }
