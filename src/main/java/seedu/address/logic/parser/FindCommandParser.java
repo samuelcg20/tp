@@ -1,12 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_NAME;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_ROLE;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_TYPE;
 import static seedu.address.logic.Messages.MESSAGE_MULTIPLE_PREFIXES_EVENT;
 import static seedu.address.logic.Messages.MESSAGE_MULTIPLE_PREFIXES_MEMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import java.util.Arrays;
 
@@ -14,12 +16,14 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.event.FindEventLocationCommand;
 import seedu.address.logic.commands.event.FindEventNameCommand;
 import seedu.address.logic.commands.member.FindMemberNameCommand;
-import seedu.address.logic.commands.member.FindMemberYearCommand;
+import seedu.address.logic.commands.member.FindMemberRoleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 import seedu.address.model.event.LocationContainsKeywordsPredicate;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.YearContainsKeywordsPredicate;
+import seedu.address.model.person.Role;
+import seedu.address.model.person.RoleContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -59,8 +63,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         String args = remainingArgs.trim();
         if (args.startsWith(PREFIX_NAME.getPrefix())) {
             return getFindMemberNameCommand(args);
-        } else if (args.startsWith(PREFIX_YEAR.getPrefix())) {
-            return getFindMemberYearCommand(args);
+        } else if (args.startsWith(PREFIX_ROLE.getPrefix())) {
+            return getFindMemberRoleCommand(args);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_TYPE, FindCommand.MESSAGE_USAGE));
         }
@@ -88,18 +92,23 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         String[] nameKeywords = keywordsPart.split("\\s+");
+        for (String word : nameKeywords) {
+            if (!Name.isValidName(word)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_NAME, word));
+            }
+        }
         return new FindMemberNameCommand(
                 new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
     /**
-     * Creates a {@code FindMemberYearCommand} by parsing keywords after the "y/" prefix.
+     * Creates a {@code FindMemberRoleCommand} by parsing keywords after the "r/" prefix.
      *
      * @param args user input after "find member"
-     * @return command to find members by year of study
+     * @return command to find members role in CCA.
      * @throws ParseException if no keywords are provided or format is invalid
      */
-    private static FindMemberYearCommand getFindMemberYearCommand(String args) throws ParseException {
+    private static FindMemberRoleCommand getFindMemberRoleCommand(String args) throws ParseException {
         String keywordsPart = args.substring(2).trim(); // remove n/
         if (keywordsPart.isEmpty()) {
             throw new ParseException(
@@ -113,8 +122,13 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_MULTIPLE_PREFIXES_MEMBER, FindCommand.MESSAGE_USAGE));
         }
         String[] nameKeywords = keywordsPart.split("\\s+");
-        return new FindMemberYearCommand(
-                new YearContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        for (String word : nameKeywords) {
+            if (!Role.isValidRoleName(word)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_ROLE, word));
+            }
+        }
+        return new FindMemberRoleCommand(
+                new RoleContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
     /**

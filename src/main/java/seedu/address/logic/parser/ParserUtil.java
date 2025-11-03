@@ -152,7 +152,7 @@ public class ParserUtil {
         if (!Role.isValidRoleName(normalizedRoleName)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Role(role);
+        return new Role(normalizedRoleName);
     }
 
     /**

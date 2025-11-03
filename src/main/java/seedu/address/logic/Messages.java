@@ -20,6 +20,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_TYPE =
             "Please state if this operation is for 'member' or 'event'. \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
+    public static final String MESSAGE_INVALID_NAME = "Invalid name: '%s'. Please enter a valid name to find";
+    public static final String MESSAGE_INVALID_ROLE = "Invalid role name: '%s'. Please enter a valid role name to find";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_EVENTS_LISTED_OVERVIEW = "%1$d events listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
