@@ -35,7 +35,7 @@ public class ClearCommandParser implements Parser<ClearCommand> {
      * @param type Member or Event
      * @return ClearMemberCommand or ClearEventCommand
      */
-    public ClearCommand matchType(String type) throws ParseException{
+    public ClearCommand matchType(String type) throws ParseException {
         if (ParserUtil.isMember(type)) {
             return new ClearMemberCommand();
         } else if (ParserUtil.isEvent(type)) {
