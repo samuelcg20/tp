@@ -13,10 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.member.EditMemberCommand;
 import seedu.address.logic.commands.member.EditMemberCommand.EditMemberDescriptor;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Year;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditMemberDescriptorBuilder;
 
@@ -78,8 +75,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "member 1 p/abcd e/amy@example.com", Phone.MESSAGE_CONSTRAINTS_NUMBER);
 
         // empty tag
-        assertParseFailure(parser, "member 1 r/",
-                "Tag cannot be empty. Key in a role after 'r/'.");
+        assertParseFailure(parser, "member 1 r/", Role.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, only first invalid captured
         assertParseFailure(parser, "member 1 n/!@# e/invalid@", Name.MESSAGE_CONSTRAINTS);
@@ -168,8 +164,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = "member " + targetIndex.getOneBased() + " r/";
 
-        String expectedMessage = "Tag cannot be empty. Key in a role after 'r/'.";
-        assertParseFailure(parser, userInput, expectedMessage);
+        assertParseFailure(parser, userInput, Role.MESSAGE_CONSTRAINTS);
     }
 
 }
