@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Kaung Khant Minn
 
-<img src="images/khantminn290.png" width="200px">
+<img src="images/Updatedkhantminn290.png" width="200px">
 
 [[github](https://github.com/Khantminn290)]
 [[portfolio](team/johndoe.md)]
