@@ -1,4 +1,3 @@
-/*
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,78 +8,95 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
+
+    private static final String FEEDBACK = "feedback";
+
     @Test
     public void equals() {
-        CommandResult commandResult = new CommandResult("feedback");
+        CommandResult base = new CommandResult(FEEDBACK);
 
-        // same values -> returns true
-        assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false)));
+        // same values -> true
+        assertTrue(base.equals(new CommandResult(FEEDBACK)));
+        assertTrue(base.equals(new CommandResult(FEEDBACK, false, false)));
 
-        // same object -> returns true
-        assertTrue(commandResult.equals(commandResult));
+        // same object -> true
+        assertTrue(base.equals(base));
 
-        // null -> returns false
-        assertFalse(commandResult.equals(null));
+        // null -> false
+        assertFalse(base.equals(null));
 
-        // different types -> returns false
-        assertFalse(commandResult.equals(0.5f));
+        // different type -> false
+        assertFalse(base.equals(0.5f));
 
-        // different feedbackToUser value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("different")));
+        // different feedback -> false
+        assertFalse(base.equals(new CommandResult("different")));
 
-        // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true,
-                false, true, false)));
+        // different showHelp field -> false
+        assertFalse(base.equals(new CommandResult(FEEDBACK, true, false)));
 
-        // different showEvents value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false,
-                true, true, false)));
+        // different showEvents field -> false
+        assertFalse(base.equals(new CommandResult(FEEDBACK, false, true)));
 
-        // different showHome value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false,
-                false, true, false)));
+        // different showMembers field -> false
+        assertFalse(base.equals(new CommandResult(FEEDBACK, false, false, true, false)));
 
-        // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false,
-                false, false, true)));
+        // different exit field -> false
+        assertFalse(base.equals(new CommandResult(FEEDBACK, false, false, false, true)));
     }
 
     @Test
     public void hashcode() {
-        CommandResult commandResult = new CommandResult("feedback");
+        CommandResult base = new CommandResult(FEEDBACK);
 
-        // same values -> returns same hashcode
-        assertEquals(commandResult.hashCode(), new CommandResult("feedback").hashCode());
+        // same values -> same hashcode
+        assertEquals(base.hashCode(), new CommandResult(FEEDBACK).hashCode());
 
-        // different feedbackToUser value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
+        // different feedback
+        assertNotEquals(base.hashCode(), new CommandResult("different").hashCode());
 
-        // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true,
-                false, true, false).hashCode());
+        // different showHelp
+        assertNotEquals(base.hashCode(), new CommandResult(FEEDBACK, true, false).hashCode());
 
-        // different showEvents value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
-                true, true, false).hashCode());
+        // different showEvents
+        assertNotEquals(base.hashCode(), new CommandResult(FEEDBACK, false, true).hashCode());
 
-        // different showHome value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
-                false, true, false).hashCode());
+        // different showMembers
+        assertNotEquals(base.hashCode(), new CommandResult(FEEDBACK, false, false, true, false).hashCode());
 
-        // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
-                false, false, true).hashCode());
+        // different exit
+        assertNotEquals(base.hashCode(), new CommandResult(FEEDBACK, false, false, false, true).hashCode());
+    }
+
+    @Test
+    public void showMembersFactory_createsCorrectCommandResult() {
+        CommandResult result = CommandResult.showMembers(FEEDBACK);
+        assertEquals(FEEDBACK, result.getFeedbackToUser());
+        assertFalse(result.isShowHelp());
+        assertFalse(result.isShowEvents());
+        assertTrue(result.isShowMembers());
+        assertFalse(result.isExit());
+    }
+
+    @Test
+    public void showEventsFactory_createsCorrectCommandResult() {
+        CommandResult result = CommandResult.showEvents(FEEDBACK);
+        assertEquals(FEEDBACK, result.getFeedbackToUser());
+        assertFalse(result.isShowHelp());
+        assertTrue(result.isShowEvents());
+        assertFalse(result.isShowMembers());
+        assertFalse(result.isExit());
     }
 
     @Test
     public void toStringMethod() {
-        CommandResult commandResult = new CommandResult("feedback");
-        String expected = CommandResult.class.getCanonicalName() + "{feedbackToUser="
-                + commandResult.getFeedbackToUser() + ", showHelp=" + commandResult.isShowHelp()
-                + ", showEvents=" + commandResult.isShowEvents() + ", showHome=" + commandResult.isShowHome()
-                + ", exit=" + commandResult.isExit() + "}";
+        CommandResult commandResult = new CommandResult(FEEDBACK);
+        String expected = String.format("%s{feedbackToUser=%s, showHelp=%s, showEvents=%s, showMembers=%s, exit=%s}",
+                CommandResult.class.getCanonicalName(),
+                commandResult.getFeedbackToUser(),
+                commandResult.isShowHelp(),
+                commandResult.isShowEvents(),
+                commandResult.isShowMembers(),
+                commandResult.isExit());
         assertEquals(expected, commandResult.toString());
     }
 }
- */
