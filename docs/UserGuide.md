@@ -755,7 +755,7 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 
 - Can I import my existing member list from Excel/Google Sheets?
-- Not directly. You can copy key details and add members using `add member ...`. Power users can transform CSV to match `addressbook.json`, but be careful with format.
+- Not directly. You can copy key details and add members using `add member ...`. Advanced users can transform CSV to match `addressbook.json`, but be careful with format.
 
 
 - Why does my email keep getting rejected?
@@ -770,10 +770,6 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 - Repeat the `r/` prefix, e.g., `r/President r/TechLead`. Roles are alphanumeric and cannot contain spaces.
 
 
-- Can I search by role or by event date range?
-- Role-based search and date-range filters are not supported currently. You can search members by name or year, and events by name or location.
-
-
 - I entered `2025-09-01 18:00` but got an invalid date. Why?
 - Use ISO format with `T` between date and time: `2025-09-01T18:00`.
 
@@ -781,13 +777,6 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 - I deleted the wrong person/event. Can I undo?
 - Undo is not available. Consider exporting a backup (`data/addressbook.json`) periodically.
 
-
-- How do I move my data to another computer?
-- Copy your `addressbook.json` from the `data` folder next to your `.jar` into the same location on the new machine before running the app there.
-
-
-- The app says it can’t save due to permissions. What should I do?
-- Move the `.jar` file to a folder you have write access to (e.g., your home folder or desktop) and run it again.
 
 
 
@@ -809,21 +798,6 @@ Problem: “Invalid command format!”
 - Solution: Compare with the command’s “Format” in this guide; remove extras and include all required prefixes.
 
 
-Problem: “Phone number must be exactly 8 digits and start with 8 or 9.”
-- Reason: The number contains spaces, wrong length, or starts with other digits.
-- Solution: Enter an 8-digit number starting with 8 or 9, with no spaces.
-
-
-Problem: “Emails should be of the format local-part@u.nus.edu …”
-- Reason: Email is not an NUS email or local-part is invalid.
-- Solution: Use a valid NUS email like `alexlee@u.nus.edu`.
-
-
-Problem: “Dates should be in ISO format YYYY-MM-DDTHH:MM”
-- Reason: Missing the `T` separator or wrong format.
-- Solution: Enter `YYYY-MM-DDTHH:MM` (e.g., `2025-10-05T19:00`).
-
-
 Problem: “Member is already marked for attendance at this event”
 - Reason: Duplicate attendance.
 - Solution: No action needed or use `unmark m/<MEMBER_INDEX> e/<EVENT_INDEX>` first.
@@ -837,10 +811,6 @@ Problem: “Unknown command”
 - Reason: Typos or using a command that does not exist.
 - Solution: Run `help` to see supported commands. Consider creating an alias for frequently used commands.
 
-
-Problem: “Could not save data due to insufficient permissions …”
-- Reason: The current folder is read-only.
-- Solution: Move the `.jar` to a writable folder and run it again.
 
 
 
@@ -872,28 +842,33 @@ Problem: “Could not save data due to insufficient permissions …”
 
 <a id="consecutive-spaces-between-words"></a>
 - **Consecutive spaces between words**  
+  
   Two or more spaces typed in a row between words. A normal single space is **not** considered consecutive spaces.
-  E.g. `John  Richard Doe` has 2 consecutive spaces between `John` and `Richard`
+  E.g. "John  Richard Doe" has 2 consecutive spaces between "John" and "Richard"
 
 <a id="leading-spaces"></a>
 - **Leading spaces**
+  
   These are spaces at the very beginning, before any text. You can think of it like the “empty” space you type before your real text starts
-  E.g. In `  hello`, there are two leading spaces before the world `hello`
+  E.g. In "  hello", there are two leading spaces before the word "hello"
 
 <a id="trailing-spaces"></a>
 - **Trailing spaces**
+
   These are spaces at the very end, after any text. You can think of it like the “empty” space you type after your real text starts
-  E.g. In `hello  `, there are two trailing spaces after the word `hello`
+  E.g. In "hello  ", there are two trailing spaces after the word "hello"
 
 <a id="case-sensitive"></a>
 - **Case sensitive**
+  
   This means uppercase and lowercase letters are treated as different characters.
-  In other words, `A` is not the same as `a`.
+  In other words, "A" is not the same as "a".
 
 <a id="case-insensitive"></a>
 - **Case insensitive**
+  
   This means uppercase and lowercase letters are treated as same characters.
-  In other words, `A` is the same as `a`.
+  In other words, "A" is the same as "a".
 
 
 [Back to table of contents](#table-of-contents)
@@ -949,9 +924,9 @@ Problem: “Could not save data due to insufficient permissions …”
     <tr>
     <td><strong>find</strong></td>
     <td>
-    <strong>Member:</strong> <code>find member n/Alex</code>, <code>find member y/1</code>
+    <strong>Member:</strong> <code>find member n/Alex</code>, <code>find member r/Leader</code>
     <hr style="margin: 8px 0;">
-    <strong>Event:</strong> <code>find event n/Welcome</code>, <code>find event v/COM1</code>
+    <strong>Event:</strong> <code>find event n/Welcome</code>, <code>find event d/2025-12-12T18:00</code>
     </td>
     </tr>
     <tr>
