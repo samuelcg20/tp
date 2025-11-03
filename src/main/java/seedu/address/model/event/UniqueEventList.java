@@ -62,7 +62,7 @@ public class UniqueEventList implements Iterable<Event> {
         }
 
         if (!target.isSameEvent(editedEvent) && contains(editedEvent)) {
-            throw new EventNotFoundException();
+            throw new DuplicateEventException();
         }
 
         internalList.set(index, editedEvent);
