@@ -111,7 +111,7 @@ title: User Guide
 <div markdown="1">
 <a id="top"></a>
 
-ComClubConnect is a desktop application designed for **NUS CCA leaders** that helps you **manage members, plan events and communicate updates** more efficiently than traditional spreadsheet tools or GUI-only applications.
+ComClubConnect is a desktop application designed for **NUS Co-Curricular Activities (CCA) leaders** that helps you **manage members, plan events and communicate updates** more efficiently than traditional spreadsheet tools or GUI-only applications.
 
 It is optimised for use via a **Command Line Interface (CLI)** while retaining an **intuitive Graphical User Interface (GUI)**.
 
@@ -164,7 +164,7 @@ This guide is for NUS CCA leaders like you who want to manage active members and
 [Back to table of contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-## How to use this guide
+## How to Use This Guide
 - [Quick Start](#quick-start): Learn how to open the app and try basic example commands.
 - [Features](#features): Learn what each command does, how to use it step by step, and get examples and helpful tips.
 - [Troubleshooting & FAQ](#faq): Find answers to common problems and questions you might have.
@@ -286,7 +286,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
   <tbody>
     <tr>
       <td><strong>NAME (`n/`)</strong></td>
-      <td>- Must not be blank <br>- Letters, spaces, hyphens `-`, apostrophes `’`, slashes `/`, and periods `.` only; digits or other symbols are not allowed.<br> - <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> between words will be allowed for input but normalised to a single space when stored <br> - Input must be at most 35 characters (excluding leading and trailing spaces)</td>
+      <td>- Must not be blank <br>- Letters, spaces, hyphens `-`, apostrophes `’`, slashes `/`, and periods `.` only; digits or other symbols are not allowed.<br> - <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> will be allowed for input but normalised to a single space when stored <br> - Input must be at most 35 characters (excluding leading and trailing spaces)</td>
     </tr>
     <tr>
       <td><strong>PHONE (`p/`)</strong></td>
@@ -302,7 +302,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
     </tr>
     <tr>
       <td><strong>ROLE (`r/`)</strong></td>
-      <td>- Must not be blank <br> - Must be alphanumeric and can have spaces <br> - <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> between words will be allowed for input but normalised to a single space when stored <br> - Input must be at most 35 characters (excluding <a href="#leading-spaces" class="glossary-term">leading</a> and <a href="#trailing-spaces" class="glossary-term">trailing spaces</a>, consecutive spaces in between words are normalised)</td>
+      <td>- Must not be blank <br> - Must be alphanumeric and can have spaces <br> - <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> will be allowed for input but normalised to a single space when stored <br> - Input must be at most 35 characters (excluding <a href="#leading-spaces" class="glossary-term">leading</a> and <a href="#trailing-spaces" class="glossary-term">trailing spaces</a>, consecutive spaces in between words are normalised)</td>
     </tr>
   </tbody>
 </table>
@@ -320,7 +320,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
   <tbody>
     <tr>
       <td><strong>NAME (`n/`)</strong></td>
-      <td>- Alphanumeric and spaces only <br> - <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> between words will be allowed for input but normalised to a single space when stored <br> - Input must be at most 35 characters (excluding <a href="#leading-spaces" class="glossary-term">leading</a> and <a href="#trailing-spaces" class="glossary-term">trailing spaces</a>, consecutive spaces in between words are normalised)</td>
+      <td>- Alphanumeric and spaces only <br> - <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> will be allowed for input but normalised to a single space when stored <br> - Input must be at most 35 characters (excluding <a href="#leading-spaces" class="glossary-term">leading</a> and <a href="#trailing-spaces" class="glossary-term">trailing spaces</a>, consecutive spaces in between words are normalised)</td>
     </tr>
     <tr>
       <td><strong>DATE_TIME (`d/`)</strong></td>
@@ -348,7 +348,7 @@ Format: `help`
 
 #### Guided Tour
 
-This is an interactive walkthrough that helps you get to know the app. It highlights key components of our application— with color cues and in-depth explanations.
+This is an interactive walkthrough that helps you get to know the app. It highlights key components of our application— with colour cues and in-depth explanations.
 
 ![Guided Tour Overview](images/UpdatedCaptionGuidedTour.png)
 
@@ -446,7 +446,7 @@ Examples:
 
 Format: `edit event INDEX [n/NAME] [d/DATE_TIME] [v/VENUE]`
 
-- You choose which event to edit by specifying its INDEX (the first member is 1).
+- You choose which event to edit by specifying its INDEX (the first event is 1).
 - You must include at least one field to change — such as the event name, date/time, or venue.
 - Each prefix (`n/`, `d/`, `v/`) can only be used once per command.
 - You cannot edit an event to create a duplicate. See FAQ for notes on what constitutes a [duplicate event](#duplicate-events)
@@ -626,7 +626,7 @@ Examples:
 ### Aliasing Commands — `alias`
 
 
-Tired of long commands? Create your own aliases to run your favorite commands faster and more easily.
+Tired of long commands? Create your own aliases to run your favourite commands faster and more easily.
 
 
 Format: `alias COMMAND_WORD ALIAS`
@@ -694,7 +694,7 @@ If you don’t have existing data files, the app starts with a small set of samp
   - Charlotte Oliveiro — 93210283 — charlotte@u.nus.edu — Year 3 — MarketingHead
   - David Li — 91031282 — lidavid@u.nus.edu — Year 4 — President
   - Irfan Ibrahim — 92492021 — irfan@u.nus.edu — Year 1 — Member
-  - Roy Balakrishnan — 92624417 — royb@u.nus.edu — Year 2 — Secretriat
+  - Roy Balakrishnan — 92624417 — royb@u.nus.edu — Year 2 — Secretariat
 
 - Sample aliases (available only if no alias data exists yet):
   - delete → d
@@ -764,10 +764,6 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 - What phone numbers are allowed?
 - Exactly 8 digits, starting with `8` or `9`, and no spaces.
-
-
-- How do I record multiple roles for a member?
-- Repeat the `r/` prefix, e.g., `r/President r/TechLead`. Roles are alphanumeric and cannot contain spaces.
 
 
 - I entered `2025-09-01 18:00` but got an invalid date. Why?
