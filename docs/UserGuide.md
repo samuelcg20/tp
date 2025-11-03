@@ -480,36 +480,38 @@ You can find members or events that match your search criteria. The search ignor
 
 **To Find Member(s):**
 
-Find your members by **either** member's name **or** member's year of study but **not both**.
+Find your members by **either** member's name **or** member's role in CCA but **not both**.
 
-Format: `find member n/KEYWORDS…` (Find by member name)  **or** `find member y/KEYWORDS…` (Find by member year of study)
+Format: `find member n/KEYWORDS…` (Find by member name)  **or** `find member r/KEYWORDS…` (Find by member role)
 
 Examples:
 - `find member n/Alex`
 → This shows you all members whose **name** contains “Alex”.
 - `find member n/David John` → This shows you all members whose **name** contains "David" **or** "John" **or** both.
 
-- `find member y/1`
-→ This shows you all members in **year 1**.
+- `find member r/President`
+→ This shows you all members in your CCA who hold the role of **President**.
 
 
-**Events:**
+**To Find Event(s):**
 
-Find your events by **either** event's name **or** event's venue but **not both**.
+Find your events by **either** event's name **or** event's date but **not both**.
 
-Format: `find event n/KEYWORDS…` (Find by event name) **or** `find event v/KEYWORDS…` (Find by event venue)
+Format: `find event n/KEYWORDS…` (Find by event name) **or** `find event d/KEYWORDS…` (Find by event date) by entering in order: **year** → **month** → **date** → **time**. Each part **requires** the one before it.
 
 Examples:
 - `find event n/Graduation`
 → This shows you all events whose **name** contains “Graduation”.
 
-- `find event v/COM1`
-→ This shows you all events held at the **venue** “COM1”.
-- `find event v/COM2 COM3` → This shows you all events held at the **venue** “COM2” **or** "COM3" **or** both.
+- `find event d/2025`
+→ This shows you all events in the **year** 2025.
+- `find event d/2025-11` → This shows you all the events in the **year** 2025 **and month** November.
+- `find event d/2025-11-10` → This shows you all the events in the **year** 2025, **month** November **and date** 11.
+- `find event d/2025-11-10T16:00` → This shows you all the events in the **year** 2025, **month** November, **date** 11 **and time** 16:00.
 
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Enter multiple keywords to widen your search results, e.g., <code>find member n/Alex David</code>. </div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> After using <code>find</code>, only matching entries are shown in a <strong>filtered list</strong>. If you want to <code>edit</code> or <code>delete</code> an entry, use the <strong>index number from this filtered list</strong>. To modify entries not currently visible, run <code>list TYPE</code> to show all members or events again.</div>
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> After using <code>find</code>, only matching entries are shown in a <strong>filtered list</strong>. If you want to <code>edit</code>, <code>delete</code>, <code>mark</code> or <code>unmark</code> an entry, use the <strong>index number from this filtered list</strong>. To modify entries not currently visible, run <code>list TYPE</code> to show all members or events again.</div>
 
 
 [Back to table of contents](#table-of-contents)
