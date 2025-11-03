@@ -4,8 +4,8 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_TYPE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,8 +17,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class DeleteCommandParserTest {
 
     private final DeleteCommandParser parser = new DeleteCommandParser();
-    private final int INVALID_INDEX = -1;
-    private final int VALID_INDEX = 1;
+    private final int invalidIndex = -1;
+    private final int validIndex = 1;
 
     @Test
     public void parse_validMember_success() throws ParseException {
@@ -51,16 +51,16 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidIndex_failure() {
-        assertParseFailure(parser, "member " + INVALID_INDEX,
+        assertParseFailure(parser, "member " + invalidIndex,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, "event " + INVALID_INDEX,
+        assertParseFailure(parser, "event " + invalidIndex,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidType_failure() {
-        assertParseFailure(parser, "invalidType " + VALID_INDEX,
+        assertParseFailure(parser, "invalidType " + validIndex,
                 String.format(MESSAGE_INVALID_TYPE, DeleteCommand.MESSAGE_USAGE));
     }
 
