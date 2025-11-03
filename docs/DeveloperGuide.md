@@ -326,6 +326,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`  | CCA leader           | create aliases for commands                 | type faster by using shorter, personalised command names                                         |
 | `* *`  | CCA leader           | view a guided tour                 | learn the main interface features easily without referring back to the guide                     |
 | `* *`  | CCA leader           | search for members or events by keywords               | find specific entries quickly without scrolling through long lists                               |
+| `* *`  | CCA leader           | mark and unmark attendance           | keep track of my active members attendance for various events                                   |
 | `*`    | CCA leader           | undo or redo my last action                 | reverse mistakes such as deleting the wrong entry                                                |
 
 
