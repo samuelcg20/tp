@@ -215,7 +215,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 - Type `java -jar ComClubConnect.jar` command to run the application.<br>
 - A GUI like the one below will appear on your screen in a few seconds. Note that the app contains some sample data.<br>
 
-![Ui](images/UpdatedUi.png)
+![Ui](images/Ui.png)
 
 
 [Back to table of contents](#table-of-contents)
