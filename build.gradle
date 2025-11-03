@@ -70,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = '[CS2103T-T09-2][ComClubConnect].jar';
 }
 
 defaultTasks 'clean', 'test'
