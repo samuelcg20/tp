@@ -115,16 +115,23 @@ How the `Logic` component works:
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png" width="800"/>
 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<img src="images/CommandClasses.png" width="500"/>
+
+Here are the classes in `Logic` that are used after parsing a user command:
+* After parsing a user command, the `XYZCommandParser` class creates an `XYZMmeberCommand` object or `XYZEventCommand` object depending on whether the operation is for member or event.
+* All `XYZMemberCommand` and `XYZEventCommand` classes inherit from `XYZCommand` abstract class which inherits from `Command` abstract class so that they can be treated similarly where possible e.g, during testing.
+
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2526S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/FinalModelClassDiagram.png" width="550" />
+<img src="images/ModelClassDiagram.png" width="550" />
 
 
 
@@ -140,7 +147,7 @@ The `Model` component:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/UpdatedBetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
 
@@ -149,7 +156,7 @@ The `Model` component:
 
 **API** : [`Storage.java`](https://github.com/AY2526S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/FinalStorageClassDiagram.png" width="750" />
+<img src="images/StorageClassDiagram.png" width="750" />
 
 The `Storage` component,
 * can save both address book data, alias book data and user preference data in JSON format, and read them back into corresponding objects.
