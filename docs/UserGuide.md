@@ -69,6 +69,35 @@ title: User Guide
     text-decoration: underline dotted;
     text-decoration-color: #c0392b;
   }
+  .constraint-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.constraint-table th,
+.constraint-table td {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0.75rem 1rem;
+}
+.constraint-table th {
+  background-color: #f8fafc;
+  font-weight: 600;
+}
+.constraint-table tr:last-child td {
+  border-bottom: none;
+}
+@media print {
+  .constraint-table {
+    border-collapse: collapse;
+  }
+  .constraint-table th,
+  .constraint-table td {
+    border: 1px solid #d1d5db;
+  }
+}
 </style>
 
 <div class="quick-links">
@@ -290,7 +319,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 <a id="member-constraints"></a>
 **Member field constraints**
 
-<table>
+<table class="constraint-table">
   <thead>
     <tr>
       <th>Field</th>
@@ -321,10 +350,10 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
   </tbody>
 </table>
 
-<a id="event-constraints">
+<a id="event-constraints"></a>
 **Event field constraints**
 
-<table>
+<table class="constraint-table">
   <thead>
     <tr>
       <th>Field</th>
@@ -706,12 +735,12 @@ Format: `exit`
 If you don’t have existing data files, the app starts with a small set of sample entries so you can try commands immediately.
 
 - Sample members (name — phone — email — year — roles):
-  - Alex Yeoh — 87438807 — alexyeoh@u.nus.edu — Year 1 — VicePresident
-  - Bernice Yu — 99272758 — berniceyu@u.nus.edu — Year 2 — OperationsHead, Treasurer
-  - Charlotte Oliveiro — 93210283 — charlotte@u.nus.edu — Year 3 — MarketingHead
-  - David Li — 91031282 — lidavid@u.nus.edu — Year 4 — President
+  - Alex Yeoh — 87438807 — alexyeoh@u.nus.edu — Year 1 — Vice President
+  - Bernice Yu — 99272758 — berniceyu@u.nus.edu — Year 2 — Treasurer
+  - Charlotte Oliveiro — 93210283 — charlotte@u.nus.edu — Year 3 — Member
+  - David Li — 91031282 — lidavid@u.nus.edu — Year 4 — Member
   - Irfan Ibrahim — 92492021 — irfan@u.nus.edu — Year 1 — Member
-  - Roy Balakrishnan — 92624417 — royb@u.nus.edu — Year 2 — Secretriat
+  - Roy Balakrishnan — 92624417 — royb@u.nus.edu — Year 2 — Member
 
 - Sample aliases (available only if no alias data exists yet):
   - delete → d
