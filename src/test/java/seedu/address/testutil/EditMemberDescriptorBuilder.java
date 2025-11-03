@@ -1,16 +1,12 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.member.EditMemberCommand.EditMemberDescriptor;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.person.Year;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -36,7 +32,7 @@ public class EditMemberDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setYear(person.getYear());
-        descriptor.setTags(person.getTags());
+        descriptor.setRole(person.getRole());
     }
 
     /**
@@ -72,12 +68,10 @@ public class EditMemberDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
-     * that we are building.
+     * Sets the {@code Role} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditMemberDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditMemberDescriptorBuilder withRole(String role) {
+        descriptor.setRole(new Role(role));
         return this;
     }
 

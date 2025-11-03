@@ -7,8 +7,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Year;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Year;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -20,12 +21,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@u.nus.edu";
     public static final String DEFAULT_YEAR = "1";
+    public static final String DEFAULT_ROLE = "Member";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Year year;
-    private Set<Tag> tags;
+    private Role role;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -35,7 +37,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         year = new Year(DEFAULT_YEAR);
-        tags = new HashSet<>();
+        role = new Role(DEFAULT_ROLE);
     }
 
     /**
@@ -46,7 +48,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         year = personToCopy.getYear();
-        tags = new HashSet<>(personToCopy.getTags());
+        role = personToCopy.getRole();
     }
 
     /**
@@ -58,10 +60,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Sets the {@code Role} of the {@code Role} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withRole(String role) {
+        this.role = new Role(role);
         return this;
     }
 
@@ -90,7 +92,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, year, tags);
+        return new Person(name, phone, email, year, role);
     }
 
 }
