@@ -1,18 +1,13 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.alias.Alias;
 import seedu.address.model.event.Date;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.Venue;
@@ -35,8 +30,6 @@ public class ParserUtilTest {
     private static final String INVALID_DATE = "31-02-2023";
     private static final String INVALID_EVENT_NAME = "";
     private static final String INVALID_VENUE = " ";
-    private static final String INVALID_ALIAS_COMMAND = "add*";
-    private static final String INVALID_ALIAS_WORD = "my alias";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "91234567";
