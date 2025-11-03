@@ -12,13 +12,12 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-//import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-// static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.YEAR_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.YEAR_DESC_BOB;
@@ -29,7 +28,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
-//import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,15 +39,30 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.person.Year;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
 
     private AddCommandParser parser = new AddCommandParser();
 
+    @Test
+    public void parse_allFieldsPresent_success() {
+        // Single tag
+        Person expectedPerson = new PersonBuilder(BOB).withRole(VALID_TAG_FRIEND).build();
+        assertParseSuccess(parser, "member " + PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + YEAR_DESC_BOB + TAG_DESC_FRIEND,
+                new AddMemberCommand(expectedPerson));
 
+        // Multiple tags
+        Person expectedPersonMultipleTags = new PersonBuilder(BOB)
+                .withRole(VALID_TAG_FRIEND).build();
+
+        assertParseSuccess(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + YEAR_DESC_BOB + TAG_DESC_FRIEND,
+                new AddMemberCommand(expectedPersonMultipleTags));
+    }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
@@ -120,6 +134,6 @@ public class AddCommandParserTest {
 
         // Invalid tag
         assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + YEAR_DESC_BOB + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
+                        + YEAR_DESC_BOB + INVALID_TAG_DESC, Role.MESSAGE_CONSTRAINTS);
     }
 }
