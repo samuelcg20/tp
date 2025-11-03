@@ -353,7 +353,7 @@ Format: `help`
 
 This is an interactive walkthrough that helps you get to know the app. It highlights key components of our application— with color cues and in-depth explanations.
 
-![Guided Tour Overview](images/CaptionGuidedTour.png)
+![Guided Tour Overview](images/UpdatedCaptionGuidedTour.png)
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip: </strong> You can use the <code>F1</code> key or the Help menu to open the Help window quickly.</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If the Help window is minimized, running <code>help</code> again will not open a new window. You should restore the minimized window instead.</div>
