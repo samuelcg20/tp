@@ -163,7 +163,7 @@ Example (abridged):
 ```
 {
   "persons": [
-    { "name": "Alex Yeoh", "phone": "87438807", "email": "alexyeoh@u.nus.edu", "year": "1", "tags": [] }
+    { "name": "Alex Yeoh", "phone": "87438807", "email": "alexyeoh@u.nus.edu", "year": "1", "role": "leader" }
   ],
   "events": [
     { "name": "Welcome Tea", "date": "2025-12-30T18:00", "venue": "COM1-01" }
