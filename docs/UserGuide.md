@@ -198,7 +198,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 
 
 <h3 style="margin-top: 0.3em;">Step 3: Place the file in a folder</h3>
-- Your app comes in a single file that ends with .jar (for example, addressbook.jar). You’ll need to decide where you want to keep this file — this will be your ComClubConnect home folder.
+- Your app comes in a single file that ends with .jar (for example, `[CS2103T-T09-2]{ComClubConnect].jar`). You’ll need to decide where you want to keep this file — this will be your ComClubConnect home folder.
     - Find your downloaded `.jar` file (for example, in your Downloads folder).
     - Right-click the file and choose Copy.
     - Go to your preferred folder where you want to keep the file
@@ -212,7 +212,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
     - **Linux users**: Right click on the folder and select "Copy path"
 - Open a command terminal as mentioned in step 2
 - Type `cd <copied filepath>` command to enter the folder
-- Type `java -jar ComClubConnect.jar` command to run the application.<br>
+- Type `java -jar [CS2103T-T09-2][ComClubConnect].jar` command to run the application.<br>
 - A GUI like the one below will appear on your screen in a few seconds. Note that the app contains some sample data.<br>
 
 ![Ui](images/Ui.png)
@@ -224,22 +224,12 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 
 ## Quick CLI Tutorial
 
-- Click the command input box (top of the UI), type a command exactly as shown (prefixes like `n/`, `p/`, `e/`, `y/`, `r/`, `d/`, `v/` are required), then press **Enter**.
+- Click the command box (top of the UI), type a command exactly as shown (prefixes like `n/`, `p/`, `e/`, `y/`, `r/`, `d/`, `v/` are required), then press **Enter**.
 
     - Types of responses you might see:
         - **Success message:** Confirms your action with a brief summary (e.g., “New event added: …”).
         - **List view:** Appears after `list` or `find` commands, showing matching member or event entries.
         - **Error message:** Explains what went wrong — for example, incorrect input or missing information. Read it carefully and retry.
-
-
-- Example sequence:
-
-    1. `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President`
-        - Expected output: “New person added: John Doe …”
-    2. `list member`
-        - Expected output: member list including “John Doe”.
-    3. `find event n/Welcome`
-        - Expected output: a filtered event list containing events with “Welcome” in the name.
 
 
 - Some example commands you can try:
@@ -249,8 +239,6 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
     * `list event` : Lists all events.
     * `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President` : Adds a member named John Doe.
     * `add event n/Welcome Tea d/2025-09-01T18:00 v/COM1-01-02` : Adds an event named Welcome Tea.
-    * `mark m/1 e/1` : Marks attendance for member 1 (John Doe) for event 1 (Welcome Tea).
-    * `unmark m/1 e/1` : Removes attendance for member 1 (John Doe) for event 1 (Welcome Tea).
     * `delete member 3` : Deletes the 3rd member shown in the current list.
     * `clear event` : Deletes all events.
     * `exit` : Exits the app.
@@ -278,14 +266,12 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 - *Command words* specify the action we are about to take: `help`, `add`, `list`, `edit`, `find`, `delete`, `clear`, `mark`, `unmark`, `alias`, `unalias`, `find`
 - Some commands require a *type* immediately after the command word: `member` or `event` (e.g., `add member`, `list event`).
 - Words in `UPPER_CASE` are *parameters* you supply. For example, in `add member n/NAME`, `NAME` is the parameter where we can input the actual value `John Doe`.
-- All required *prefixes* must appear exactly once: <code>n/</code>, <code>p/</code>, <code>e/</code>, <code>y/</code> (member) and <code>n/</code>, <code>d/</code>, <code>v/</code> (event).
-- Prefixes are followed parameters 
+- All required *prefixes* must appear exactly once: <code>n/</code>, <code>p/</code>, <code>e/</code>, <code>y/</code>, <code>r/</code> (member) and <code>n/</code>, <code>d/</code>, <code>v/</code> (event).
+- Prefixes are followed parameters. 
 - Items in square brackets are optional.
-- Items with …​ after them can be used multiple times including zero times.
-- The prefixes and parameters must follow the order for all commands except for `mark` and `unmark` commands.
+- Items with …​ after them can be used multiple times but at least once.
 - Command words and prefixes are <a href="#case-sensitive" class="glossary-term">case-sensitive</a>.
 - <a href="#leading-spaces" class="glossary-term">Leading</a> and <a href="#trailing-spaces" class="glossary-term">trailing spaces</a> around the entire command, around type and around each parameter value are ignored
-- <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> are preserved exactly as typed unless the field forbids them (e.g. phone numbers must not contain any internal spaces) or the field normalises them into a single space when stored (i.e. `Name` fields of member and event enforce this)
 
 <a id="member-constraints"></a>
 **Member field constraints**
@@ -439,12 +425,11 @@ You can use the edit command to update details of an existing member or event in
 
 **To edit members:**
 
-Format: `edit member INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/YEAR] [r/ROLE]…`
+Format: `edit member INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/YEAR] [r/ROLE]`
 
 - You choose which member to edit by specifying their `INDEX` (the first member is 1).
 - You must include at least one field to edit - for example, a name, phone number, or email.
-- Each of the following field prefixes - n/, p/, e/, y/ - can be used only once in a single command.
-- If you add one or more r/ROLE values, all previous roles will be replaced with the new ones.
+- Each of the following field prefixes - `n/`, `p/`, `e/`, `y/`, `r/` - can be used only once in a single command.
 - You cannot edit a member to create a duplicate. See FAQ for notes on what constitutes a [duplicate member](#duplicate-members)
 - For field constraints: see [Member field constraints](#member-constraints)
 
@@ -463,7 +448,7 @@ Format: `edit event INDEX [n/NAME] [d/DATE_TIME] [v/VENUE]`
 
 - You choose which event to edit by specifying its INDEX (the first member is 1).
 - You must include at least one field to change — such as the event name, date/time, or venue.
-- Each prefix (n/, d/, v/) can only be used once per command.
+- Each prefix (`n/`, `d/`, `v/`) can only be used once per command.
 - You cannot edit an event to create a duplicate. See FAQ for notes on what constitutes a [duplicate event](#duplicate-events)
 - For field constraints: see [Event field constraints](#event-constraints)
 
@@ -516,8 +501,8 @@ Examples:
 - `find event d/2025`
 → This shows you all events in the **year** 2025.
 - `find event d/2025-11` → This shows you all the events in the **year** 2025 **and month** November.
-- `find event d/2025-11-10` → This shows you all the events in the **year** 2025, **month** November **and date** 11.
-- `find event d/2025-11-10T16:00` → This shows you all the events in the **year** 2025, **month** November, **date** 11 **and time** 16:00.
+- `find event d/2025-11-10` → This shows you all the events in the **year** 2025, **month** November **and date** 10.
+- `find event d/2025-11-10T16:00` → This shows you all the events in the **year** 2025, **month** November, **date** 10 **and time** 16:00.
 
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Enter multiple keywords to widen your search results, e.g., <code>find member n/Alex David</code>. </div>
@@ -588,13 +573,13 @@ Format: `mark m/MEMBER_INDEX e/EVENT_INDEX` or `mark e/EVENT_INDEX m/MEMBER_INDE
 
 - `MEMBER_INDEX` and `EVENT_INDEX` (both 1-based) refer to the index numbers shown in their respective currently displayed lists.
 - Both parameters are required exactly once: `m/` (member index) and `e/` (event index).
-- A member already marked for an event cannot be marked again.
-- If either or both the member and event indexes are invalid, ComClubConnect reports that both indexes are invalid
+- A member already marked for an event cannot be marked again for the same event.
+- If either or both the member and event indexes are invalid, ComClubConnect reports that both indexes are invalid.
 
 Examples:
 
 - `mark m/1 e/2`
-→ Marks member at current member index 1 as attending event at current event index 2
+→ Marks member at current member index 1 as attending event at current event index 2.
 
 
 ![Mark Screenshot](images/CaptionMarkCommand1.png)
@@ -676,8 +661,8 @@ Format: `unalias COMMAND_WORD`
 
 Examples:
 
-- `unalias delete`
-- `unalias all`
+- `unalias delete` - Removes the alias created for the command word `delete`.
+- `unalias all` - Removes all alias for all the command words.
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> To replace an existing alias for a command word, simply <code>alias NEW_ALIAS_WORD COMMAND_WORD</code> instead of <code>unalias COMMAND_WORD</code> followed by <code>alias NEW_ALIAS_WORD COMMAND_WORD</code>.</div>
 <div markdown="span" class="alert alert-info"> ℹ️ <strong>Note:</strong> The keyword <code>all</code> is <strong>not a command word</strong>, so it is <strong>not case-sensitive</strong>. Both <code>unalias all</code> and <code>unalias All</code> will work the same way.</div>
