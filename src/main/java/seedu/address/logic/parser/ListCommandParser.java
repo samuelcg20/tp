@@ -3,8 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_TYPE;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.event.DeleteEventCommand;
 import seedu.address.logic.commands.event.ListEventCommand;
+import seedu.address.logic.commands.member.DeleteMemberCommand;
 import seedu.address.logic.commands.member.ListMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -46,9 +50,9 @@ public class ListCommandParser implements Parser<ListCommand> {
      * @return ListMemberCommand or ListEventCommand
      */
     public ListCommand matchType(String type) {
-        if (type.equalsIgnoreCase("member")) {
+        if (ParserUtil.isMember(type)) {
             return new ListMemberCommand();
-        } else if (type.equalsIgnoreCase("event")) {
+        } else if (ParserUtil.isEvent(type)) {
             return new ListEventCommand();
         } else {
             return null;
