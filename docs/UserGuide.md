@@ -218,10 +218,10 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 
 - Click the command input box (top of the UI), type a command exactly as shown (prefixes like `n/`, `p/`, `e/`, `y/`, `r/`, `d/`, `v/` are required), then press **Enter**.
 
-    - Typical response types:
-        - **Success message** with brief summary (e.g., “New event added: …”).
-        - **List output** after `list` or `find`, showing matching member or event entries.
-        - **Error message** beginning with “Invalid command format!” or a validation message — read it carefully and retry.
+    - Types of responses you might see:
+        - **Success message:** Confirms your action with a brief summary (e.g., “New event added: …”).
+        - **List view:** Appears after `list` or `find` commands, showing matching member or event entries.
+        - **Error message:** Explains what went wrong — for example, incorrect input or missing information. Read it carefully and retry.
 
 
 - Example sequence:
@@ -279,7 +279,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 <a id="member-constraints"></a>
 **Member field constraints**
 
-<table>
+<table >
   <thead>
     <tr>
       <th>Field</th>
