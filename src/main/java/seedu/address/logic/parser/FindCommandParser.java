@@ -67,7 +67,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else if (args.startsWith(PREFIX_ROLE.getPrefix())) {
             return getFindMemberRoleCommand(args);
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_TYPE, FindCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
 
@@ -143,7 +143,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else if (remainingArgs.startsWith(PREFIX_DATE.getPrefix())) {
             return getFindEventDateCommand(remainingArgs);
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_TYPE, FindCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
 
