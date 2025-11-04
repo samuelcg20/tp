@@ -614,7 +614,7 @@ Examples:
 ![Mark Screenshot](images/CaptionMarkCommand1.png)
 
 
-![Mark 2 Screenshot](images/CaptionMarkCommand2.png)
+![Mark 2 Screenshot](images/Mark2.png)
 
 
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>
