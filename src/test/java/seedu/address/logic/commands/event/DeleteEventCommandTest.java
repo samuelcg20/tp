@@ -103,7 +103,7 @@ public class DeleteEventCommandTest {
 
         Event futureEvent = new Event(new EventName("Future Event"),
                 new Date("2999-01-01T00:00"), new Venue("COM1-01"),
-                attendee.getName().fullName);
+                attendee.getAttendanceKey());
         freshModel.addEvent(futureEvent);
 
         DeleteEventCommand command = new DeleteEventCommand(Index.fromOneBased(1));
@@ -123,7 +123,7 @@ public class DeleteEventCommandTest {
 
         Event pastEvent = new Event(new EventName("Past Event"),
                 new Date("2000-01-01T00:00"), new Venue("COM1-02"),
-                attendee.getName().fullName);
+                attendee.getAttendanceKey());
         freshModel.addEvent(pastEvent);
 
         DeleteEventCommand command = new DeleteEventCommand(Index.fromOneBased(1));

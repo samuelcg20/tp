@@ -36,7 +36,7 @@ public class MarkCommandTest {
         Person updatedMember = model.getFilteredPersonList().get(0);
         Event updatedEvent = model.getFilteredEventList().get(0);
         assertEquals(1, updatedMember.getAttendanceCount());
-        assertTrue(updatedEvent.hasAttendee(member.getName().fullName));
+        assertTrue(updatedEvent.hasAttendee(member.getAttendanceKey()));
     }
 
     @Test

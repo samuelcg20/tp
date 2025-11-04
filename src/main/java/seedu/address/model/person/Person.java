@@ -63,6 +63,13 @@ public class Person {
     }
 
     /**
+     * Returns the canonical value used in event attendance lists to uniquely identify this person.
+     */
+    public String getAttendanceKey() {
+        return String.format("%s [%s]", name.fullName, phone.value);
+    }
+
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
