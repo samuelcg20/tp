@@ -70,9 +70,9 @@ public class Event {
     /**
      * Returns true if the given name is present in the attendance list.
      */
-    public boolean hasAttendee(String name) {
+    public boolean hasAttendee(String entry) {
         for (String attendee : getAttendees()) {
-            if (attendee.equals(name)) {
+            if (attendee.equals(entry)) {
                 return true;
             }
         }
@@ -87,27 +87,27 @@ public class Event {
     }
 
     /**
-     * Adds a member name to the attendance list.
+     * Adds an attendee entry to the attendance list.
      */
-    public Event addToAttendanceList(String memberName) {
+    public Event addToAttendanceList(String attendeeEntry) {
         if (attendanceList.isEmpty()) {
-            return withAttendanceList(memberName);
+            return withAttendanceList(attendeeEntry);
         } else {
-            return withAttendanceList(attendanceList + ATTENDANCE_DELIMITER + memberName);
+            return withAttendanceList(attendanceList + ATTENDANCE_DELIMITER + attendeeEntry);
         }
     }
 
     /**
-     * Removes a member name from the attendance list.
+     * Removes an attendee entry from the attendance list.
      */
-    public Event removeFromAttendanceList(String memberName) {
+    public Event removeFromAttendanceList(String attendeeEntry) {
         if (attendanceList.isEmpty()) {
             return this;
         }
 
         List<String> filtered = new ArrayList<>();
         for (String member : getAttendees()) {
-            if (!member.equals(memberName)) {
+            if (!member.equals(attendeeEntry)) {
                 filtered.add(member);
             }
         }
@@ -116,15 +116,15 @@ public class Event {
     }
 
     /**
-     * Replaces an attendee name with a new name in the attendance list.
+     * Replaces an attendee entry with a new entry in the attendance list.
      */
-    public Event replaceAttendeeName(String oldName, String newName) {
-        if (attendanceList.isEmpty() || !hasAttendee(oldName)) {
+    public Event replaceAttendeeEntry(String oldEntry, String newEntry) {
+        if (attendanceList.isEmpty() || !hasAttendee(oldEntry)) {
             return this;
         }
         List<String> updated = new ArrayList<>();
         for (String attendee : getAttendees()) {
-            updated.add(attendee.equals(oldName) ? newName : attendee);
+            updated.add(attendee.equals(oldEntry) ? newEntry : attendee);
         }
         return withAttendanceList(String.join(ATTENDANCE_DELIMITER, updated));
     }

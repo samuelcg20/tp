@@ -27,7 +27,7 @@ public class UnmarkCommandTest {
     public void execute_memberMarked_success() throws Exception {
         Person member = new PersonBuilder().withName("Alice Tan").build().withAttendanceCount(1);
         Event event = new EventBuilder().withName("Team Sync").build()
-                .addToAttendanceList(member.getName().fullName);
+                .addToAttendanceList(member.getAttendanceKey());
         Model model = prepareModel(member, event);
 
         UnmarkCommand command = new UnmarkCommand(Index.fromOneBased(1), Index.fromOneBased(1));
@@ -37,7 +37,7 @@ public class UnmarkCommandTest {
         Person updatedMember = model.getFilteredPersonList().get(0);
         Event updatedEvent = model.getFilteredEventList().get(0);
         assertEquals(0, updatedMember.getAttendanceCount());
-        assertFalse(updatedEvent.hasAttendee(member.getName().fullName));
+        assertFalse(updatedEvent.hasAttendee(member.getAttendanceKey()));
     }
 
     @Test
@@ -54,7 +54,7 @@ public class UnmarkCommandTest {
     public void execute_invalidMemberIndex_throwsCommandException() {
         Person member = new PersonBuilder().withName("Cheryl Ng").build().withAttendanceCount(1);
         Event event = new EventBuilder().withName("Orientation Briefing").build()
-                .addToAttendanceList(member.getName().fullName);
+                .addToAttendanceList(member.getAttendanceKey());
         Model model = prepareModel(member, event);
 
         Index outOfBoundsMemberIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
@@ -67,7 +67,7 @@ public class UnmarkCommandTest {
     public void execute_invalidEventIndex_throwsCommandException() {
         Person member = new PersonBuilder().withName("Daryl Ong").build().withAttendanceCount(1);
         Event event = new EventBuilder().withName("Career Talk").build()
-                .addToAttendanceList(member.getName().fullName);
+                .addToAttendanceList(member.getAttendanceKey());
         Model model = prepareModel(member, event);
 
         Index outOfBoundsEventIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
@@ -80,7 +80,7 @@ public class UnmarkCommandTest {
     public void execute_bothIndexesInvalid_throwsCommandException() {
         Person member = new PersonBuilder().withName("Farah Lee").build().withAttendanceCount(1);
         Event event = new EventBuilder().withName("Design Review").build()
-                .addToAttendanceList(member.getName().fullName);
+                .addToAttendanceList(member.getAttendanceKey());
         Model model = prepareModel(member, event);
 
         Index outOfBoundsMemberIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
@@ -94,7 +94,7 @@ public class UnmarkCommandTest {
     public void execute_attendanceDoesNotGoBelowZero_success() throws Exception {
         Person member = new PersonBuilder().withName("Evelyn Koh").build(); // attendance count 0
         Event event = new EventBuilder().withName("Code Sprint").build()
-                .addToAttendanceList(member.getName().fullName);
+                .addToAttendanceList(member.getAttendanceKey());
         Model model = prepareModel(member, event);
 
         UnmarkCommand command = new UnmarkCommand(Index.fromOneBased(1), Index.fromOneBased(1));

@@ -118,17 +118,17 @@ public class EventTest {
     }
 
     @Test
-    public void replaceAttendeeName_existingMember_replacesName() {
+    public void replaceAttendeeEntry_existingMember_replacesEntry() {
         Event event = new Event(name, date, venue, "Alice, Bob");
-        Event updated = event.replaceAttendeeName("Alice", "Charlie");
+        Event updated = event.replaceAttendeeEntry("Alice", "Charlie");
         assertEquals("Charlie, Bob", updated.getAttendanceList());
         assertEquals(Arrays.asList("Charlie", "Bob"), updated.getAttendees());
     }
 
     @Test
-    public void replaceAttendeeName_nonExistingMember_returnsSameEvent() {
+    public void replaceAttendeeEntry_nonExistingMember_returnsSameEvent() {
         Event event = new Event(name, date, venue, "Alice, Bob");
-        Event updated = event.replaceAttendeeName("David", "Charlie");
+        Event updated = event.replaceAttendeeEntry("David", "Charlie");
         assertEquals(event, updated);
     }
 

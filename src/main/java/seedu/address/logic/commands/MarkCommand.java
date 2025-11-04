@@ -37,8 +37,10 @@ public class MarkCommand extends AttendanceCommand {
         Person memberToMark = context.getMember();
         Event eventToMark = context.getEvent();
 
+        String attendanceEntry = memberToMark.getAttendanceKey();
+
         // Guard against duplicate attendance
-        if (eventToMark.hasAttendee(memberToMark.getName().fullName)) {
+        if (eventToMark.hasAttendee(attendanceEntry)) {
             throw new CommandException(MESSAGE_DUPLICATE_ATTENDANCE);
         }
 
@@ -48,7 +50,7 @@ public class MarkCommand extends AttendanceCommand {
         model.setPerson(memberToMark, updatedMember);
 
         // Update event's attendance list
-        Event updatedEvent = eventToMark.addToAttendanceList(memberToMark.getName().fullName);
+        Event updatedEvent = eventToMark.addToAttendanceList(attendanceEntry);
         model.setEvent(eventToMark, updatedEvent);
 
         return new CommandResult(MESSAGE_SUCCESS);

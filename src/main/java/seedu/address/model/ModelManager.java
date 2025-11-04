@@ -139,18 +139,17 @@ public class ModelManager implements Model {
 
     /**
      * Cleans up attendance records when a person is deleted.
-     * Removes the person's name from all event attendance lists.
+     * Removes the person's attendance entry from all event attendance lists.
      */
     private void cleanupPersonAttendance(Person person) {
-        String personName = person.getName().fullName;
+        String attendanceEntry = person.getAttendanceKey();
         // Get all events and remove this person from their attendance lists
         List<Event> allEvents = addressBook.getEventList();
         for (Event event : allEvents) {
-            if (!event.hasAttendee(personName)) {
-                continue;
+            if (event.hasAttendee(attendanceEntry)) {
+                Event updatedEvent = event.removeFromAttendanceList(attendanceEntry);
+                addressBook.setEvent(event, updatedEvent);
             }
-            Event updatedEvent = event.removeFromAttendanceList(personName);
-            addressBook.setEvent(event, updatedEvent);
         }
     }
 
@@ -164,25 +163,24 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        // If the person's name changed, update attendance records
-        if (!target.getName().equals(editedPerson.getName())) {
-            updatePersonNameInAttendance(target.getName().fullName, editedPerson.getName().fullName);
-        }
+        updatePersonAttendanceEntry(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
     }
 
     /**
-     * Updates person name in all event attendance lists when a person's name is edited.
+     * Updates a person's identifier in all event attendance lists when they are edited.
      */
-    private void updatePersonNameInAttendance(String oldName, String newName) {
+    private void updatePersonAttendanceEntry(Person original, Person updated) {
+        String oldEntry = original.getAttendanceKey();
+        String newEntry = updated.getAttendanceKey();
+
         List<Event> allEvents = addressBook.getEventList();
         for (Event event : allEvents) {
-            if (!event.hasAttendee(oldName)) {
-                continue;
+            if (!oldEntry.equals(newEntry) && event.hasAttendee(oldEntry)) {
+                Event updatedEvent = event.replaceAttendeeEntry(oldEntry, newEntry);
+                addressBook.setEvent(event, updatedEvent);
             }
-            Event updated = event.replaceAttendeeName(oldName, newName);
-            addressBook.setEvent(event, updated);
         }
     }
 
@@ -227,13 +225,13 @@ public class ModelManager implements Model {
         if (event.getAttendees().isEmpty()) {
             return;
         }
-        List<String> memberNames = event.getAttendees();
+        List<String> memberEntries = event.getAttendees();
         // Get all persons and decrease their attendance count
         List<Person> allPersons = addressBook.getPersonList();
         for (Person person : allPersons) {
-            String personName = person.getName().fullName;
+            String personEntry = person.getAttendanceKey();
             // Check if this person was marked for attendance at this event
-            if (!memberNames.contains(personName)) {
+            if (!memberEntries.contains(personEntry)) {
                 continue;
             }
             int newAttendanceCount = Math.max(0, person.getAttendanceCount() - 1);
