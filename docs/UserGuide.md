@@ -69,6 +69,35 @@ title: User Guide
     text-decoration: underline dotted;
     text-decoration-color: #c0392b;
   }
+  .constraint-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.constraint-table th,
+.constraint-table td {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0.75rem 1rem;
+}
+.constraint-table th {
+  background-color: #f8fafc;
+  font-weight: 600;
+}
+.constraint-table tr:last-child td {
+  border-bottom: none;
+}
+@media print {
+  .constraint-table {
+    border-collapse: collapse;
+  }
+  .constraint-table th,
+  .constraint-table td {
+    border: 1px solid #d1d5db;
+  }
+}
 </style>
 
 <div class="quick-links">
@@ -111,7 +140,7 @@ title: User Guide
 <div markdown="1">
 <a id="top"></a>
 
-ComClubConnect is a desktop application designed for **NUS CCA leaders** that helps you **manage members, plan events and communicate updates** more efficiently than traditional spreadsheet tools or GUI-only applications.
+ComClubConnect is a desktop application designed for **NUS Co-Curricular Activities (CCA) leaders** that helps you **manage members, plan events and communicate updates** more efficiently than traditional spreadsheet tools or GUI-only applications.
 
 It is optimised for use via a **Command Line Interface (CLI)** while retaining an **intuitive Graphical User Interface (GUI)**.
 
@@ -164,7 +193,7 @@ This guide is for NUS CCA leaders like you who want to manage active members and
 [Back to table of contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-## How to use this guide
+## How to Use This Guide
 - [Quick Start](#quick-start): Learn how to open the app and try basic example commands.
 - [Features](#features): Learn what each command does, how to use it step by step, and get examples and helpful tips.
 - [Troubleshooting & FAQ](#faq): Find answers to common problems and questions you might have.
@@ -198,7 +227,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 
 
 <h3 style="margin-top: 0.3em;">Step 3: Place the file in a folder</h3>
-- Your app comes in a single file that ends with .jar (for example, addressbook.jar). You’ll need to decide where you want to keep this file — this will be your ComClubConnect home folder.
+- Your app comes in a single file that ends with .jar (for example, `[CS2103T-T09-2][ComClubConnect].jar`). You’ll need to decide where you want to keep this file — this will be your ComClubConnect home folder.
     - Find your downloaded `.jar` file (for example, in your Downloads folder).
     - Right-click the file and choose Copy.
     - Go to your preferred folder where you want to keep the file
@@ -212,10 +241,10 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
     - **Linux users**: Right click on the folder and select "Copy path"
 - Open a command terminal as mentioned in step 2
 - Type `cd <copied filepath>` command to enter the folder
-- Type `java -jar ComClubConnect.jar` command to run the application.<br>
+- Type `java -jar [CS2103T-T09-2][ComClubConnect].jar` command to run the application.<br>
 - A GUI like the one below will appear on your screen in a few seconds. Note that the app contains some sample data.<br>
 
-![Ui](images/UpdatedUi.png)
+![Ui](images/FinalUi.png)
 
 
 [Back to table of contents](#table-of-contents)
@@ -224,22 +253,12 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 
 ## Quick CLI Tutorial
 
-- Click the command input box (top of the UI), type a command exactly as shown (prefixes like `n/`, `p/`, `e/`, `y/`, `r/`, `d/`, `v/` are required), then press **Enter**.
+- Click the command box (top of the UI), type a command exactly as shown (prefixes like `n/`, `p/`, `e/`, `y/`, `r/`, `d/`, `v/` are required), then press **Enter**.
 
     - Types of responses you might see:
         - **Success message:** Confirms your action with a brief summary (e.g., “New event added: …”).
         - **List view:** Appears after `list` or `find` commands, showing matching member or event entries.
         - **Error message:** Explains what went wrong — for example, incorrect input or missing information. Read it carefully and retry.
-
-
-- Example sequence:
-
-    1. `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President`
-        - Expected output: “New person added: John Doe …”
-    2. `list member`
-        - Expected output: member list including “John Doe”.
-    3. `find event n/Welcome`
-        - Expected output: a filtered event list containing events with “Welcome” in the name.
 
 
 - Some example commands you can try:
@@ -249,8 +268,6 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
     * `list event` : Lists all events.
     * `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President` : Adds a member named John Doe.
     * `add event n/Welcome Tea d/2025-09-01T18:00 v/COM1-01-02` : Adds an event named Welcome Tea.
-    * `mark m/1 e/1` : Marks attendance for member 1 (John Doe) for event 1 (Welcome Tea).
-    * `unmark m/1 e/1` : Removes attendance for member 1 (John Doe) for event 1 (Welcome Tea).
     * `delete member 3` : Deletes the 3rd member shown in the current list.
     * `clear event` : Deletes all events.
     * `exit` : Exits the app.
@@ -278,19 +295,17 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 - *Command words* specify the action we are about to take: `help`, `add`, `list`, `edit`, `find`, `delete`, `clear`, `mark`, `unmark`, `alias`, `unalias`, `find`
 - Some commands require a *type* immediately after the command word: `member` or `event` (e.g., `add member`, `list event`).
 - Words in `UPPER_CASE` are *parameters* you supply. For example, in `add member n/NAME`, `NAME` is the parameter where we can input the actual value `John Doe`.
-- All required *prefixes* must appear exactly once: <code>n/</code>, <code>p/</code>, <code>e/</code>, <code>y/</code> (member) and <code>n/</code>, <code>d/</code>, <code>v/</code> (event).
-- Prefixes are followed parameters 
+- All required *prefixes* must appear exactly once: <code>n/</code>, <code>p/</code>, <code>e/</code>, <code>y/</code>, <code>r/</code> (member) and <code>n/</code>, <code>d/</code>, <code>v/</code> (event).
+- Prefixes are followed by parameters. 
 - Items in square brackets are optional.
-- Items with …​ after them can be used multiple times including zero times.
-- The prefixes and parameters must follow the order for all commands except for `mark` and `unmark` commands.
+- Items with …​ after them can be used multiple times but at least once.
 - Command words and prefixes are <a href="#case-sensitive" class="glossary-term">case-sensitive</a>.
 - <a href="#leading-spaces" class="glossary-term">Leading</a> and <a href="#trailing-spaces" class="glossary-term">trailing spaces</a> around the entire command, around type and around each parameter value are ignored
-- <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> are preserved exactly as typed unless the field forbids them (e.g. phone numbers must not contain any internal spaces) or the field normalises them into a single space when stored (i.e. `Name` fields of member and event enforce this)
 
 <a id="member-constraints"></a>
 **Member field constraints**
 
-<table>
+<table class="constraint-table">
   <thead>
     <tr>
       <th>Field</th>
@@ -300,7 +315,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
   <tbody>
     <tr>
       <td><strong>NAME (`n/`)</strong></td>
-      <td>- Must not be blank <br>- Letters, spaces, hyphens `-`, apostrophes `’`, slashes `/`, and periods `.` only; digits or other symbols are not allowed.<br> - <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> between words will be allowed for input but normalised to a single space when stored <br> - Input must be at most 35 characters (excluding leading and trailing spaces)</td>
+      <td>- Must not be blank <br>- Letters, spaces, hyphens `-`, apostrophes `’`, slashes `/`, and periods `.` only; digits or other symbols are not allowed.<br> - <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> will be allowed for input but normalised to a single space when stored <br> - Input must be at most 35 characters (excluding leading and trailing spaces)</td>
     </tr>
     <tr>
       <td><strong>PHONE (`p/`)</strong></td>
@@ -316,15 +331,15 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
     </tr>
     <tr>
       <td><strong>ROLE (`r/`)</strong></td>
-      <td>- Must not be blank <br> - Must be alphanumeric and can have spaces <br> - <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> between words will be allowed for input but normalised to a single space when stored <br> - Input must be at most 35 characters (excluding <a href="#leading-spaces" class="glossary-term">leading</a> and <a href="#trailing-spaces" class="glossary-term">trailing spaces</a>, consecutive spaces in between words are normalised)</td>
+      <td>- Must not be blank <br> - Must be alphanumeric and can have spaces <br> - <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> will be allowed for input but normalised to a single space when stored <br> - Input must be at most 35 characters (excluding <a href="#leading-spaces" class="glossary-term">leading</a> and <a href="#trailing-spaces" class="glossary-term">trailing spaces</a>, consecutive spaces in between words are normalised)</td>
     </tr>
   </tbody>
 </table>
 
-<a id="event-constraints">
+<a id="event-constraints"></a>
 **Event field constraints**
 
-<table>
+<table class="constraint-table">
   <thead>
     <tr>
       <th>Field</th>
@@ -334,7 +349,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
   <tbody>
     <tr>
       <td><strong>NAME (`n/`)</strong></td>
-      <td>- Alphanumeric and spaces only <br> - <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> between words will be allowed for input but normalised to a single space when stored <br> - Input must be at most 35 characters (excluding <a href="#leading-spaces" class="glossary-term">leading</a> and <a href="#trailing-spaces" class="glossary-term">trailing spaces</a>, consecutive spaces in between words are normalised)</td>
+      <td>- Alphanumeric and spaces only <br> - <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> will be allowed for input but normalised to a single space when stored <br> - Input must be at most 35 characters (excluding <a href="#leading-spaces" class="glossary-term">leading</a> and <a href="#trailing-spaces" class="glossary-term">trailing spaces</a>, consecutive spaces in between words are normalised)</td>
     </tr>
     <tr>
       <td><strong>DATE_TIME (`d/`)</strong></td>
@@ -362,7 +377,7 @@ Format: `help`
 
 #### Guided Tour
 
-This is an interactive walkthrough that helps you get to know the app. It highlights key components of our application— with color cues and in-depth explanations.
+This is an interactive walkthrough that helps you get to know the app. It highlights key components of our application— with colour cues and in-depth explanations.
 
 ![Guided Tour Overview](images/UpdatedCaptionGuidedTour.png)
 
@@ -439,12 +454,11 @@ You can use the edit command to update details of an existing member or event in
 
 **To edit members:**
 
-Format: `edit member INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/YEAR] [r/ROLE]…`
+Format: `edit member INDEX [n/NAME] [p/PHONE] [e/EMAIL] [y/YEAR] [r/ROLE]`
 
 - You choose which member to edit by specifying their `INDEX` (the first member is 1).
 - You must include at least one field to edit - for example, a name, phone number, or email.
-- Each of the following field prefixes - n/, p/, e/, y/ - can be used only once in a single command.
-- If you add one or more r/ROLE values, all previous roles will be replaced with the new ones.
+- Each of the following field prefixes - `n/`, `p/`, `e/`, `y/`, `r/` - can be used only once in a single command.
 - You cannot edit a member to create a duplicate. See FAQ for notes on what constitutes a [duplicate member](#duplicate-members)
 - For field constraints: see [Member field constraints](#member-constraints)
 
@@ -461,9 +475,9 @@ Examples:
 
 Format: `edit event INDEX [n/NAME] [d/DATE_TIME] [v/VENUE]`
 
-- You choose which event to edit by specifying its INDEX (the first member is 1).
+- You choose which event to edit by specifying its INDEX (the first event is 1).
 - You must include at least one field to change — such as the event name, date/time, or venue.
-- Each prefix (n/, d/, v/) can only be used once per command.
+- Each prefix (`n/`, `d/`, `v/`) can only be used once per command.
 - You cannot edit an event to create a duplicate. See FAQ for notes on what constitutes a [duplicate event](#duplicate-events)
 - For field constraints: see [Event field constraints](#event-constraints)
 
@@ -516,8 +530,8 @@ Examples:
 - `find event d/2025`
 → This shows you all events in the **year** 2025.
 - `find event d/2025-11` → This shows you all the events in the **year** 2025 **and month** November.
-- `find event d/2025-11-10` → This shows you all the events in the **year** 2025, **month** November **and date** 11.
-- `find event d/2025-11-10T16:00` → This shows you all the events in the **year** 2025, **month** November, **date** 11 **and time** 16:00.
+- `find event d/2025-11-10` → This shows you all the events in the **year** 2025, **month** November **and date** 10.
+- `find event d/2025-11-10T16:00` → This shows you all the events in the **year** 2025, **month** November, **date** 10 **and time** 16:00.
 
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Enter multiple keywords to widen your search results, e.g., <code>find member n/Alex David</code>. </div>
@@ -588,13 +602,13 @@ Format: `mark m/MEMBER_INDEX e/EVENT_INDEX` or `mark e/EVENT_INDEX m/MEMBER_INDE
 
 - `MEMBER_INDEX` and `EVENT_INDEX` (both 1-based) refer to the index numbers shown in their respective currently displayed lists.
 - Both parameters are required exactly once: `m/` (member index) and `e/` (event index).
-- A member already marked for an event cannot be marked again.
-- If either or both the member and event indexes are invalid, ComClubConnect reports that both indexes are invalid
+- A member already marked for an event cannot be marked again for the same event.
+- If either or both the member and event indexes are invalid, ComClubConnect reports that both indexes are invalid.
 
 Examples:
 
 - `mark m/1 e/2`
-→ Marks member at current member index 1 as attending event at current event index 2
+→ Marks member at current member index 1 as attending event at current event index 2.
 
 
 ![Mark Screenshot](images/CaptionMarkCommand1.png)
@@ -641,7 +655,7 @@ Examples:
 ### Aliasing Commands — `alias`
 
 
-Tired of long commands? Create your own aliases to run your favorite commands faster and more easily.
+Tired of long commands? Create your own aliases to run your favourite commands faster and more easily.
 
 
 Format: `alias COMMAND_WORD ALIAS`
@@ -676,8 +690,8 @@ Format: `unalias COMMAND_WORD`
 
 Examples:
 
-- `unalias delete`
-- `unalias all`
+- `unalias delete` - Removes the alias created for the command word `delete`.
+- `unalias all` - Removes all alias for all the command words.
 
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> To replace an existing alias for a command word, simply <code>alias NEW_ALIAS_WORD COMMAND_WORD</code> instead of <code>unalias COMMAND_WORD</code> followed by <code>alias NEW_ALIAS_WORD COMMAND_WORD</code>.</div>
 <div markdown="span" class="alert alert-info"> ℹ️ <strong>Note:</strong> The keyword <code>all</code> is <strong>not a command word</strong>, so it is <strong>not case-sensitive</strong>. Both <code>unalias all</code> and <code>unalias All</code> will work the same way.</div>
@@ -704,12 +718,12 @@ Format: `exit`
 If you don’t have existing data files, the app starts with a small set of sample entries so you can try commands immediately.
 
 - Sample members (name — phone — email — year — roles):
-  - Alex Yeoh — 87438807 — alexyeoh@u.nus.edu — Year 1 — VicePresident
-  - Bernice Yu — 99272758 — berniceyu@u.nus.edu — Year 2 — OperationsHead, Treasurer
-  - Charlotte Oliveiro — 93210283 — charlotte@u.nus.edu — Year 3 — MarketingHead
-  - David Li — 91031282 — lidavid@u.nus.edu — Year 4 — President
+  - Alex Yeoh — 87438807 — alexyeoh@u.nus.edu — Year 1 — Vice President
+  - Bernice Yu — 99272758 — berniceyu@u.nus.edu — Year 2 — Treasurer
+  - Charlotte Oliveiro — 93210283 — charlotte@u.nus.edu — Year 3 — Member
+  - David Li — 91031282 — lidavid@u.nus.edu — Year 4 — Member
   - Irfan Ibrahim — 92492021 — irfan@u.nus.edu — Year 1 — Member
-  - Roy Balakrishnan — 92624417 — royb@u.nus.edu — Year 2 — Secretriat
+  - Roy Balakrishnan — 92624417 — royb@u.nus.edu — Year 2 — Member
 
 - Sample aliases (available only if no alias data exists yet):
   - delete → d
@@ -770,7 +784,7 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 
 - Can I import my existing member list from Excel/Google Sheets?
-- Not directly. You can copy key details and add members using `add member ...`. Power users can transform CSV to match `addressbook.json`, but be careful with format.
+- Not directly. You can copy key details and add members using `add member ...`. Advanced users can transform CSV to match `addressbook.json`, but be careful with format.
 
 
 - Why does my email keep getting rejected?
@@ -781,14 +795,6 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 - Exactly 8 digits, starting with `8` or `9`, and no spaces.
 
 
-- How do I record multiple roles for a member?
-- Repeat the `r/` prefix, e.g., `r/President r/TechLead`. Roles are alphanumeric and cannot contain spaces.
-
-
-- Can I search by role or by event date range?
-- Role-based search and date-range filters are not supported currently. You can search members by name or year, and events by name or location.
-
-
 - I entered `2025-09-01 18:00` but got an invalid date. Why?
 - Use ISO format with `T` between date and time: `2025-09-01T18:00`.
 
@@ -796,13 +802,6 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 - I deleted the wrong person/event. Can I undo?
 - Undo is not available. Consider exporting a backup (`data/addressbook.json`) periodically.
 
-
-- How do I move my data to another computer?
-- Copy your `addressbook.json` from the `data` folder next to your `.jar` into the same location on the new machine before running the app there.
-
-
-- The app says it can’t save due to permissions. What should I do?
-- Move the `.jar` file to a folder you have write access to (e.g., your home folder or desktop) and run it again.
 
 
 
@@ -824,21 +823,6 @@ Problem: “Invalid command format!”
 - Solution: Compare with the command’s “Format” in this guide; remove extras and include all required prefixes.
 
 
-Problem: “Phone number must be exactly 8 digits and start with 8 or 9.”
-- Reason: The number contains spaces, wrong length, or starts with other digits.
-- Solution: Enter an 8-digit number starting with 8 or 9, with no spaces.
-
-
-Problem: “Emails should be of the format local-part@u.nus.edu …”
-- Reason: Email is not an NUS email or local-part is invalid.
-- Solution: Use a valid NUS email like `alexlee@u.nus.edu`.
-
-
-Problem: “Dates should be in ISO format YYYY-MM-DDTHH:MM”
-- Reason: Missing the `T` separator or wrong format.
-- Solution: Enter `YYYY-MM-DDTHH:MM` (e.g., `2025-10-05T19:00`).
-
-
 Problem: “Member is already marked for attendance at this event”
 - Reason: Duplicate attendance.
 - Solution: No action needed or use `unmark m/<MEMBER_INDEX> e/<EVENT_INDEX>` first.
@@ -852,10 +836,6 @@ Problem: “Unknown command”
 - Reason: Typos or using a command that does not exist.
 - Solution: Run `help` to see supported commands. Consider creating an alias for frequently used commands.
 
-
-Problem: “Could not save data due to insufficient permissions …”
-- Reason: The current folder is read-only.
-- Solution: Move the `.jar` to a writable folder and run it again.
 
 
 
@@ -884,31 +864,45 @@ Problem: “Could not save data due to insufficient permissions …”
 
 
 ## Glossary
+<a id="command-line-interface"></a>
+- **Command-Line Interface**
+
+  A CLI allows users to interact with a computer or application by typing text commands into a console or terminal. It’s non-graphical and relies on precise command syntax.
+
+<a id="graphical-user-interface"></a>
+- **Graphical User Interface**
+  
+  A GUI allows users to interact with a computer or application through graphical elements such as windows, icons, buttons, and menus.
 
 <a id="consecutive-spaces-between-words"></a>
 - **Consecutive spaces between words**  
+  
   Two or more spaces typed in a row between words. A normal single space is **not** considered consecutive spaces.
-  E.g. `John  Richard Doe` has 2 consecutive spaces between `John` and `Richard`
+  E.g. "John  Richard Doe" has 2 consecutive spaces between "John" and "Richard"
 
 <a id="leading-spaces"></a>
 - **Leading spaces**
+  
   These are spaces at the very beginning, before any text. You can think of it like the “empty” space you type before your real text starts
-  E.g. In `  hello`, there are two leading spaces before the world `hello`
+  E.g. In "  hello", there are two leading spaces before the word "hello"
 
 <a id="trailing-spaces"></a>
 - **Trailing spaces**
+
   These are spaces at the very end, after any text. You can think of it like the “empty” space you type after your real text starts
-  E.g. In `hello  `, there are two trailing spaces after the word `hello`
+  E.g. In "hello  ", there are two trailing spaces after the word "hello"
 
 <a id="case-sensitive"></a>
 - **Case sensitive**
+  
   This means uppercase and lowercase letters are treated as different characters.
-  In other words, `A` is not the same as `a`.
+  In other words, "A" is not the same as "a".
 
 <a id="case-insensitive"></a>
 - **Case insensitive**
+  
   This means uppercase and lowercase letters are treated as same characters.
-  In other words, `A` is the same as `a`.
+  In other words, "A" is the same as "a".
 
 
 [Back to table of contents](#table-of-contents)
@@ -964,9 +958,9 @@ Problem: “Could not save data due to insufficient permissions …”
     <tr>
     <td><strong>find</strong></td>
     <td>
-    <strong>Member:</strong> <code>find member n/Alex</code>, <code>find member y/1</code>
+    <strong>Member:</strong> <code>find member n/Alex</code>, <code>find member r/Leader</code>
     <hr style="margin: 8px 0;">
-    <strong>Event:</strong> <code>find event n/Welcome</code>, <code>find event v/COM1</code>
+    <strong>Event:</strong> <code>find event n/Welcome</code>, <code>find event d/2025-12-12T18:00</code>
     </td>
     </tr>
     <tr>
