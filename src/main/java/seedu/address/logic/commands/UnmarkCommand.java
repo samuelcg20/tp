@@ -37,8 +37,11 @@ public class UnmarkCommand extends AttendanceCommand {
         Person memberToUnmark = context.getMember();
         Event eventToUnmark = context.getEvent();
 
+        String attendanceEntry = memberToUnmark.getAttendanceKey();
+        boolean hasEntry = eventToUnmark.hasAttendee(attendanceEntry);
+
         // Check if member is actually marked for attendance
-        if (!eventToUnmark.hasAttendee(memberToUnmark.getName().fullName)) {
+        if (!hasEntry) {
             throw new CommandException(MESSAGE_NO_ATTENDANCE_TO_UNMARK);
         }
 
@@ -49,7 +52,7 @@ public class UnmarkCommand extends AttendanceCommand {
         model.setPerson(memberToUnmark, updatedMember);
 
         // Update event's attendance list
-        Event updatedEvent = eventToUnmark.removeFromAttendanceList(memberToUnmark.getName().fullName);
+        Event updatedEvent = eventToUnmark.removeFromAttendanceList(attendanceEntry);
         model.setEvent(eventToUnmark, updatedEvent);
 
         return new CommandResult(MESSAGE_SUCCESS);

@@ -212,9 +212,9 @@ Key operations exposed by the attendance feature:
 
 * `AttendanceCommand#resolveAttendanceContext(...)` – looks up the targeted member and event in the currently filtered lists, throwing if either index is invalid.
 * `AttendanceParserUtil#parseIndexes(...)` – tokenises `m/` and `e/` prefixes, forbids duplicates, and produces the `Index` values shared by both commands.
-* `MarkCommand#execute(...)` – increments the selected member's attendance count and appends their name to the chosen event.
-* `UnmarkCommand#execute(...)` – removes the member's name from the event and clamps the member's attendance count so it cannot drop below zero.
-* `ModelManager` helpers (`cleanupPersonAttendance(...)`, `updatePersonNameInAttendance(...)`, `cleanupEventAttendance(...)`) – keep attendance data coherent when members or events are edited, cleared, or deleted. `ModelManager#deleteEvent(...)` consults `Date#isPastCurrDate()` so only upcoming events undo attendance; past events leave counts untouched.
+* `MarkCommand#execute(...)` – increments the selected member's attendance count and appends their canonical attendance key (`Name [Phone]`) to the chosen event so members who share a name remain distinguishable.
+* `UnmarkCommand#execute(...)` – removes the member's attendance key from the event and clamps the member's attendance count so it cannot drop below zero.
+* `ModelManager` helpers (`cleanupPersonAttendance(...)`, `updatePersonAttendanceEntry(...)`, `cleanupEventAttendance(...)`) – keep attendance data coherent when members or events are edited, cleared, or deleted. `ModelManager#deleteEvent(...)` consults `Date#isPastCurrDate()` so only upcoming events undo attendance; past events leave counts untouched.
 * `JsonAdaptedPerson` / `JsonAdaptedEvent` – persist the updated attendance count and comma-delimited attendee list.
 * `PersonCard` / `EventCard` – surface the synchronised count and attendee names in the UI.
 
@@ -226,13 +226,13 @@ Step 2. The leader executes `mark m/1 e/2`. `LogicManager` parses the command wo
 
 ![Mark command through Logic](images/AttendanceMarkSequenceLogic.png)
 
-Step 3. Inside `execute(...)`, the command resolves the context, increments the member's attendance count, and appends the member name to the event. `ModelManager` writes both updates through to the underlying `AddressBook` while the storage layer keeps the JSON payloads consistent. The model sequence diagram highlights how `MarkCommand`, `ModelManager`, and the `AddressBook` collaborate to persist the changes.
+Step 3. Inside `execute(...)`, the command resolves the context, increments the member's attendance count, and appends the member's attendance key (`Name [Phone]`) to the event. `MarkCommand` first checks for duplicates using the canonical key to keep events free from repeated entries. `ModelManager` writes both updates through to the underlying `AddressBook` while the storage layer keeps the JSON payloads consistent. The model sequence diagram highlights how `MarkCommand`, `ModelManager`, and the `AddressBook` collaborate to persist the changes.
 
 ![Mark command through Model](images/AttendanceMarkSequenceModel.png)
 
 Step 4. If the leader later issues `unmark` for the same indices, the command uses the same validation path, reverses the event update, and clamps the member's count. The UI immediately reflects the change because it is observing the filtered lists.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** `MarkCommand` guards against duplicate attendance. Attempting to mark an already recorded member results in a clear validation error without modifying either record. `AttendanceCommand#resolveAttendanceContext` also validates both indexes together and surfaces `MESSAGE_INVALID_MEMBER_AND_EVENT_INDEX` when they are simultaneously out of range.</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `MarkCommand` guards against duplicate attendance by checking the canonical attendance key, ensuring each member appears only once per event. Attempting to mark an already recorded member results in a clear validation error without modifying either record. `AttendanceCommand#resolveAttendanceContext` also validates both indexes together and surfaces `MESSAGE_INVALID_MEMBER_AND_EVENT_INDEX` when they are simultaneously out of range.</div>
 
 ```java
 // Core of mark execution
@@ -242,14 +242,16 @@ public CommandResult execute(Model model) throws CommandException {
     Person memberToMark = context.getMember();
     Event eventToMark = context.getEvent();
 
-    if (eventToMark.hasAttendee(memberToMark.getName().fullName)) {
+    String attendanceEntry = memberToMark.getAttendanceKey();
+
+    if (eventToMark.hasAttendee(attendanceEntry)) {
         throw new CommandException(MESSAGE_DUPLICATE_ATTENDANCE);
     }
 
     Person updatedMember = memberToMark.withAttendanceCount(memberToMark.getAttendanceCount() + 1);
     model.setPerson(memberToMark, updatedMember);
 
-    Event updatedEvent = eventToMark.addToAttendanceList(memberToMark.getName().fullName);
+    Event updatedEvent = eventToMark.addToAttendanceList(attendanceEntry);
     model.setEvent(eventToMark, updatedEvent);
 
     return new CommandResult(MESSAGE_SUCCESS);
@@ -260,7 +262,7 @@ public CommandResult execute(Model model) throws CommandException {
 
 1. A CCA leader lists members and events so the relevant entries are visible.
 2. The leader runs `mark m/1 e/2`. `AttendanceCommand#resolveAttendanceContext` resolves the first visible member and second visible event, guaranteeing both indexes are valid within the filtered lists.
-3. `MarkCommand` increments the member's attendance count and appends the member name to the chosen event. The UI cards update immediately to display the new count and attendee list.
+3. `MarkCommand` increments the member's attendance count and appends the member's attendance key (`Name [Phone]`) to the chosen event, ensuring members who share a name remain distinct in the event card. The UI cards update immediately to display the new count and attendee list.
 4. If the leader later runs `unmark m/1 e/2`, the command reverses the updates to keep both records synchronised.
 
 #### Design considerations
@@ -273,7 +275,7 @@ public CommandResult execute(Model model) throws CommandException {
 **Aspect: Representing event attendees**
 
 * Alternative: retain references to `Person` objects. This risks stale pointers after edits and introduces circular serialisation concerns.
-* Current choice: store canonical member names in a single delimited `String` (`Event.ATTENDANCE_DELIMITER`). It keeps persistence simple and allows easy rewrites when names change.
+* Current choice: store canonical attendance keys (`Name [Phone]`) in a single delimited `String` (`Event.ATTENDANCE_DELIMITER`). It keeps persistence simple, supports duplicate names, and allows easy rewrites when member details change.
 
 **Aspect: Command syntax**
 
@@ -660,6 +662,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Member**: An individual registered in the CCA with details such as name, contact number, email, and role.
 * **Event**: An organized activity or occasion conducted by the CCA, such as a workshop, performance, competition, meeting, or social gathering, planned to achieve specific objectives or engage its members.
 
+## **Appendix: Planned Enhancements**
+
+Team size: 5
+
+1. CLI-aware guided tour for onboarding: The guided tour overlay currently launches only from the GUI ribbon, so CLI-first users receive no in-product walkthrough and may perceive the tour feature as missing. We will introduce a `tour` command sequence that renders the same five guided steps in the CLI result display (e.g., `tour start` followed by `tour next`). Sample output: ``Step 1/5: Use `list member` to review existing members. Enter `tour next` to continue.`` This keeps the experience mouse-free while surfacing the identical guidance text shown in the GUI overlay.
+
+2. Preserve attendance context when deleting inactive members: Deleting a member today also removes them from every event attendance list, wiping historical participation that event leads rely on. We will keep the member entry inside each event’s attendee table but tag them as inactive (e.g., `Amy Tan [inactive]`) so organisers retain the context. Example event card snippet after the change: ``Attendees: 1. Amy Tan [inactive] 2. Ben Chua``. The overall members list remains clean, while past attendance stays auditable.
+
+3. Context-rich feedback for mark/unmark commands: The success and error messages for `mark`/`unmark` are generic (e.g., `Marked attendance for member at event`), forcing users to cross-check the lists to confirm which member/event was affected. We will embed the resolved member and event names, plus the updated attendance count, directly in the feedback. Example success message after marking: ``Marked Amy Tan present for Orientation 2024. Attendance count: 5.`` Example failure when attempting to unmark a non-attendee: ``Cannot unmark Ben Chua from Orientation 2024 because no attendance is recorded.`` This makes the CLI feedback self-contained and reduces follow-up commands.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -759,12 +771,14 @@ testers are expected to do more *exploratory* testing.
    1a. Prerequisites: At least one member and one event displayed via `list member` and `list event`. Ensure the chosen member is not already marked for the target event.
 
    1b. Test case 1: `mark m/1 e/1`<br>
-   Expected: Attendance marked successfully. Member's attendance count increases by 1 and the event card lists the member.
+   Expected: Attendance marked successfully. Member's attendance count increases by 1 and the event card lists the member as `Name [Phone]` (e.g., `Alex Tan [90000001]`).
 
    1c. Test case 2: Repeat `mark m/1 e/1`<br>
    Expected: Error message stating the member is already marked. No changes to member count or event list.
 
-   1d. Other incorrect mark commands to try: `mark m/0 e/1`, `mark m/1 e/0` (where indexes are out of range)<br>
+   1d. Optional duplicate-name check: If you have two members with the same name but different phone numbers, mark each one for the same event and confirm both `Name [Phone]` entries appear in the event card.
+
+   1e. Other incorrect mark commands to try: `mark m/0 e/1`, `mark m/1 e/0` (where indexes are out of range)<br>
    Expected: Error message indicating the invalid index.
 
 2. Unmarking a member from an event
@@ -772,7 +786,7 @@ testers are expected to do more *exploratory* testing.
    2a. Prerequisites: Member is already marked for the selected event (e.g., run `mark m/1 e/1` first).
 
    2b. Test case 1: `unmark m/1 e/1`<br>
-   Expected: Attendance removed successfully. Member's attendance count decreases by 1 (not below zero) and the event card no longer lists the member.
+   Expected: Attendance removed successfully. Member's attendance count decreases by 1 (not below zero) and the event card no longer lists the corresponding `Name [Phone]` entry.
 
    2c. Test case 2: Repeat `unmark m/1 e/1`<br>
    Expected: Error message stating there is no attendance to unmark.

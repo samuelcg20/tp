@@ -596,7 +596,7 @@ Examples:
 
 ### Marking Attendance — `mark`
 
-You can add a member's attendance to an event. Their attendance increases by 1 and they are added to the event’s attendees list.
+You can add a member's attendance to an event. Their attendance increases by 1 and their name and phone number are added to the event’s attendees list. T
 
 Format: `mark m/MEMBER_INDEX e/EVENT_INDEX` or `mark e/EVENT_INDEX m/MEMBER_INDEX`
 
@@ -625,7 +625,7 @@ Examples:
 
 ### Unmarking Attendance — `unmark`
 
-You can remove a member's attendance from an event. Their attendance decreases by 1 and they are removed from the event’s attendees list.
+You can remove a member's attendance from an event. Their attendance decreases by 1 and their name and phone number are removed from the event’s attendees list.
 
 Format: `unmark m/MEMBER_INDEX e/EVENT_INDEX` or `unmark e/EVENT_INDEX m/MEMBER_INDEX`
 
@@ -646,7 +646,7 @@ Examples:
 ![Unmark 2 Screenshot](images/CaptionUnmarkCommand2.png)
 
 
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> If unsure whether a member is marked for an event, unmarking will tell you if there is nothing to unmark. Use <code>list member</code> and <code>list event</code> to verify indices first.</div>
+<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Look for the exact <code>Name [Phone]</code> entry on the event card. If multiple members share a name, the phone number helps you confirm which one was removed (This is because phone numbers are always unique to each member!).</div>
 <div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The <code>INDEX</code> refers to the currently displayed list. Your currently displayed list could be a filtered list (i.e. Filtered list is a result of a `find` command)!</div>
 
 
@@ -823,8 +823,8 @@ Problem: “Invalid command format!”
 - Solution: Compare with the command’s “Format” in this guide; remove extras and include all required prefixes.
 
 
-Problem: “Member is already marked for attendance at this event”
-- Reason: Duplicate attendance.
+- Problem: “Member is already marked for attendance at this event”
+- Reason: Duplicate attendance. The phone number of each member (e.g., `Alex Tan [90000001]`) keeps every attendee unique even when names repeat. The list still reads by name—the bracketed phone just disambiguates duplicates.
 - Solution: No action needed or use `unmark m/<MEMBER_INDEX> e/<EVENT_INDEX>` first.
 
 Problem: “Member is not marked at this event”
