@@ -22,7 +22,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
 import seedu.address.model.person.Year;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -33,7 +32,7 @@ public class AddCommandParserTest {
     // ========================= MEMBER TESTS =========================
 
     @Test
-    public void parse_addMember_allFieldsPresent_success() {
+    public void parse_addMemberAllFieldsPresent_success() {
         Person expectedPerson = new PersonBuilder(BOB).withRole(VALID_ROLE_TREASURER).build();
         assertParseSuccess(parser,
                 "member " + PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
@@ -42,7 +41,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_addMember_optionalFieldsMissing_success() {
+    public void parse_addMemberOptionalFieldsMissing_success() {
         Person expectedPerson = new PersonBuilder(AMY).withRole(VALID_ROLE_TREASURER).build();
         assertParseSuccess(parser,
                 "member " + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
@@ -51,25 +50,27 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_addMember_duplicateFields_failure() {
+    public void parse_addMemberDuplicateFields_failure() {
         String validPerson = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB + ROLE_DESC_TREASURER;
         assertParseFailure(parser, "member " + NAME_DESC_AMY + validPerson,
                 seedu.address.logic.Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_NAME));
     }
 
     @Test
-    public void parse_addMember_missingCompulsoryField_failure() {
+    public void parse_addMemberMissingCompulsoryField_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE_MEMBER);
 
         // Missing name
-        assertParseFailure(parser, "member " + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB + ROLE_DESC_TREASURER, expectedMessage);
+        assertParseFailure(parser, "member " + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB
+                + ROLE_DESC_TREASURER, expectedMessage);
 
         // Missing role
-        assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + YEAR_DESC_BOB, expectedMessage);
+        assertParseFailure(parser, "member " + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + YEAR_DESC_BOB, expectedMessage);
     }
 
     @Test
-    public void parse_addMember_invalidValues_failure() {
+    public void parse_addMemberInvalidValues_failure() {
         assertParseFailure(parser, "member " + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + YEAR_DESC_BOB + ROLE_DESC_TREASURER, Name.MESSAGE_CONSTRAINTS);
 
@@ -89,7 +90,7 @@ public class AddCommandParserTest {
     // ========================= EVENT TESTS =========================
 
     @Test
-    public void parse_addEvent_allFieldsPresent_success() {
+    public void parse_addEventAllFieldsPresent_success() {
         Event expectedEvent = new EventBuilder()
                 .withName("Tech Conference")
                 .withDate("2025-12-01T18:00")
@@ -102,7 +103,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_addEvent_missingCompulsoryFields_failure() {
+    public void parse_addEventMissingCompulsoryFields_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE_EVENT);
 
         // Missing name
@@ -116,7 +117,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_addEvent_duplicatePrefixes_failure() {
+    public void parse_addEventDuplicatePrefixes_failure() {
         String validEvent = "n/Tech Conference d/2025-12-01T18:00 v/NUS UTown";
         assertParseFailure(parser, "event n/Launch Party " + validEvent,
                 seedu.address.logic.Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_NAME));
@@ -129,7 +130,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_addEvent_invalidValues_failure() {
+    public void parse_addEventInvalidValues_failure() {
         assertParseFailure(parser, "event n/!@# d/2025-12-01T18:00 v/NUS",
                 EventName.MESSAGE_CONSTRAINTS);
 
@@ -144,17 +145,21 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_invalidType_failure() {
-        assertParseFailure(parser, "unknown n/abc", String.format(MESSAGE_INVALID_TYPE, AddCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "unknown n/abc", String.format(MESSAGE_INVALID_TYPE,
+                AddCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_emptyArgs_failure() {
-        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_missingArgumentsAfterType_failure() {
-        assertParseFailure(parser, "member", String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE_MEMBER));
-        assertParseFailure(parser, "event", String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE_EVENT));
+        assertParseFailure(parser, "member", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddCommand.MESSAGE_USAGE_MEMBER));
+        assertParseFailure(parser, "event", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddCommand.MESSAGE_USAGE_EVENT));
     }
 }
