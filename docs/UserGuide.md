@@ -227,7 +227,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 
 
 <h3 style="margin-top: 0.3em;">Step 3: Place the file in a folder</h3>
-- Your app comes in a single file that ends with .jar (for example, `[CS2103T-T09-2][ComClubConnect].jar`). You’ll need to decide where you want to keep this file — this will be your ComClubConnect home folder.
+- Your app comes in a single file that ends with .jar (for example, `CS2103T-T09-2.ComClubConnect.jar`). You’ll need to decide where you want to keep this file — this will be your ComClubConnect home folder.
     - Find your downloaded `.jar` file (for example, in your Downloads folder).
     - Right-click the file and choose Copy.
     - Go to your preferred folder where you want to keep the file
@@ -241,7 +241,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
     - **Linux users**: Right click on the folder and select "Copy path"
 - Open a command terminal as mentioned in step 2
 - Type `cd <copied filepath>` command to enter the folder
-- Type `java -jar [CS2103T-T09-2][ComClubConnect].jar` command to run the application.<br>
+- Type `java -jar CS2103T-T09-2.ComClubConnect.jar` command to run the application.<br>
 - A GUI like the one below will appear on your screen in a few seconds. Note that the app contains some sample data.<br>
 
 ![Ui](images/Ui.png)
