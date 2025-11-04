@@ -24,9 +24,6 @@ activate ModelManager
 ModelManager --> MarkCommand
 deactivate ModelManager
 
-MarkCommand --> MarkCommand
-deactivate MarkCommand
-
 MarkCommand -> ModelManager : setPerson(updated)
 activate ModelManager
 ModelManager -> AddressBook : setPerson(...)
