@@ -823,8 +823,8 @@ Problem: “Invalid command format!”
 - Solution: Compare with the command’s “Format” in this guide; remove extras and include all required prefixes.
 
 
-Problem: “Member is already marked for attendance at this event”
-- Reason: Duplicate attendance. The phone number of each member (e.g., `Alex Tan [90000001]`) is used to uniquely identify if a member is already an attendee (This is because phone numbers are always unique to each member!). You can still view attendees by name for quick recognition. 
+- Problem: “Member is already marked for attendance at this event”
+- Reason: Duplicate attendance. The phone number of each member (e.g., `Alex Tan [90000001]`) keeps every attendee unique even when names repeat. The list still reads by name—the bracketed phone just disambiguates duplicates.
 - Solution: No action needed or use `unmark m/<MEMBER_INDEX> e/<EVENT_INDEX>` first.
 
 Problem: “Member is not marked at this event”
