@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.MarkCommand;
-import seedu.address.logic.parser.ParserUtil;
 
 /**
  * Tests for {@link MarkCommandParser}.
