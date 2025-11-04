@@ -514,7 +514,7 @@ Examples:
 - `find member n/David John` → This shows you all members whose **name** contains "David" **or** "John" **or** both.
 
 - `find member r/President`
-→ This shows you all members in your CCA who's role has the word **President**.
+→ This shows you all members in your CCA whose role has the word **President**.
 
 
 **To Find Event(s):**
