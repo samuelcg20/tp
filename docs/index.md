@@ -6,7 +6,7 @@ title: ComClubConnect
 [![Java CI](https://github.com/AY2526S1-CS2103T-T09-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2526S1-CS2103T-T09-2/tp/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/github/AY2526S1-CS2103T-T09-2/tp/graph/badge.svg?token=ryLekZsYmW)](https://codecov.io/github/AY2526S1-CS2103T-T09-2/tp)
 
-![Ui](images/UpdatedUi.png)
+![Ui](images/FinalUi.png)
 
 **ComClubConnect is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
