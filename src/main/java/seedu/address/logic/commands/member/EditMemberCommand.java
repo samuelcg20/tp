@@ -226,6 +226,4 @@ public class EditMemberCommand extends EditCommand {
                 .add("editMemberDescriptor", editMemberDescriptor)
                 .toString();
     }
-
-
 }
